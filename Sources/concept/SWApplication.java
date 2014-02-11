@@ -14,7 +14,6 @@ import com.webobjects.foundation.NSArray;
 import com.webobjects.foundation.NSDictionary;
 import com.webobjects.foundation.NSMutableArray;
 import com.webobjects.foundation.NSMutableDictionary;
-import com.webobjects.foundation.NSTimestamp;
 
 import concept.components.SWErrorMessage;
 import concept.components.admin.SWAdminCustomComponent;
@@ -24,10 +23,6 @@ import concept.components.client.SWDefaultLook3;
 import concept.components.client.SWDefaultLook4;
 import concept.components.client.SWDefaultLook5;
 import concept.components.client.SWDefaultLook6;
-import concept.plugin.SWPluginHandler;
-import concept.search.SWLuceneUtilities;
-import concept.search.SWNewsItemLuceneUtilities;
-import concept.search.SWPageLuceneUtilities;
 import er.extensions.appserver.ERXApplication;
 
 public class SWApplication extends ERXApplication {
@@ -63,29 +58,10 @@ public class SWApplication extends ERXApplication {
 		addLook( SWDefaultLook5.class.getSimpleName() );
 		addLook( SWDefaultLook6.class.getSimpleName() );
 
-		SWSettings.register();
-
 		String englishString = USUtilities.stringFromResource( "sw32/lang/English.rsrc", Concept.sw().frameworkBundleName() );
 		String icelandicString = USUtilities.stringFromResource( "sw32/lang/Icelandic.rsrc", Concept.sw().frameworkBundleName() );
-
 		_localizedStrings.setObjectForKey( new SWDictionary( englishString ), "English" );
 		_localizedStrings.setObjectForKey( new SWDictionary( icelandicString ), "Icelandic" );
-
-		SWLuceneUtilities.addExtension( new SWPageLuceneUtilities() );
-		SWLuceneUtilities.addExtension( new SWNewsItemLuceneUtilities() );
-
-		SWYouTubeUtils.init();
-
-		SWPluginHandler.defaultInstance().loadRegisteredPlugins();
-		String defaultMailServer = SWSettings.stringForKey( "defaultMailServer" );
-
-		if( defaultMailServer != null ) {
-			setSMTPHost( defaultMailServer );
-		}
-
-		int sessionTimeOutInSeconds = new Integer( SWSettings.stringForKey( "sessionTimeOut", "30" ) ).intValue() * 60;
-		setSessionTimeOut( new Integer( sessionTimeOutInSeconds ) );
-		logger.info( "*** SoloWeb ready at " + new NSTimestamp() );
 	}
 
 	public static SWApplication swapplication() {

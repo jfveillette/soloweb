@@ -18,7 +18,11 @@ import concept.managers.RequestManager;
 import concept.managers.StatsManager;
 import concept.managers.TransactionLogger;
 import concept.managers.TransactionStamper;
+import concept.plugin.SWPluginHandler;
 import concept.search.IndexManager;
+import concept.search.SWLuceneUtilities;
+import concept.search.SWNewsItemLuceneUtilities;
+import concept.search.SWPageLuceneUtilities;
 import er.extensions.appserver.ERXApplication;
 import er.extensions.eof.ERXConstant;
 
@@ -84,6 +88,18 @@ public class Concept {
 		if( SWSettings.sessionTimeOut() != null ) {
 			int sessionTimeOutInSeconds = SWSettings.sessionTimeOut() * 60;
 			app.setSessionTimeOut( sessionTimeOutInSeconds );
+		}
+
+		SWLuceneUtilities.addExtension( new SWPageLuceneUtilities() );
+		SWLuceneUtilities.addExtension( new SWNewsItemLuceneUtilities() );
+
+		SWYouTubeUtils.init();
+
+		SWPluginHandler.defaultInstance().loadRegisteredPlugins();
+		String defaultMailServer = SWSettings.stringForKey( "defaultMailServer" );
+
+		if( defaultMailServer != null ) {
+			app.setSMTPHost( defaultMailServer );
 		}
 
 		logger.info( "*** " + productNameAndVersion() + " ready at " + new NSTimestamp() );
