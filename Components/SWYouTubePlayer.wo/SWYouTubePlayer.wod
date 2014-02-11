@@ -1,0 +1,12 @@
+strVideoTitle: WOString {
+	value = videoTitle;
+}
+
+strEmbedHtml: WOString {
+	value = embedHtml;
+	escapeHTML = false;
+}
+
+strVideoDescription: WOString {
+	value = videoDescription;
+}

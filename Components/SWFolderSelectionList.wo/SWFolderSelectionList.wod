@@ -1,0 +1,63 @@
+FolderForm: WOForm {
+	multipleSubmit = true;
+	id = "FolderForm";
+	name = "folderform";
+	method = "post";
+}
+
+Hyperlink1: WOHyperlink {
+	action = toggleDisplay;
+	onclick = "javascript: toggleExpansion(this); return false;";
+	disabled = hasNoSubFolders;
+}
+
+Hyperlink3: WOHyperlink {
+	action = selectFolder;
+	disabled = isDisabled;
+	id = currentFolder.folderID;
+	onclick = "toggleFolder(this)";
+}
+
+FolderIdString: WOString {
+	value = currentFolder.folderID;
+}
+
+Image1: WOImage {
+	src = toggleString;
+	width = 9;
+	height = 9;
+}
+
+Image2: WOImage {
+	border = 0;
+	filename = "sw32/img/mappa.gif";
+	framework = application.frameworkBundleName;
+}
+TheSpan: WOGenericContainer {
+	elementName = "span";
+	id = currentFolder.folderID;
+	onclick = "toggleFolder(this);";
+	class = "folderitem";
+}
+NestedList2: USNestedList {
+	sublist = subFolders;
+	list = rootFolders;
+	item = currentFolder;
+	index = currentIndex;
+}
+
+String1: WOString {
+	value = currentFolder.name;
+	valueWhenEmpty = session.@ls.untitledObjectString;
+}
+
+String2: WOString {
+	value = session.@ls.folderListHeader;
+}
+
+IdField: WOTextField {
+	value = selectedIds;	
+	name = "selectedIds";
+	id = "selectedIds";
+	style = "display:none";
+}

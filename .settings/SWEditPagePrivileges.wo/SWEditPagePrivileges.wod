@@ -1,0 +1,16 @@
+SWAssignPrivileges21: SWAssignPrivileges2 {
+	record = selectedPage;
+	privilegePairs = privilegePairs;
+        inheritance = true;
+}
+
+SWPrivilegeConditional1: SWPrivilegeConditional {
+	identifier = "canManageUsers";
+	record = selectedPage;
+}
+
+SWPrivilegeConditional2: SWPrivilegeConditional {
+	identifier = "canManageUsers";
+	negate = true;
+	record = selectedPage;
+}

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<wodefinitions>
+	<wo class="SWImage" wocomponentcontent="false">
+
+		<binding name="selectedPicture"/>
+
+		<validation message="You must bind selectedPicture">
+			<unbound name="selectedPicture"/>
+		</validation>
+	<binding name="size"/>
+    <binding name="selectedPictureID"/>
+    </wo>
+</wodefinitions>

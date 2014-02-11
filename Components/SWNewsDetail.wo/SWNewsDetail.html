@@ -1,0 +1,230 @@
+<!-- SWNewsDetail -->
+<div class="newsItem">
+  <div id="newsTitle" class="titill">
+    <span id="fyrirsogn" class="fyrirsogn"><webobject name="ItemHeiti" /></span>
+    <webobject name="IsDateShown">
+      <span class="dags">
+        <span class="hofundur">
+          <webobject name="ShowAuthorCond">
+            <br />Eftir 
+            <webobject name="AuthorStr" />
+            | 
+          </webobject>
+        </span>
+        <webobject name="ItemDate" />
+      </span>
+    </webobject>
+    <webobject name="IsDateHidden">
+      <span class="hofundur">
+        <webobject name="ShowAuthorCond">
+          <br />Eftir 
+          <webobject name="AuthorStr" />
+        </webobject>
+      </span>
+    </webobject>
+  </div>
+  <div class = "texti">
+    <webobject name = "HasImage">
+      <webobject name = "ImageTable">
+        <tr>
+          <td class = "mynd"><webobject name = "Image2" /></td>
+        </tr>
+        <webobject name = "ImageHasDescription">
+          <tr>
+            <td class = "description" style = "background-color: #f2f2f2;"><webobject name = "ImageDescription" /></td>
+          </tr>
+        </webobject>
+      </webobject>
+    </webobject>
+    <webobject name = "ShouldNotEncodeBreaks"><webobject name = "NewsText" /></webobject>
+    <webobject name = "ShouldEncodeBreaks"><webobject name = "TextWithBreaks" /></webobject>
+  </div>
+  <webobject name=ShowSkradDags><div class = "skradDags">
+    <webobject name=SkradDagsLabel/>&nbsp;<webobject name=SkradDagsValue/>
+  </div></webobject>
+  <span class = "til_baka">
+    <a onmouseover = "window.status = '<WEBOBJECT NAME=GoBackText></WEBOBJECT>';" href = "javascript:history.go(-1);" onmouseout = "window.status = '';">
+      <webobject name = "GoBackText" /></a>
+  </span>
+  <webobject name = "ShowUtils">
+    <meta content="<webobject name=ItemHeiti></webobject>" property="og:title"/>
+    <meta content="<webobject name=CurrentUrl></webobject>" property="og:url"/>
+    <!-- <meta content="http://lme.lausn.is/img/686/HI_comenius_C002_2011_web.jpg" property="og:image"/> -->
+    <meta content="<webobject name=SiteName></webobject>" property="og:site_name"/>
+    <meta content="website" property="og:type"/>
+    <meta content="<webobject name=ItemDescription></webobject>" property="og:description"/>
+    <webobject name = "IcelandicPage">
+	    <script type = "text/javascript">
+	      var spamValue1;
+	      var spamValue2;
+	      
+	      function showFBSharer() {
+			window.open('http://www.facebook.com/sharer.php?u=' + encodeURIComponent(document.location), 'facebook','toolbar=0,status=0,width=700,height=400');
+			return false;
+	      }
+	
+	      function showNewsItemForm() {
+	      	spamValue1 = Math.floor( Math.random() * 5 + 1 );
+	      	spamValue2 = Math.floor( Math.random() * 5 + 1 );
+	      	var spamText = "Hvað eru " + spamValue1 + " + " + spamValue2 + "?";
+	      	document.getElementById('emailForm').style.display = "block"
+	      	document.getElementById( "spamText" ).innerHTML = spamText;
+	      }
+	
+	      function validateNewsForm( theForm ) {
+	      	var errorMessage = document.getElementById( "errorMessage" );
+	      	errorMessage.innerHTML = "";
+	      	var isError = false;
+	      	
+	      	var msg = "";
+	      	if( theForm.netfang.value == "" ) {
+	      		msg += "<p>Netfang vantar</p>";
+	      		isError = true;
+	      	}
+	      	if( theForm.skilabod.value == "" ) {
+	      		msg += "<p>Skilaboð vantar</p>";
+	      		isError = true;
+	      	}
+	      	if( Number( theForm.spam.value ) != spamValue1 + spamValue2 ) {
+	      		msg += "<p>Ruslpóstvörn ekki rétt</p>";
+	      		isError = true;
+	      	}
+	      	
+	      	errorMessage.innerHTML = msg;
+	      	
+	      	return !isError;
+	      }
+	    </script>
+	    <table class = "utils" cellspacing = "0" cellpadding = "0" border = "0">
+	      <tbody>
+	        <tr>
+	          <td class = "label">Deila &thorn;essari fr&eacute;tt:</td>
+	          <td>
+	            <webobject name = "LinkEmail"><img src = "/sw32/img/email_share_icon.gif" />Senda fr&eacute;tt</webobject>
+	          </td>
+	          <td>
+	            <webobject name = "LinkFacebook"><img src = "/sw32/img/facebook_share_icon.gif" />Facebook</webobject>
+	          </td>
+	        </tr>
+	      </tbody>
+	    </table>
+	</webobject>
+    <webobject name = "EnglishPage">
+	    <script type = "text/javascript">
+	      var spamValue1;
+	      var spamValue2;
+	
+	      function showNewsItemForm() {
+	      	spamValue1 = Math.floor( Math.random() * 5 + 1 );
+	      	spamValue2 = Math.floor( Math.random() * 5 + 1 );
+	      	var spamText = "How much is " + spamValue1 + " + " + spamValue2 + "?";
+	      	document.getElementById('emailForm').style.display = "block"
+	      	document.getElementById( "spamText" ).innerHTML = spamText;
+	      }
+	
+	      function validateNewsForm( theForm ) {
+	      	var errorMessage = document.getElementById( "errorMessage" );
+	      	errorMessage.innerHTML = "";
+	      	var isError = false;
+	      	
+	      	var msg = "";
+	      	if( theForm.netfang.value == "" ) {
+	      		msg += "<p>Email address missing</p>";
+	      		isError = true;
+	      	}
+	      	if( theForm.skilabod.value == "" ) {
+	      		msg += "<p>Message missing</p>";
+	      		isError = true;
+	      	}
+	      	if( Number( theForm.spam.value ) != spamValue1 + spamValue2 ) {
+	      		msg += "<p>Spam filter answer incorrect</p>";
+	      		isError = true;
+	      	}
+	      	
+	      	errorMessage.innerHTML = msg;
+	      	
+	      	return !isError;
+	      }
+	    </script>
+	    <table class = "utils" cellspacing = "0" cellpadding = "0" border = "0">
+	      <tbody>
+	        <tr>
+	          <td class = "label">Share this news item:</td>
+	          <td>
+	            <webobject name = "LinkEmail"><img src = "/sw32/img/email_share_icon.gif" />Email news item</webobject>
+	          </td>
+	          <td>
+	            <webobject name = "LinkFacebook"><img src = "/sw32/img/facebook_share_icon.gif" />Facebook</webobject>
+	          </td>
+	        </tr>
+	      </tbody>
+	    </table>
+	  </webobject>
+  </webobject>
+  <div id = "errorMessage" class = "err"></div>
+  <webobject name = "IcelandicPage">
+	  <div id = "emailForm" style = "display: none;">
+	    <webobject name = "SendForm">
+	      <table>
+	        <tbody>
+	          <tr>
+	            <td class = "label">Netfang</td>
+	            <td><webobject name = "InputNetfang" /></td>
+	          </tr>
+	          <tr>
+	            <td class = "label">Skilabo&eth;</td>
+	            <td><webobject name = "InputSkilabod" /></td>
+	          </tr>
+	          <tr>
+	            <td class = "label">Ruslp&oacute;stv&ouml;rn</td>
+	            <td>
+	              <span id = "spamText">&nbsp;</span>
+	              <webobject name = "InputSpam" />
+	            </td>
+	          </tr>
+	          <tr>
+	            <td colspan = "2" style = "text-align: right;">
+	              <webobject name = "InputItem" />
+	              <webobject name = "InputPage" />
+	              <webobject name = "SendButton" />
+	            </td>
+	          </tr>
+	        </tbody>
+	      </table>
+	    </webobject>
+	  </div>
+  </webobject>
+  <webobject name = "EnglishPage">
+	  <div id = "emailForm" style = "display: none;">
+	    <webobject name = "SendForm">
+	      <table>
+	        <tbody>
+	          <tr>
+	            <td class = "label">Email address</td>
+	            <td><webobject name = "InputNetfang" /></td>
+	          </tr>
+	          <tr>
+	            <td class = "label">Message</td>
+	            <td><webobject name = "InputSkilabod" /></td>
+	          </tr>
+	          <tr>
+	            <td class = "label">Spam protection</td>
+	            <td>
+	              <span id = "spamText">&nbsp;</span>
+	              <webobject name = "InputSpam" />
+	            </td>
+	          </tr>
+	          <tr>
+	            <td colspan = "2" style = "text-align: right;">
+	              <webobject name = "InputItem" />
+	              <webobject name = "InputPage" />
+	              <webobject name = "SendButton" />
+	            </td>
+	          </tr>
+	        </tbody>
+	      </table>
+	    </webobject>
+	  </div>
+  </webobject>
+</div>
+<!-- end SWNewsDetail -->

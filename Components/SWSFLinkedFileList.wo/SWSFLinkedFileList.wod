@@ -1,0 +1,46 @@
+THTag: WOGenericContainer {
+	elementName = "th";
+	class = thClass;
+}
+FolderList: WORepetition {
+	list = folders;
+	item = currentFolder;
+	index = columnIndex;
+}
+FolderLink: WOHyperlink {
+	directActionName = "dp";
+	?id = currentComponent.page.pageID;
+	?sort = columnIndex;
+}
+FolderName: WOString {
+	value = currentFolder.name;
+}
+RowCount: WORepetition {
+	count = itemList.count;
+	index = rowIndex;
+}
+ColumnCount: WORepetition {
+	count = folders.size;
+	index = columnIndex;
+}
+HasDocument: WOConditional {
+	condition = currentDocument;
+}
+ItemLink: WOHyperlink {
+	href = documentURL;
+	?download = "true";
+}
+ItemIcon: WOImage {
+	src = currentDocument.iconURL;
+	width = 14;
+	height = 14;
+}
+ItemName: WOString {
+	value = currentDocument.name;
+}
+ItemType: WOString {
+	value = currentDocument.extension;
+}
+ItemSize: WOString {
+	value = currentDocument.sizeFormatted;
+}

@@ -1,0 +1,68 @@
+CheckBox1: WOCheckBox {
+	checked = currentComponent.encodeBreaks;
+}
+
+HeitiField2: WOTextField {  size = 30; value = currentComponent.textOne; }
+
+ImageButton1: WOImage {
+	filename = "sw32/img/butur001.gif";
+	framework = application.frameworkBundleName;
+}
+
+ImageButton2: WOImage {
+	filename = "sw32/img/butur002.gif";
+	framework = application.frameworkBundleName;
+}
+
+ImageButton3: WOImage {
+	filename = "sw32/img/butur003.gif";
+	framework = application.frameworkBundleName;
+}
+
+ImageButton4: WOImage {
+	filename = "sw32/img/butur004.gif";
+	framework = application.frameworkBundleName;
+}
+
+RadioButton1: WORadioButton {
+	name = currentComponent.primaryKey;
+	selection = currentComponent.templateName;
+	value = "ButurTemplate001";
+}
+
+RadioButton2: WORadioButton {
+	name = currentComponent.primaryKey;
+	selection = currentComponent.templateName;
+	value = "ButurTemplate002";
+}
+
+RadioButton3: WORadioButton {
+	name = currentComponent.primaryKey;
+	selection = currentComponent.templateName;
+	value = "ButurTemplate003";
+}
+
+RadioButton4: WORadioButton {
+	name = currentComponent.primaryKey;
+	selection = currentComponent.templateName;
+	value = "ButurTemplate004";
+}
+
+SWImageHyperlink1: SWPictureHyperlink {
+	fieldName = "picture";
+	record = currentComponent;
+	selectedSize = currentComponent.customInfo.size;
+}
+
+SWTextEditing1: SWTextEditing {
+	content = currentComponent.textTwo;
+}
+
+String1: WOString {
+	value = session.@ls.componentEncodeBreaks;
+}
+
+LinkPictureList: SWLinkPictureList {
+	currentComponent = currentComponent;
+}
+

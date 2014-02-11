@@ -1,0 +1,27 @@
+<!-- SWLinkPictureList -->
+<div style="margin-top: 4px; clear: left; text-align: center;">
+	<webobject name = "ButtonAddPicture"/>
+</div>
+<webobject name = "LinkedPicturesList">
+	<div style="border: 1px solid gray; margin: 8px; padding: 8px; clear: both;">
+		<div style="height: 2em;">
+			<div style="float:left; font-weight: bold;"><webobject name = "PictureLinkName"/></div>
+			<div style="float:right; display:block;"><webobject name = "LinkRemovePictureLink">Remove</webobject></div>
+		</div>
+		<webobject name = "CurrentLinkedPicture"/>
+	</div>
+</webobject>
+<script type="text/javascript">
+	function insertPlaceholder() {
+		var placeholder = "<WEBOBJECT NAME=PlaceHolder></WEBOBJECT>";
+		editor.focus();
+		try {
+			editor.getSelection().getNative().collapseToStart();
+			editor.insertHtml( placeholder );
+		} catch (e) {
+			editor.setData( editor.getData() + placeholder );
+		}
+		editor.focus();
+	}
+</script>
+<!-- end SWLinkPictureList -->

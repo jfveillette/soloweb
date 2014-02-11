@@ -1,0 +1,29 @@
+condShow: WOConditional {
+	condition = doShow;
+}
+
+webDomain: WOString {
+	value = webDomain;
+}
+
+serviceId: WOString {
+	value = serviceId;
+}
+
+servicePortion: WOString {
+	value = siteId;
+	valueWhenEmpty = "NÚMER VEFHLUTA";
+}
+
+pageSymbolOrId: WOString {
+	value = pageSymbolOrId;
+	valueWhenEmpty = "ÓÞEKKT SÍÐA";
+}
+
+subdomain: WOString {
+	value = subdomain;
+}
+
+noScriptUrl: WOString {
+	value = noScriptUrl;
+}

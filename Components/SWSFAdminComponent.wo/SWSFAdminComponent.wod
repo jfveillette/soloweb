@@ -1,0 +1,80 @@
+HasSelectedDocument: WOConditional {
+	condition = selectedDocument;
+}
+
+NoSelectedDocument: WOConditional {
+	condition = selectedDocument;
+	negate = true;
+}
+
+PopUpButton1: WOPopUpButton {
+	list = componentKeys;
+	selection = selectedComponentKey;
+	onchange = "this.form.submit();";
+}
+
+DocumentLink: SWDocumentHyperlink {
+	componentToReturn = context.page;
+	fieldName = "selectedDocument";
+	record = self;
+}
+
+SWImage1: WOImage  {
+	filename = "sw32/img/document_icons/other.png";
+}
+
+documentName: WOString {
+	value = selectedDocument.name;
+}
+
+documentComponentHeading: WOString {
+	value = session.@ls.documentComponentHeading;
+}
+
+documentselectFieldTitle: WOString {
+	value = session.@ls.documentselectFieldTitle;
+}
+
+String4: WOString {
+	value = session.@ls.documentDisplayStyleTitle;
+}
+
+String5: WOString {
+	value = session.@ls.documentIconFieldTitle;
+}
+
+String6: WOString {
+	value = session.@ls.documentDownloadTextFieldTitle;
+}
+
+documentNoDocumentSelectedString: WOString {
+	value = session.@ls.documentNoDocumentSelectedString;
+}
+
+String8: WOString {
+	value = session.@ls.documentSortingTitle;
+}
+
+TextField1: WOTextField {
+	value = currentComponent.customInfo.downloadText;
+	size = 30;
+}
+
+StrForceDownload: WOString {
+	value = session.@ls.documentForceDownloadTitle;
+}
+ChkForceDownload: WOCheckBox {
+	checked = currentComponent.customInfo.forceDownload;
+}
+ChkDisplayIcon: WOCheckBox {
+	checked = currentComponent.customInfo.displayIcon;
+}
+
+ChkReverseOrder: WOCheckBox {
+	checked = currentComponent.customInfo.reverseSortOrder;
+}
+
+IsList: WOKeyValueConditional {
+	key = "currentComponent.templateName";
+	value = "SWSFFileList";
+}

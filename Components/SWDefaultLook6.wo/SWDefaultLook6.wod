@@ -1,0 +1,236 @@
+Content: WOComponentContent {}
+
+ShowNavigation: WOConditional {
+	condition = selectedPage.customInfo.hideNavigation;
+	negate = true;
+}
+
+SideNavigation: SWNavigation2 {
+	list = navigationList;
+	selectedPage = selectedPage;
+	level = 0;
+}
+
+Keywords: WOGenericElement {
+	content = selectedPage.keywords;
+	elementName = "meta";
+	name = "keywords";
+}
+
+Description: WOGenericElement {
+	content = selectedPage.text;
+	elementName = "meta";
+	name = "description";
+}
+CustomCSSLoop: WORepetition {
+	list = customCSSList;
+	item = currentCSS;
+}
+CustomCSS: WOGenericElement {
+	elementName = currentCSS;
+}
+
+HideRightColumnStyles: WOString {
+	value = selectedPage.siteForThisPage.customInfo.hideRightColumnStyles;
+}
+TheTitle: WOString {
+	value = selectedPage.nameWithPrefix;
+}
+HasLanguageNavigator: WOConditional {
+	condition = hasLanguageNavigator;
+}
+LangugageNavigator: WOSwitchComponent {
+	WOComponentName = "SWPageInLanguageNavigator";
+}
+HasHeader: WOConditional {
+	condition = headerPage;
+}
+HeaderLoop: WORepetition {
+	list = headerPage.sortedAndApprovedComponents;
+	item = currentComponent;
+	index = itemCount;
+}
+HeaderItemDiv: WOGenericContainer {
+	elementName = "div";
+	class = headerClass;
+}
+HasTopNavigationOrExtras: WOConditional {
+	condition = hasTopNavigationOrExtras;
+}
+HasTopNavigation: WOConditional {
+	condition = topNavigationPage;
+}
+TopNavigationLoop: WORepetition {
+	list = topNavigationPage.sortedAndApprovedSubPages;
+	item = currentPage;
+	index = itemCount;
+}
+TopNavigationItemId: WOString {
+	value = itemId;
+}
+TopNavigationItem: WOGenericContainer {
+	elementName = "li";
+	class = itemClass;
+	id = itemId;
+}
+TopNavigationURL: WOString {
+	value = topNavigationUrl;
+}
+TopNavigationText: WOString {
+	value = currentPage.name;
+}
+HasTopNavigationDropDown: WOConditional {
+	condition = hasTopNavigationDropDown;
+}
+condTopNavigationDropDownHover: WOConditional {
+	condition = hasTopNavigationDropDownHover;
+}
+condTopNavigationDropDownClick: WOConditional {
+	condition = hasTopNavigationDropDownHover;
+	negate = true;
+}
+HasTopNavigationDropDownWithItems: WOConditional {
+	condition = hasTopNavigationDropDownWithItems;
+}
+TopNavigationDropDownItemId: WOString {
+	value = topNavigationDropDownItemId;
+}
+TopNavigationDropDownItem: SWDropDownMenuItem {
+	selectedContentPage = selectedPage;
+	itemNumber = itemCount;
+	currentPage = currentPage;
+	subPageColumnCount = subPageColumnCount;
+}
+HasTopLeft: WOConditional {
+	condition = topLeftPage;
+}
+TopLeftLoop: WORepetition {
+	list = topLeftPage.sortedAndApprovedComponents;
+	item = currentComponent;
+	index = itemCount;
+}
+TopLeftItemDiv: WOGenericContainer {
+	elementName = "div";
+	class = topLeftClass;
+}
+HasTopExtras: WOConditional {
+	condition = topExtrasPage;
+}
+TopExtrasLoop: WORepetition {
+	list = topExtrasPage.sortedAndApprovedComponents;
+	item = currentComponent;
+	index = itemCount;
+}
+TopExtrasItemDiv: WOGenericContainer {
+	elementName = "div";
+	class = topExtrasClass;
+}
+HasTopper: WOConditional {
+	condition = topperPage;
+}
+TopperLoop: WORepetition {
+	list = topperPage.sortedAndApprovedComponents;
+	item = currentComponent;
+	index = itemCount;
+}
+TopperItemDiv: WOGenericContainer {
+	elementName = "div";
+	class = topperClass;
+}
+HasExtrasAbove: WOConditional {
+	condition = extrasAbovePage;
+}
+ExtrasAboveLoop: WORepetition {
+	list = extrasAbovePage.sortedAndApprovedComponents;
+	item = currentComponent;
+	index = itemCount;
+}
+ExtrasAboveItemDiv: WOGenericContainer {
+	elementName = "div";
+	class = extrasAboveClass;
+}
+HasLeftColumn: WOConditional {
+	condition = leftColumnPage;
+}
+HasExtras: WOConditional {
+	condition = extrasPage;
+}
+LeftColumnLoop: WORepetition {
+	list = leftColumnPage.sortedAndApprovedComponents;
+	item = currentComponent;
+	index = itemCount;
+}
+ExtrasLoop: WORepetition {
+	list = extrasPage.sortedAndApprovedComponents;
+	item = currentComponent;
+	index = itemCount;
+}
+LeftColumnItemDiv: WOGenericContainer {
+	elementName = "div";
+	class = leftColumnClass;
+}
+ExtrasItemDiv: WOGenericContainer {
+	elementName = "div";
+	class = extrasClass;
+}
+HasNotColumn: WOConditional {
+	condition = columnPage;
+	negate = true;
+}
+HasColumn: WOConditional {
+	condition = columnPage;
+}
+ColumnLoop: WORepetition {
+	list = columnPage.sortedAndApprovedComponents;
+	item = currentComponent;
+	index = itemCount;
+}
+ColumnItemDiv: WOGenericContainer {
+	elementName = "div";
+	class = columnClass;
+}
+HasAboveContent: WOConditional {
+	condition = aboveContentPage;
+}
+AboveLoop: WORepetition {
+	list = aboveContentPage.sortedAndApprovedComponents;
+	item = currentComponent;
+	index = itemCount;
+}
+ContentAboveItemDiv: WOGenericContainer {
+	elementName = "div";
+	class = contentAboveClass;
+}
+HasBelowContent: WOConditional {
+	condition = belowContentPage;
+}
+BelowLoop: WORepetition {
+	list = belowContentPage.sortedAndApprovedComponents;
+	item = currentComponent;
+	index = itemCount;
+}
+ContentBelowItemDiv: WOGenericContainer {
+	elementName = "div";
+	class = contentBelowClass;
+}
+HasFooter: WOConditional {
+	condition = footerPage;
+}
+FooterLoop: WORepetition {
+	list = footerPage.sortedAndApprovedComponents;
+	item = currentComponent;
+	index = itemCount;
+}
+FooterItemDiv: WOGenericContainer {
+	elementName = "div";
+	class = footerClass;
+}
+ContentSwitch: WOSwitchComponent {
+	WOComponentName = currentComponent.templateName;
+	currentComponent = currentComponent;
+	selectedContentPage = selectedPage;
+}
+
+Modernus: ModernusButur {
+	page = selectedPage;
+}

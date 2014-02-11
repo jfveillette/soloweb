@@ -1,0 +1,58 @@
+IsInForm: WOConditional {
+	condition = context.isInForm;
+}
+
+IsNotInForm: WOConditional {
+	condition = context.isInForm;
+	negate = true;
+}
+
+HasResult: WOConditional {
+	condition = hasResults;
+}
+
+SingularPlural: SWSingularPlural {
+	number = resultCount;
+	singular = sidaFannstSemInniheldurStr;
+	plural = sidurFundustSemInnihaldaStr;
+	escapeHTML = false;
+}
+strOrdid: WOString {
+	value = ordidStr;
+}
+NoResults: WOConditional {
+	condition = resultCount;
+	negate = true;
+}
+strEngarSidurFundustVidLeitAd: WOString {
+	value = engarSidurFundustVidLeitAdStr;
+}
+
+SearchResultComponent: WOSwitchComponent {
+	WOComponentName = currentItem.searchResultComponentName;
+	item = currentItem;
+	itemSettings = resultItemSettings;
+}
+
+ResultList: WORepetition {
+	item = currentItem;
+	list = results;
+}
+
+SearchString: WOString {
+	value = searchString;
+}
+
+ResultCount: WOString {
+	value = results.count;
+}
+
+String5: WOString {
+	value = searchString;
+}
+
+SwitchComponent1: WOSwitchComponent {
+	WOComponentName = lookName;
+	selectedPage = selectedPage;
+}
+

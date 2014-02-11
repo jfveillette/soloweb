@@ -1,0 +1,9 @@
+EDITOR_NAME: WOString {
+	value = editorName;
+}
+
+TEXTAREA: WOText {
+	value = content;
+	name = editorName;
+	id = editorName;
+}

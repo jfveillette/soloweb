@@ -1,0 +1,32 @@
+Conditional1: WOConditional {
+	condition = currentBreadcrumb.isTopLevel;
+	negate = YES;
+}
+
+Hyperlink5: WOString {
+	value = currentBreadcrumb.pageLink;
+}
+
+Hyperlink5Title: WOString {
+	value = currentBreadcrumb.text;
+}
+
+Repetition1: WORepetition {
+	item = currentBreadcrumb;
+	list = breadcrumb;
+	index = index;
+}
+
+String1: WOString {
+	value = currentBreadcrumb.name;
+}
+
+Span: WOGenericContainer {
+	elementName = "span";
+	class = className;
+}
+
+strSeparator: WOString {
+	value = itemSeparatorHtml;
+	escapeHTML = false;
+}

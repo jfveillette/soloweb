@@ -1,0 +1,112 @@
+CheckBox3: WOCheckBox {
+	checked = currentPlugin.constructSchema;
+}
+
+CheckBox4: WOCheckBox {
+	checked = currentPlugin.dropSchema;
+}
+
+Conditional1: WOConditional {
+	condition = connectionDictionary;
+}
+
+GenerateDBButton3: WOSubmitButton {
+	action = executeSQL;
+	onClick = session.@ls.dbsConstructionWarning;
+	value = session.@ls.dbsConstructButtonTitle;
+}
+
+GenerateDBButton4: WOSubmitButton {
+	action = switchConnection;
+	value = session.@ls.dbsSwitchConnectionButtonTitle;
+}
+
+KeyValueConditional1: WOKeyValueConditional {
+	key = "selectedTab";
+	value = connectionsTabName;
+}
+
+KeyValueConditional2: WOKeyValueConditional {
+	key = "selectedTab";
+	value = switchTabName;
+}
+
+PopUpButton1: WOPopUpButton {
+	displayString = currentDatabase;
+	item = currentDatabase;
+	list = databases;
+	selection = selectedDictionary.adaptorName;
+}
+
+Repetition1: WORepetition {
+	item = currentPlugin;
+	list = plugins;
+}
+
+Repetition2: WORepetition {
+	item = currentPlugin;
+	list = plugins;
+}
+
+PlistEditor1: USPlistEditor {
+	object = selectedDictionary.connDict;
+}
+
+SWTabPanel1: SWTabPanel {
+	selectedTab = selectedTab;
+	tabs = tabs;
+}
+
+String1: WOString {
+	value = currentPlugin.name;
+}
+
+String10: WOString {
+	value = session.@ls.dbsConstructionCreateTablesCheckbox;
+}
+
+String11: WOString {
+	value = currentPlugin.version;
+}
+
+String2: WOString {
+	value = session.@ls.databaseSettingsHeader;
+}
+
+String3: WOString {
+	value = session.@ls.dbsDatabaseType;
+}
+
+String4: WOString {
+	value = session.@ls.dbsConnectionSwitchingHeader;
+}
+
+String5: WOString {
+	value = session.@ls.dbsConnectionSwitchingText;
+}
+
+String6: WOString {
+	value = session.@ls.dbsConstructionHeader;
+}
+
+String7: WOString {
+	value = session.@ls.dbsConstructionText;
+}
+
+String8: WOString {
+	value = session.@ls.dbsConstructionModuleNameTableHeader;
+}
+
+String9: WOString {
+	value = session.@ls.dbsConstructionDropTablesCheckbox;
+}
+
+SubmitButton1: WOSubmitButton {
+	action = save;
+	value = session.@ls.dbsSaveButtonTitle;
+}
+
+SubmitButton2: WOSubmitButton {
+	action = switchAdaptors;
+	value = session.@ls.dbsInitializeButtonTitle;
+}

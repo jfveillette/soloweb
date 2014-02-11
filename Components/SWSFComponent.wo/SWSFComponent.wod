@@ -1,0 +1,36 @@
+ShowIcon: WOConditional {
+	condition = currentComponent.customInfo.displayIcon;
+}
+
+DocumentLink: WOHyperlink {
+	?id = selectedDocument.primaryKey;
+	actionClass = "SoloFile";
+	directActionName = "attachment";
+}
+
+DownloadText: WOString {
+	value = downloadText;
+}
+
+DocumentName: WOString {
+	value = selectedDocument.name;
+}
+
+IconImage: WOImage {
+	align = "left";
+	src = selectedDocument.iconURL;
+	width = 14;
+	height = 14;
+}
+
+DocumentURL: WOHyperlink {
+	href = documentURL;
+	?download = currentComponent.customInfo.forceDownload;
+}
+
+FileSize: WOString {
+	value = selectedDocument.sizeFormatted;
+}
+FileDotExtension: WOString {
+	value = selectedDocument.extension;
+}

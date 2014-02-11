@@ -1,0 +1,38 @@
+ComponentContent1: WOComponentContent {
+}
+
+GenericElement1: WOGenericElement {
+	content = selectedPage.keywords;
+	elementName = "META";
+	name = "keywords";
+}
+
+GenericElement2: WOGenericElement {
+	content = selectedPage.text;
+	elementName = "META";
+	name = "description";
+}
+
+Hyperlink1: WOHyperlink {
+	?id = selectedPage.topLevelPage.pageID;
+	directActionName = "dp";
+}
+
+SWBreadcrumbTrail1: SWBreadcrumbTrail {
+	selectedPage = selectedPage;
+}
+
+SWNavigation1: SWNavigation {
+	list = selectedPage.topLevelPage.sortedAndApprovedSubPages;
+	noHierarchy = false;
+	selectedPage = selectedPage;
+}
+
+String1: WOString {
+	value = selectedPage.nameWithPrefix;
+}
+
+String2: WOString {
+	value = selectedPage.siteForThisPage.name;
+}
+

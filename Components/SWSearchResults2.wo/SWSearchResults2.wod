@@ -1,0 +1,45 @@
+IsInForm: WOConditional {
+	condition = context.isInForm;
+}
+
+IsNotInForm: WOConditional {
+	condition = context.isInForm;
+	negate = true;
+}
+
+condShowSearchAgain: WOConditional {
+	condition = currentComponent.customInfo.searchResultsShowSearchAgain;
+}
+
+efSearchString: WOTextField {
+	name = "searchString";
+	value = searchString;
+}
+
+SearchResultComponent: WOSwitchComponent {
+	WOComponentName = currentItem.searchResultComponentName;
+	item = currentItem;
+	itemSettings = resultItemSettings;
+}
+
+ResultList: WORepetition {
+	item = currentItem;
+	list = results;
+}
+
+ResultCountStr: WOString {
+	value = resultCountStr;
+}
+
+SwitchComponent1: WOSwitchComponent {
+	WOComponentName = lookName;
+	selectedPage = selectedPage;
+}
+
+strSearchWord: WOString {
+	value = strSearchWord;
+}
+
+strSearchResults: WOString {
+	value = strSearchResults;
+}

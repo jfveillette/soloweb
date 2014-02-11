@@ -1,0 +1,19 @@
+Frame1: WOFrame {
+	pageName = "SWMainMenu";
+	name = "upper";
+	scrolling = "NO";
+	frameborder = 0;
+	marginwidth = 0;
+	marginheight = 0;
+	noresize = "NORESIZE";
+}
+
+Frame2: WOFrame {
+	pageName = "SWPageFrameset";
+	name = "lower";
+	frameborder = 0;
+	marginwidth = 0;
+	marginheight = 0;
+	noresize = "NORESIZE";
+}
+

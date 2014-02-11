@@ -1,0 +1,65 @@
+<!-- SWEditDataAsset -->
+<webobject name="Form1">
+	<table cellspacing="0" class="genericTable" cellpadding="2" border="0">
+		<tr>
+			<th colspan="2"><b><webobject name="AssetName"/></b> (<webobject name="AssetID"/>)</th>
+		</tr><tr>
+			<th align="right"><webobject name="PictureUploadNameStr"/>:</th>
+			<td>
+				<webobject name = "IsNotPictureCond"><webobject name="HeitiField6"/></webobject>
+				<webobject name = "IsPictureCond"><webobject name = "PictureDisplayName"/></webobject>
+			</td>
+		</tr><tr>
+			<th align="right"><webobject name="PictureUploadTypeStr"/>:</th>
+			<td>
+				<webobject name="PopUpButton1"/>
+				<webobject name = "HasDataButNoType"><span style="background-color: #ff8"><webobject name = "PleaseSelectTypeStr"/></span></webobject>
+			</td>
+		</tr><tr>
+			<th align="right"><webobject name="PictureUploadURLStr"/>:</th>
+			<td><webobject name="HeitiField1"/></td>
+		</tr><tr>
+			<th align="right"><webobject name="PictureUploadSelectFromDiskStr"/>:</th>
+			<td><webobject name="Upload"/></td>
+		</tr>
+		<webobject name="IsPictureCond"><tr>
+			<th align="right"><webobject name="PictureSizesStr"/></th>
+			<td><webobject name="PictureSizesLoop">
+				<webobject name="CurrentSizeChk"/><webobject name="CurrentSizeStr"/>&nbsp;
+			</webobject></td>
+		</tr><tr>
+			<th align="right"><webobject name="PictureDescriptionStr"/>:</th>
+			<td><webobject name="PictureDescription"/></td>
+		</tr><tr>
+			<th align="right"><webobject name="PictureAltTextStr"/>:</th>
+			<td><webobject name="PictureAltText"/></td>
+		</tr>
+		</webobject>
+		<webobject name = "IsDocumentCond"><tr>
+			<th align="right"><webobject name = "DocumentLinkKeyStr"/>:</th>
+			<td><webobject name = "InpLinkKey"/></td>
+		</tr></webobject>
+		<tr>
+			<th>
+				<webobject name="IsZipFileCond"><webobject name="Hyperlink1">Expand zip file</webobject></webobject>
+				<webobject name="IsDocumentCond"><webobject name="Hyperlink2">Edit as text</webobject></webobject>
+				&nbsp;
+			</th>
+			<td align="right"><webobject name="SubmitButton1"/></td>
+		</tr>
+		<webobject name="IsPictureCond">
+			<tr><td colspan="2">
+				<table width="100%"><tr>
+					<td width="5">
+						<webobject name="ImageEditorLink"><webobject name="PreviewImage"/></webobject>
+					</td>
+					<td>
+						Frummynd: <webobject name="ImageWidthStr"/> x <webobject name="ImageHeightStr"/><br>
+						St&aelig;r&eth;ir: <webobject name = "SizesStr"/>
+					</td>
+				</tr></table>
+			</td></tr>
+		</webobject>
+	</table>
+</webobject>
+<!-- end SWEditDataAsset -->

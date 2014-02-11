@@ -1,0 +1,56 @@
+CheckBox1: WOCheckBox {
+	checked = shouldCopy;
+	onClick = "this.form.submit()";
+}
+
+Form1: WOForm {
+}
+
+CanCopyCond: WOConditional {
+	condition = canCreateCopy;
+}
+
+CanNotCopyCond: WOConditional {
+	condition = canCreateCopy;
+	negate = true;
+}
+
+Hyperlink2: WOHyperlink {
+	action = cancel;
+}
+
+ResetHitCount3: WOString {
+	value = record.name;
+}
+
+SWAdminComponentWrapper1: SWAdminComponentWrapper {
+	backgroundColor = "#eeeeee";
+}
+
+SWFolderList1: SWFolderList {
+	disabledFolder = record.containingFolder;
+	entityName = folderEntityName;
+	selectedFolder = currentParent;
+	actionName = "selectObject";
+}
+
+String1: WOString {
+	value = session.@ls.tafPart1;
+}
+
+String2: WOString {
+	value = session.@ls.tafPart2;
+}
+
+String3: WOString {
+	value = session.@ls.tafHeader;
+}
+
+String4: WOString {
+	value = session.@ls.tafCancel;
+}
+
+String5: WOString {
+	value = session.@ls.copyTitle;
+}
+

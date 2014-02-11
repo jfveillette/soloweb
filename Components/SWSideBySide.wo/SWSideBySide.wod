@@ -1,0 +1,25 @@
+ColumnRepetition: WORepetition {
+	item = currentColumn;
+	index = currentColumnIndex;
+	list = columnList;
+}
+
+Column: WOGenericContainer {
+	elementName = "TD";
+	width = currentColumn.columnWidth;
+	style = "vertical-align: top;";
+	id = sideBySideCompNo;
+}
+
+SwitchComponent1: WOSwitchComponent {
+	WOComponentName = currentColumn.component.templateName;
+	currentComponent = currentColumn.component;
+}
+
+ComponentConditional: WOConditional {
+	condition = currentColumn.component;
+}
+
+SideBySideId: WOString {
+	value = sideBySideId;
+}

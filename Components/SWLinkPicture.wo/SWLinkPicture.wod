@@ -1,0 +1,83 @@
+HasNoPicture: WOConditional {
+	condition = link.picture;
+	negate = true;
+}
+
+RadioAlignLeft: WORadioButton {
+	name = radioName;
+	value = 0;
+	selection = link.align;
+}
+
+RadioAlignRight: WORadioButton {
+	name = radioName;
+	value = 1;
+	selection = link.align;
+}
+
+RadioAlignCenter: WORadioButton {
+	name = radioName;
+	value = 2;
+	selection = link.align;
+}
+
+RadioAlignInline: WORadioButton {
+	name = radioName;
+	value = 3;
+	selection = link.align;
+}
+
+SizeList: WOPopUpButton {
+	list = link.picture.availablePictureSizes;
+	selection = link.size;
+}
+
+SizeListLarge: WOPopUpButton {
+	list = link.picture.availablePictureSizes;
+	selection = link.sizeLarge;
+}
+
+LinkThumbnail: WOHyperlink {
+	action = browsePictures;
+}
+
+Thumbnail: WOImage {
+	src = link.picture.thumbnailURL;
+	align = "left";
+}
+
+ChkCaption: WOCheckBox {
+	checked = link.showCaption;
+}
+
+ChkLarge: WOCheckBox {
+	checked = link.linkToLarge;
+}
+Caption: WOText {
+	value = link.picture.description;
+	cols = 50;
+	rows = 4;
+}
+Link:WOTextField {
+	value = link.url;
+	size = 50;
+}
+AltText: WOTextField {
+	value = link.picture.altText;
+	size = 50;
+}
+RadioLink0: WORadioButton {
+	name = radioLink;
+	value = 0;
+	selection = link.linkToLarge;
+}
+RadioLink1: WORadioButton {
+	name = radioLink;
+	value = 1;
+	selection = link.linkToLarge;
+}
+RadioLink2: WORadioButton {
+	name = radioLink;
+	value = 2;
+	selection = link.linkToLarge;
+}

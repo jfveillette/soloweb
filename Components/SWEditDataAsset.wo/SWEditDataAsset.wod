@@ -1,0 +1,163 @@
+IsZipFileCond: WOConditional {
+	condition = isZipFile;
+}
+
+IsDocumentCond: WOConditional {
+	condition = isDocument;
+}
+
+IsPictureCond: WOConditional {
+	condition = isPicture;
+}
+IsNotPictureCond: WOConditional {
+	condition = isPicture;
+	negate = true;
+}
+Upload: WOFileUpload {
+	data = data;
+	filePath = filename;
+	size = 40;
+}
+
+//Custom6: NBUploadWithProgress {
+//	action = 
+//}
+
+Form1: WOForm {
+	enctype = "multipart/form-data";
+}
+
+HeitiField1: WOTextField {
+	size = 60;
+	value = url;
+}
+
+HeitiField6: WOTextField {
+	size = 60;
+	value = selectedAsset.name;
+}
+PictureDisplayName: WOTextField {
+	size = 60;
+	value = selectedAsset.displayName;
+}
+Hyperlink1: WOHyperlink {
+	action = expandZipFile;
+}
+
+Hyperlink2: WOHyperlink {
+	action = editAsText;
+	target = "_blank";
+}
+
+PopUpButton1: WOPopUpButton {
+	displayString = currentDocumentType.name;
+	item = currentDocumentType;
+	list = documentTypes;
+	noSelectionString = session.@ls.pictureUploadNoTypeSpecified;
+	selection = selectedAsset.documentType;
+	escapeHTML = false;
+}
+
+HasDataButNoType: WOConditional {
+	condition = hasDataButNoType;
+}
+
+PleaseSelectTypeStr: WOString {
+	value = "&lt;&lt; Please select a type";
+	escapeHTML = false;
+}
+
+AssetID: WOString {
+	value = selectedAsset.primaryKey;
+}
+
+AssetName: WOString {
+	value = selectedAsset.name;
+}
+
+PictureUploadNameStr: WOString {
+	value = session.@ls.pictureUploadName;
+}
+
+PictureUploadTypeStr: WOString {
+	value = session.@ls.pictureUploadType;
+}
+
+PictureUploadURLStr: WOString {
+	value = session.@ls.pictureUploadURL;
+}
+
+PictureUploadSelectFromDiskStr: WOString {
+	value = session.@ls.pictureUploadSelectFromDisk;
+}
+
+PictureSizesStr: WOString {
+	value = session.@ls.pictureSizes;
+}
+
+PictureSizesLoop: WORepetition {
+	list = allSizesList;
+	item = currentString;
+	index = count;
+}
+
+CurrentSizeChk: WOCheckBox {
+	checked = currentSizeSelection;
+}
+
+CurrentSizeStr: WOString {
+	value = currentString;
+}
+
+PictureDescriptionStr: WOString {
+	value = session.@ls.pictureDescription;
+}
+
+PictureAltTextStr: WOString {
+	value = session.@ls.pictureAltText;
+}
+
+SubmitButton1: WOSubmitButton {
+	action = saveChanges;
+	value = session.@ls.pictureUploadSaveButtonTitle;
+	accesskey = "s";
+}
+
+PictureDescription: WOText {
+	value = selectedAsset.description;
+	cols = 50;
+	rows = 5;
+}
+
+PictureAltText: WOTextField {
+	size = 60;
+	value = selectedAsset.altText;
+}
+
+PreviewImage: WOImage {
+	src = selectedAsset.thumbnailURL;
+	mimeType = "image/jpeg";
+}
+
+ImageWidthStr: WOString {
+	value = selectedAsset.width;
+}
+
+ImageHeightStr: WOString {
+	value = selectedAsset.height;
+}
+
+SizesStr: WOString {
+	value = selectedAsset.customInfo.sizes;
+}
+ImageEditorLink: WOHyperlink {
+	target = "_blank";
+	action = editPicture;
+}
+DocumentLinkKeyStr: WOString {
+	value = "Link Key";
+}
+InpLinkKey: WOTextField {
+	value = selectedAsset.linkKey;
+	size = 30;
+}

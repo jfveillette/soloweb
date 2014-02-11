@@ -1,0 +1,44 @@
+HasDocuments: WOConditional {
+	condition = documents.count;
+}
+
+ShowIcon: WOConditional {
+	condition = currentComponent.customInfo.displayIcon;
+}
+
+DocumentLink: WOHyperlink {
+	href = documentURL;
+	?download = currentComponent.customInfo.forceDownload;
+}
+
+DocumentList: WORepetition {
+	item = currentDocument;
+	list = documents;
+}
+
+DownloadText: WOString {
+	value = downloadText;
+}
+
+DocumentName: WOString {
+	escapeHTML = false;
+	value = currentDocument.name;
+}
+
+xIconImage: SWImage {
+	align = "left";
+	selectedPicture = currentDocument.documentType.icon;
+}
+
+IconImage: WOImage {
+	src = currentDocument.iconURL;
+	width = 14;
+	height = 14;
+}
+
+FileSize: WOString {
+	value = currentDocument.sizeFormatted;
+}
+FileTypeName: WOString {
+	value = currentDocument.documentType.name;
+}

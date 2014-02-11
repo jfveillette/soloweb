@@ -1,0 +1,34 @@
+DIV: WOGenericContainer {
+	elementName = "div";
+	class = "butur buturtemplate004";
+	id = buturID;
+}
+
+HasTextOne: WOConditional {
+	condition = currentComponent.textOne.length;
+}
+
+DoNotEncodeBreaks: WOConditional {
+	condition = currentComponent.encodeBreaks;
+	negate = true;
+}
+
+DoEncodeBreaks: WOConditional {
+	condition = currentComponent.encodeBreaks;
+}
+
+String1: WOString {
+	value = currentComponent.textOne;
+	escapeHTML = false;
+}
+
+String2: WOString {
+	value = textTwoRendered;
+	escapeHTML = false;
+}
+
+String3: WOString {
+	value = currentComponent.textTwoWithBreaks;
+	escapeHTML = false;
+}
+

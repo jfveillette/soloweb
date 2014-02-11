@@ -1,0 +1,4 @@
+Switch: WOSwitchComponent {
+	WOComponentName = componentName;
+	/* componentAttributes = componentAttributes; */
+}

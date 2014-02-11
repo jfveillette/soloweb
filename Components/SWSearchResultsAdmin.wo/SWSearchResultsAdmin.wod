@@ -1,0 +1,12 @@
+InpBranchId: WOTextField {
+	value = currentComponent.customInfo.searchBranchID;
+}
+InpNewsFolders: WOTextField {
+	value = currentComponent.customInfo.searchNewsFolderIDs;
+}
+InpNewsDisplayPageSymbol: WOTextField {
+	value = currentComponent.customInfo.searchNewsDisplayPageSymbol;
+}
+chkShowSearchAgain: WOCheckBox {
+	checked = currentComponent.customInfo.searchResultsShowSearchAgain;
+}

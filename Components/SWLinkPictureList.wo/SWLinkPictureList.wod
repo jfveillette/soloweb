@@ -1,0 +1,26 @@
+LinkedPicturesList: WORepetition {
+	list = swPictureLinks;
+	item = currentPictureLink;
+}
+
+PictureLinkName: WOString {
+	value = currentPictureLink.name;
+}
+
+LinkRemovePictureLink: WOHyperlink {
+	action = removeCurrentPictureLink;
+}
+
+CurrentLinkedPicture: SWLinkPicture {
+	link = currentPictureLink;
+}
+
+ButtonAddPicture: WOSubmitButton {
+	value = "Add Picture...";
+	action = browsePictures;
+	onclick = "insertPlaceholder()";
+}
+
+PlaceHolder: WOString {
+	value = placeHolder;
+}

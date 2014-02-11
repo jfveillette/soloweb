@@ -1,0 +1,340 @@
+IfLinkOnTitle: WOConditional {
+	condition = currentComponent.customInfo.moreLinkOnTitle;
+}
+IfNotLinkOnTitle: WOConditional {
+	condition = currentComponent.customInfo.moreLinkOnTitle;
+	negate = true;
+}
+NotDisplayDetailCond: WOConditional {
+	condition = displayDetail;
+	negate = true;
+}
+
+NotShouldEncodeBreaksCond: WOConditional {
+	condition = currentNewsItem.shouldEncodeBreaks;
+	negate = true;
+}
+
+ShouldEncodeBreaksCond: WOConditional {
+	condition = currentNewsItem.shouldEncodeBreaks;
+}
+
+DisplayDetailCond: WOConditional {
+	condition = displayDetail;
+}
+
+ShowPictureCond: WOConditional {
+	condition = showPictureAboveTitle;
+	negate = true;
+}
+
+ShowPictureAboveTitleCond: WOConditional {
+	condition = showPictureAboveTitle;
+}
+
+HasPictureCond: WOConditional {
+	condition = currentNewsItem.picture;
+}
+
+HasPicture2Cond: WOConditional {
+	condition = currentNewsItem.picture2;
+}
+
+DisplayExcerptCond: WOConditional {
+	condition = displayExcerpt;
+}
+
+DisplayTextCond: WOConditional {
+	condition = displayText;
+}
+
+NotDisplayExcerptCond: WOConditional {
+	condition = displayExcerpt;
+	negate = true;
+}
+
+NotDisplayTextCond: WOConditional {
+	condition = displayText;
+	negate = true;
+}
+
+NotDisplayTextOnlyCond: WOConditional {
+	condition = displayTextOnly;
+	negate = true;
+}
+
+ShowOlderNews: WOConditional {
+	condition = currentComponent.customInfo.showOlder;
+}
+
+ShowOlderString: WOString {
+	value = currentComponent.customInfo.showOlderText;
+	escapeHTML = false;
+}
+IsDateHidden: WOKeyValueConditional {
+	key = "dateDisplayKey";
+	value = "hide";
+}
+IsDateAbove: WOKeyValueConditional {
+	key = "dateDisplayKey";
+	value = "above";
+}
+IsDateInFront: WOKeyValueConditional {
+	key = "dateDisplayKey";
+	value = "front";
+}
+IsDateBehind: WOKeyValueConditional {
+	key = "dateDisplayKey";
+	value = "behind";
+}
+
+NewsItemsDiv: WOGenericContainer {
+	elementName = "div";
+	class = "news_items";
+	id = newsItemsID;
+}
+NewsItemDiv: WOGenericContainer {
+	elementName = "div";
+	class = itemClass;
+}
+DisplayList2: WORepetition {
+	item = currentNewsItem;
+	list = newslist;
+	index = newsItemIndex;
+}
+OlderURL: WOHyperlink {
+	href = olderURL;
+	class= "older";
+}
+MoreURL: WOHyperlink {
+	href = moreURL;
+	class = "more";
+}
+TitleURL: WOHyperlink {
+	href = moreURL;
+}
+SoloNewsDetail1: SWNewsDetail {
+	selectedNewsItem = selectedNewsItem;
+	currentComponent = currentComponent;
+}
+
+ShowWeekday: WOConditional {
+	condition = showWeekday;
+}
+
+Weekday: WOString {
+	value = weekdayString;
+}
+
+ShowDate: WOConditional {
+	condition = showDate;
+}
+
+Date: WOString {
+	value = dateString;
+}
+
+ShowTime: WOConditional {
+	condition = showTime;
+}
+
+Time: WOString {
+	value = timeString;
+}
+
+ShowMoreText: WOString {
+	value = showMoreText;
+}
+ShowMore: WOConditional {
+	condition = currentComponent.customInfo.hideMoreText;
+	negate = true;
+}
+Fyrirsogn: WOString {
+	value = currentNewsItem.heading;
+}
+
+ExcerptWithBreaks: WOString {
+	escapeHTML = false;
+	value = currentNewsItem.excerptWithBreaks; 	
+}
+
+ExcerptWithNoBreaks: WOString {
+	escapeHTML = false;
+	value = currentNewsItem.excerpt;
+}
+
+NewsText: WOString {
+	escapeHTML = false;
+	value = currentNewsItem.text; 	
+}
+
+TextWithBreaks: WOString {
+	escapeHTML = false;
+	value = currentNewsItem.textWithBreaks; 	
+}
+
+DisplayYearSelectionAboveCond: WOConditional {
+	condition = showYearSearchAbove;
+}
+
+DisplayYearSelectionAsPopupCond: WOConditional {
+	condition = showYearSearchAsPopup;
+}
+
+YearSelection: WOPopUpButton {
+	list = yearsToDisplay;
+	name = "year";
+	item = year;
+	displayString = year;
+	value = monthYearSearchUrl;
+	selectedValue = selectedYear;
+	onchange = "window.location=this.value";
+}
+
+DisplayYearSelectionAsListCond: WOConditional {
+	condition = showYearSearchAsPopup;
+	negate = true;
+}
+
+YearListRep: WORepetition {
+	list = yearsToDisplay;
+	item = year;
+}
+
+strYear: WOString {
+	value = year;
+}
+
+DisplayMonthSelectionAboveCond: WOConditional {
+	condition = showMonthSearchAbove;
+}
+
+DisplayMonthSelectionAsPopupCond: WOConditional {
+	condition = showMonthSearchAsPopup;
+}
+
+MonthSelection: WOPopUpButton {
+	list = monthsToDisplay;
+	name = "month";
+	item = month;
+	displayString = month;
+	value = monthYearSearchUrl;
+	selectedValue = selectedMonth;
+	onchange = "window.location=this.value";
+}
+
+DisplayMonthSelectionAsListCond: WOConditional {
+	condition = showMonthSearchAsPopup;
+	negate = true;
+}
+
+MonthListRep: WORepetition {
+	list = monthsToDisplay;
+	item = month;
+	index = monthNo;
+}
+
+strMonth: WOString {
+	value = month;
+}
+
+DisplayYearSelectionBelowCond: WOConditional {
+	condition = showYearSearchBelow;
+}
+
+DisplayMonthSelectionBelowCond: WOConditional {
+	condition = showMonthSearchBelow;
+}
+
+strYearSearchLink: WOString {
+	value = yearSearchLink;
+}
+
+strYearSearchLinkClass: WOString {
+	value = yearSearchLinkClass;
+}
+
+strMonthSearchLink: WOString {
+	value = monthSearchLink;
+}
+
+strMonthSearchLinkClass: WOString {
+	value = monthSearchLinkClass;
+}
+
+NotInAdminUICond: WOConditional {
+	condition = context.isInForm;
+	negate = true;
+}
+
+InAdminUICond: WOConditional {
+	condition = context.isInForm;
+}
+
+ShowAuthorCond: WOConditional {
+	condition = showAuthor;
+}
+
+ShowAuthorLabelCond: WOConditional {
+	condition = currentComponent.customInfo.showNewsAuthorLabel;
+}
+
+AuthorStr: WOString {
+	value = currentNewsItem.author;
+}
+
+PictureTable: WOGenericContainer {
+	elementName = "table";
+	cellspacing = "0";
+	cellpadding = "0";
+	border = "0";
+	width = currentComponent.customInfo.size2;
+	align = currentComponent.customInfo.imageAlignment;
+	class = currentComponent.customInfo.imageAlignment;
+}
+
+NewsItemPicture: SWImage {
+	selectedPicture = currentNewsItem.picture;
+	size = currentNewsItem.customInfo.size;
+	alt = currentNewsItem.picture.altText;
+}
+
+NewsItemPicture2: SWImage {
+	selectedPicture = currentNewsItem.picture2;
+	size = currentNewsItem.customInfo.size2;
+	alt = currentNewsItem.picture2.altText;
+}
+
+PictureText: WOString {
+	value = currentNewsItem.picture.description;
+}
+
+PictureText2: WOString {
+	value = currentNewsItem.picture2.description;
+}
+
+ShowCaption: WOConditional {
+	condition = currentNewsItem.customInfo.hideCaption2;
+	negate = true;
+}
+PictureHasDescription: WOConditional {
+	condition = currentNewsItem.picture.description;
+}
+Picture2HasDescription: WOConditional {
+	condition = currentNewsItem.picture2.description;
+}
+
+ShowHorizontalLineCond: WOConditional {
+	condition = currentComponent.customInfo.showNewsHorizontalLine;
+}
+HasText: WOConditional {
+	condition = currentNewsItem.hasText;
+}
+
+ShowPerDayHeaderCond: WOConditional {
+	condition = showPerDayHeader;
+}
+
+PerDayHeaderStr: WOString {
+	value = perDayHeaderStr;
+}

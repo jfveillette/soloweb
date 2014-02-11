@@ -1,0 +1,89 @@
+strSliderId: WOString {
+	value = sliderId;
+}
+
+strSliderStyle: WOString {
+	value = sliderStyle;
+}
+
+condImageSlider: WOKeyValueConditional {
+	key = "currentComponent.customInfo.swslider_type";
+	value = "imagesfromfolder";
+}
+
+repImageSlider: WORepetition {
+	item = currentPicture;
+	list = pictures;
+}
+
+imgSliderPicture: WOImage {
+	src = currentPictureUrl;
+	width = currentPictureWidth;
+	height = currentPictureHeight;
+}
+
+condNewsSlider: WOKeyValueConditional {
+	key = "currentComponent.customInfo.swslider_type";
+	value = "newsfromfolder";
+}
+
+repNewsSlider: WORepetition {
+	item = currentNewsItem;
+	list = news;
+}
+
+newsSwitchComponent: WOSwitchComponent {
+	WOComponentName = newsTemplateName;
+	selectedNewsItem = currentNewsItem;
+	currentComponent = currentComponent;
+	selectedContentPage = selectedPage;
+}
+
+strNewsSliderTitle: WOString {
+	value = currentNewsItem.heading;
+}
+
+strNewsSliderExcerpt: WOString {
+	value = currentNewsItem.excerpt;
+	escapeHTML = false;
+}
+
+condComponentSlider: WOKeyValueConditional {
+	key = "currentComponent.customInfo.swslider_type";
+	value = "componentsfrompage";
+}
+
+repComponentSlider: WORepetition {
+	item = curComponent;
+	list = components;
+}
+
+compSwitchComponent: WOSwitchComponent {
+	WOComponentName = curComponent.templateName;
+	currentComponent = curComponent;
+	selectedContentPage = selectedPage;
+}
+
+strSliderTransitionType: WOString {
+	value = currentComponent.customInfo.swslider_transitiontype;
+}
+
+strSliderAutoTransition: WOString {
+	value = sliderAutoTransition;
+}
+
+strSliderControls: WOString {
+	value = sliderControls;
+}
+
+strSliderPause: WOString {
+	value = sliderPause;
+}
+
+strSliderSpeed: WOString {
+	value = sliderSpeed;
+}
+
+condShowPager: WOConditional {
+	condition = currentComponent.customInfo.swslider_showpager;
+}

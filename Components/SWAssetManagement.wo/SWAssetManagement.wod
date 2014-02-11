@@ -1,0 +1,368 @@
+CanCreateDeleteCond: WOConditional {
+	condition = canCreateDeleteAssetsInCurrentFolder;
+}
+
+folderHasContent: WOConditional {
+	condition = folderDocumentCount;
+}
+
+Conditional10: WOConditional {
+	condition = isDataAsset;
+}
+
+Conditional11: WOConditional {
+	condition = isDataAsset;
+}
+
+IsAdminCond: WOConditional {
+	condition = session.activeUser.isAdministrator;
+}
+
+RecordCond: WOConditional {
+	condition = record;
+}
+
+Conditional14: WOConditional {
+	condition = record;
+}
+
+isPicture: WOConditional {
+	condition = isPicture;
+}
+
+ShowThumbnails: WOConditional {
+	condition = selectedFolder.showThumbnails;
+}
+ThumbDiv: WOGenericContainer {
+	elementName = "div";
+	class = thumbClass;
+}
+isNotPicture: WOConditional {
+	condition = isPicture;
+	negate = true;
+}
+
+Conditional17: WOConditional {
+	condition = isNewsItem;
+}
+
+isNewsItem: WOConditional {
+	condition = isNewsItem;
+}
+
+Conditional19: WOConditional {
+	condition = isNewsItem;
+}
+
+Conditional2: WOConditional {
+	condition = selectedAsset;
+}
+
+Conditional3: WOConditional {
+	condition = record;
+}
+
+hasRecord: WOConditional {
+	condition = record;
+}
+
+hasNotRecord: WOConditional {
+	condition = record;
+	negate = true;
+}
+
+isSelectedAsset: WOConditional {
+	condition = selectedAsset;
+}
+
+isNotSelectedAsset: WOConditional {
+	condition = selectedAsset;
+	negate = true;
+}
+
+Conditional6: WOConditional {
+	condition = isDataAsset;
+}
+
+isDataAsset: WOConditional {
+	condition = isDataAsset;
+}
+
+Conditional8: WOConditional {
+	condition = isDataAsset;
+}
+
+Conditional9: WOConditional {
+	condition = isDataAsset;
+}
+
+Form1: WOForm {
+	multipleSubmit = true;
+}
+
+GenericContainer1: WOGenericContainer {
+	bgcolor = rowColor;
+	elementName = "tr";
+	class = itemClass;
+}
+
+Hyperlink1: WOHyperlink {
+	href = currentAssetURL;
+	?wosid = false;
+	target = "_blank";
+}
+
+createSubFolderLink: WOHyperlink {
+	action = createSubFolder;
+}
+
+Hyperlink2: WOHyperlink {
+	action = deleteAsset;
+	onClick = session.@cs.deleteDocumentWarning;
+	class = "topLevelAsset";
+}
+
+Hyperlink3: WOHyperlink {
+	target = "_blank";
+	action = editPicture;
+}
+
+Hyperlink4: WOHyperlink {
+	action = returnBack;
+}
+
+Hyperlink5: WOHyperlink {
+	action = createRootFolder;
+}
+
+saveAssetLink: WOHyperlink {
+	action = saveAsset;
+	class = "topLevelAsset";
+}
+
+saveAssetPreviewLink: WOHyperlink {
+	
+}
+selectAssetLink: WOHyperlink {
+	action = selectAsset;
+	class = "topLevelAsset";
+	disabled = isSelected;
+}
+
+createAssetLink: WOHyperlink {
+	action = createAsset;
+}
+
+ThumbImage: WOImage {
+	src = currentAssetThumbURL;
+}
+
+ImgArrow: WOImage {
+	border = 0;
+	filename = "sw32/img/transfer_arrow.gif";
+	framework = application.frameworkBundleName;
+}
+
+Image2: WOImage {
+	border = 0;
+	filename = "sw32/img/eye.gif";
+	framework = application.frameworkBundleName;
+}
+
+ImgDelete: WOImage {
+	filename = "sw32/img/delete.gif";
+	framework = application.frameworkBundleName;
+}
+
+ImgYfirflokka: WOImage {
+	border = 0;
+	filename = "sw32/img/soloweb_yfirflokkaskra.gif";
+	framework = application.frameworkBundleName;
+}
+
+ImgEye: WOImage {
+	border = 0;
+	filename = "sw32/img/eye.gif";
+	framework = application.frameworkBundleName;
+}
+
+JSConfirmPanel2: JSConfirmPanel {
+	action = deleteSelectedFolder;
+	confirmMessage = session.@ls.deleteDocumentFolderMessageString;
+}
+
+isDocumentsTabSelected: WOKeyValueConditional {
+	key = "selectedTab";
+	value = documentsTabName;
+}
+
+isPrivilegesTabSelected: WOKeyValueConditional {
+	key = "selectedTab";
+	value = privilegesTabName;
+}
+isRSSTabSelected: WOKeyValueConditional {
+	key = "selectedTab";
+	value = "RSS";
+}
+sortedDocumentsLoop: WORepetition {
+	index = tableIndex;
+	item = currentAsset;
+	list = sortedDocuments;
+}
+
+transferAssetLink: SWTransferHyperlink {
+	componentToReturn = context.page;
+	record = selectedFolder;
+	transferComponentName = "SWTransferFolder";
+}
+
+ResetHitCount4: SWTransferHyperlink {
+	componentToReturn = context.page;
+	record = currentAsset;
+	transferComponentName = "SWTransferAsset";
+}
+
+SWAdminComponentWrapper1: SWAdminComponentWrapper {
+	backgroundColor = "#eeeeee";
+}
+
+SWAssignPrivileges21: SWAssignPrivileges2 {
+	privilegePairs = privilegePairs;
+	record = selectedFolder;
+	inheritance = true;
+}
+
+SWFolderList1: SWFolderList {
+	entityName = folderEntityName;
+	selectedFolder = selectedFolder;
+	disabledFolder = selectedFolder;
+	actionName = "selectFolder";
+}
+
+SWTabPanel1: SWTabPanel {
+	selectedTab = selectedTab;
+	submitActionName = "saveChanges";
+	tabs = tabs;
+}
+
+String1: WOString {
+	value = session.@ls.newsDateTableHeader;
+}
+
+String10: WOString {
+	value = session.@ls.transferDocumentFolder;
+}
+
+String11: WOString {
+	value = session.@ls.deleteDocumentFolder;
+}
+
+String12: WOString {
+	value = session.@ls.documentNameTableHeader;
+}
+
+String13: WOString {
+	value = session.@ls.documentSizeTableHeader;
+}
+
+String14: WOString {
+	value = session.@ls.documentTotalSizeTableFooter;
+}
+
+String15: WOString {
+	value = selectedFolder.folderID;
+}
+
+CancelStr: WOString {
+	value = session.@ls.cancelDocumentSelection;
+}
+
+assetFileSize: WOString {
+	value = currentAsset.sizeFormatted;
+}
+
+assetName: WOString {
+	value = currentAsset.name;
+	valueWhenEmpty = session.@ls.untitledObjectString;
+}
+pictureDisplayName: WOString {
+	value = currentAsset.displayName;
+	valueWhenEmpty = session.@ls.untitledObjectString;
+}
+String4: WOString {
+	value = selectedFolder.size;
+}
+
+assetDate: WOString {
+	value = currentAsset.date;
+	dateformat = "%d.%m.%Y";
+}
+
+CreateFolderStr: WOString {
+	value = session.@ls.createDocumentFolderInRoot;
+}
+
+String7: WOString {
+	value = selectedFolder.name;
+	valueWhenEmpty = "Untitled folder";
+}
+
+String8: WOString {
+	value = session.@ls.createNewDocument;
+}
+
+String9: WOString {
+	value = session.@ls.createDocumentSubFolder;
+}
+
+SubmitButton1: WOSubmitButton {
+	action = saveChanges;
+	value = session.@ls.changeFolderNameButtonTitle;
+}
+
+SwitchComponent1: WOSwitchComponent {
+	WOComponentName = editingComponentName;
+	selectedAsset = selectedAsset;
+}
+
+TextField3: WOTextField {
+	value = selectedFolder.name;
+	size = 20;}
+
+SelectedFolderCond: WOConditional {
+	condition = selectedFolder;
+}
+
+PrevBatch: WOHyperlink {
+	action = prevBatch;
+}
+InpRSSPageName: WOTextField {
+	value = selectedFolder.rssPageName;
+	style = "width: 100%;";
+}
+InpRSSTitle: WOTextField {
+	value = selectedFolder.rssTitle;
+	style = "width: 100%;";
+}
+InpRSSLink: WOTextField {
+	value = selectedFolder.rssLink;
+	style = "width: 100%;";
+}
+BatchControlsCond: WOConditional {
+	condition = selectedFolder.batchFetchContent;
+}
+
+NextBatch: WOHyperlink {
+	action = nextBatch;
+}
+
+CurrentBatchNo: WOString {
+	value = currentBatchNo;
+}
+
+MaxBatchNo: WOString {
+	value = maxBatchNo;
+}
+FolderTitle: WOString {
+	value = selectedFolder.title;
+}

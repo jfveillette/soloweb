@@ -1,0 +1,138 @@
+Conditional1: WOConditional {
+	condition = doingSubmit;
+}
+
+Conditional2: WOConditional {
+	condition = context.isInForm;
+	negate = true;
+}
+
+Conditional3: WOConditional {
+	condition = context.isInForm;
+}
+
+Conditional5: WOConditional {
+	condition = doingSubmit;
+	negate = true;
+}
+
+ShowWebUrlCond: WOConditional {
+	condition = currentComponent.customInfo.newsReg_ShowWebUrl;
+}
+
+ShowExcerptCond: WOConditional {
+	condition = currentComponent.customInfo.newsReg_ShowExcerpt;
+}
+
+ShowAuthorCond: WOConditional {
+	condition = currentComponent.customInfo.newsReg_ShowAuthor;
+}
+
+Form: WOForm {
+	name = "formEvent";
+	multipleSubmit = true;
+	action = saveChanges;
+	enctype = "multipart/form-data";
+}
+
+String1: WOString {
+	value = maxChars;
+}
+
+String2: WOString {
+	value = currentComponent.customInfo.newsSubmitFormTitle;
+}
+
+btnSubmit: WOSubmitButton {
+	action = saveChanges;
+	escapeHTML = false;{
+	value = "Skr&aacute;";
+}
+
+TextField1: WOTextField {
+	name = "fld_count";
+	numberformat = "0";
+	size = 4;
+	value = tmpCounter;
+	readonly = "readonly";
+}
+
+date: WOTextField {
+	size = 10;
+	value = data.date;
+	name = "newsdate";
+}
+
+time: WOTextField {
+	size = 5;
+	value = data.time;
+}
+
+efAuthor: WOTextField {
+	size = 30;
+	value = data.author;
+}
+
+title: WOTextField {
+	size = 50;
+	value = data.title;
+	name = "fld_title";
+}
+
+weburl: WOTextField {
+	size = 50;
+	value = data.weburl;
+	name = "fld_url";
+}
+
+excerpt: WOText {
+	class = "textbox";
+	cols = 60;
+	name = "excerpt";
+	rows = 4;
+	style = "width: 100%; margin-bottom: 6px";
+	value = data.excerpt;
+	wrap = "auto";
+}
+
+maintext: WOText {
+	class = "textbox";
+	cols = 60;
+	name = "maintext";
+	rows = 10;
+	style = "width: 100%; margin-bottom: 6px";
+	value = data.text;
+	wrap = "auto";
+	onKeyDown = "count()";
+	onKeyPress = "count()";
+	onChange = "count()";
+	onKeyUp = "count()";
+	onFocus = "count()";
+}
+
+TitleSpecifiedConditional: WOConditional {
+	condition = currentComponent.customInfo.newsSubmitFormTitle;
+}
+
+TitleNotSpecifiedConditional: WOConditional {
+	condition = currentComponent.customInfo.newsSubmitFormTitle;
+	negate = true;
+}
+
+txtErrorMsg: WOString {
+	value = errorMessage;
+	escapeHTML = false;
+}
+
+condShowErrorMsg: WOConditional {
+	condition = errorMessage;
+}
+
+myndField: WOFileUpload {
+	data = data.mynd;
+	filePath = data.myndFilePath;
+}
+
+condShowMyndField: WOConditional {
+	condition = currentComponent.customInfo.newsReg_ShowPicture;
+}

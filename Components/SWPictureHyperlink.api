@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<wodefinitions>
+	<wo class="SWPictureHyperlink" wocomponentcontent="false">
+
+		<binding name="fieldName"/>
+		<binding name="record"/>
+		<binding name="componentToReturn"/>
+		<binding name="useID" defaults="Boolean"/>
+
+		<validation message="&apos;fieldName&apos; is a required binding">
+			<unbound name="fieldName"/>
+		</validation>
+
+		<validation message="&apos;record&apos; is a required binding">
+			<unbound name="record"/>
+		</validation>
+	</wo>
+</wodefinitions>

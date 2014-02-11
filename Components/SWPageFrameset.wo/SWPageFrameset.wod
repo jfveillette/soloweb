@@ -1,0 +1,15 @@
+Frame1: WOFrame {
+	pageName = "SWSiteTree";
+	name = "tree";
+	frameborder = 0;
+	marginwidth = 0;
+	marginheight = 0;
+}
+
+Frame2: WOFrame {
+	frameborder = 0;
+	marginheight = 0;
+	marginwidth = 0;
+	name = "workarea";
+	pageName = "SWStartPage";
+}

@@ -1,0 +1,4 @@
+SWAssignPrivileges21: SWAssignPrivileges2 {
+	privilegePairs = privilegePairs;
+	record = selectedSite;
+}

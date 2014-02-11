@@ -1,0 +1,21 @@
+newsLink: WOString {
+	value = newsLink;
+}
+
+newsImageSource: WOString {
+	value = newsImageSource;
+}
+
+newsDate: WOString {
+	value = selectedNewsItem.date;
+	dateformat = "%d.%m.%Y"
+}
+
+newsTitle: WOString {
+	value = selectedNewsItem.heading;
+}
+
+newsExcerpt: WOString {
+	value = selectedNewsItem.excerpt;
+	escapeHTML = false;
+}

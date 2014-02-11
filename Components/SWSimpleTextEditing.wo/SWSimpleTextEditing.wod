@@ -1,0 +1,5 @@
+Text1: WOText {
+	cols = 100;
+	rows = 20;
+	value = content;
+}

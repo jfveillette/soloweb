@@ -1,0 +1,119 @@
+Conditional1: WOConditional {
+	condition = selectedPage.isTopLevel;
+	negate = true;
+}
+
+Conditional2: WOConditional {
+	condition = selectedPage.isTopLevel;
+	negate = true;
+}
+
+Conditional3: SWPrivilegeConditional {
+	identifier = "canDeletePage";
+	record = selectedPage;
+}
+
+Hyperlink5: WOString {
+	value = previewURL;
+}
+
+Image1: WOImage {
+	align = "absmiddle";
+	filename = "sw32/img/preview.gif";
+	framework = application.frameworkBundleName;
+}
+
+Image2: WOImage {
+	align = "absmiddle";
+	onclick = "setHasChanged()";
+	filename = "sw32/img/delete.gif";
+	framework = application.frameworkBundleName;
+}
+
+Image3: WOImageButton {
+	action = createSubPage;
+	align = "absmiddle";
+	onclick = "setHasChanged()";
+	filename = "sw32/img/page_new.gif";
+	framework = application.frameworkBundleName;
+}
+
+JSConfirmPanel2: JSConfirmPanel {
+	action = deletePage;
+	confirmMessage = session.@ls.deletePageWarning;
+}
+
+MOVE_PAGE_CONDITIONAL: SWPrivilegeConditional {
+	identifier = "canManagePage";
+	record = selectedPage;
+}
+
+MainForm: WOForm {
+	multipleSubmit = true;
+}
+
+MoveButton2: WOImage {
+	align = "absmiddle";
+	filename = "sw32/img/transfer_arrow.gif";
+	framework = application.frameworkBundleName;
+	title = session.@ls.movePageMessage;
+	onClick = "setHasChanged()";
+}
+
+PageName: WOString {
+	value = selectedPage.name;
+	escapeHTML = false;
+}
+
+PageSelectedConditional: WOConditional {
+	condition = selectedPage;
+}
+
+ResetHitCount: SWTransferHyperlink {
+	componentToReturn = context.page;
+	record = selectedPage;
+	transferComponentName = "SWTransferPage";
+}
+
+SWAdminComponentWrapper1: SWAdminComponentWrapper {
+	pageNameToRefresh = "SWSiteTree";
+	backgroundColor = "#eeeeee";
+}
+
+String1: WOString {
+	value = selectedPage.pageID;
+}
+
+String2: WOString {
+	value = session.@ls.createSubPage;
+}
+
+String3: WOString {
+	value = session.@ls.deletePage;
+}
+
+String4: WOString {
+	value = session.@ls.movePage;
+}
+
+String5: WOString {
+	value = session.@ls.previewPage;
+}
+
+SubmitButton1: WOSubmitButton {
+	action = saveChanges;
+	value = session.@ls.savePageChangesButtonTitle;
+	accesskey = "s";
+}
+
+SwitchComponent1: WOSwitchComponent {
+	WOComponentName = selectedComponentName;
+	selectedPage = selectedPage;
+}
+
+TabPanel1: SWTabPanel {
+	selectedTab = selectedTab;
+	tabs = tabs;
+	submitActionName = "saveChanges";
+	width = "100%";
+}

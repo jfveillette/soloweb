@@ -1,0 +1,197 @@
+ActionURL1: WOActionURL {
+	pageName = "SoloNewsList";
+}
+
+Conditional1: WOConditional {
+	condition = selectedAsset;
+}
+
+ExtraCategoriesField: WOTextField {
+	size = 35;
+	value = extraCategoryIDs;
+	id = "extraCategoriesField";
+	style = "display:none";
+}
+
+ExtraCategoryPath: WOString {
+	value = extraItem.category.nameIncludingHierarchy;
+}
+
+ExtraCategoriesRep: WORepetition {
+	item = extraItem;
+	list = extraItems;
+}
+
+Form1: WOForm {
+	multipleSubmit = true;
+	name = "stuffform";
+}
+
+NameField: WOTextField {
+	size = 35;
+	value = selectedAsset.heading;
+	onchange = "setHasChanged()";
+}
+
+AuthorField: WOTextField {
+	size = 35;
+	value = selectedAsset.author;
+	onchange = "setHasChanged()";
+}
+
+PublishCheckbox: WOCheckBox {
+	checked = selectedAsset.published;
+	onChange = "setHasChanged()";
+}
+
+PublishCheckbox2: WOCheckBox {
+	checked = selectedAsset.encodeBreaks;
+}
+
+SWDateField1: SWDateField {
+    record = selectedAsset;
+	key = "timeIn";
+}
+
+SWDateField2: SWDateField {
+record = selectedAsset;
+	key = "timeOut";
+}
+
+SWDateField3: SWDateField {
+	record = selectedAsset;
+	key = "date";
+}
+
+SWImageHyperlink1: SWPictureHyperlink {
+	componentToReturn = context.page;
+	fieldName = "picture";
+	record = selectedAsset;
+	selectedSize = selectedAsset.customInfo.size;
+}
+
+SWImageHyperlink2: SWPictureHyperlink {
+	componentToReturn = context.page;
+	fieldName = "picture2";
+	record = selectedAsset;
+	selectedSize = selectedAsset.customInfo.size2;
+}
+
+
+SWTextEditing1: SWTextEditing {
+	content = selectedAsset.textWithoutSWTagReplace;
+}
+
+String1: WOString {
+	value = selectedAsset.heading;
+}
+
+String10: WOString {
+	value = session.@ls.newsPublishedFieldTitle;
+}
+
+String11: WOString {
+	value = session.@ls.newsEncodeBreaksFieldTitle;
+}
+
+String12: WOString {
+	value = session.@ls.newsMainTextHeading;
+}
+
+String13: WOString {
+	value = session.@ls.newsExtraCategories;
+}
+
+String14: WOString {
+	value = session.@ls.newsAuthorTitle;
+}
+
+String2: WOString {
+	value = selectedAsset.primaryKey;
+}
+
+String3: WOString {
+	value = session.@ls.newsGeneralHeading;
+}
+
+String5: WOString {
+	value = session.@ls.newsPictureHeading;
+}
+
+String6: WOString {
+	value = session.@ls.newsHeadlineFieldTitle;
+}
+
+String7: WOString {
+	value = session.@ls.newsDateFieldTitle;
+}
+
+String8: WOString {
+	value = session.@ls.newsTimeInFieldTitle;
+}
+
+String9: WOString {
+	value = session.@ls.newsTimeOutFieldTitle;
+}
+
+SubmitButton1: WOSubmitButton {
+	action = saveChanges;
+	value = session.@ls.newsSaveChangesButtonTitle;
+	accesskey = "s";
+}
+
+SessionUrl: WOString {
+	value = session.sessionID;
+}
+
+EditNewsTextCond: WOConditional {
+	condition = editNewsText;
+}
+
+EditExcerptTextCond: WOConditional {
+	condition = editNewsText;
+	negate = true;
+}
+
+ExcerptTextHeaderStr: WOString {
+	value = session.@ls.newsExcerptHeading;
+}
+
+SWTextEditing2: SWTextEditing {
+	content = selectedAsset.excerpt;
+}
+
+EditNewsTextBtn: WOSubmitButton {
+	action = toggleEditNewsOrExcerptText;
+	value = session.@ls.newsMainTextHeading;
+}
+
+EditExcerptTextBtn: WOSubmitButton {
+	action = toggleEditNewsOrExcerptText;
+	value = session.@ls.newsExcerptHeading;
+}
+
+ExcerptPictureHeadingStr: WOString {
+	value = session.@ls.newsPictureHeading2;
+}
+
+CatSelWinUrl: WOString {
+	value = catSelWinUrl;
+}
+CustomMoreURLText: WOString {
+	value = session.@ls.newsCustomMoreURLTitle;
+}
+CustomMoreURLField: WOTextField {
+	size = 35;
+	value = selectedAsset.customMoreURL;
+	onchange = "setHasChanged()";
+}
+ChkHideCaption: WOCheckBox {
+	checked = selectedAsset.customInfo.hideCaption2;
+}
+StrHideCaption: WOString {
+	value = "Hide Caption";
+}
+PictureLinks: SWLinkPictureList {
+	newsItem = selectedAsset;
+}

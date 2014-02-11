@@ -1,0 +1,107 @@
+DIVfile: WOGenericContainer {
+	elementName = "div";
+	class = "mediaFile";
+	style = mediaStyle;
+}
+DIVhtml: WOGenericContainer {
+	elementName = "div";
+	class = "mediaHtml";
+	style = mediaStyle;
+}
+IsFile: WOKeyValueConditional {
+	key = "currentComponent.customInfo.mediaType";
+	value = "file";
+}
+IsHTML: WOKeyValueConditional {
+	key = "currentComponent.customInfo.mediaType";
+	value = "html";
+}
+IsFlashGraphics: WOKeyValueConditional {
+	key = "selectedDocument.extension";
+	value = "swf";
+}
+IsNotFlashGraphics: WOKeyValueConditional {
+	key = "selectedDocument.extension";
+	value = "swf";
+	negate = true;
+}
+FlashObject: WOGenericContainer {
+	elementName = "object";
+	classid = "clsid:d27cdb6e-ae6d-11cf-96b8-444553540000";
+	codebase = "http://fpdownload.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=6,0,0,0";
+	width = currentComponent.customInfo.mediaWidth;
+	height = currentComponent.customInfo.mediaHeight;
+	id = "";
+	align = "middle";
+}
+FlashParamHeight: WOParam {
+	name = "height";
+	value = currentComponent.customInfo.mediaHeight;
+}
+FlashParamWidth: WOParam {
+	name = "width";
+	value = currentComponent.customInfo.mediaWidth;
+}
+FlashParmBGColor: WOParam {
+	name = "bgcolor";
+	value = currentComponent.customInfo.mediaBGColor;
+}
+FlashParamMovie: WOParam {
+	name = "movie";
+	value = mediaURL;
+}
+FlashEmbed: WOGenericContainer {
+	elementName = "embed";
+	type = "application/x-shockwave-flash";
+	src = mediaURL;
+	align = "middle";
+	quality = "high";
+	width = currentComponent.customInfo.mediaWidth;
+	height = currentComponent.customInfo.mediaHeight;
+	bgcolor = currentComponent.customInfo.mediaBGColor;
+}
+IsFlashVideo: WOKeyValueConditional {
+	key = "selectedDocument.extension";
+	value = "flv";
+}
+IsAudio: WOConditional {
+	condition = isAudio;
+}
+IsVideo: WOConditional {
+	condition = isVideo;
+}
+IsNotFlashVideo: WOKeyValueConditional {
+	key = "selectedDocument.extension";
+	value = "flv";
+	negate = true;
+}
+FlowPlayerAnchor: WOGenericContainer {
+	elementName = "a";
+	href = mediaURL;
+	style = flowPlayerStyle;
+	id = flowPlayerId;
+	class = "flowplayer";
+}
+FlowPlayerId: WOString {
+	value = flowPlayerId;
+}
+FlowPlayerProperties: WOString {
+	value = flowPlayerProperties;
+}
+AudioEmbed: WOGenericContainer {
+	elementName = "embed";
+	src = mediaURL;
+	autostart = currentComponent.customInfo.mediaAutostart;
+}
+EmbedTag: WOGenericElement {
+	elementName = "embed";
+	src = mediaURL;
+	width = currentComponent.customInfo.mediaWidth;
+	height = currentComponent.customInfo.mediaHeight;
+	align = "middle";
+	autostart = currentComponent.customInfo.mediaAutostart;
+}
+htmlStr: WOString {
+	value = currentComponent.customInfo.mediaHTML; 
+	escapeHTML = false;
+}

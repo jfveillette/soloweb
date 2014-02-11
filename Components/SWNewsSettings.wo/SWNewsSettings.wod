@@ -1,0 +1,38 @@
+Hyperlink1: WOHyperlink {
+	?category = "1000001";
+	?count = "10";
+	actionClass = "SoloNews";
+	directActionName = "rss";
+	target = "_blank";
+}
+
+String1: WOString {
+	value = session.@ls.newsSettingsRSSHeader;
+}
+
+String2: WOString {
+	value = session.@ls.newsSettingsDomainFieldtitle;
+}
+
+String3: WOString {
+	value = session.@ls.newsSettingsDetailPageTitle;
+}
+
+String4: WOString {
+	value = session.@ls.newsSettingsPreviewRSS;
+}
+
+SubmitButton1: WOSubmitButton {
+	action = save;
+	value = session.@ls.gsSaveButtonTitle;
+}
+
+TextField1: WOTextField {
+	size = 40;
+	value = selectedDictionary.rssDomain;
+}
+
+TextField2: WOTextField {
+	size = 40;
+	value = selectedDictionary.rssPage;
+}

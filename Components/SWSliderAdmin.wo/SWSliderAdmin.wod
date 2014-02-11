@@ -1,0 +1,87 @@
+popFramsetning: WOPopUpButton {
+	list = displayTypes;
+	item = currentDisplayType;
+	displayString = currentDisplayTypeDescription;
+	selection = currentComponent.customInfo.swslider_type;
+	escapeHTML = false;
+	onchange = "this.form.submit();";
+}
+
+condImageSlider: WOKeyValueConditional {
+	key = "currentComponent.customInfo.swslider_type";
+	value = "imagesfromfolder";
+}
+
+swpicMynd: SWPictureHyperlink {
+	useID = true;
+	fieldName = "swslider_pictureid";
+	selectedSize = currentComponent.customInfo.swslider_picturesize;
+	record = currentComponent.customInfo;
+}
+
+condNewsSlider: WOKeyValueConditional {
+	key = "currentComponent.customInfo.swslider_type";
+	value = "newsfromfolder";
+}
+
+efNumerFrettamoppu: WOTextField {
+	value = currentComponent.customInfo.swslider_newsfolderid;
+	size = 10;
+}
+
+efHamarksfjoldiFretta: WOTextField {
+	value = currentComponent.customInfo.swslider_newsmaxcount;
+	size = 5;
+}
+
+efStilsnidFretta: WOTextField {
+	value = currentComponent.customInfo.swslider_newsdisplaycomponent;
+	size = 30;
+}
+
+efBirtingarsidaFretta: WOTextField {
+	value = currentComponent.customInfo.swslider_newsdisplaypage;
+	size = 30;
+}
+
+condComponentSlider: WOKeyValueConditional {
+	key = "currentComponent.customInfo.swslider_type";
+	value = "componentsfrompage";
+}
+
+efHlekkjunarheitiSidu: WOTextField {
+	value = currentComponent.customInfo.swslider_pagelinkingname;
+	size = 30;
+}
+
+efBreidd: WOTextField {
+	value = currentComponent.customInfo.swslider_width;
+	size = 5;
+}
+
+efHaed: WOTextField {
+	value = currentComponent.customInfo.swslider_height;
+	size = 5;
+}
+
+SlideShowDelay: WOTextField {
+	value = currentComponent.customInfo.swslider_delay;
+	size = 3;
+}
+
+SlideShowSpeed: WOTextField {
+	value = currentComponent.customInfo.swslider_speed;
+	size = 3;
+}
+
+popFlettitegund: WOPopUpButton {
+	list = transitionTypes;
+	item = currentTransitionType;
+	displayString = currentTransitionTypeDescription;
+	selection = currentComponent.customInfo.swslider_transitiontype;
+	escapeHTML = false;
+}
+
+chkSynaFlettipunkta: WOCheckBox {
+	checked = currentComponent.customInfo.swslider_showpager;
+}

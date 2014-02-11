@@ -1,0 +1,28 @@
+efUserId: WOTextField {
+	value = currentComponent.customInfo.swyoutubelist_userid;
+	size = 25;
+}
+
+efMaxPreviewImageWidth: WOTextField {
+	value = currentComponent.customInfo.swyoutubelist_maxpreviewimagewidth;
+	size = 5;
+}
+
+chkScalePreviewImage: WOCheckBox {
+	checked = currentComponent.customInfo.swyoutubelist_scalepreviewimage;
+}
+
+efVideosPerLine: WOTextField {
+	value = currentComponent.customInfo.swyoutubelist_videosperline;
+	size = 2;
+}
+
+efMaxVideosInList: WOTextField {
+	value = currentComponent.customInfo.swyoutubelist_maxvideosinlist;
+	size = 4;
+}
+
+efPlaybackPageName: WOTextField {
+	value = currentComponent.customInfo.swyoutubelist_playbackpagename;
+	size = 25;
+}

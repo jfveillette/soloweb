@@ -1,0 +1,72 @@
+CheckBox1: WOCheckBox {
+	checked = currentComponent.published;
+}
+
+IsEditingMode: WOConditional {
+	condition = editingMode;
+}
+
+IsNotEditingMode: WOConditional {
+	condition = editingMode;
+	negate = true;
+}
+
+KeyValueConditional1: WOKeyValueConditional {
+    key = "tabPanelSelection";
+    value = currentType;
+}
+
+Repetition1: WORepetition {
+	item = currentType;
+	list = types;
+}
+
+SWDateField1: SWDateField {
+	record = currentComponent;
+	key = "timeIn";
+}
+
+SWDateField2: SWDateField {
+	record = currentComponent;
+	key = "timeOut";}
+
+String2: WOString {
+	value = session.@ls.componentPublished;
+}
+
+String3: WOString {
+	value = session.@ls.componentTimeIn;
+}
+
+String4: WOString {
+	value = session.@ls.componentTimeOut;
+}
+
+String5: WOString {
+	value = currentComponent.primaryKey;
+}
+
+SubmitButton1: WOImageButton {
+	action = toggleMode;
+	border = 0;
+	filename = "sw32/img/component_edit.gif";
+	framework = application.frameworkBundleName;
+}
+
+SwitchComponent1: WOSwitchComponent {
+	WOComponentName = templateName;
+	currentComponent = currentComponent;
+}
+
+SwitchComponent2: WOSwitchComponent {
+	WOComponentName = componentName;
+	currentComponent = currentComponent;
+}
+
+TabPanel1: SWTabPanel {
+    tabs = types;
+    selectedTab = tabPanelSelection;
+    submitActionName = "saveChanges";
+    width = "100%";
+}
+

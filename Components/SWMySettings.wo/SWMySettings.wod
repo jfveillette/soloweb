@@ -1,0 +1,44 @@
+Form1: WOForm {
+}
+
+PasswordField1: WOPasswordField {
+	value = session.activeUser.password;
+}
+
+PopUpButton1: WOPopUpButton {
+	displayString = currentSite.name;
+	item = currentSite;
+	list = session.activeUser.sites;
+	noSelectionString = "No site selected...";
+	selection = session.activeUser.defaultSite;
+}
+
+SWAdminComponentWrapper1: SWAdminComponentWrapper {
+	backgroundColor = "#eeeeee";
+}
+
+SWImageHyperlink1: SWPictureHyperlink {
+	fieldName = "picture";
+	record = session.activeUser;
+}
+
+String1: WOString {
+	value = session.@ls.mySettingsHeader;
+}
+
+String2: WOString {
+	value = session.@ls.msPassword;
+}
+
+String3: WOString {
+	value = session.@ls.msDefaultSite;
+}
+
+String4: WOString {
+	value = session.@ls.msPicture;
+}
+
+SubmitButton1: WOSubmitButton {
+	action = saveChanges;
+	value = session.@ls.msSaveButtonTitle;
+}

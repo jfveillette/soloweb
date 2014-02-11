@@ -1,0 +1,10 @@
+DIV: WOGenericContainer {
+	elementName = "div";
+	class = itemClass;
+}
+
+TheSwitch: WOSwitchComponent {
+	currentComponent = currentComponent;
+	selectedContentPage = selectedContentPage;
+	WOComponentName = currentComponent.templateName;
+}

@@ -1,0 +1,19 @@
+ItemName: WOString {
+	value = itemName;
+	escapeHTML = false;
+}
+ItemLink: WOString {
+	value = item.pageLink;
+}
+HasSearchItemText: WOConditional {
+	condition = hasItemText;
+}
+SearchItemText: WOString {
+	value = itemText;
+	escapeHTML = false;
+}
+SWBreadcrumbTrail1: SWBreadcrumbTrail {
+	includeSelf = true;
+	selectedPage = item;
+	itemSeparatorHtml = "&nbsp;&bull;&nbsp;";
+}

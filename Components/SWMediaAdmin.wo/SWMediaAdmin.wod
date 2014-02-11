@@ -1,0 +1,156 @@
+TheForm: WOForm {
+	
+}
+Radio1: WORadioButton {
+	name = "type";
+	value = "youtube";
+	selection = currentComponent.customInfo.mediaType;
+}
+Radio2: WORadioButton {
+	name = "type";
+	value = "html";
+	selection = currentComponent.customInfo.mediaType;
+}
+Radio3: WORadioButton {
+	name = "type";
+	value = "file";
+	selection = currentComponent.customInfo.mediaType;
+}
+
+YouTubeStr: WOString {
+	value = "Enter YouTube id";
+}
+htmlStr: WOString {
+	value = "HTML code";
+}
+documentselectFieldTitle: WOString {
+	value = session.@ls.documentselectFieldTitle;
+}
+DocumentLink: SWDocumentHyperlink {
+	componentToReturn = context.page;
+	fieldName = "selectedDocument";
+	record = self;
+}
+HasSelectedDocument: WOConditional {
+	condition = selectedDocument;
+}
+IsValidMediaFile: WOConditional {
+	condition = isValidMediaFile;
+}
+IsNotValidMediaFile: WOConditional {
+	condition = isValidMediaFile;
+	negate = true;
+}
+NoSelectedDocument: WOConditional {
+	condition = selectedDocument;
+	negate = true;
+}
+IsVideoOrGraphics: WOConditional {
+	condition = isVideoOrGraphics;
+}
+IsAudioOrVideo: WOConditional {
+	condition = isAudioOrVideo;
+}
+IsFlashGraphics: WOKeyValueConditional {
+	key = "selectedDocument.extension";
+	value = "swf";
+}
+IsFlashVideo: WOKeyValueConditional {
+	key = "selectedDocument.extension";
+	value = "flv";
+}
+IsNotAudio: WOConditional {
+	condition = isAudio;
+	negate = false;
+}
+IsWindowsMedia: WOConditional {
+	condition = true;
+}
+IsQuickTime: WOConditional {
+	condition = true;
+}
+SWImage1: SWImage {
+	selectedPicture = selectedDocument.documentType.iconURL;
+}
+documentName: WOString {
+	value = selectedDocument.name;
+}
+documentNoDocumentSelectedString: WOString {
+	value = session.@ls.documentNoDocumentSelectedString;
+}
+WidthStr: WOString {
+	value = "width";
+}
+HeightStr: WOString {
+	value = "height";
+}
+BGColorStr: WOString {
+	value = "background color";
+}
+FlashParamStr: WOString {
+	value = "Flash parameters";
+}
+AutoPlayStr: WOString {
+	value = "Auto play";
+}
+HideControlsStr: WOString {
+	value = "Hide controls";
+}
+ChkAutoPlay: WOCheckBox {
+	checked = currentComponent.customInfo.mediaAutostart;
+}
+ChkHideControls: WOCheckBox {
+	checked = currentComponent.customInfo.mediaHideControls;
+}
+InpWidth: WOTextField {
+	value = currentComponent.customInfo.mediaWidth;
+	size = 10;
+}
+InpHeight: WOTextField {
+	value = currentComponent.customInfo.mediaHeight;
+	size = 10;
+}
+InpBGColor: WOTextField {
+	value = currentComponent.customInfo.mediaBGColor;
+	size = 10;
+}
+InpFlashParameters: WOTextField {
+	value = currentComponent.customInfo.flashParameters;
+	size = 40;
+}
+InpHTML: WOText {
+	value = currentComponent.customInfo.mediaHTML;
+	cols = 40;
+	rows = 10;
+}
+SubmitButton: WOSubmitButton {
+	value = "Save";
+	action = saveForm;
+}
+VideoExtStr: WOString {
+	value = videoExtensions;
+}
+AudioExtStr: WOString {
+	value = audioExtensions;
+}
+GraphicExtStr: WOString {
+	value = graphicExtensions;
+}
+AlignLabel: WOString {
+	value = "Align:";
+}
+AlignLeftRadio: WORadioButton {
+	name = "align";
+	value = "left";
+	selection = currentComponent.customInfo.mediaAlign;
+}
+AlignCenterRadio: WORadioButton {
+	name = "align";
+	value = "center";
+	selection = currentComponent.customInfo.mediaAlign;
+}
+AlignRightRadio: WORadioButton {
+	name = "align";
+	value = "right";
+	selection = currentComponent.customInfo.mediaAlign;
+}

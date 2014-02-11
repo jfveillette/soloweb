@@ -1,0 +1,213 @@
+ThumbWidth: WOString {
+	value = thumbSize;
+}
+ThumbHeight: WOString {
+	value = thumbSize;
+}
+PreviousPictureCond: WOConditional {
+	condition = previousPicture;
+}
+
+SelectedPictureCond: WOConditional {
+	condition = selectedPicture;
+}
+
+NextPictureCond: WOConditional {
+	condition = nextPicture;
+}
+
+NotSelectedPictureCond: WOConditional {
+	condition = selectedPicture;
+	negate = true;
+}
+
+OneImageConditional: WOKeyValueConditional {
+	key = "selectedImageGalleryType";
+	value = "SWImageGallery_one";
+}
+
+RandomImageConditional: WOKeyValueConditional {
+	key = "selectedImageGalleryType";
+	value = "SWImageGallery_random";
+}
+
+SlideShowConditional: WOKeyValueConditional {
+	key = "selectedImageGalleryType";
+	value = "SWImageGallery_slideshow";
+}
+
+NotGalleryConditional: WOKeyValueConditional {
+	key = "selectedImageGalleryType";
+	value = "SWImageGallery_gallery";
+	negate = true;
+}
+
+GalleryConditional: WOKeyValueConditional {
+	key = "selectedImageGalleryType";
+	value = "SWImageGallery_gallery";
+}
+
+ImageHasHyperlinkConditional: WOConditional {
+	condition = pictureHyperlink;
+}
+
+ImageDoesntHaveHyperlinkConditional: WOConditional {
+	condition = pictureHyperlink;
+	negate = true;
+}
+
+HasDescriptionConditional: WOConditional {
+	condition = currentPictureHasDescription;
+}
+
+Hyperlink1: WOHyperlink {
+	directActionName = "dp";
+	?pictureID = currentPicture.primaryKey;
+	?id = currentComponent.page.pageID;
+}
+
+Hyperlink4: WOHyperlink {
+	directActionName = "dp";
+	?pictureID = previousPicture.primaryKey;
+	?id = currentComponent.page.pageID;
+}
+
+Hyperlink5: WOHyperlink {
+	directActionName = "dp";
+	?pictureID = nextPicture.primaryKey;
+	?id = currentComponent.page.pageID;
+}
+
+Hyperlink6: WOHyperlink {
+	directActionName = "dp";
+	?id = currentComponent.page.pageID;
+}
+
+Hyperlink8: WOHyperlink {
+	directActionName = "dp";
+	?id = currentComponent.page.pageID;
+}
+
+Hyperlink9: WOHyperlink {
+	directActionName = "dp";
+	?pictureID = firstPicture.primaryKey;
+	?id = currentComponent.page.pageID;
+}
+
+Hyperlink10: WOHyperlink {
+	directActionName = "dp";
+	?pictureID = lastPicture.primaryKey;
+	?id = currentComponent.page.pageID;
+}
+IsValidImage: WOConditional {
+	condition = isValidImage;
+}
+Image1: WOImage {
+	src = thumbnailURL;
+	title = currentPicture.altText;
+}
+
+Repetition2: WORepetition {
+	item = currentPicture;
+	list = currentComponent.picture.folder.sortedPictures;
+}
+
+SWImage3: WOImage {
+	src = previewURL;
+	title = currentPicture.altText;
+}
+
+PictureDescriptionStr: WOString {
+	value = currentPicture.description;
+	escapeHTML = false;
+}
+
+String2: WOString {
+	value = selectedPicture.name;
+}
+
+String3: WOString {
+	style = "titill";
+	value = currentComponent.picture.folder.name;
+}
+
+String4: WOString {
+	value = currentPicture.altTextOrName;
+	valueWhenEmpty = "&nbsp;";
+	escapeHTML = false;
+}
+
+OneImage: SWImage {
+	selectedPicture = oneImage;
+	size = selectedPictureSize;
+	alt = currentPicture.name;
+	border = 0;
+	/* height = imgHeight; */
+	/* width = imgWidth; */  
+}
+
+RandomImage: SWImage {
+	selectedPicture = randomImage;
+	size = selectedPictureSize;
+	alt = currentPicture.name;
+	border = 0;
+	/* height = imgHeight; */
+	/* width = imgWidth; */
+}
+FlashObject: WOGenericContainer {
+	elementName = "object";
+	id="SWGallery";
+	align="middle";
+	width = flashSlideShowWidth;
+	height = flashSlideShowHeight;
+}
+
+FlashMovieParam: WOGenericElement {
+	elementName = "param";
+	name = "movie";
+	value = flashSlideShowUrl;
+}
+
+FlashEmbed: WOGenericElement {
+	elementName = "embed";
+	src = flashSlideShowUrl;
+	width = flashSlideShowWidth;
+	height = flashSlideShowHeight;
+	quality="high";
+	bgcolor="#ffffff";
+	name="SWGallery";
+	align="middle";
+	allowScriptAccess="always";
+	type="application/x-shockwave-flash";
+	pluginspage="http://www.macromedia.com/go/getflashplayer";
+}
+ImageHyperlink: WOHyperlink {
+	href = pictureHyperlink;
+	disabled = pictureHasNoLink;
+}
+IsECard: WOConditional {
+	condition = currentComponent.customInfo.swimagegalleryecard;
+}
+ECardError: WOKeyValueConditional {
+	key = "ecardResult";
+	value = "error";
+}
+ECardIsSent: WOKeyValueConditional {
+	key = "ecardResult";
+	value = "ok";
+}
+FormECard: WOForm {
+	directActionName = "sendECard";
+}
+HiddenPictureID: WOHiddenField {
+	value = selectedPicture.primaryKey;
+	name = "pictureID";
+}
+HiddenPageID: WOHiddenField {
+	value = currentComponent.pageID;
+	name = "id";
+}
+BtnSendECard: WOSubmitButton {
+	value = "Senda";
+	directActionName = "sendECard";
+}

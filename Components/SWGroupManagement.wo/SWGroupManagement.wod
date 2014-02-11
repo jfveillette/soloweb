@@ -1,0 +1,83 @@
+GenericContainer2: WOGenericContainer {
+	bgcolor = rowColor;
+	elementName = "TR";
+}
+
+Hyperlink1: WOHyperlink {
+	action = selectUser;
+	class = "topLevelAsset";
+}
+
+Hyperlink2: WOHyperlink {
+	action = removeUserFromGroup;
+	onClick = session.@cs.grpRemoveUserFromGroupWarning;
+        class = "topLevelAsset";
+}
+
+Hyperlink3: WOHyperlink {
+	action = deleteGroup;
+	onClick = session.@cs.deleteGroupWarning;
+}
+
+Image1: WOImage {
+	filename = "sw32/img/user.gif";
+	framework = application.frameworkBundleName;
+}
+
+PopUpButton1: WOPopUpButton {
+	displayString = currentUser.name;
+	item = currentUser;
+	list = usersExcludingSelectedUsers;
+	selection = selectedUser;
+	noSelectionString = session.@ls.grpSelectUser;
+}
+
+Repetition3: WORepetition {
+	index = tableIndex;
+	item = currentGroupUser;
+	list = selectedGroup.users;
+}
+
+String1: WOString {
+	value = session.@ls.grpName;
+}
+
+String2: WOString {
+	value = currentGroupUser.name;
+	valueWhenEmpty = session.@ls.untitledObjectString;
+}
+
+String3: WOString {
+	value = session.@ls.grpUsers;
+}
+
+String4: WOString {
+	value = session.@ls.grpDeleteGroup;
+}
+
+String5: WOString {
+	value = session.@ls.grpIsCrmGroup;
+}
+
+SubmitButton3: WOSubmitButton {
+	action = addUserToGroup;
+	value = session.@ls.grpAddUserToGroupButtonTitle;
+}
+
+SubmitButton5: WOSubmitButton {
+	action = saveChanges;
+	value = session.@ls.grpSaveButtonTitle;
+}
+
+TextField1: WOTextField {
+	size = 30;
+	value = selectedGroup.name;
+}
+
+CrmEnabled: WOConditional {
+	condition = application.crmEnabled;
+}
+
+ChkIsCrmGroup: WOCheckBox {
+	checked = selectedGroup.crmGroup;
+}

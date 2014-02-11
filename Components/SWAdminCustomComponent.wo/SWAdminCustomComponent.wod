@@ -1,0 +1,4 @@
+TextField1: WOTextField {
+	size = 60;
+	value = currentComponent.templateName;
+}

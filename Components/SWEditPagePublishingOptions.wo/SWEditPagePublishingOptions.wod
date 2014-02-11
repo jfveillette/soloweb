@@ -1,0 +1,54 @@
+AccessibleCheckBox1: WOCheckBox {
+	checked = selectedPage.accessible;
+	onChange = "setHasChanged()";
+}
+
+PasswordField: WOTextField {
+	size = 40;
+	value = selectedPage.password; 	
+}
+
+PublishCheckbox2: WOCheckBox {
+	checked = selectedPage.published;
+	onChange = "setHasChanged()";
+}
+
+SWDateField1: SWDateField {
+        record = selectedPage;
+	key = "timeIn";
+}
+
+SWDateField2: SWDateField {
+        record = selectedPage;
+	key = "timeOut";
+}
+
+String1: WOString {
+	value = session.@ls.pagePublishingOptions;
+}
+
+String2: WOString {
+	value = session.@ls.pagePassword;
+	size = 20;
+}
+
+String3: WOString {
+	value = session.@ls.pageTimeIn;
+}
+
+String4: WOString {
+	value = session.@ls.pageTimeOut;
+}
+
+String5: WOString {
+	value = session.@ls.pageDisplayOnSite;
+}
+
+String6: WOString {
+	value = session.@ls.pageAccessible;
+}
+
+SubmitButton1: WOSubmitButton {
+	action = applyPasswordToSubPages;
+	value = session.@ls.applyPasswordToSubPages;
+}

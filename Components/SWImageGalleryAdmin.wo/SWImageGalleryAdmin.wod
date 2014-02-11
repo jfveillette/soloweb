@@ -1,0 +1,71 @@
+PopUpButton1: WOPopUpButton {
+	list = displayTypes;
+	item = currentDisplayType;
+	displayString = currentDisplayTypeDescription;
+	selection = currentComponent.customInfo.swimagegallerytype;
+	escapeHTML = false;
+	onchange = "this.form.submit();";
+}
+
+SWPictureHyperlink1: SWPictureHyperlink {
+	fieldName = "picture";
+	selectedSize = currentComponent.customInfo.swimagegallerypicsize;
+	record = currentComponent;
+	showSizes = showSizes;
+}
+
+
+Myndahlekkur: WOTextField {
+	value = currentComponent.customInfo.swimagegallerylink;
+	size = 40;
+}
+
+Myndabreidd: WOTextField {
+	value = currentComponent.customInfo.swimagegallerywidth;
+	size = 5;
+}
+
+Myndahaed: WOTextField {
+	value = currentComponent.customInfo.swimagegalleryheight;
+	size = 5;
+}
+
+SlideShowDelay: WOTextField {
+	value = currentComponent.customInfo.swimagegallerydelay;
+	size = 3;
+}
+SortCheckbox: WOCheckBox {
+	checked = currentComponent.customInfo.swimagegallerysort;
+}
+CaptionCheckbox: WOCheckBox {
+	checked = currentComponent.customInfo.swimagegallerydescription;
+}
+PopupThumbSize: WOPopUpButton {
+	list = pictureSizes;
+	item = currentSize;
+	selection = currentComponent.customInfo.swimagegallerythumbsize;
+}
+PopupViewSize: WOPopUpButton {
+	list = pictureSizes;
+	item= currentSize;
+	selection = currentComponent.customInfo.swimagegallerypreviewsize;
+}
+IsOneImage: WOKeyValueConditional {
+	key = "currentComponent.customInfo.swimagegallerytype";
+	value = "SWImageGallery_one";
+}
+IsRandomImage: WOKeyValueConditional {
+	key = "currentComponent.customInfo.swimagegallerytype";
+	value = "SWImageGallery_random";
+}
+IsGallery: WOKeyValueConditional {
+	key = "currentComponent.customInfo.swimagegallerytype";
+	value = "SWImageGallery_gallery";
+}
+IsSlideshow: WOKeyValueConditional {
+	key = "currentComponent.customInfo.swimagegallerytype";
+	value = "SWImageGallery_slideshow";
+}
+ChkECard: WOCheckBox {
+	checked = currentComponent.customInfo.swimagegalleryecard;
+}

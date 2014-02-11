@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<wodefinitions>
+	<wo class="SWEditNewsItem" wocomponentcontent="false">
+
+		<binding name="selectedNewsItem"/>
+
+		<validation message="&apos;selectedNewsItem&apos; is a required binding">
+			<unbound name="selectedNewsItem"/>
+		</validation>
+	</wo>
+</wodefinitions>

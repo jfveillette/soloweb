@@ -1,0 +1,39 @@
+Hyperlink1: WOHyperlink {
+	action = toggleDisplay;
+	disabled = hasNoSubFolders;
+}
+
+Hyperlink3: WOHyperlink {
+	action = selectFolder;
+	disabled = isDisabled;
+	title = currentFolder.folderID;
+}
+
+Image1: WOImage {
+	src = toggleString;
+	width = 9;
+	height = 9;
+}
+
+Image2: WOImage {
+	border = 0;
+	filename = "sw32/img/mappa.gif";
+	framework = application.frameworkBundleName;
+}
+
+NestedList2: USNestedList {
+	sublist = subFolders;
+	list = rootFolders;
+	item = currentFolder;
+	index = currentIndex;
+}
+
+String1: WOString {
+	value = currentFolder.name;
+	valueWhenEmpty = session.@ls.untitledObjectString;
+}
+
+String2: WOString {
+	value = title;
+	escapeHTML = false;
+}

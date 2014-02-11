@@ -1,0 +1,53 @@
+Title: WOString {
+	value = "Kve&eth;ja";
+	escapeHTML = false;
+}
+SenderName: WOString {
+	value = senderName;
+}
+ReceiverName: WOString {
+	value = receiverName;
+}
+ThePicture: WOImage {
+	src = selectedPicture.emailEmbedURL;    // "cid:SoloMailImage10";
+	width = 320;
+	height = 480;
+}
+Message: WOString {
+	value = messageText;
+	escapeHTML = false;
+}
+Kvedja: WOString {
+	value = kvedjaText;
+}
+Caption: WOString {
+	value = selectedPicture.altText;
+}
+
+pict1Url: WOString {
+	value = pict1Url;
+}
+pict2Url: WOString {
+	value = pict2Url;
+}
+pict3Url: WOString {
+	value = pict3Url;
+}
+pict4Url: WOString {
+	value = pict4Url;
+}
+pict5Url: WOString {
+	value = pict5Url;
+}
+pict6Url: WOString {
+	value = pict6Url;
+}
+pict7Url: WOString {
+	value = pict7Url;
+}
+pict8Url: WOString {
+	value = pict8Url;
+}
+pict9Url: WOString {
+	value = pict9Url;
+}

@@ -1,0 +1,30 @@
+ADMINISTRATOR_CONDITIONAL: WOConditional {
+	condition = session.activeUser.isAdministrator;
+}
+
+ActionURL1: WOActionURL {
+	pageName = "SWSiteTree";
+}
+
+Conditional1: WOConditional {
+	condition = selectedSite;
+}
+
+Form2: WOForm {
+	multipleSubmit = true;
+}
+
+SWAdminComponentWrapper1: SWAdminComponentWrapper {
+	backgroundColor = "#eeeeee";
+}
+
+SWTabPanel1: SWTabPanel {
+	selectedTab = selectedTab;
+	tabs = tabs;
+	submitActionName = "saveChanges";
+}
+
+SwitchComponent1: WOSwitchComponent {
+	WOComponentName = selectedEditingComponentName;
+	selectedSite = selectedSite;
+}

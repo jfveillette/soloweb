@@ -1,0 +1,139 @@
+CheckBox1: WOCheckBox {
+	checked = selectedUser.administrator;
+}
+
+GenericContainer2: WOGenericContainer {
+	bgcolor = rowColor;
+	elementName = "TR";
+}
+
+Hyperlink1: WOHyperlink {
+	action = deleteUser;
+	onClick = session.@cs.usrDeleteWarning;
+}
+
+Hyperlink3: WOHyperlink {
+	action = removeGroupFromUser;
+	onClick = session.@cs.usrRemoveFromGroupWarning;
+	class = "topLevelAsset";
+}
+
+Hyperlink4: WOHyperlink {
+	action = selectGroup;
+	class = "topLevelAsset";
+}
+
+Image1: WOImage {
+	filename = "sw32/img/group.gif";
+	framework = application.frameworkBundleName;
+}
+
+PasswordField1: WOPasswordField {
+	value = selectedUser.password;
+	size = 30;
+}
+
+PopUpButton1: WOPopUpButton {
+	displayString = currentGroup.name;
+	item = currentGroup;
+	list = groupsExcludingSelectedGroups;
+	selection = selectedGroup;
+	noSelectionString = session.@ls.usrSelectGroupString;
+}
+
+PopUpButton2: WOPopUpButton {
+	displayString = currentSite.name;
+	item = currentSite;
+	list = allSites;
+	noSelectionString = session.@ls.usrSelectSiteString;
+	selection = selectedUser.defaultSite;
+}
+
+Repetition3: WORepetition {
+	index = tableIndex;
+	item = currentUserGroup;
+	list = selectedUser.groups;
+}
+
+SWImageHyperlink1: SWPictureHyperlink {
+	componentToReturn = context.page;
+	fieldName = "picture";
+	record = selectedUser;
+}
+
+String1: WOString {
+	value = currentUserGroup.name;
+	valueWhenEmpty = session.@ls.untitledObjectString;
+}
+
+String10: WOString {
+	value = session.@ls.usrGroups;
+}
+
+String11: WOString {
+	value = session.@ls.usrDelete;
+}
+
+String2: WOString {
+	value = session.@ls.usrName;
+}
+
+String3: WOString {
+	value = session.@ls.usrUsername;
+}
+
+String4: WOString {
+	value = session.@ls.usrPassword;
+}
+
+String5: WOString {
+	value = session.@ls.usrPhone;
+}
+
+String6: WOString {
+	value = session.@ls.usrDefaultSite;
+}
+
+String7: WOString {
+	value = session.@ls.usrComment;
+}
+
+String8: WOString {
+	value = session.@ls.usrPicture;
+}
+
+String9: WOString {
+	value = session.@ls.usrUnlimited;
+}
+
+SubmitButton1: WOSubmitButton {
+	action = addGroupToUser;
+	value = session.@ls.usrAddUserToGroupButtonTitle;
+}
+
+SubmitButton8: WOSubmitButton {
+	action = saveChanges;
+	value = session.@ls.usrSaveButtonTitle;
+}
+
+Text1: WOText {
+	cols = 40;
+	rows = 3;
+	value = selectedUser.comment;
+}
+
+TextField1: WOTextField {
+	value = selectedUser.name;
+	size = 30;
+}
+
+TextField2: WOTextField {
+	value = selectedUser.telephone;
+	size = 30;
+}
+
+TextField3: WOTextField {
+	value = selectedUser.username;
+	size = 30;
+}
+

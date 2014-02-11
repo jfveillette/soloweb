@@ -1,0 +1,3 @@
+SWNestedTree1: SWNestedTree {
+	topLevelList = parentPage.sortedAndApprovedSubPages;
+}

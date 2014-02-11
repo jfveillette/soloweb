@@ -1,0 +1,241 @@
+<!-- SoloNewsNewsList -->
+<webobject name = "NotDisplayDetailCond">
+
+  <webobject name = "DisplayYearSelectionAboveCond">
+    <div class = "news_years">
+      <webobject name = "DisplayYearSelectionAsPopupCond">
+        <webobject name = "YearSelection" />
+      </webobject>
+      <webobject name = "DisplayYearSelectionAsListCond">
+        <webobject name = "YearListRep"><a class="<webobject name=strYearSearchLinkClass></webobject>" href="<webobject name=strYearSearchLink></webobject>"><webobject name = "strYear"/></a> </webobject>
+      </webobject>
+    </div>
+  </webobject>
+  
+  <webobject name = "DisplayMonthSelectionAboveCond">
+    <div class = "news_months">
+      <webobject name = "DisplayMonthSelectionAsPopupCond">
+        <webobject name = "MonthSelection" />
+      </webobject>
+      <webobject name = "DisplayMonthSelectionAsListCond">
+        <webobject name = "MonthListRep"><a class="<webobject name=strMonthSearchLinkClass></webobject>" href="<webobject name=strMonthSearchLink></webobject>"><webobject name = "strMonth"/></a> </webobject>
+      </webobject>
+    </div>
+  </webobject>
+
+  <webobject name = "NewsItemsDiv">
+    <webobject name = "DisplayList2">
+      <webobject name = "NewsItemDiv">
+
+        <webobject name = "ShowPerDayHeaderCond">
+          <div class = "millidagsetning">
+            <webobject name = "PerDayHeaderStr"/>
+          </div>
+        </webobject>
+
+        <webobject name = "NotDisplayTextOnlyCond">
+          
+          <webobject name = "ShowPictureAboveTitleCond">
+            <div class="myndabox"><webobject name = "HasPicture2Cond">
+              <webobject name = "PictureTable">
+                <tr>
+                  <td class = "mynd"><webobject name = "NewsItemPicture2" /></td>
+                </tr>
+                <webobject name = "ShowCaption"><webobject name = "Picture2HasDescription">
+                  <tr>
+                    <td class = "description"><webobject name = "PictureText2" /></td>
+                  </tr>
+                </webobject></webobject>
+              </webobject>
+            </webobject></div>
+          </webobject>
+
+          <div class = "titill">
+            <webobject name = "IsDateAbove">
+              <div class = "dags">
+                <span class = "hofundur">
+                  <webobject name = "ShowAuthorCond">
+                  	<webobject name = "ShowAuthorLabelCond">Eftir </webobject>
+                  	<webobject name = "AuthorStr" /> | 
+                  </webobject>
+                </span>
+                <webobject name = "ShowWeekday"><span class = "vikudagur"><webobject name = "Weekday"/></span></webobject>
+                <webobject name = "ShowDate"><span class = "dagsetning"><webobject name = "Date" /></span></webobject>
+                <webobject name = "ShowTime"><span class = "timi"><webobject name = "Time" /></span></webobject>
+              </div>
+              
+              <div class = "fyrirsogn">
+                <webobject name = "IfLinkOnTitle">
+                  <webobject name = "TitleURL"><webobject name = "Fyrirsogn" /></webobject>
+                </webobject>
+                <webobject name = "IfNotLinkOnTitle"><webobject name = "Fyrirsogn" /></webobject>
+              </div>
+            </webobject>
+            
+            <webobject name = "IsDateInFront">
+              <span class = "hofundur">
+                <webobject name = "ShowAuthorCond">
+                	<webobject name = "ShowAuthorLabelCond">Eftir </webobject>
+                  	<webobject name = "AuthorStr" /> | 
+                </webobject>
+              </span>
+              <span class = "dags">
+                <webobject name = "ShowWeekday"><span class = "vikudagur"><webobject name = "Weekday"/></span></webobject>
+                <webobject name = "ShowDate"><span class = "dagsetning"><webobject name = "Date" /></span></webobject>
+                <webobject name = "ShowTime"><span class = "timi"><webobject name = "Time" /></span></webobject>
+              </span>
+              <span class = "fyrirsogn">
+                <webobject name = "IfLinkOnTitle">
+                  <webobject name = "TitleURL"> <webobject name = "Fyrirsogn" /> </webobject>
+                </webobject>
+                <webobject name = "IfNotLinkOnTitle"><webobject name = "Fyrirsogn" /></webobject>
+              </span>
+            </webobject>
+            
+            <webobject name = "IsDateBehind">
+              <span class = "fyrirsogn">
+                <webobject name = "IfLinkOnTitle">
+                  <webobject name = "TitleURL"> <webobject name = "Fyrirsogn" /> </webobject>
+                </webobject>
+                <webobject name = "IfNotLinkOnTitle"><webobject name = "Fyrirsogn" /></webobject>
+              </span>
+              <span class = "hofundur">
+                <webobject name = "ShowAuthorCond">
+					<webobject name = "ShowAuthorLabelCond">Eftir </webobject>
+                  	<webobject name = "AuthorStr" /> | 
+                </webobject>
+              </span>
+              <span class = "dags">
+                <webobject name = "ShowWeekday"><span class = "vikudagur"><webobject name = "Weekday"/></span></webobject>
+                <webobject name = "ShowDate"><span class = "dagsetning"><webobject name = "Date" /></span></webobject>
+                <webobject name = "ShowTime"><span class = "timi"><webobject name = "Time" /></span></webobject>
+              </span>
+            </webobject>
+            
+            <webobject name = "IsDateHidden">
+              <span class = "fyrirsogn">
+                <webobject name = "IfLinkOnTitle">
+                  <webobject name = "TitleURL"> <webobject name = "Fyrirsogn" /> </webobject>
+                </webobject>
+                <webobject name = "IfNotLinkOnTitle"><webobject name = "Fyrirsogn" /></webobject>
+              </span>
+              <span class = "hofundur">
+                <webobject name = "ShowAuthorCond">
+                  <br /><webobject name = "ShowAuthorLabelCond">Eftir </webobject>
+                  <webobject name = "AuthorStr" />
+                </webobject>
+              </span>
+            </webobject>
+          </div>
+        </webobject>
+        
+        <webobject name = "DisplayExcerptCond">
+          
+          <webobject name = "ShowPictureCond">
+            <webobject name = "HasPicture2Cond">
+              <webobject name = "PictureTable">
+                <tr>
+                  <td class = "mynd"><webobject name = "NewsItemPicture2" /></td>
+                </tr>
+                <webobject name = "ShowCaption"><webobject name = "Picture2HasDescription">
+                  <tr>
+                    <td class = "description"><webobject name = "PictureText2" /></td>
+                  </tr>
+                </webobject></webobject>
+              </webobject>
+            </webobject>
+          </webobject>
+          
+          <webobject name = "NotShouldEncodeBreaksCond">
+            <span class = "urdrattur"><webobject name = "ExcerptWithNoBreaks" /></span>
+          </webobject>
+          
+          <webobject name = "ShouldEncodeBreaksCond">
+            <span class = "urdrattur"><webobject name = "ExcerptWithBreaks" /></span>
+          </webobject>
+          
+          <webobject name = "HasText">
+            <webobject name = "ShowMore">
+              <webobject name = "MoreURL"><webobject name = "ShowMoreText" /></webobject>
+            </webobject>
+          </webobject>
+          
+        </webobject>
+        
+        <webobject name = "DisplayTextCond">
+          
+          <webobject name = "ShowPictureCond">
+            <webobject name = "HasPictureCond">
+              <webobject name = "PictureTable">
+                <tr>
+                  <td class = "mynd" width = "1px"><webobject name = "NewsItemPicture" /></td>
+                </tr>
+                <webobject name = "PictureHasDescription">
+                  <tr>
+                    <td class = "description" style = "background-color: #f2f2f2;"><webobject name = "PictureText" /></td>
+                  </tr>
+                </webobject>
+              </webobject>
+            </webobject>
+          </webobject>
+          
+          <webobject name = "NotShouldEncodeBreaksCond">
+            <div class = "texti"><webobject name = "NewsText" /></div>
+          </webobject>
+          
+          <webobject name = "ShouldEncodeBreaksCond">
+            <div class = "texti"><webobject name = "TextWithBreaks" /></div>
+          </webobject>
+          
+        </webobject>
+        
+        <webobject name = "NotDisplayExcerptCond">
+          
+          <webobject name = "NotDisplayTextCond">
+            <webobject name = "HasText">
+              <webobject name = "ShowMore">
+                <webobject name = "MoreURL"><webobject name = "ShowMoreText" /></webobject>
+              </webobject>
+            </webobject>
+          </webobject>
+          
+        </webobject>
+        
+        <webobject name = "ShowHorizontalLineCond">
+          <div class = "larettlina"><br clear = "all" /></div>
+        </webobject>
+      </webobject>
+    </webobject>
+    
+    <webobject name = "ShowOlderNews">
+      <div class = "older">
+        <webobject name = "OlderURL"><webobject name = "ShowOlderString" /></webobject>
+      </div>
+    </webobject>
+  </webobject>
+
+  <webobject name = "DisplayYearSelectionBelowCond">
+    <div class = "news_years">
+      <webobject name = "DisplayYearSelectionAsPopupCond">
+        <webobject name = "YearSelection" />
+      </webobject>
+      <webobject name = "DisplayYearSelectionAsListCond">
+        <webobject name = "YearListRep"><a class="<webobject name=strYearSearchLinkClass></webobject>" href="<webobject name=strYearSearchLink></webobject>"><webobject name = "strYear"/></a> </webobject>
+      </webobject>
+    </div>
+  </webobject>
+  <webobject name = "DisplayMonthSelectionBelowCond">
+    <div class = "news_months">
+      <webobject name = "DisplayMonthSelectionAsPopupCond">
+        <webobject name = "MonthSelection" />
+      </webobject>
+      <webobject name = "DisplayMonthSelectionAsListCond">
+        <webobject name = "MonthListRep"><a class="<webobject name=strMonthSearchLinkClass></webobject>" href="<webobject name=strMonthSearchLink></webobject>"><webobject name = "strMonth"/></a> </webobject>
+      </webobject>
+    </div>
+  </webobject>
+
+</webobject>
+
+<webobject name = "DisplayDetailCond"> <webobject name = "SoloNewsDetail1" /> </webobject>
+<!-- end SoloNewsNewsList -->

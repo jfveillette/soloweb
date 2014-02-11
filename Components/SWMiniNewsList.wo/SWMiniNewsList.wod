@@ -1,0 +1,67 @@
+DisplayConditional: WOConditional {
+	condition = isHidden;
+	negate = true;
+}
+
+DisplayType1Conditional: WOConditional {
+	condition = displayType1;
+}
+
+DisplayType2Conditional: WOConditional {
+	condition = displayType2;
+}
+
+TitleConditional: WOConditional {
+	condition = titleHidden;
+	negate = true;
+}
+
+Title: WOString {
+	value = title;
+	escapeHTML = false;
+}
+
+NewsItemRepetition: WORepetition {
+	list = newsItems;
+	item = currentNewsItem;
+}
+
+NewsItemTitle: WOString {
+	value = currentNewsItem.name;
+	escapeHTML = false;
+}
+
+NewsItemDate: WOString {
+	value = currentNewsItem.date;
+	dateformat = "%d.%m.%Y";
+}
+
+NewsItemText: WOString {
+	value = textExcerpt;
+	escapeHTML = false;
+}
+
+NewsItemLink: WOHyperlink {
+	?detail = currentNewsItem.primaryKey;
+	?name = newsDisplayPage;
+	directActionName = "dp";
+}
+
+OldNewsLinkConditional: WOConditional {
+	condition = showOldNewsLink;
+}
+
+OldNewsLink: WOHyperlink {
+	?name = oldNewsDisplayPage;
+	directActionName = "dp";
+}
+
+OldNewsLinkName: WOString {
+	value = oldNewsLinkName;
+	escapeHTML = false;
+}
+
+ShowTextInList: WOConditional {
+	condition = showTextInList;
+	negate = false;
+}

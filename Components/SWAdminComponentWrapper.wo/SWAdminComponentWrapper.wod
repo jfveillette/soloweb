@@ -1,0 +1,26 @@
+ActionURL1: WOActionURL {
+	pageName = ^pageNameToRefresh;
+}
+
+BACKGROUND_CONDITIONAL: WOConditional {
+    condition = ^background.length;
+}
+
+BACKGROUND_NAME: WOString {
+	value = ^background;
+}
+
+BGCOLOR: WOString {
+	value = ^backgroundColor;
+}
+
+PageContent: WOComponentContent {}
+
+RefreshConditional: WOConditional {
+	condition = hasRefresh;
+}
+
+RefreshConditional2: WOConditional {
+	condition = hasRefresh;
+	negate = true;
+}

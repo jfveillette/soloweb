@@ -1,0 +1,156 @@
+HolderDiv: WOGenericContainer {
+	elementName = "div";
+}
+
+Conditional1: WOConditional {
+	condition = notToday;
+}
+
+Conditional2: WOConditional {
+	condition = showSelectedDayBelowCalendar;
+}
+
+Conditional3: WOConditional {
+	condition = notToday;
+	negate = true;
+}
+
+Conditional4: WOConditional {
+	condition = showSelectedDayBelowCalendar;
+	negate = true;
+}
+
+Hyperlink1: WOHyperlink {
+	?month = previousMonth;
+	?year = previousYear;
+	?id = selectedPage.pageID;
+	directActionName = "dp";
+	title = "Fyrri";
+}
+
+Hyperlink2: WOHyperlink {
+	?month = nextMonth;
+	?year = nextYear;
+	?id = selectedPage.pageID;
+	directActionName = "dp";
+	title = "Næsti";
+}
+
+Hyperlink3: WOHyperlink {
+	?day = currentDay;
+	?id = selectedPage.pageID;
+	?month = selectedMonth;
+	?year = selectedYear;
+	directActionName = "dp";
+	disabled = currentDayHasNoEvents;
+	?detail = detail;
+}
+
+Hyperlink4: WOHyperlink {
+	?detail = currentNewsItem.primaryKey;
+	?name = showEventPage;
+	directActionName = "dp";
+	?month = selectedMonth;
+	?year = selectedYear;
+	?day = selectedDay;
+}
+
+Hyperlink5: WOHyperlink {
+	directActionName = "dp";
+	?name = "sw_minicalendar_newsitem_list";
+}
+
+Hyperlink6: WOHyperlink {
+	?day = currentDay;
+	?id = selectedPage.pageID;
+	?month = selectedMonth;
+	?year = selectedYear;
+	directActionName = "dp";
+	disabled = currentDayHasNoEvents;
+	?detail = detail;
+}
+
+Hyperlink7: WOHyperlink {
+	?day = currentDay;
+	?name = showEventPage;
+	?month = selectedMonth;
+	?year = selectedYear;
+	directActionName = "dp";
+	disabled = currentDayHasNoEvents;
+	?detail = detail;
+	?newscat = newsCategories;
+}
+
+Hyperlink8: WOHyperlink {
+	?day = currentDay;
+	?name = showEventPage;
+	?month = selectedMonth;
+	?year = selectedYear;
+	directActionName = "dp";
+	disabled = currentDayHasNoEvents;
+	?detail = detail;
+	?newscat = newsCategories;
+}
+
+Repetition1: WORepetition {
+	item = currentWeek;
+	list = weeks;
+}
+
+Repetition2: WORepetition {
+	item = currentDay;
+	list = currentWeek;
+}
+
+Repetition3: WORepetition {
+	item = currentDayHeader;
+	list = dayHeaders;
+}
+
+Repetition4: WORepetition {
+	item = currentNewsItem;
+	list = selectedEvents;
+}
+
+String1: WOString {
+	value = currentDayHeader;
+}
+
+String10: WOString {
+	value = currentDay;
+	escapeHTML = false;
+}
+
+String2: WOString {
+	value = currentDay;
+	escapeHTML = false;
+}
+
+String3: WOString {
+	value = selectedMonthName;
+}
+
+String4: WOString {
+	value = selectedDay;
+}
+
+String5: WOString {
+	value = selectedMonthName;
+}
+
+String6: WOString {
+	value = selectedYear;
+}
+
+String7: WOString {
+	value = selectedYear;
+}
+
+String8: WOString {
+	value = currentNewsItem.heading;
+}
+
+String9: WOString {
+	dateformat = "%H:%M";
+	value = currentNewsItem.date;
+}

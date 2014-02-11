@@ -1,0 +1,92 @@
+ComponentContent1: WOComponentContent {
+}
+
+Conditional1: WOConditional {
+	condition = selectedPage.siteForThisPage.customInfo.SWDefaultLookAddress;
+}
+
+Conditional2: WOConditional {
+	condition = currentBreadcrumbPage.isTopLevel;
+	negate = true;
+}
+
+Conditional3: WOConditional {
+	condition = isSelected;
+	negate = true;
+}
+
+Conditional4: WOConditional {
+	condition = isSelected;
+}
+
+GenericElement1: WOGenericElement {
+	content = selectedPage.keywords;
+	elementName = "META";
+	name = "keywords";
+}
+
+GenericElement2: WOGenericElement {
+	content = selectedPage.text;
+	elementName = "META";
+	name = "description";
+}
+
+Hyperlink1: WOHyperlink {
+	?id = currentPage.pageID;
+	directActionName = "dp";
+}
+
+Hyperlink2: WOHyperlink {
+	?id = selectedPage.topLevelPage.pageID;
+	directActionName = "dp";
+}
+
+Hyperlink3: WOHyperlink {
+	?id = currentBreadcrumbPage.pageID;
+	directActionName = "dp";
+}
+
+Hyperlink4: WOHyperlink {
+	?id = currentPage.pageID;
+	directActionName = "dp";
+}
+
+Repetition1: WORepetition {
+	item = currentPage;
+	list = selectedPage.topLevelPage.sortedAndApprovedSubPages;
+}
+
+Repetition2: WORepetition {
+	item = currentBreadcrumbPage;
+	list = selectedPage.breadcrumb;
+}
+
+SWNavigation1: SWNavigation {
+	list = selectedPage.secondLevelPage.sortedAndApprovedSubPages;
+	selectedPage = selectedPage;
+}
+
+String1: WOString {
+	value = selectedPage.nameWithPrefix;
+}
+
+String2: WOString {
+	value = currentPage.name;
+}
+
+String3: WOString {
+	escapeHTML = false;
+	value = selectedPage.siteForThisPage.customInfo.SWDefaultLookAddress;
+}
+
+String4: WOString {
+	value = selectedPage.siteForThisPage.name;
+}
+
+String5: WOString {
+	value = currentBreadcrumbPage.name;
+}
+
+String6: WOString {
+	value = currentPage.name;
+}

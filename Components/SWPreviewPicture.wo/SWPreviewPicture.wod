@@ -1,0 +1,109 @@
+Conditional1: WOConditional {
+	condition = tempData.length;
+	negate = true;
+}
+
+Conditional2: WOConditional {
+	condition = tempData.length;
+}
+
+Conditional4: WOConditional {
+	condition = hasTwoPoints;
+}
+
+DIMENSION_FIELD: WOTextField {
+    value = scalePercentage;
+	size = 4;
+    name = "scaleField";
+	onChange = "resizeByScale();";
+	numberformat = "0";
+}
+
+DIMENSION_FIELD2: WOTextField {
+    value = height;
+    size = 4;
+    name = "heightField";
+	onChange = "resizeByHeight()";
+	numberformat = "0";
+}
+
+DIMENSION_FIELD3: WOTextField {
+    value = width;
+    size = 4;
+    name = "widthField";
+	onChange = "resizeByWidth()";
+	numberformat = "0";
+}
+
+Form1: WOForm {
+	name = "resizeForm";
+	multipleSubmit = true;
+}
+
+HEIGHT_STRING: WOString {
+	value = picture.height;
+}
+
+IMAGE: WOActiveImage {
+	src = anURL;
+	id = "mynd";
+	y = y;
+	action = selectAreaForCropping;
+	x = x;
+}
+
+IMAGE2: WOActiveImage {
+	id = "mynd";
+	action = selectAreaForCropping;
+	y = y;
+	mimeType = "image/jpeg";
+	data = tempData;
+	x = x;
+}
+
+NAME_STRING: WOString {
+	value = picture.name;
+}
+
+PopUpButton1: WOPopUpButton {
+	list = qualityValues;
+	selection = compression;
+}
+
+RESIZE_BUTTON: WOSubmitButton {
+    action = resize;
+	value = session.@ls.picturePreviewResizeButtonTitle;
+}
+
+String1: WOString {
+	value = session.@ls.picturePreviewScale;
+}
+
+String2: WOString {
+	value = session.@ls.picturePreviewWidth;
+}
+
+String4: WOString {
+	value = session.@ls.picturePreviewHeight;
+}
+
+String5: WOString {
+	value = session.@ls.picturePreviewQuality;
+}
+
+String6: WOString {
+	value = session.@ls.picturePreviewFormat;
+}
+
+String7: WOString {
+	value = session.@ls.picturePreviewWindowName;
+}
+
+SubmitButton1: WOSubmitButton {
+	action = performCrop;
+	value = "Crop";
+}
+
+WIDTH_STRING: WOString {
+	value = picture.width;
+}

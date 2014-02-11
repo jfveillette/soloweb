@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<wodefinitions>
+	<wo class="SWAssignPrivileges2" wocomponentcontent="false">
+
+		<binding name="privilegePairs"/>
+		<binding name="record"/>
+		<binding name="inheritance"/>
+
+		<validation message="&apos;privilegePairs&apos; is a required binding">
+			<unbound name="privilegePairs"/>
+		</validation>
+
+		<validation message="&apos;record&apos; is a required binding">
+			<unbound name="record"/>
+		</validation>
+	</wo>
+</wodefinitions>

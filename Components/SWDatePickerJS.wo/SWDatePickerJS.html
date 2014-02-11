@@ -1,0 +1,18 @@
+<!-- This script and many more are available free online at -->
+<!-- The JavaScript Source!! http://javascript.internet.com -->
+<!-- Original:  James O'Connor (joconnor@nordenterprises.com) -->
+<!-- Web Site:  http://nordenterprises.com -->
+<div id="overDiv" style="position:absolute; visibility:hidden; z-index:1000;"></div>
+<p>Pop-up calendar sample page:</p>
+<form name="sample" method="post" action="">
+	<p>Beginning date: <input type="text" name="T1" size="20">  
+	<!-- ggPosX and ggPosY not set, so popup will autolocate to the right of the graphic -->
+	<a href="javascript:ggPosX=-1;ggPosY=-1;show_calendar('sample.T1', null, null, 'DD.MM.YYYY');"><img src="http://sw.lausn.is/sw32/img/Calendar.gif" width=24 height=22 border=0></a>
+	</p>
+	<p>Ending date:     <input type="text" name="T2"	size="20">  
+	<!-- ggPosX and ggPosY are set, so popup goes where you tell it -->
+	<a href="javascript:ggPosX=5;ggPosY=200;show_calendar('sample.T2', null, null, 'DD.MM.YYYY');"><img src="http://sw.lausn.is/sw32/img/Calendar.gif" width=24 height=22 border=0></a>
+	</p>
+	<p><input type="submit" value="Submit" name="B1"><input type="reset"
+	value="Reset" name="B2"></p>
+</form>

@@ -1,0 +1,48 @@
+<html>
+<head>
+<title><WEBOBJECT NAME=String1></WEBOBJECT></title>
+<script language="JavaScript" type="text/javascript">
+var req;
+    
+function getStuff() {
+
+    var url = "<webobject name=ACTION_URL></webobject>";
+    var textToSend = document.getElementById( 'textArea' ).value;
+
+    document.getElementById( 'theButton' ).value = "Saving...";
+    document.getElementById( 'theButton' ).disabled = true;
+
+    if( window.XMLHttpRequest ) {
+        req = new XMLHttpRequest();
+    }
+    else if( window.ActiveXObject ) {
+        req = new ActiveXObject("Microsoft.XMLHTTP");
+    }
+
+    req.onreadystatechange = processReqChange;
+    req.open( "POST", url, true );
+    req.send( textToSend );
+}
+
+function processReqChange() {
+
+    if (req.readyState == 4) {
+        if (req.status == 200) {
+                document.getElementById( 'theButton' ).value = "Save";
+                document.getElementById( 'theButton' ).disabled = false;
+         }
+         else {
+            alert( "There was a problem retrieving the XML data:\n" + req.statusText);
+         }
+    }
+}
+</script>
+</head>
+<body>
+<form id="theForm">
+
+<p><WEBOBJECT NAME=Text1></WEBOBJECT></p>
+<p align="right"><input accesskey="s" id="theButton" type="button" onClick="getStuff()" value="Save"></p>
+</form>
+</body>
+</html>

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="yes"?>
+<wodefinitions>
+	<wo class="SWBreadcrumbTrail" wocomponentcontent="NO">
+
+		<binding name="selectedPage"/>
+		<binding name="includeSelf"/>
+
+		<validation message="&apos;selectedPage&apos; is a required binding">
+			<unbound name="selectedPage"/>
+		</validation>
+	</wo>
+</wodefinitions>

@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<wodefinitions>
+	<wo class="SWAdminComponentWrapper" wocomponentcontent="true">
+
+		<binding name="pageNameToRefresh"/>
+		<binding name="backgroundColor"/>
+		<binding name="background"/>
+	</wo>
+</wodefinitions>

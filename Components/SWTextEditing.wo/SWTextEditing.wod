@@ -1,0 +1,16 @@
+Conditional1: WOConditional {
+	condition = isExplorerCompatible;
+}
+
+Conditional2: WOConditional {
+	condition = isExplorerCompatible;
+	negate = true;
+}
+
+SWMozillaTextEditing1: SWFCKTextEditing {
+	content = content;
+}
+
+SWSimpleTextEditing1: SWSimpleTextEditing {
+	content = content;
+}

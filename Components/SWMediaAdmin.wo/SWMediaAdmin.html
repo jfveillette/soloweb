@@ -1,0 +1,56 @@
+<!-- SWMediaAdmin -->
+<table cellspacing="0" border="0" cellpadding="2">
+	<tr>
+		<td style="vertical-align: top;"><webobject name = "Radio3"/> <webobject name="documentselectFieldTitle"/>:</td>
+		<td>
+			<webobject name="DocumentLink">
+				<webobject name="HasSelectedDocument"><webobject name="SWImage1"/><b><webobject name="documentName"/></b></webobject>
+				<webobject name="NoSelectedDocument"><webobject name="documentNoDocumentSelectedString"/></webobject>
+			</webobject>
+			<webobject name = "HasSelectedDocument">
+				<webobject name = "IsValidMediaFile">
+					<table cellspacing="0" cellpadding="2" border="0">
+						<webobject name = "IsVideoOrGraphics">
+							<tr>
+								<td align = "right"><webobject name = "WidthStr"/></td>
+								<td><webobject name = "InpWidth"/></td>
+							</tr><tr>
+								<td align="right"><webobject name = "HeightStr"/></td>
+								<td><webobject name = "InpHeight"/></td>
+							</tr>
+						</webobject>
+						<webobject name = "IsAudioOrVideo">
+							<tr>
+								<td align="right"><webobject name = "AutoPlayStr"/></td>
+								<td><webobject name = "ChkAutoPlay"/></td>
+							</tr>
+						</webobject>
+						<webobject name = "IsFlashGraphics">
+							<tr>
+								<td align = "right"><webobject name = "BGColorStr"/></td>
+								<td><webobject name = "InpBGColor"/></td>
+							</tr><tr>
+								<td align = "right"><webobject name = "FlashParamStr"/></td>
+								<td><webobject name = "InpFlashParameters"/></td>
+						</webobject>
+					</table>
+				</webobject>
+				<webobject name = "IsNotValidMediaFile">
+					<div style="font-weight: bold">This is not a valid media file!</div>
+					<div>Valid files are: <webobject name = "VideoExtStr"/>, <webobject name = "AudioExtStr"/> and <webobject name = "GraphicExtStr"/></div>
+				</webobject>
+			</webobject>
+		</td>
+	</tr>
+	<tr><td colspan="2"><hr/></td></tr>
+	<tr>
+		<td style="vertical-align: top;"><webobject name = "Radio2"/> <webobject name = "htmlStr"/></td>
+		<td><webobject name = "InpHTML"/></td>
+	</tr>
+	<tr><td colspan="2"><hr/></td></tr>
+	<tr>
+		<td><webobject name = "AlignLabel"/></td>
+		<td><webobject name = "AlignLeftRadio"/> left <webobject name = "AlignCenterRadio"/> center <webobject name = "AlignRightRadio"/> right</td> 
+	</tr>
+</table>
+<!-- end SWMediaAdmin -->

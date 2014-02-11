@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<wodefinitions>
+	<wo class="SWGroupManagement" wocomponentcontent="false">
+
+		<binding name="selectedGroup"/>
+
+		<validation message="&apos;selectedGroup&apos; is a required binding">
+			<unbound name="selectedGroup"/>
+		</validation>
+	</wo>
+</wodefinitions>

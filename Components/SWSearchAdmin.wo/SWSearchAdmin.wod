@@ -1,0 +1,33 @@
+InpBranchId: WOTextField {
+	value = currentComponent.customInfo.searchBranchID;
+}
+InpNewsFolders: WOTextField {
+	value = currentComponent.customInfo.searchNewsFolderIDs;
+}
+InpFieldSize: WOTextField {
+	value = currentComponent.customInfo.searchFieldSize;
+}
+InpDefaultText: WOTextField {
+	value = currentComponent.customInfo.searchDefaultText;
+}
+InpTextBefore: WOTextField {
+	value = currentComponent.customInfo.searchTextBefore;
+}
+ChkButton: WOCheckBox {
+	checked = currentComponent.customInfo.searchUseNormalButton;
+}
+InpButtonLabel: WOTextField {
+	value = currentComponent.customInfo.searchButtonLabel;
+}
+ChkImageButton: WOCheckBox {
+	checked = currentComponent.customInfo.searchUseButton;
+}
+InpImageID: WOTextField {
+	value = currentComponent.customInfo.searchImageID;
+}
+InpNewsDisplayPageSymbol: WOTextField {
+	value = currentComponent.customInfo.searchNewsDisplayPageSymbol;
+}
+InpHlekkjunarheiti: WOTextField {
+	value = currentComponent.customInfo.searchResultPageName;
+}

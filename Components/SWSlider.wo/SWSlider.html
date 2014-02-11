@@ -1,0 +1,37 @@
+<div id="<webobject name=strSliderId></webobject>">
+	<webobject name=condImageSlider>
+		<webobject name=repImageSlider>
+			<div style="<webobject name=strSliderStyle></webobject>">
+				<webobject name=imgSliderPicture/>
+			</div>
+		</webobject>
+	</webobject>
+	<webobject name=condNewsSlider>
+		<webobject name=repNewsSlider>
+			<webobject name=newsSwitchComponent/>
+		</webobject>
+	</webobject>
+	<webobject name=condComponentSlider>
+		<webobject name=repComponentSlider>
+			<div style="<webobject name=strSliderStyle></webobject>">
+				<webobject name=compSwitchComponent/>
+			</div>
+		</webobject>
+	</webobject>
+</div>
+<script type="text/javascript">
+	jQuery(document).ready(function(){
+		jQuery('#<webobject name=strSliderId></webobject>').bxSlider({
+			auto: <webobject name=strSliderAutoTransition></webobject>,
+			mode: '<webobject name=strSliderTransitionType></webobject>',
+			controls: <webobject name=strSliderControls></webobject>,
+			pause: <webobject name=strSliderPause></webobject>,
+			speed: <webobject name=strSliderSpeed></webobject>
+			<webobject name=condShowPager>
+				,pager: true,
+				pagerLocation: 'top',
+				buildPager: function(slideIndex) { return '<a href=""><div class="swslider_pagerdot"></div></a>'; }
+			</webobject>
+		});
+	});
+</script>

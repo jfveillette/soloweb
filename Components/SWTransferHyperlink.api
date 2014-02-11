@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="windows-1252" standalone="yes"?>
+<wodefinitions>
+	<wo class="SWTransferHyperlink" wocomponentcontent="YES">
+
+		<binding name="componentToReturn"/>
+		<binding name="record"/>
+		<binding name="transferComponentName"/>
+
+		<validation message="&apos;record&apos; is a required binding">
+			<unbound name="record"/>
+		</validation>
+
+		<validation message="&apos;transferComponentName&apos; is a required binding">
+			<unbound name="transferComponentName"/>
+		</validation>
+
+		<validation message="&apos;componentToReturn&apos; is a required binding">
+			<unbound name="componentToReturn"/>
+		</validation>
+	</wo>
+</wodefinitions>

@@ -1,0 +1,47 @@
+ComponentContent1: WOComponentContent {}
+
+ComponentContent2: WOComponentContent {}
+
+Conditional1: WOConditional {
+	condition = hasMultipleTabs;
+	negate = true;
+}
+
+Repetition1: WORepetition {
+	item = currentTab;
+	list = tabs;
+}
+
+SubmitButton1: WOSubmitButton {
+	action = selectTab;
+	value = currentTab;
+	class = currentStyleClass;
+}
+
+TABLE1: WOGenericContainer {
+	border = 0;
+	cellpadding = 0;
+	cellspacing = 0;
+	elementName = "table";
+	width = ^width;
+}
+
+TABLE2: WOGenericContainer {
+	border = 0;
+	cellpadding = 4;
+	cellspacing = 0;
+	class = "tabContentTable";
+	elementName = "table";
+	width = ^width;
+	height = ^height;
+}
+
+hasNotMultipleTabsConditional: WOConditional {
+	condition = hasMultipleTabs;
+	negate = false;
+}
+
+hasOneTabConditional: WOConditional {
+	condition = hasMultipleTabs;
+	negate = false;
+}

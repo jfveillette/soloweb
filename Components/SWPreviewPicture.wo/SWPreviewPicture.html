@@ -1,0 +1,83 @@
+<HTML>
+	<HEAD>
+		<TITLE><WEBOBJECT NAME=String7></WEBOBJECT></TITLE>
+		<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=UTF-8">
+<style>
+
+body, td, th {
+    font-family: Tahoma, Verdana, Arial, Helvetica, Sans-serif;
+    font-size: 11px;
+    font-weight: bold;
+    color: #666666;
+}
+
+</style>
+	<script language="JavaScript">
+
+		function rez() {
+/*
+			window.resizeTo(600, 400 );
+			window.name = 'Bla';
+*/
+		}
+
+		function resizeByScale() {
+			var f = document.resizeForm;
+			var originalWidth = <WEBOBJECT NAME=WIDTH_STRING></WEBOBJECT>;
+			var originalHeight = <WEBOBJECT NAME=HEIGHT_STRING></WEBOBJECT>;
+			f.widthField.value = Math.round( originalWidth * (f.scaleField.value/100) );
+			f.heightField.value = Math.round( originalHeight * (f.scaleField.value/100) );
+		}
+
+		function resizeByWidth() {
+			var f = document.resizeForm;
+			var originalWidth = <WEBOBJECT NAME=WIDTH_STRING></WEBOBJECT>;
+			var originalHeight = <WEBOBJECT NAME=HEIGHT_STRING></WEBOBJECT>;
+			f.scaleField.value = Math.round( f.widthField.value/originalWidth*100 );
+			f.heightField.value = Math.round( originalHeight*f.scaleField.value/100 );
+		}
+
+		function resizeByHeight() {
+			var f = document.resizeForm;
+			var originalWidth = <WEBOBJECT NAME=WIDTH_STRING></WEBOBJECT>;
+			var originalHeight = <WEBOBJECT NAME=HEIGHT_STRING></WEBOBJECT>;
+			f.scaleField.value = Math.round( f.heightField.value/originalHeight*100 );
+			f.widthField.value = Math.round( originalWidth*f.scaleField.value/100 );
+		}
+                
+		function randomNumber() {
+			Math.random();
+		}
+	</script>
+	</HEAD>
+	<BODY BGCOLOR=#eeeeee leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" onLoad="rez();">
+
+		<BR>
+		<TABLE CELLSPACING=0 CELLPADDING=5 BORDER=0 WIDTH="100%">
+			<TR>
+				<TD ALIGN=CENTER WIDTH="50%" VALIGN=TOP><WEBOBJECT NAME=Conditional1><WEBOBJECT NAME=IMAGE></WEBOBJECT></WEBOBJECT><WEBOBJECT NAME=Conditional2><WEBOBJECT NAME=IMAGE2></WEBOBJECT></WEBOBJECT></TD>
+				<TD ALIGN=CENTER WIDTH="50%" VALIGN=TOP><WEBOBJECT NAME=Form1>
+						<TABLE CELLSPACING=0 ALIGN=CENTER CELLPADDING=2 BORDER=1>
+							<TR>
+								<TH COLSPAN=2><WEBOBJECT NAME=NAME_STRING></WEBOBJECT><BR>
+									<WEBOBJECT NAME=String6></WEBOBJECT><FONT SIZE=1>:</FONT></TH>
+							</TR>
+							<TR>
+								<TD ALIGN=RIGHT><WEBOBJECT NAME=String1></WEBOBJECT>:</TD>
+								<TD><WEBOBJECT NAME=DIMENSION_FIELD></WEBOBJECT>
+									%</TD>
+							</TR><TR><TD ALIGN=RIGHT><WEBOBJECT NAME=String2></WEBOBJECT>:</TD><TD><WEBOBJECT NAME=DIMENSION_FIELD3></WEBOBJECT>
+							pixels</TD></TR><TR><TD ALIGN=RIGHT><WEBOBJECT NAME=String4></WEBOBJECT>:</TD><TD><WEBOBJECT NAME=DIMENSION_FIELD2></WEBOBJECT>
+							pixels</TD></TR><TR>
+								<TD ALIGN=RIGHT><WEBOBJECT NAME=String5></WEBOBJECT>:</TD>
+								<TD><WEBOBJECT NAME=PopUpButton1></WEBOBJECT>%</TD>
+							</TR>
+							<TR>
+								<TD ALIGN=CENTER COLSPAN=2><WEBOBJECT NAME=RESIZE_BUTTON></WEBOBJECT><WEBOBJECT NAME=Conditional4><BR><WEBOBJECT NAME=SubmitButton1></WEBOBJECT></WEBOBJECT></TD>
+							</TR>
+						</TABLE>
+					</WEBOBJECT></TD>
+			</TR>
+		</TABLE>
+	</BODY>
+</HTML>

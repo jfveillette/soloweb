@@ -1,0 +1,81 @@
+Conditional1: WOConditional {
+	condition = subPageIsSelected;
+}
+
+Conditional2: WOConditional {
+	condition = list.count;
+}
+
+Conditional3: WOConditional {
+	condition = ^noHierarchy;
+	negate = true;
+}
+
+Conditional4: WOConditional {
+	condition = ^putClassOnList;
+}
+
+Conditional5: WOConditional {
+	condition = subPageIsSelected;
+}
+
+Conditional6: WOConditional {
+	condition = ^noHierarchy;
+	negate = true;
+}
+
+Conditional7: WOConditional {
+	condition = ^putClassOnList;
+	negate = true;
+}
+
+GenericContainer1: WOGenericContainer {
+	elementName = "li";
+	class = currentClass;
+}
+
+GenericContainer2: WOGenericContainer {
+	elementName = "li";
+}
+
+Hyperlink1: WOHyperlink {
+	href = currentURL;
+}
+
+Hyperlink2: WOHyperlink {
+	href = currentURL;
+	class = currentClass;
+}
+
+Repetition1: WORepetition {
+	item = currentPage;
+	list = list;
+	index = currentIndex;
+}
+
+SWNavigation1: SWNavigation {
+	list = currentPage.sortedAndApprovedSubPages;
+	selectedPage = selectedPage;
+	putClassOnList = ^putClassOnList;
+	truncatePageNames = truncatePageNames;
+}
+
+SWNavigation2: SWNavigation {
+	list = currentPage.sortedAndApprovedSubPages;
+	selectedPage = selectedPage;
+	putClassOnList = ^putClassOnList;
+	truncatePageNames = truncatePageNames;
+}
+
+String1: WOString {
+	value = currentPageName;
+}
+
+String2: WOString {
+	value = currentPageName;
+}
+Holder: WOGenericContainer {
+	elementName = "div";
+	class = holderClass;
+	id = currentID;
+}

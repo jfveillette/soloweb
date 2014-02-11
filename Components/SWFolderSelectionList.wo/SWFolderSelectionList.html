@@ -1,0 +1,121 @@
+<!-- SWFolderSelectionList -->
+<script type="text/javascript">
+	function init()
+	{
+		var selectedIds = document.getElementById('selectedIds');
+		var selectedIdsList = selectedIds.value.split(' ');
+		var currentId;
+		var folder;
+		
+		for (var i = 0; i < selectedIdsList.length; i++)
+		{
+			currentId = selectedIdsList[i];
+			
+			if (currentId != null && currentId.length > 0 && parseInt(currentId) == currentId)
+			{
+				folder = document.getElementById(currentId);
+				
+				if (folder != null)
+					select(folder, false);
+			}
+		}
+	}
+
+	function toggleFolder(folder)
+	{
+		if (isSelected(folder))
+		{
+			unselect(folder);
+		}
+		else
+		{
+			select(folder, true);
+		}
+	}
+	
+	function isSelected(folder)
+	{
+		return hasClass(folder, "selected");
+	}
+	
+	function select(folder, addToList)
+	{
+		addClass(folder, "selected");
+		
+		if (addToList)	
+			addSelectedFolderId(folder.id);
+	}
+	
+	function unselect(folder)
+	{
+		removeClass(folder, "selected");
+		removeSelectedFolderId(folder.id);
+	}
+	
+	function addSelectedFolderId(id)
+	{
+		var selectedIds = document.getElementById('selectedIds');
+	
+		if( !selectedIds.value.match( '/\\b' + id + '\\b/' ) )
+			selectedIds.value += ' ' + id;
+			
+		selectedIds.value = selectedIds.value.replace(/^\s+|\s+$/, '');
+	}
+	
+	function removeSelectedFolderId(id)
+	{
+		var selectedIds = document.getElementById('selectedIds');
+		selectedIds.value = selectedIds.value.replace( new RegExp( '\\b' + id + '\\b', 'g' ), '' );	
+		
+		selectedIds.value = selectedIds.value.replace(/^\s+|\s+$/, '');
+	}
+	
+	function toggleExpansion(link)
+	{
+		var selectedIds = document.getElementById('selectedIds');
+		document.folderform.action = link.href + '?selectedIds=' + selectedIds.value;
+		document.folderform.submit();
+	}
+
+	function hasClass( element, className ) 
+	{
+		return element.className.match( '\\b' + className + '\\b' );
+	}
+
+	function addClass( element, className ) 
+	{
+		if( !element.className.match( '/\\b' + className + '\\b/' ) )
+			element.className += ' ' + className;
+	}
+
+	function removeClass( element, className ) 
+	{
+		element.className = element.className.replace( new RegExp( '\\b' + className + '\\b', 'g' ), '' );
+	}
+</script>
+<style type="text/css">
+	.folderitem { cursor:pointer; }
+	.selected { font-style:italic; background-color:gray; color:white !important; }
+</style>
+
+<webobject name="FolderForm">
+<table cellspacing="0" cellpadding="2" class="genericTable" border="1" width="250">
+	<tr>
+		<th><b><webobject name="String2"/></b></th>
+	</tr>
+	<tr>
+		<td>
+			<span class="assetFolderTree">
+				<webobject name="NestedList2">
+					<webobject name="Hyperlink1"><webobject name="Image1"/></webobject>&nbsp;
+					<span>
+						<webobject name="Image2"/>&nbsp;<webobject name = "TheSpan"><webobject name="String1"/></webobject>
+					</span>
+				</webobject>
+			</span>
+		</td>
+	</tr>
+</table>
+<webobject name="IdField"/>
+</webobject>
+<!-- end SWFolderSelectionList -->

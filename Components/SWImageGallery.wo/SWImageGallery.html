@@ -1,0 +1,141 @@
+<div class="swImageGallery">
+	<webobject name="NotGalleryConditional">
+		<webobject name="OneImageConditional">
+			<div class="single">
+				<webobject name="ImageHyperlink"><webobject name = "OneImage" /></webobject>
+			</div>
+		</webobject>
+		<webobject name = "RandomImageConditional">
+			<div class = "random">
+				<webobject name = "ImageHyperlink"><webobject name = "RandomImage" /></webobject>
+			</div>
+		</webobject>
+		<webobject name="SlideShowConditional">
+			<div class="slideshow">
+				<webobject name="FlashObject">
+					<param name="allowScriptAccess" value = "always" />
+					<webobject name="FlashMovieParam" />
+					<param name="quality" value="high" />
+					<param name="bgcolor" value="#ffffff" />
+					<webobject name="FlashEmbed" />
+				</webobject>
+			</div>
+		</webobject>
+	</webobject>
+	<webobject name="GalleryConditional">
+	<!-- Image album -->
+    <style type="text/css">
+      .thumb {
+      	width: <webobject name="ThumbWidth" />px;
+      	height: <webobject name="ThumbHeight" />px;
+      }
+    </style>
+    <webobject name="NotSelectedPictureCond">
+      <div class="navigation"><webobject name="String3" /></div>
+    </webobject>
+    <webobject name="SelectedPictureCond">
+      <table id="album_navigation_old" class="navigation" cellspacing="0" align="CENTER" cellpadding="6" border="0">
+        <tr>
+          <td>
+            <webobject name="PreviousPictureCond">
+              <webobject name="Hyperlink9">&lt;&lt;-- Fyrsta mynd</webobject>
+            </webobject>
+          </td>
+          <td>&nbsp;</td>
+          <td>
+            <webobject name="PreviousPictureCond">
+              <webobject name="Hyperlink4">&lt;-- Fyrri mynd</webobject>
+            </webobject>
+          </td>
+          <td>&nbsp;</td>
+          <td>
+            <webobject name="Hyperlink6"><webobject name="String3" /></webobject>
+          </td>
+          <td>&nbsp;</td>
+          <td>
+            <webobject name="NextPictureCond">
+              <webobject name="Hyperlink5">Næsta mynd --&gt;</webobject>
+            </webobject>
+          </td>
+          <td>&nbsp;</td>
+          <td>
+            <webobject name="NextPictureCond">
+              <webobject name="Hyperlink10">Síðasta mynd --&gt;&gt;</webobject>
+            </webobject>
+          </td>
+        </tr>
+      </table>
+      <table class="preview" cellspacing="0" cellpadding="6" align="center">
+        <tr>
+          <td class="previewName" align="center">
+            <b><webobject name="String2" /></b>
+          </td>
+        </tr>
+        <tr>
+          <td class="previewImage" align="center" valign="top">
+            <webobject name="Hyperlink8"><webobject name="SWImage3" /></webobject>
+          </td>
+        </tr>
+        <webobject name="HasDescriptionConditional">
+          <tr>
+            <td align="CENTER">&nbsp;<br />
+              <webobject name="PictureDescriptionStr" />
+            </td>
+          </tr>
+        </webobject>
+		<webobject name="IsECard"><tr>
+			<td style="text-align: center;">Senda rafr&aelig;na kve&eth;ju</td>
+		</tr>
+		<tr>
+			<td class="ecard"><webobject name="FormECard">
+				<webobject name="HiddenPictureID"/>
+				<webobject name="HiddenPageID"/>
+				<input type="hidden" name="subject" value="Kve&eth;ja"/>
+				<input type="hidden" name="kvedja" value="Me&eth; kve&eth;ju"/>
+				<table border="0" cellspacing="0" cellpadding="6">
+					<tr>
+						<td>Nafn sendanda</td>
+						<td><input type="text" name="senderName" size="30"/></td>
+					</tr><tr>
+						<td>Netfang sendanda</td>
+						<td><input type="text" name="senderEmail" size="30"/></td>
+					</tr><tr>
+						<td>Nafn vi&eth;takanda</td>
+						<td><input type="text" name="receiverName" size="30"/></td>
+					</tr><tr>
+						<td>Netfang vi&eth;takanda</td>
+						<td><input type="text" name="receiverEmail" size="30"/></td>
+					</tr><tr>
+						<td style="vertical-align: top; text-align: right;">Texti kve&eth;ju</td>
+						<td><textarea name="text" rows="6" cols="45"></textarea></td>
+					</tr><tr>
+						<td colspan="2" style="text-align: right;"><webobject name="BtnSendECard"/></td>
+					</tr>
+					<webobject name="ECardIsSent">
+						<tr><td colspan="2" style="text-align: center;">Korti&eth; hefur veri&eth; sent</td></tr>
+					</webobject>
+					<webobject name="ECardError">
+						<tr><td colspan="2" style="text-align: center; color: #d00; font-weight: bold;">Villa kom upp vi&eth; sendingu</td></tr>
+					</webobject>
+				</table>
+			</webobject></td>
+		</tr></webobject>
+      </table>
+    </webobject>
+    <webobject name="NotSelectedPictureCond">
+      <div class="thumbTable">
+        <webobject name="Repetition2">
+          <webobject name="IsValidImage">
+            <webobject name="Hyperlink1">
+              <div class="thumb">
+                <div class="thumbName"><webobject name="String4"></webobject></div>
+                <webobject name = "Image1" />
+              </div>
+            </webobject>
+          </webobject>
+        </webobject>
+      </div>
+    </webobject>
+  </webobject>
+</div>
+<!-- end SWImageGallery -->

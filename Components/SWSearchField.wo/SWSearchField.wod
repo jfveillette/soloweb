@@ -1,0 +1,57 @@
+IsInForm: WOConditional {
+	condition = context.isInForm;
+}
+IsNotInForm: WOConditional {
+	condition = context.isInForm;
+	negate = true;
+}
+ComponentID: WOString {
+	value = currentComponent.primaryKey;
+}
+Form1: WOForm {
+	href = "/search";
+	?cid = currentComponent.primaryKey;
+	?pid = selectedPage.pageID;
+	?lang = selectedPage.pageLanguageCode;
+	name = searchFormName;
+	method = "GET";
+}
+HasTextBefore: WOConditional {
+	condition = currentComponent.customInfo.searchTextBefore;
+}
+TextBefore: WOString {
+	value = currentComponent.customInfo.searchTextBefore;
+}
+Input: WOGenericElement {
+	class = "text";
+	elementName = "input";
+	style = fieldStyle;
+	type = "text";
+	name = "searchString";
+	value = currentComponent.customInfo.searchDefaultText;
+	onclick = inputOnClick;
+}
+
+ShowNormalButton: WOConditional {
+	condition = currentComponent.customInfo.searchUseNormalButton;
+}
+
+strNormalButtonLabel: WOString {
+	value = searchButtonLabel;
+}
+
+ShowImageButton: WOConditional {
+	condition = currentComponent.customInfo.searchUseButton;
+}
+
+ImageButton: WOImageButton {
+	directActionName = "search";
+	?branchID = currentComponent.customInfo.searchBranchID;
+	?newsFolderIDs = currentComponent.customInfo.searchNewsFolderIDs;
+	?id = currentComponent.page.topLevelPage.pageID;
+	name = "searchForm";
+	src = imageSRC;
+	border = 0;
+	class = "button";
+}
+

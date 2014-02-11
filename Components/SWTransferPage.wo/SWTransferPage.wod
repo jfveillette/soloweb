@@ -1,0 +1,48 @@
+CheckBox1: WOCheckBox {
+	checked = shouldCopy;
+	onClick = "this.form.submit()";
+}
+
+Form1: WOForm {
+}
+
+Hyperlink1: WOHyperlink {
+	action = cancel;
+}
+
+ResetHitCount: WOString {
+	value = record.name;
+}
+
+SWAdminComponentWrapper1: SWAdminComponentWrapper {
+	backgroundColor = "#eeeeee";
+}
+
+SWSiteListing1: SWSiteListing {
+	action = "selectObject";
+	recordToDisableSubPagesOf = record;
+	selectedPage = currentParent;
+	requiredPrivilege = "canManagePage";
+	inBetween = true;
+	currentIndex = currentIndex;
+}
+
+String1: WOString {
+	value = session.@ls.tpPart1;
+}
+
+String2: WOString {
+	value = session.@ls.tpPart2;
+}
+
+String3: WOString {
+	value = session.@ls.tpCancel;
+}
+
+String4: WOString {
+	value = session.@ls.tpHeader;
+}
+
+String5: WOString {
+	value = session.@ls.copyTitle;
+}

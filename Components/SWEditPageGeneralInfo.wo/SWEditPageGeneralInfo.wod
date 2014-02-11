@@ -1,0 +1,221 @@
+AccessibleCheckBox3: WOCheckBox {
+	checked = selectedPage.accessible;
+	onChange = "setHasChanged()";
+}
+
+HideRightColumnStr: WOString {
+	value = "Hide right column";
+}
+
+HideRightColumnChk: WOCheckBox {
+	checked = selectedPage.customInfo.hideRightColumn;
+}
+
+HideNavigationStr: WOString {
+	value = "Hide navigation";
+}
+
+HideNavigationChk: WOCheckBox {
+	checked = selectedPage.customInfo.hideNavigation;
+}
+
+NameField: WOTextField {
+	size = 30;
+	value = pageName;
+	onChange = "setHasChanged()";
+}
+
+NamePrefixField: WOTextField {
+	size = 30;
+	value = selectedPage.namePrefix; 	
+}
+
+PasswordField3: WOTextField {
+	size = 20;
+	value = selectedPage.password; 	
+}
+
+PopUpButton1: WOPopUpButton {
+	displayString = currentObject.name;
+	item = currentObject;
+	list = allGroups;
+	selection = selectedGroup;
+	noSelectionString = "Ekkert valið";
+}
+
+PublishCheckbox3: WOCheckBox {
+	checked = selectedPage.published;
+	onChange = "setHasChanged()";
+}
+
+RedirectToField: WOTextField {
+	size = 30;
+	value = selectedPage.externalURL; 	
+}
+ChkRedirectNewWindow: WOCheckBox {
+	checked = selectedPage.customInfo.externalUrlInNewWindow;
+}
+LookField: WOTextField {
+	size = 30;
+	value = selectedPage.look; 	
+}
+
+LookPopup: WOPopUpButton {
+	displayString = lookPopupItem;
+	item = lookPopupItem;
+	list = lookPopupItems;
+	noSelectionString = "Ekkert útlit valið";
+	selectedValue = selectedPage.look;
+}
+
+LanguageField: WOTextField {
+	size = 5;
+	value = selectedPage.language; 	
+}
+
+GoogleAnalyticsString: WOString {
+	value = "Google Analytics code";
+}
+GoogleAnalyticsInput: WOTextField {
+	value = selectedPage.customInfo.googleAnalyticsCode;
+}
+ModernusString: WOString {
+	value = "Modernus service settings";
+}
+ModernusSubdomainInput: WOTextField {
+	value = selectedPage.customInfo.modernusSubdomain;
+}
+ModernusServiceInput: WOTextField {
+	value = selectedPage.customInfo.modernusServiceId;
+}
+ModernusSiteInput: WOTextField {
+	value = selectedPage.customInfo.modernusSiteId;
+}
+
+SWDateField5: SWDateField {
+        record = selectedPage;
+	key = "timeOut";
+}
+
+SWDateField6: SWDateField {
+        record = selectedPage;
+	key = "timeIn";
+}
+
+String1: WOString {
+	value = session.@ls.pageName;
+}
+
+String16: WOString {
+	value = session.@ls.pageDescription;
+}
+
+String17: WOString {
+	value = session.@ls.pageLoginFormName;
+}
+
+String18: WOString {
+	value = session.@ls.pageLoginFormOptions;
+}
+
+String2: WOString {
+	value = session.@ls.linkingName;
+}
+
+String29: WOString {
+	value = session.@ls.pageDisplayOnSite;
+}
+
+String3: WOString {
+	value = session.@ls.namePrefix;
+}
+
+String30: WOString {
+	value = session.@ls.pageTimeOut;
+}
+
+String31: WOString {
+	value = session.@ls.pageTimeIn;
+}
+
+String32: WOString {
+	value = session.@ls.pagePassword;
+}
+
+String33: WOString {
+	value = session.@ls.pagePublishingOptions;
+}
+
+String4: WOString {
+	value = session.@ls.redirectTo;
+}
+
+String5: WOString {
+	value = session.@ls.customLook;
+}
+
+String6: WOString {
+	value = session.@ls.pageGeneral;
+}
+
+String7: WOString {
+	value = session.@ls.pageAccessible;
+}
+
+String8: WOString {
+	value = session.@ls.pageKeywords;
+}
+
+String9: WOString {
+	value = session.@ls.pageLanguageFieldTitle;
+}
+
+SymbolField: WOTextField {
+	size = 30;
+	value = pageSymbol;
+}
+
+Text3: WOText {
+	value = selectedPage.keywords;
+	rows = 10;
+	cols = 40;
+}
+
+Text4: WOText {
+	value = selectedPage.text;
+	rows = 10;
+	cols = 40;
+}
+
+LoginFormNameField: WOTextField {
+	size = 30;
+	value = selectedPage.customInfo.loginFormName;
+	onChange = "setHasChanged()";
+}
+
+LoginFormOptionsField: WOTextField {
+	size = 30;
+	value = selectedPage.customInfo.loginFormOptions;
+	onChange = "setHasChanged()";
+}
+IsDefLook6: WOKeyValueConditional {
+	key = "selectedPage.siteForThisPage.look";
+	value = "SWDefaultLook6";
+}
+IsAdmin: WOConditional {
+	condition = session.activeUser.isAdministrator;
+}
+AlwaysOpenStr: WOString {
+	value = "alltaf opi&eth;";
+	escapeHTML = false;
+}
+ChkAlwaysOpen: WOCheckBox {
+	checked = selectedPage.customInfo.alwaysOpen;
+}
+CustomElements: WOText {
+	value = selectedPage.customInfo.pageCSS;
+	style = "width: 100%; height: 80px;";
+}
+ChkNoInheritance: WOCheckBox {
+	checked = selectedPage.customInfo.noDefLook6Inheritance;
+}

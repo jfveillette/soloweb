@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wodefinitions>
+	<wo class="SWPrivilegeConditional" wocomponentcontent="true">
+
+		<binding name="identifier"/>
+		<binding defaults="Boolean" name="negate"/>
+		<binding name="record"/>
+		<binding name="condition"/>
+
+		
+
+		<validation message="You can only either bind &quot;record&quot; or &quot;condition&quot;">
+			<or>
+				<and>
+					<bound name="identifier"/>
+					<unbound name="condition"/>
+				</and>
+				<and>
+					<unbound name="record"/>
+					<unbound name="condition"/>
+				</and>
+			</or>
+		</validation>
+	
+    </wo>
+</wodefinitions>

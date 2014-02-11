@@ -1,0 +1,144 @@
+BG_URL_STRING: WOResourceURL {
+	filename = "sw32/img/toolbar/toolbar_bg.gif";
+	framework = application.frameworkBundleName;
+}
+
+BG_URL_STRING_2: WOResourceURL {
+	filename = "sw32/img/toolbar/toolbar_bg.gif";
+	framework = application.frameworkBundleName;
+}
+
+
+Conditional1: WOConditional {
+	condition = session.activeUser.isAdministrator;
+}
+
+GenericElement1: WOGenericElement {
+	elementName = "LINK";
+	href = href;
+	rel = "stylesheet";
+	type = "text/css";
+}
+
+Hyperlink1: WOHyperlink {
+	pageName = "SWPageFrameset";
+	target = "lower";
+}
+
+Hyperlink2: WOHyperlink {
+	action = newsDB;
+	target = "lower";
+}
+
+Hyperlink3: WOHyperlink {
+	action = pictureDB;
+	target = "lower";
+}
+
+Hyperlink4: WOHyperlink {
+	action = documentDB;
+	target = "lower";
+}
+
+Hyperlink5: WOHyperlink {
+	pageName = "SWMySettings";
+	target = "lower";
+}
+
+Hyperlink6: WOHyperlink {
+	pageName = currentSystem;
+	target = "lower";
+}
+
+Hyperlink7: WOHyperlink {
+	action = logout;
+	onClick = session.@cs.smLogoutMessage;
+	target = "_top";
+}
+
+Hyperlink8: WOHyperlink {
+	pageName = "SWUsersAndGroups";
+	target = "lower";
+}
+
+Image1: WOImage {
+	filename = "sw32/img/toolbar/sitetree.gif";
+	framework = application.frameworkBundleName;
+}
+
+Image2: WOImage {
+	filename = "sw32/img/toolbar/news.gif";
+	framework = application.frameworkBundleName;
+}
+
+Image3: WOImage {
+	filename = "sw32/img/toolbar/pictures.gif";
+	framework = application.frameworkBundleName;
+}
+
+Image4: WOImage {
+	filename = "sw32/img/toolbar/documents.gif";
+	framework = application.frameworkBundleName;
+}
+
+Image5: WOImage {
+	filename = "sw32/img/toolbar/settings.gif";
+	framework = application.frameworkBundleName;
+}
+
+Image6: WOImage {
+	filename = "sw32/img/toolbar/plugin.gif";
+	framework = application.frameworkBundleName;
+}
+
+Image7: WOImage {
+	filename = "sw32/img/toolbar/logout.gif";
+	framework = application.frameworkBundleName;
+}
+
+Image8: WOImage {
+	filename = "sw32/img/lausn_logo_litid.gif";
+	framework = application.frameworkBundleName;
+}
+
+Image9: WOImage {
+	filename = "sw32/img/toolbar/users.gif";
+	framework = application.frameworkBundleName;
+}
+
+Repetition1: WORepetition {
+	item = currentKey;
+	list = theSystems;
+}
+
+String1: WOString {
+	value = currentKey;
+}
+
+String2: WOString {
+	value = session.@ls.smSiteTree;
+}
+
+String3: WOString {
+	value = session.@ls.smNews;
+}
+
+String4: WOString {
+	value = session.@ls.smPictures;
+}
+
+String5: WOString {
+	value = session.@ls.smDocuments;
+}
+
+String6: WOString {
+	value = session.@ls.smUsersAndGroups;
+}
+
+String8: WOString {
+	value = session.@ls.smMySettings;
+}
+
+String9: WOString {
+	value = session.@ls.smLogOut;
+}

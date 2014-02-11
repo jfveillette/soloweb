@@ -1,0 +1,19 @@
+<!-- SWMedia -->
+<webobject name = "IsFile"><webobject name = "DIVfile">
+	<webobject name="IsFlashGraphics"><webobject name = "FlashEmbed"/></webobject>
+	<webobject name="IsFlashVideo">
+		<script type="text/javascript" src="/sw32/scripts/flowplayer-3.2.4.min.js"></script>
+		<webobject name="FlowPlayerAnchor"/>
+		<script>
+			flowplayer( "<webobject name=FlowPlayerId></webobject>", "/sw32/flowplayer/flowplayer-3.2.4.swf", <webobject name=FlowPlayerProperties></webobject> );
+		</script>
+	</webobject>
+	<webobject name = "IsAudio"><webobject name = "AudioEmbed"/></webobject>
+	<webobject name="IsVideo"><webobject name="IsNotFlashVideo">
+		<webobject name="EmbedTag"/>
+	</webobject></webobject>
+</webobject></webobject>
+<webobject name = "IsHTML">
+	<webobject name="DIVhtml"><webobject name = "htmlStr"/></webobject>
+</webobject>
+<!-- end SWMedia -->

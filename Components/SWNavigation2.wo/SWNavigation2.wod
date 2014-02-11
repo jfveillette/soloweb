@@ -1,0 +1,39 @@
+ULContainer: WOGenericContainer {
+	elementName = "ul";
+	class = ulClass;
+	id = ulId;
+}
+SubPageIsSelected: WOConditional {
+	condition = subPageIsOpen;
+}
+
+HasItems: WOConditional {
+	condition = list.count;
+}
+LIContainer: WOGenericContainer {
+	elementName = "li";
+	class = currentClass;
+}
+
+PageLink: WOHyperlink {
+	href = currentURL;
+	class = currentClass;
+	target = currentTarget;
+}
+
+PagesRep: WORepetition {
+	item = currentPage;
+	list = list;
+	index = currentIndex;
+}
+
+SWNavigation: SWNavigation2 {
+	list = currentPage.sortedAndApprovedSubPages;
+	selectedPage = selectedPage;
+	level = nextLevel;
+}
+
+PageNameStr: WOString {
+	value = currentPageName;
+}
+

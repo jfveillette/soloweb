@@ -1,0 +1,57 @@
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<title><webobject name="Title"/></title>
+	<style type="text/css" media="screen">
+		body { font-family: Georgia, Times, _serif; font-size: 14px; }
+		table { border-collapse: collapse; }
+		a { color: #722;}
+		p { margin: 8px 0 0 0;}
+		.ecard { position: absolute; overflow: hidden;}
+		.top .left { width: 30px; height: 30px; background: url(<webobject name=pict1Url></webobject>); }
+		.top .center { height: 30px; background: url(<webobject name=pict2Url></webobject>); }
+		.top .right { width: 30px; height: 30px; background: url(<webobject name=pict3Url></webobject>); }
+		.middle .left { width: 30px;  background:url(<webobject name=pict4Url></webobject>); }
+		.middle .center { background: url(<webobject name=pict5Url></webobject>); }
+		.middle .right { width: 30px; background: url(<webobject name=pict6Url></webobject>); }
+		.bottom .left { width: 30px; height: 30px; background: url(<webobject name=pict7Url></webobject>); }
+		.bottom .center { height: 30px; background: url(<webobject name=pict8Url></webobject>); }
+		.bottom .right { width: 30px; height: 30px; background: url(<webobject name=pict9Url></webobject>); }
+		.nafn { font-weight: bold; font-style: italic; margin-bottom: 24px; margin-top: 64px; }
+		.mynd { padding-left: 12px; vertical-align: bottom; width: 330px; }
+		.mynd img { border: 3px inset #722; display: block; }
+		.caption { font-size: 0.8em; width: 320px; }
+		.message { font-style: italic; }
+		.hilsen { margin-top: 24px; margin-bottom: 12px; }
+		.byline { font-weight: bold; }
+		.footer { vertical-align: bottom; font-size: 0.8em; }
+	</style>
+</head>
+<body>
+
+	<table class="ecard" border="0" cellspacing="0" cellpadding="0">
+		<tr class="top"><td class="left"></td><td class="center" colspan="2"></td><td class="right"></td></tr>
+		<tr class="middle">
+			<td class="left" rowspan="2"></td>
+			<td class="center">
+				<div class="nafn">
+					<webobject name="ReceiverName"/>
+				</div>
+				<div class="message">
+					<p><webobject name="Message"/></p>
+					<p class="hilsen">Me&eth; kve&eth;ju<br/><span class="byline"><webobject name="SenderName"/></span></p>
+				</div>
+			</td>
+			<td class="center mynd" rowspan="2">
+				<webobject name="ThePicture"/>
+				<div class="caption">
+					<webobject name="Caption"/>
+				</div>
+			</td>
+			<td class="right" rowspan="2"></td>
+		</tr>
+		<tr class="middle"><td class="footer center">Stofnun &Aacute;rna Magn&uacute;ssonar &iacute; &iacute;slenskum fr&aelig;&eth;um <br/><a href="http://www.arnastofnun.is">www.arnastofnun.is</a></td></tr>
+		<tr class="bottom"><td class="left"></td><td class="center" colspan="2"></td><td class="right"></td></tr>
+	</table>
+</body>
+</html>

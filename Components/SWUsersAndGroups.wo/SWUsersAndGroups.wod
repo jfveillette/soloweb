@@ -1,0 +1,78 @@
+Browser2: WOPopUpButton {
+	displayString = currentUser.name;
+	item = currentUser;
+	list = allUsers;
+	noSelectionString = session.@ls.ugNoSelection;
+	selection = selectedObject;
+	onChange = "this.form.submit()";
+}
+
+Browser3: WOPopUpButton {
+	displayString = currentGroup.name;
+	item = currentGroup;
+	list = allGroups;
+	noSelectionString = session.@ls.ugNoSelection;
+	onChange = "this.form.submit()";
+	selection = selectedObject;
+}
+
+HasSelectedObject: WOConditional {
+	condition = selectedObject;
+}
+
+SWUserManagement: SWUserManagement {
+	selectedUser = selectedObject;
+}
+
+GroupForm: WOForm {
+	multipleSubmit = true;
+	style = "margin-bottom:0px";
+}
+
+UserForm: WOForm {
+	multipleSubmit = true;
+	style = "margin-bottom:0px";
+}
+
+SWGroupManagement: SWGroupManagement {
+	selectedGroup = selectedObject;
+}
+
+SelectedObjectIsNotUser: WOConditional {
+	condition = selectedObjectIsUser;
+	negate = true;
+}
+
+SelectedObjectIsUser: WOConditional {
+	condition = selectedObjectIsUser;
+}
+
+TheForm: WOForm {
+	multipleSubmit = true;
+	style = "margin-bottom:0px";
+}
+
+SWAdminComponentWrapper1: SWAdminComponentWrapper {
+	backgroundColor = "#eeeeee";
+}
+
+GroupsStr: WOString {
+	value = session.@ls.ugGroups;
+}
+
+UsersStr: WOString {
+	value = session.@ls.ugUsers;
+}
+
+SubmitButton1: WOSubmitButton {
+	action = createGroup;
+	class = "accessbutton";
+	value = session.@ls.ugCreateGroup;
+}
+
+SubmitButton2: WOSubmitButton {
+	value = session.@ls.ugCreateUser;
+	class = "accessbutton";
+	action = createUser;
+}
+

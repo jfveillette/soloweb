@@ -1,0 +1,92 @@
+IsAdmin: WOConditional {
+	condition = session.activeUser.isAdministrator;
+}
+
+Hyperlink1: WOHyperlink {
+	action = deleteSite;
+	onClick = session.@cs.deleteSiteWarning;
+}
+
+String1: WOString {
+	value = session.@ls.siteNameFieldTitle;
+}
+
+String2: WOString {
+	value = session.@ls.siteLookFieldTitle;
+}
+
+String3: WOString {
+	value = session.@ls.siteLanguageFieldTitle;
+}
+
+String4: WOString {
+	value = session.@ls.site404PageFieldTitle;
+}
+
+String5: WOString {
+	value = session.@ls.siteDomainsFieldTitle;
+}
+
+String6: WOString {
+	value = session.@ls.siteDelete;
+}
+
+SubmitButton2: WOSubmitButton {
+	action = saveChanges;
+	value = session.@ls.siteSaveButtonTitle;
+	accesskey = "s";
+}
+GoogleAnalyticsString: WOString {
+	value = "Google Analytics code";
+}
+GoogleAnalyticsInput: WOTextField {
+	value = selectedSite.customInfo.googleAnalyticsCode;
+}
+ModernusString: WOString {
+	value = "Modernus service settings";
+}
+ModernusSubdomainInput: WOTextField {
+	value = selectedSite.customInfo.modernusSubdomain;
+}
+ModernusServiceInput: WOTextField {
+	value = selectedSite.customInfo.modernusServiceId;
+}
+ModernusSiteInput: WOTextField {
+	value = selectedSite.customInfo.modernusSiteId;
+}
+Text2: WOText {
+	value = selectedSite.qual;
+	rows = 5;
+	cols = 50;
+}
+
+TextField1: WOTextField {
+	size = 50;
+	value = selectedSite.name;
+	onChange = "setHasChanged()";
+}
+
+TextField2: WOTextField {
+	size = 50;
+	value = selectedSite.look;
+}
+
+TextField3: WOTextField {
+	size = 50;
+	value = selectedSite.language;
+}
+
+strSiteGroup: WOTextField {
+	size = 50;
+	value = selectedSite.sitegroup;
+}
+
+TextField30: WOTextField {
+	size = 50;
+	value = selectedSite.noPageFoundErrorPageLinkingName;
+}
+
+IsDefLook6: WOKeyValueConditional {
+	key = "selectedSite.look";
+	value = "SWDefaultLook6";
+}

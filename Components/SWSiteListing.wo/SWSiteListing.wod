@@ -1,0 +1,173 @@
+TabPanel: SWTabPanel {
+	tabs = tabs;
+	selectedTab = selectedTab;
+}
+
+TabWebTreeSelected: WOKeyValueConditional {
+	key = "selectedTab";
+	value = tabNameTree;
+}
+
+TabSearchSelected: WOKeyValueConditional {
+	key = "selectedTab";
+	value = tabNameSearch;
+}
+
+SearchTextStr: WOString {
+	value = "Type page id or link-name";
+}
+
+SearchResultSitesList: WORepetition {
+	list = searchResultSites;
+	item = currentSearchSite;
+}
+
+SearchResultPagesList: WORepetition {
+	list = searchResultPagesForCurrentSite;
+	item = currentSearchPage;
+}
+
+Conditional1: WOConditional {
+	condition = currentPage.hasSubPages;
+}
+
+Conditional13: WOConditional {
+	condition = currentPage.isTopLevel;
+	negate = true;
+}
+
+Conditional14: WOConditional {
+	condition = currentPage.isTopLevel;
+	negate = true;
+}
+
+Conditional2: WOConditional {
+	condition = showArrows;
+}
+
+Conditional3: WOConditional {
+	condition = showArrows;
+}
+
+Conditional4: WOConditional {
+	condition = currentPage.isAtTop;
+}
+
+Conditional5: WOConditional {
+	condition = inBetween;
+}
+
+Conditional6: WOConditional {
+	condition = selectedSite;
+}
+
+showSitePopUp: WOConditional {
+	condition = showSitePopUp;
+}
+
+notShowSitePopUp: WOConditional {
+	condition = showSitePopUp;
+	negate = true;
+}
+
+SetTheSelectedSite: WOString {
+	value = setTheSelectedSite;
+}
+
+Conditional8: WOConditional {
+	condition = inBetween;
+}
+
+CurrentLabel1: WOString {
+    value = currentPage.name;
+    valueWhenEmpty = session.@ls.untitledObjectString;
+    escapeHTML = false;
+}
+
+CurrentSiteNameStr: WOString {
+	value = currentSearchSite.name;
+}
+
+CurrentSearchPageName: WOString {
+	value = currentSearchPage.name;
+}
+
+Form1: WOForm {
+}
+
+Hyperlink1: WOHyperlink {
+	action = selectSite;
+	disabled = siteIsDisabled;
+	target = "workarea";
+}
+
+Hyperlink12: WOHyperlink {
+	action = selectObject;
+	target = "workarea";
+	class = currentClass;
+	disabled = isDisabled;
+}
+
+LinkSearchPage: WOHyperlink {
+	action = selectedSearchObject;
+	target = "workarea";
+}
+
+Hyperlink2: WOHyperlink {
+	action = transferFirst;
+	style = "Color: #6666cc";
+}
+
+Hyperlink3: WOHyperlink {
+	action = transferOther;
+	style = "Color: #6666cc";
+}
+
+Hyperlink4: WOHyperlink {
+	action = toggleDisplay;
+	disabled = isRecordBeingTransferred;
+}
+
+Image1: WOImage {
+	src = toggleString;
+}
+
+Image2: WOImage {
+	filename = "sw32/img/soloweb_yfirflokkaskra.gif";
+	framework = application.frameworkBundleName;
+}
+
+NestedList2: USNestedList {
+    list = selectedSite.frontPageInArray;
+    item = currentPage;
+    index = currentIndex;
+    sublist = theSubPages;
+}
+
+PopUpButton1: WOPopUpButton {
+	displayString = currentSite.name;
+	item = currentSite;
+	list = session.activeUser.sites;
+	onChange = "this.form.submit()";
+	selection = selectedSite;
+	noSelectionString = session.@ls.siteListSitesString;
+}
+
+String2: WOString {
+	value = selectedSite.name;
+	valueWhenEmpty = session.@ls.untitledObjectString;
+}
+
+SearchForm: WOForm {
+	action = search;
+}
+
+InpSearchText: WOTextField {
+	title = "Search";
+	value = searchString;
+	style = "width: 160px;";
+}
+
+IsAdmin: WOConditional {
+	condition = session.activeUser.isAdministrator;
+}

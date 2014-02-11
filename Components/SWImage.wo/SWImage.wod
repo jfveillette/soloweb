@@ -1,0 +1,14 @@
+Image: WOGenericElement {
+	alt = ^selectedPicture.altTextOrName;
+	src = pictureURL;
+	title = ^selectedPicture.altText;
+	vspace = ^vspace;
+	align = ^align;
+	hspace = ^hspace;
+	elementName = "img";
+	height = ^height;
+	width = ^width;
+	border = ^border;
+	style = ^style;
+}
+

@@ -1,0 +1,26 @@
+<webobject name = "IsInForm">
+	<div style="border: 1px solid black; padding: 20px; text-align: center;">Leitarniðurstöðubútur</div>
+</webobject>
+<webobject name = "IsNotInForm">
+	<webobject name = "SwitchComponent1">
+	  <!-- SWSearchResults -->
+	  <div id = "searchResult">
+	    <div class = "heading">
+	      <webobject name = "HasResult">
+	        <webobject name = "ResultCount" />
+	        <webobject name = "SingularPlural" />
+	        <webobject name=strOrdid/> &quot;<span class = "searchString"><webobject name = "SearchString" /></span>&quot; 
+	      </webobject>
+	      <webobject name = "NoResults"><webobject name=strEngarSidurFundustVidLeitAd/> &quot;<span class = "searchString"><webobject name = "SearchString" /></span>&quot;</webobject>
+	    </div>
+	    <div class = "list">
+	      <webobject name = "ResultList">
+	        <div class = "item" style = "padding-top: 10px;">
+	          <webobject name = "SearchResultComponent"/>
+	        </div>
+	      </webobject>
+	    </div>
+	  </div>
+	  <!-- end SWSearchResults -->
+	</webobject>
+</webobject>

@@ -1,0 +1,17 @@
+Hyperlink2: WOHyperlink {
+	?id = currentPage.pageID;
+	directActionName = "dp";
+}
+
+NestedList1: USNestedList {
+	item = currentPage;
+	list = topLevelList;
+	sublist = currentPage.sortedAndApprovedSubPages;
+	index = currentIndex;
+}
+
+String4: WOString {
+	value = currentPage.name;
+	escapeHTML = false;
+}
+

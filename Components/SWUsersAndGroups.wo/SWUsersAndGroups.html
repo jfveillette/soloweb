@@ -1,0 +1,40 @@
+<webobject name="SWAdminComponentWrapper1">
+<!-- SWUsersAndGroups -->
+	<br><br>
+	<table border="0" cellpadding="2" cellspacing="0" class="genericTable" align="CENTER">
+		<tr>
+			<th colspan="5"><b>Notendur og h&oacute;par</b></th>
+		</tr>
+		<tr>
+			<td align="RIGHT" valign="TOP"><b><webobject name="GroupsStr"/>:</b></td>
+			<td>
+				<webobject name="GroupForm">
+					<webobject name="Browser3"/><br>
+					<webobject name="SubmitButton1"/>
+				</webobject>
+			</td>
+			<td>&nbsp;&nbsp;&nbsp;</td>
+			<td align="RIGHT" valign="TOP"><b><webobject name="UsersStr"/>:</b></td>
+			<td>
+				<webobject name="UserForm">
+					<webobject name="Browser2"/><br>
+					<webobject name="SubmitButton2"/>
+				</webobject>
+			</td>
+		</tr>
+	</table>
+	<br>
+	<center>
+		<webobject name="HasSelectedObject">
+			<webobject name="TheForm">
+				<webobject name="SelectedObjectIsUser">
+					<webobject name="SWUserManagement"/>
+				</webobject>
+				<webobject name="SelectedObjectIsNotUser">
+					<webobject name="SWGroupManagement"/>
+				</webobject>
+			</webobject>
+		</webobject>
+	</center>
+<!-- end SWUsersAndGroups -->
+</webobject>

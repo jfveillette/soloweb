@@ -1,0 +1,36 @@
+<!-- SWEditComponent -->
+<table width="100%" cellspacing="0" border="0" cellpadding="0">
+	<tr>
+		<td style="background-color: #dddddd; vertical-align: top; width: 26px;">
+			<br><webobject name="SubmitButton1"/>
+		</td>
+		<td style="border-top: 1px solid silver; vertical-align: top; padding: 0px 10px 0px 10px; background-color: #ffffff;">
+			<webobject name="IsNotEditingMode"><webobject name="SwitchComponent1"/></webobject>
+			<webobject name="IsEditingMode">
+				<webobject name="TabPanel1">
+					<table cellspacing="0" cellpadding="2" class="genericTable" border="0">
+						<tr>
+							<th><webobject name="String2"/>:</th>
+							<th><webobject name="String3"/>:</th>
+							<th><webobject name="String4"/>:</th>
+							<th>N&uacute;mer b&uacute;ts</th>
+						</tr>
+						<tr>
+							<td><webobject name="CheckBox1"/></td>
+							<td><webobject name="SWDateField1"/></td>
+							<td><webobject name="SWDateField2"/></td>
+							<td><webobject name="String5"/></td>
+						</tr>
+					</table>
+					<br>
+					<webobject name="Repetition1">
+						<webobject name="KeyValueConditional1">
+							<webobject name="SwitchComponent2"/>
+						</webobject>
+					</webobject>
+				</webobject>
+			</webobject>
+		</td>
+	</tr>
+</table>
+<!-- end SWEditComponent -->

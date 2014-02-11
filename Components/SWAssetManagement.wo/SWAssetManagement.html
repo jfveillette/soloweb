@@ -1,0 +1,161 @@
+<webobject name="SWAdminComponentWrapper1">
+	<!-- SWAssetManagement -->
+	<table border="0" cellpadding="2" cellspacing="0" width="100%">
+		<tr>
+			<td>
+				<webobject name="hasRecord">
+					<webobject name="Hyperlink4"><webobject name="CancelStr"/></webobject><br><br>
+				</webobject>
+				<webobject name="IsAdminCond">
+					<webobject name="Hyperlink5"><webobject name="CreateFolderStr"/></webobject><br><br>
+				</webobject>
+			</td>
+			<td>&nbsp;</td>
+		</tr>
+		<tr>
+			<td valign="top" width="10">
+				<webobject name="SWFolderList1"/><br/>
+				<webobject name="SelectedFolderCond">
+					<webobject name="Form1">
+						<webobject name="SWTabPanel1">
+							<webobject name="isDocumentsTabSelected">
+								<table border="0" cellpadding="2" cellspacing="0" class="genericTable" width="250">
+									<tr>
+										<th><b><webobject name="String7"/></b> <i>(<webobject name="String15"/>)</i></th>
+									</tr>
+									<tr>
+										<td>
+											<webobject name="CanCreateDeleteCond">
+												<webobject name="TextField3"/>&nbsp;&nbsp;<webobject name="SubmitButton1"/>
+											</webobject>
+										</td>
+									</tr>
+									<tr>
+										<td>
+											<webobject name="CanCreateDeleteCond">
+												<webobject name="createAssetLink"><webobject name="String8"/></webobject><br>
+												<webobject name="createSubFolderLink"><webobject name="String9"/></webobject><br>
+												<webobject name="transferAssetLink"><webobject name="String10"/></webobject><br>
+												<webobject name="JSConfirmPanel2"><webobject name="String11"/></webobject><br><br>
+											</webobject>
+											<webobject name="folderHasContent">
+												<table border="0" cellpadding="2" cellspacing="0" class="genericTable" WIDTH="100%">
+													<tr>
+														<webobject name="hasRecord"><th>&nbsp;</th></webobject>
+														<th><b><webobject name="String12"/></b></th>
+														<webobject name="isNewsItem"><th><b><webobject name="String1"/></b></th></webobject>
+														<webobject name="isDataAsset"><th><b><webobject name="String13"/></b></th></webobject>
+														<webobject name="isDataAsset"><th>&nbsp;</th></webobject>
+														<webobject name="CanCreateDeleteCond">
+															<th>&nbsp;</th>
+															<th>&nbsp;</th>
+														</webobject>
+													</tr>
+													<webobject name="BatchControlsCond"><div style="text-align: center; padding-bottom: 8px;">
+														<webobject name="PrevBatch">&lt;&lt;&nbsp;&nbsp;</webobject>
+														<webobject name="CurrentBatchNo"/>&nbsp;af&nbsp;<webobject name="MaxBatchNo"/>
+														<webobject name="NextBatch">&nbsp;&nbsp;&gt;&gt;</webobject>
+													</div></webobject>
+													<webobject name="sortedDocumentsLoop">
+														<webobject name="GenericContainer1">
+															<webobject name="hasRecord">
+																<td><webobject name="saveAssetLink"><webobject name="ImgYfirflokka"/></webobject></td>
+															</webobject>
+															<td>
+																<webobject name="selectAssetLink">
+																	<webobject name = "isNotPicture"><webobject name="assetName"/></webobject>
+																	<webobject name = "isPicture"><webobject name = "pictureDisplayName"/></webobject>
+																</webobject>
+															</td>
+															<webobject name="isNewsItem">
+																<td><webobject name="assetDate"/></td>
+															</webobject>
+															<webobject name="isDataAsset">
+																<td><webobject name="assetFileSize"/></td>
+															</webobject>
+															<webobject name="isDataAsset">
+																<td>
+																	<webobject name="isNotPicture">
+																		<webobject name="Hyperlink1"><webobject name="ImgEye"/></webobject>
+																	</webobject>
+																	<webobject name="isPicture">
+																		<webobject name="Hyperlink3"><webobject name="ImgEye"/></webobject>
+																	</webobject>
+																</td>
+															</webobject>
+															<webobject name="CanCreateDeleteCond">
+																<td>
+																	<webobject name="ResetHitCount4"><webobject name="ImgArrow"/></webobject>
+																</td>
+																<td>
+																	<webobject name="Hyperlink2"><webobject name="ImgDelete"/></webobject>
+																</td>
+															</webobject>
+														</webobject>
+													</webobject>
+													<webobject name="isDataAsset">
+														<tr>
+															<webobject name="hasRecord"><td>&nbsp;</td></webobject>
+															<td align="right"><b><webobject name="String14"/>:</b></td>
+															<webobject name="isNewsItem"><td>&nbsp;</td></webobject>
+															<td><b><webobject name="String4"/>k</b></td>
+															<webobject name="isDataAsset"><td>&nbsp;</td></webobject>
+															<td>&nbsp;</td>
+															<td>&nbsp;</td>
+														</tr>
+													</webobject>
+												</table>
+											</webobject>
+											<br>
+										</td>
+									</tr>
+								</table>
+							</webobject>
+							<webobject name="isPrivilegesTabSelected">
+								<webobject name="SWAssignPrivileges21"/>
+							</webobject>
+							<webobject name = "isRSSTabSelected">
+								<table border="0" cellpadding="2" cellspacing="0" class="genericTable" style="width:100%">
+									<tr>
+										<td>Page name</td>
+										<td><webobject name = "InpRSSPageName"/></td>
+									</tr><tr>
+										<td>Title</td>
+										<td><webobject name = "InpRSSTitle"/></td>
+									</tr><tr>
+										<td>Link</td>
+										<td><webobject name = "InpRSSLink"/></td>
+									</tr>
+								</table>
+							</webobject>
+						</webobject>
+					</webobject>
+				</webobject>
+			</td>
+			<td width="5">&nbsp;</td>
+			<td align="left" valign="top" id="swAssetContent">
+				<webobject name="isSelectedAsset"><webobject name="SwitchComponent1"/></webobject>
+				<webobject name="SelectedFolderCond"><webobject name="ShowThumbnails">
+					<webobject name="sortedDocumentsLoop">
+						<webobject name = "ThumbDiv">
+						<webobject name = "hasNotRecord"><webobject name="selectAssetLink">
+							<div class="image"><webobject name="ThumbImage"/></div>
+							<div class="name"><webobject name="pictureDisplayName"/></div>
+						</webobject></webobject>
+						<webobject name = "hasRecord">
+							<div class="image"><webobject name="saveAssetLink"><webobject name="ThumbImage"/></webobject></div>
+							<div class="name"><webobject name="saveAssetLink"><webobject name="pictureDisplayName"/></webobject></div>
+						</webobject>
+						<table class="tools" cellspacing="2" cellpadding="0" border="0" align="center"><tr>
+							<td><webobject name="assetFileSize"/>k</td>
+							<td><webobject name="Hyperlink3"><webobject name="ImgEye"/></webobject></td>
+							<td><webobject name="ResetHitCount4"><webobject name="ImgArrow"/></webobject></td>
+							<td><webobject name="Hyperlink2"><webobject name="ImgDelete"/></webobject></td>
+						</tr></table>
+					</webobject></webobject>
+				</webobject></webobject>
+			</td>
+		</tr>
+	</table>
+	<!-- end SWAssetManagement -->
+</webobject>

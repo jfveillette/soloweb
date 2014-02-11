@@ -1,0 +1,72 @@
+condHasVideos: WOConditional {
+	condition = hasVideos;
+}
+
+repVideos: WORepetition {
+	list = videos;
+	item = currentVideo;
+	index = currentVideoIndex;
+}
+
+strVideoClass: WOString {
+	value = videoClass;
+}
+
+strPlaybackUrl: WOString {
+	value = playbackUrl;
+}
+
+imgThumbnail: WOImage {
+	src = currentVideoPreviewImageUrl;
+	width = currentVideoPreviewImageWidth;
+	height = currentVideoPreviewImageHeight;
+}
+
+strTitle: WOString {
+	value = currentVideo.getTitle.plainText;
+}
+
+strDuration: WOString {
+	value = videoLength;
+}
+
+strDate: WOString {
+	value = videoUploadDate;
+}
+
+strDescription: WOString {
+	value = currentVideo.getMediaGroup.description.plainTextContent;
+}
+
+condAddLinebreak: WOConditional {
+	condition = shouldAddLinebreak;
+}
+
+condHasPrevPage: WOConditional {
+	condition = hasPrevPage;
+}
+
+strPrevPageUrl: WOString {
+	value = prevPageUrl;
+}
+
+imgPrevButton: WOImage {
+	src = "/sw32/img/leftarrow.png";
+}
+
+repPages: WORepetition {
+	item = pageItem;
+	list = pages;
+}
+
+condHasNextPage: WOConditional {
+	condition = hasNextPage;
+}
+
+imgNextButton: WOImage {
+	src = "/sw32/img/rightarrow.png";
+}
+
+strNextPageUrl: WOString {
+	value = nextPageUrl;
+}

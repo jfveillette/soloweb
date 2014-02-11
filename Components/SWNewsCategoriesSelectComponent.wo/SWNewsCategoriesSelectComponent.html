@@ -1,0 +1,22 @@
+<html>
+<head>
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=UTF-8">
+<webobject name=GenericElement1></webobject>
+</head>
+<body onload="init();">
+<webobject name=NewsCategoryList></webobject>
+<BUTTON onClick="ok();"><WEBOBJECT NAME=OkString></WEBOBJECT></BUTTON>
+<BUTTON onClick="window.close();"><WEBOBJECT NAME=CancelString></WEBOBJECT></BUTTON>
+
+<script type="text/javascript">
+	function ok()
+	{
+		var extraCategoriesField = this.opener.document.getElementById('extraCategoriesField');
+		var selectedIdsField = document.getElementById("selectedIds");
+		extraCategoriesField.value = selectedIdsField.value;
+		
+		window.close();
+	}
+</script>
+</body>
+</html>

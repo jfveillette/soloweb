@@ -1,0 +1,67 @@
+divTopNavigationDropDownItem: WOGenericContainer {
+	elementName = "div";
+	id = topNavigationDropDownItemId;
+	class = "topnav_dropdown_item";
+}
+condTopNavigationDropDownItemShowVerticalSeparator: WOConditional {
+	condition = topNavigationShowVerticalSeparator;
+}
+repTopNavigationDropDownItemSubPages: WORepetition {
+	list = subPages;
+	item = currentSubPage;
+	index = subPageIndex;
+}
+repTopNavigationDropDownItemSubSubPageColumns: WORepetition {
+	list = subSubPageGroups;
+	item = currentSubSubPageGroup;
+	index = subSubPageGroupIndex;
+}
+strTopNavigationDropDownItemSubPageClass: WOString {
+	value = topNavigationDropDownItemSubPageClass;
+}
+condShowSubPageName: WOConditional {
+	condition = showSubPageName;
+}
+condNotShowSubPageName: WOConditional {
+	condition = showSubPageName;
+	negate = true;
+}
+strTopNavigationDropDownItemSubPageFillerClass: WOString {
+	value = topNavigationDropDownItemSubPageFillerClass;
+}
+strTopNavigationDropDownItemSubPageNameLink: WOString {
+	value = currentSubPage.pageLink;
+}
+strTopNavigationDropDownItemSubPageNameLinkTarget: WOString {
+	value = currentSubPageLinkTarget;
+}
+strTopNavigationDropDownItemSubPageName: WOString {
+	value = currentSubPage.name;
+}
+repTopNavigationDropDownItemSubSubPages: WORepetition {
+	list = currentSubSubPageGroup;
+	item = currentSubSubPage;
+}
+strTopNavigationDropDownItemSubSubPageClass: WOString {
+	value = topNavigationDropDownItemSubSubPageClass;
+}
+condTopNavigationDropDownItemSubSubPageNotFiller: WOConditional {
+	condition = currentSubSubPage.pageID;
+}
+condTopNavigationDropDownItemSubSubPageIsFiller: WOConditional {
+	condition = currentSubSubPage.pageID;
+	negate = true;
+}
+strTopNavigationDropDownItemSubSubPageNameLink: WOString {
+	value = currentSubSubPage.pageLink;
+}
+strTopNavigationDropDownItemSubSubPageNameLinkTarget: WOString {
+	value = currentSubSubPageLinkTarget;
+}
+strTopNavigationDropDownItemSubSubPageName: WOString {
+	value = currentSubSubPage.name;
+}
+repTopNavigationDropDownItemFillerSubPages: WORepetition {
+	count = topNavigationFillerSubPagesCount;
+	index = subPageFillerCount;
+}

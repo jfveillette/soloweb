@@ -1,0 +1,26 @@
+NewsLink: WOHyperlink {
+	href = newsItemDetailLink;
+}
+
+ItemName: WOString {
+	value = itemName;
+	escapeHTML = false;
+}
+
+ItemDate: WOString {
+	value = item.date;
+	dateformat = "%d.%m.%Y";
+}
+
+HasSearchItemText: WOConditional {
+	condition = hasItemText;
+}
+
+SearchItemText: WOString {
+	value = itemText;
+	escapeHTML = false;
+}
+
+strNewsCategoryName: WOString {
+	value = item.category.name;
+}

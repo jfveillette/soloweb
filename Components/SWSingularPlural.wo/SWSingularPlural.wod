@@ -1,0 +1,4 @@
+TheString: WOString {
+	value = getTheString;
+	escapeHTML = escapeHTML;
+}

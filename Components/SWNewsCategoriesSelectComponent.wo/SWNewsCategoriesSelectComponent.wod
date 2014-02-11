@@ -1,0 +1,28 @@
+GenericElement1: WOGenericElement {
+	elementName = "LINK";
+	href = href;
+	rel = "stylesheet";
+	type = "text/css";
+}
+
+CategoryList: WORepetition {
+	list = getCategories;
+	item = category;
+	index = index;
+}
+
+OkString: WOString {
+	value = "Vista";
+}
+
+CancelString: WOString {
+	value = "H&aelig;tta vi&eth;";
+	escapeHTML = false;
+}
+
+NewsCategoryList: SWFolderSelectionList {
+	entityName = "SWNewsCategory";
+	selectedFolder = selectedFolder;
+	disabledFolder = selectedFolder;
+	actionName = "";
+}

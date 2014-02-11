@@ -1,0 +1,129 @@
+<!-- SWEditNewsItem -->
+<webobject name="Conditional1">
+	<webobject name="Form1">
+		<table cellspacing="0" cellpadding="2" class="genericTable" border="0" WIDTH="100%">
+			<tr>
+				<th><b><webobject name="String1"/></b> <i>(<webobject name="String2"/>)</i></th>
+			</tr>
+			<tr>
+				<td>
+					<table cellspacing="0" class="cleanTable" cellpadding="0" WIDTH="100%" border="0" attribute="Value">
+						<tr>
+							<td align="LEFT" STYLE="border: 0px;" valign="TOP">
+								<table cellspacing="0" cellpadding="2" class="genericTable" border="0">
+									<tr>
+										<th>&nbsp;</th>
+										<th align="CENTER"><webobject name="String3"/></th>
+									</tr>
+									<tr>
+										<th align="RIGHT"><webobject name="String6"/>:</th>
+										<td><webobject name="NameField"/></td>
+									</tr>
+									<tr>
+										<th align="RIGHT"><webobject name="String14"/>:</th>
+										<td><webobject name="AuthorField"/></td>
+									</tr>
+									<tr>
+										<th align="RIGHT"><webobject name="String7"/>:</th>
+										<td><webobject name="SWDateField3"/></td>
+									</tr>
+									<tr>
+										<th align="RIGHT"><webobject name="String8"/>:</th>
+										<td><webobject name="SWDateField1"/></td>
+									</tr>
+									<tr>
+										<th align="RIGHT"><webobject name="String9"/>:</th>
+										<td><webobject name="SWDateField2"/></td>
+									</tr>
+									<tr>
+										<th align="RIGHT"><webobject name="String10"/>:</th>
+										<td><webobject name="PublishCheckbox"/></td>
+									</tr>
+									<tr>
+										<th align="RIGHT"><webobject name="String11"/>:</th>
+										<td><webobject name="PublishCheckbox2"/></td>
+									</tr>
+									<tr>
+										<th align="right"><webobject name="CustomMoreURLText"/></th>
+										<td><webobject name="CustomMoreURLField"/></td>
+									</tr>
+									<tr>
+										<th align="RIGHT" valign="BASELINE"><webobject name="String13"/>:</th>
+										<td>
+											<button onClick="selectCategories();">Velja</button>
+											<webobject name="ExtraCategoriesField"/>
+											<hr>
+											<webobject name="ExtraCategoriesRep">
+												<webobject name="ExtraCategoryPath"/><br>
+											</webobject>
+										</td>
+									</tr>
+								</table>
+							</td>
+							<td align="LEFT" STYLE="border: 0px; text-align: left;" valign="TOP">
+								<table cellspacing="0" cellpadding="2" class="genericTable" border="0">
+									<tr>
+										<th align="LEFT"><webobject name="ExcerptPictureHeadingStr"/></th>
+									</tr>
+									<tr>
+										<td align="LEFT" valign="TOP"><webobject name="SWImageHyperlink2"/></td>
+									</tr>
+									<tr>
+										<td align="left"><webobject name = "ChkHideCaption"/> <webobject name = "StrHideCaption"/></td>
+									</tr>
+								</table>
+							</td>
+							<td align="LEFT" STYLE="border: 0px; text-align: left;" valign="TOP">
+								<table cellspacing="0" cellpadding="2" class="genericTable" border="0">
+									<tr>
+										<th align="LEFT"><webobject name="String5"/></th>
+									</tr>
+									<tr>
+										<td align="LEFT" valign="TOP"><webobject name="SWImageHyperlink1"/></td>
+									</tr>
+								</table>
+							</td>
+						</tr>
+					</table>
+					<br>
+					<table cellspacing="0" cellpadding="2" class="genericTable" border="0" WIDTH="100%">
+						<webobject name="EditNewsTextCond">
+							<tr>
+								<th style="width: 50px;"><webobject name="EditExcerptTextBtn"/></th>
+								<th style="width: 100%; font-weight: bold;"><webobject name="String12"/></th>
+							</tr>
+							<tr>
+								<td colspan="2"><webobject name="SWTextEditing1"/></td>
+							</tr>
+						</webobject>
+						<webobject name="EditExcerptTextCond">
+							<tr>
+								<th style="width: 50px;"><webobject name="EditNewsTextBtn"/></th>
+								<th style="width: 100%; font-weight: bold;"><webobject name="ExcerptTextHeaderStr"/></th>
+							</tr>
+							<tr>
+								<td colspan="2"><webobject name="SWTextEditing2"/></td>
+							</tr>
+						</webobject>
+					</table>
+				</td>
+			</tr>
+			<tr> <!-- pic and doc links -->
+				<td>
+					<webobject name = "PictureLinks"/>
+				</td>
+			</tr>
+			<tr>
+				<td align="RIGHT"><webobject name="SubmitButton1"/></td>
+			</tr>
+		</table>
+	</webobject>
+</webobject>
+<script type="text/javascript">
+	function selectCategories()
+	{
+		var extraCategories = document.getElementById('extraCategoriesField').value;
+		window.open('<webobject name="CatSelWinUrl"/>'+extraCategories, '', 'width=400,height=500,resizable=yes,scrollbars=yes');
+	}
+</script>
+<!-- end SWEditNewsItem -->

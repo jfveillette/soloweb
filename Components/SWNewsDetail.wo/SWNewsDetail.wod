@@ -1,0 +1,172 @@
+ShowSendForm: WOConditional {
+	condition = showForm;
+}
+SendForm: WOForm {
+	directActionName = "sendNewsItem";
+	onsubmit="return validateNewsForm(this)";
+}
+InputNetfang: WOTextField {
+	value = emailTo;
+	size = 40;
+	name = "netfang";
+}
+InputSkilabod: WOText {
+	value = emailMessage;
+	rows = 5;
+	cols = 40;
+	name = "skilabod";
+}
+InputSpam: WOTextField {
+	value = spamInput;
+	size = 5;
+	name = "spam";
+}
+SpamText: WOString {
+	value = spamText;
+}
+InputItem: WOTextField {
+	type = "hidden";
+	name = "itemId";
+	value = selectedNewsItem.primaryKey;
+}
+InputPage: WOTextField {
+	type = "hidden";
+	name = "pageId";
+	value = currentComponent.pageID;
+}
+SendButton: WOSubmitButton {
+	action = sendEmail;
+	value = "Senda";
+}
+ShowUtils: WOConditional {
+	condition = currentComponent.customInfo.showUtils;
+}
+LinkEmail: WOHyperlink {
+	href="#";
+	onclick = "showNewsItemForm()";	
+}
+IsError: WOConditional {
+	condition = showError;
+}
+ErrorMessage: WOString {
+	value = errorMessage;
+	escapeHTML = false;
+}
+LinkFacebook: WOHyperlink {
+	href="#";
+	onclick = "showFBSharer()";	
+}
+ShouldNotEncodeBreaks: WOConditional {
+	condition = selectedNewsItem.shouldEncodeBreaks;
+	negate = true;
+}
+
+ShouldEncodeBreaks: WOConditional {
+	condition = selectedNewsItem.shouldEncodeBreaks;
+}
+
+HasImage: WOConditional {
+	condition = selectedNewsItem.picture;
+}
+
+ImageTable: WOGenericContainer {
+	elementName = "table";
+	cellspacing = "0";
+	cellpadding = "0";
+	border = "0";
+	align = currentComponent.customInfo.imageAlignment;
+	style = tableStyle;
+}
+
+ImageHasDescription: WOConditional {
+	condition = selectedNewsItem.picture.description;
+}
+
+ImageDescription: WOString {
+	value = selectedNewsItem.picture.description;
+}
+
+Image2: WOImage {
+	src = pictureURL;
+	style = "padding: 0px; margin: 0px;";
+	alt = selectedNewsItem.picture.altText;
+	title = selectedNewsItem.picture.altText;
+}
+
+GoBackText: WOString {
+	value = goBackText;
+}
+
+ItemDate: WOString {
+        dateformat = "%d.%m.%Y";
+        value = selectedNewsItem.date;
+}
+
+ItemHeiti: WOString {
+        value = selectedNewsItem.heading;
+}
+
+NewsText: WOString {
+        escapeHTML = false;
+        value = selectedNewsItem.text;
+}
+
+TextWithBreaks: WOString {
+        escapeHTML = false;
+        value = selectedNewsItem.textWithBreaks;
+}
+
+ShowAuthorCond: WOConditional {
+	condition = showAuthor;
+}
+
+AuthorStr: WOString {
+	value = selectedNewsItem.author;
+}
+
+IsDateHidden: WOKeyValueConditional {
+	key = "dateDisplayKey";
+	value = "hide";
+}
+
+IsDateShown: WOKeyValueConditional {
+	key = "dateDisplayKey";
+	value = "hide";
+	negate = true;
+}
+BackValue: WOString {
+	value = backValue;
+}
+
+IcelandicPage: WOConditional {
+	condition = pageLangIcelandic;
+}
+
+EnglishPage: WOConditional {
+	condition = pageLangEnglish;
+}
+
+CurrentUrl: WOString {
+	value = currentUrl;
+}
+
+SiteName: WOString {
+	value = currentComponent.page.siteForThisPage.name;
+}
+
+ItemDescription: WOString {
+	value = ogItemDescription;
+}
+
+ShowSkradDags: WOConditional {
+	condition = showSkradDags;
+}
+
+SkradDagsLabel: WOString {
+	value = skradDagsLabel;
+}
+
+SkradDagsValue: WOString {
+	dateformat = "%d.%m.%Y";
+	value = skradDagsValue;
+}

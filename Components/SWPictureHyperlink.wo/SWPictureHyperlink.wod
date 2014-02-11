@@ -1,0 +1,47 @@
+HasPicture: WOConditional {
+	condition = selectedPicture;
+}
+
+HasNotPicture: WOConditional {
+	condition = selectedPicture;
+	negate = true;
+}
+
+ShowSizes: WOConditional {
+	condition = showSizes;
+}
+
+LinkRemoveImage: WOHyperlink {
+	action = removeImage;
+}
+LinkAddImage: WOHyperlink {
+	action = selectPicture;
+}
+ImageButton2: WOImageButton {
+	action = selectPicture;
+	title = session.@ls.pictureHyperlinkMessage;
+	filename = "sw32/img/pictures.gif";
+	framework = application.frameworkBundleName;
+}
+
+ImageButton1: WOImageButton {
+	action = selectPicture;
+	title = session.@ls.pictureHyperlinkMessage;
+	src = selectedPicture.thumbnailURL;
+}
+
+SizeStr: WOString {
+	value = session.@ls.pictureSizes;
+}
+
+SizeList: WOPopUpButton {
+	list = selectedPicture.availablePictureSizes;
+	selection = selectedSize;
+}
+
+RemovePictureString: WOString {
+	value = session.@ls.pictureHyperlinkRemove;
+}
+AddPictureString: WOString {
+	value = session.@ls.pictureHyperlinkAdd;
+}

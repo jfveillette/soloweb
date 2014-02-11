@@ -1,0 +1,14 @@
+efVideoId: WOTextField {
+	value = currentComponent.customInfo.swyoutubeplayer_videoid;
+	size = 25;
+}
+
+efWidth: WOTextField {
+	value = currentComponent.customInfo.swyoutubeplayer_width;
+	size = 5;
+}
+
+efHeight: WOTextField {
+	value = currentComponent.customInfo.swyoutubeplayer_height;
+	size = 5;
+}

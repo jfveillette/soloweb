@@ -1,0 +1,15 @@
+RadioButton1: WORadioButton {
+	selection = currentComponent.templateName;
+	value = "SWSideBySide";
+	name = "SWSideBySide";
+}
+
+PartNumbers: WOTextField {
+	value = currentComponent.customInfo.swsidebyside_partnumbers;
+	size = 20;
+}
+
+ColumnWidths: WOTextField {
+	value = currentComponent.customInfo.swsidebyside_columnwidths;
+	size = 20;
+}

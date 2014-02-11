@@ -1,0 +1,15 @@
+Repetition2: WORepetition {
+	item = currentComponent;
+	list = selectedPage.sortedAndApprovedComponents;
+}
+
+SwitchComponent1: WOSwitchComponent {
+	WOComponentName = lookName;
+	selectedPage = selectedPage;
+}
+
+SwitchComponent2: WOSwitchComponent {
+	WOComponentName = currentComponent.templateName;
+	currentComponent = currentComponent;
+}
+

@@ -1,0 +1,25 @@
+<webobject name = "IsInForm">
+	<div style="border: 1px solid black; padding: 20px; text-align: center;">Leitarniðurstöðubútur</div>
+</webobject>
+<webobject name = "IsNotInForm">
+	<!-- SWSearchResults -->
+	<webobject name=condShowSearchAgain><div id = "searchagain">
+		<h2><webobject name=strSearchWord/></h2>
+		<form action = "" method = "GET">
+			<webobject name=efSearchString/>
+			<input type="submit" value="Leita aftur">
+		</form>
+	</div></webobject>
+	<div id = "searchResult">
+		<div class = "heading">
+			<h1><webobject name=strSearchResults/></h1>
+			<webobject name = "ResultCountStr" />
+		</div>
+		<div class = "list"><webobject name = "ResultList">
+			<div class = "item">
+				<webobject name = "SearchResultComponent"/>
+			</div>
+		</webobject></div>
+	</div>
+	<!-- end SWSearchResults -->
+</webobject>

@@ -1,0 +1,406 @@
+CategoriesField: WOTextField {
+	size = 25;
+	value = currentComponent.customInfo.categoryIDs;
+	id = "extraCategoriesField";
+	style = "display:none;";
+}
+
+CategoryID: WOString {
+	value = categoryItem.primaryKey;
+}
+
+CategoryPath: WOString {
+	value = categoryItem.nameIncludingHierarchy;
+}
+
+CategoriesRep: WORepetition {
+	item = categoryItem;
+	list = categoryItems;
+}
+
+ShowOlderCheck: WOCheckBox {
+	checked = currentComponent.customInfo.showOlder;
+}
+
+CheckBox1: WOCheckBox {
+	checked = currentComponent.customInfo.showPicture;
+}
+
+ShowPerDayHeaderChk: WOCheckBox {
+	checked = currentComponent.customInfo.showPerDayHeader;
+}
+
+CheckBox2: WOCheckBox {
+	checked = currentComponent.customInfo.showOnlyPastItems;
+}
+
+chkShowOnlyFutureItems: WOCheckBox {
+	checked = currentComponent.customInfo.showOnlyFutureItems;
+}
+
+CheckBox3: WOCheckBox {
+	checked = currentComponent.customInfo.showOneRandomItem;
+}
+
+CheckBox4: WOCheckBox {
+	checked = currentComponent.customInfo.newsReg_ShowWebUrl;
+}
+
+CheckBox5: WOCheckBox {
+	checked = currentComponent.customInfo.newsReg_ShowExcerpt;
+}
+
+chkSearchByYear: WOCheckBox {
+	checked = currentComponent.customInfo.newsReg_ShowYears;
+}
+
+popYearSearchLocation: WOPopUpButton {
+	list = searchLocationList;
+	selection = currentComponent.customInfo.searchByYearLocation;
+}
+
+popYearSearchType: WOPopUpButton {
+	list = searchTypeList;
+	selection = currentComponent.customInfo.searchByYearType;
+}
+
+chkSearchByMonth: WOCheckBox {
+	checked = currentComponent.customInfo.newsReg_ShowMonths;
+}
+
+popMonthSearchLocation: WOPopUpButton {
+	list = searchLocationList;
+	selection = currentComponent.customInfo.searchByMonthLocation;
+}
+
+popOldestOrNewestItems: WOPopUpButton {
+	list = oldestNewestList;
+	selection = currentComponent.customInfo.showOldestOrNewestItems;
+}
+
+popMonthSearchType: WOPopUpButton {
+	list = searchTypeList;
+	selection = currentComponent.customInfo.searchByMonthType;
+}
+
+CheckBox7: WOCheckBox {
+	checked = currentComponent.customInfo.newsReg_ShowAuthor;
+}
+
+CheckBox8: WOCheckBox {
+	checked = currentComponent.customInfo.newsReg_ShowPicture;
+}
+
+MeiraATitliCheck: WOCheckBox {
+	checked = currentComponent.customInfo.moreLinkOnTitle;
+}
+
+MeiraAUrdraettiCheck: WOCheckBox {
+	checked = currentComponent.customInfo.moreLinkOnExcerpt;
+}
+
+HideMoreTextCheck: WOCheckBox {
+	checked = currentComponent.customInfo.hideMoreText;
+}
+
+PopUpButton1: WOPopUpButton {
+	list = sortOrderings;
+	selection = currentComponent.customInfo.sortOrder;
+}
+
+PopUpButton3: WOPopUpButton {
+	list = sortKeys;
+	selection = currentComponent.customInfo.sortKey;
+}
+
+PopUpButton4: WOPopUpButton {
+	displayString = currentCategory.nameIncludingHierarchy;
+	item = currentCategory;
+	list = allCategories;
+	noSelectionString = "Select a category...";
+	selection = selectedCategory;
+}
+
+PopUpButton5: WOPopUpButton {
+	list = componentKeys;
+	selection = selectedComponentKey;
+	escapeHTML = false;
+}
+
+PopUpButton6: WOPopUpButton {
+	list = imageAlignment;
+
+	selection = currentComponent.customInfo.imageAlignment;
+}
+
+PopDateOptions: WOPopUpButton {
+	list = dateDisplayOptions;
+	selection = currentComponent.customInfo.dateDisplay;
+}
+
+PopDateFormatOptions: WOPopUpButton {
+	list = dateFormatOptions;
+	selection = currentComponent.customInfo.dateFormat;
+}
+
+RadioButton1: WORadioButton {
+	name = "viewMode";
+	selection = currentComponent.customInfo.viewMode;
+	value = 3;
+}
+
+RadioButton2: WORadioButton {
+	name = "viewMode";
+	selection = currentComponent.customInfo.viewMode;
+	value = 2;
+}
+
+RadioButton3: WORadioButton {
+	name = "viewMode";
+	selection = currentComponent.customInfo.viewMode;
+	value = 1;
+}
+
+RadioButton4: WORadioButton {
+	name = "viewMode";
+	selection = currentComponent.customInfo.viewMode;
+	value = 4;
+}
+
+String1: WOString {
+	value = session.@ls.newsComponentHeading;
+}
+
+String10: WOString {
+	value = session.@ls.newsComponentSortOrderFieldTitle;
+}
+
+String11: WOString {
+	value = session.@ls.newsComponentDisplayOptions;
+}
+
+String12: WOString {
+	value = session.@ls.newsComponentShowPicture;
+}
+
+ShowDateString: WOString {
+	value = session.@ls.newsComponentDateDisplay;
+}
+
+String14: WOString {
+	value = session.@ls.newsComponentShowSettings;
+}
+
+String15: WOString {
+	value = session.@ls.newsComponentDetailPageLinkingName;
+}
+
+String16: WOString {
+	value = session.@ls.newsComponentDetailPageNumber;
+}
+
+String17: WOString {
+	value = session.@ls.newsComponentShowMoreFieldTitle;
+}
+
+String18: WOString {
+	value = session.@ls.newsComponentGoBackTextFieldTitle;
+}
+
+String19: WOString {
+	value = session.@ls.newsComponentShowHeadingOnly;
+}
+
+String2: WOString {
+	value = session.@ls.newsComponentPublishingOptions;
+}
+
+String20: WOString {
+	value = session.@ls.newsComponentShowHeadingAndExcerpt;
+}
+
+String21: WOString {
+	value = session.@ls.newsComponentShowHeadingAndFullText;
+}
+
+String22: WOString {
+	value = session.@ls.newsComponentShowOnlyItemsFromPast;
+}
+
+String23: WOString {
+	value = session.@ls.newsComponentShowOneRandomItem;
+}
+
+String24: WOString {
+	value = session.@ls.newsComponentShowItemIfNoItemsFound;
+}
+
+FormTitleString: WOString {
+	value = session.@ls.newsComponentFormTitle;
+}
+MoreOnTitleString: WOString {
+	value = session.@ls.newsComponentMoreLinkOnTitle;
+}
+
+MoreOnExcerptString: WOString {
+	value = session.@ls.newsComponentMoreLinkOnExcerpt;
+}
+HideMoreTextString: WOString {
+	value = session.@ls.newsComponentHideMoreText;
+}
+ShowOlderString: WOString {
+	value = session.@ls.newsComponentShowOlder;
+}
+ShowOlderTextString: WOString {
+	value = session.@ls.newsComponentShowOlderText;
+}
+ShowOlderPageString: WOString {
+	value = session.@ls.newsComponentShowOlderPage;
+}
+String25: WOString {
+	value = "A&eth;eins texti";
+	escapeHTML = false;
+}
+
+String26: WOString {
+	value = "Valkv&aelig;&eth; sv&aelig;&eth;i vi&eth; skr&aacute;ningu";
+	escapeHTML = false;
+}
+
+String3: WOString {
+	value = session.@ls.newsComponentDisplayStyle;
+}
+
+String4: WOString {
+	value = session.@ls.newsComponentCategory;
+}
+
+String5: WOString {
+	value = session.@ls.newsComponentMaxItems;
+}
+
+String6: WOString {
+	value = session.@ls.newsComponentSkipItems;
+}
+
+String7: WOString {
+	value = session.@ls.newsComponentMaxDays;
+}
+
+String8: WOString {
+	value = session.@ls.newsComponentSkipDays;
+}
+
+String9: WOString {
+	value = session.@ls.newsComponentSortFieldTitle;
+}
+
+ShowOlderText: WOTextField {
+	value = currentComponent.customInfo.showOlderText;
+	size = 20;
+}
+ShowOlderPage: WOTextField {
+	value = currentComponent.customInfo.showOlderPage;
+	size = 20;
+}
+TextField1: WOTextField {
+	value = currentComponent.customInfo.daysToExclude;
+	size = 2;
+}
+
+TextField2: WOTextField {
+	value = currentComponent.customInfo.showMoreText;
+	size = 20;
+}
+
+TextField3: WOTextField {
+	value = currentComponent.customInfo.itemsToSkip;
+	size = 2;
+}
+
+TextField4: WOTextField {
+	value = currentComponent.customInfo.itemsToShow;
+	size = 2;
+}
+
+TextField5: WOTextField {
+	value = currentComponent.customInfo.daysToInclude;
+	size = 2;
+}
+
+TextField6: WOTextField {
+	value = currentComponent.customInfo.goBackText;
+	size = 20;
+}
+
+TextField7: WOTextField {
+	value = currentComponent.customInfo.detailPageID;
+	size = 20;
+}
+
+TextField8: WOTextField {
+	value = currentComponent.customInfo.detailPageName;
+	size = 20;
+}
+
+TextField9: WOTextField {
+	value = currentComponent.customInfo.newsItemIfNoItemsFound;
+	size = 10;
+}
+
+TextField10: WOTextField {
+	value = currentComponent.customInfo.newsSubmitFormTitle;
+	size = 20;
+}
+
+ShowAuthorStr: WOString {
+	value = session.@ls.newsComponentShowAuthor;
+}
+
+ShowAuthorChk: WOCheckBox {
+	checked = currentComponent.customInfo.showNewsAuthor;
+}
+
+ShowAuthorLabelChk: WOCheckBox {
+	checked = currentComponent.customInfo.showNewsAuthorLabel;
+}
+
+ShowHorizontalLineString: WOString {
+	value = session.@ls.newsComponentShowHorizontalLine;
+}
+
+ShowSkradDagsChk: WOCheckBox {
+	checked = currentComponent.customInfo.showSkradDags;
+}
+
+SkradDagsLabel: WOTextField {
+	value = currentComponent.customInfo.skradDagsLabel;
+}
+
+ShowUtilsString: WOString {
+	value = session.@ls.newsComponentShowUtils;
+}
+ShowHorizontalLineChk: WOCheckBox {
+	checked = currentComponent.customInfo.showNewsHorizontalLine;
+}
+ShowUtilsChk: WOCheckBox {
+	checked = currentComponent.customInfo.showUtils;
+}
+CatSelWinUrl: WOString {
+	value = catSelWinUrl;
+}
+
+NewNewsItemAutoPublished: WOString {
+	value = session.@ls.newsComponentNewItemAutoPublished;
+}
+
+CheckBoxNewNewsItemAutoPublished: WOCheckBox {
+	checked = currentComponent.customInfo.newItemAutoPublished;
+	id = "chkNewItemAutoPublished";
+	onchange = "document.getElementById('chkShowFuture').checked=false;";
+}
+
+efPictFolderNo: WOTextField {
+	value = currentComponent.customInfo.newsReg_PictureFolderId;
+	size = 10;
+}

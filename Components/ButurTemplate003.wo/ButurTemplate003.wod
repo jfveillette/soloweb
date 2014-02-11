@@ -1,0 +1,52 @@
+DIV: WOGenericContainer {
+	elementName = "div";
+	class = "butur";
+	id = buturID;
+}
+
+HasTextOne: WOConditional {
+	condition = currentComponent.textOne.length;
+
+}
+
+DoNotEncodeBreaks: WOConditional {
+	condition = currentComponent.encodeBreaks;
+	negate = true;
+}
+
+DoEncodeBreaks: WOConditional {
+	condition = currentComponent.encodeBreaks;
+}
+
+Image: SWImage {
+	alt = currentComponent.picture.altTextOrName;
+	selectedPicture = currentComponent.picture;
+	size = currentComponent.customInfo.size;
+}
+
+Caption: WOString {
+	value = currentComponent.picture.description;
+}
+
+String1: WOString {
+	value = currentComponent.textTwoWithBreaks;
+	escapeHTML = false;
+}
+
+String2: WOString {
+	value = textTwoRendered;
+	escapeHTML = false;
+}
+
+String3: WOString {
+	value = currentComponent.textOne;
+	escapeHTML = false;
+}
+
+HasImageCond: WOConditional {
+	condition = currentComponent.picture;
+}
+
+condHasCaption: WOConditional {
+	condition = pictureHasCaption;
+}

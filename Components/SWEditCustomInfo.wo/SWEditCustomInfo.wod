@@ -1,0 +1,39 @@
+String1: WOString {
+	value = "Custom info editor fyrir SWPage og SWComponent";
+}
+
+SubmitButton1: WOSubmitButton {
+	value = "Edit";
+	action = editPageCustomInfo;
+}
+
+SubmitButton2: WOSubmitButton {
+	value = "Edit";
+	action = editComponentCustomInfo;
+}
+
+SubmitButton3: WOSubmitButton {
+	value = "Invalidate";
+	action = invalidatePage;
+}
+
+SubmitButton4: WOSubmitButton {
+	value = "Invalidate";
+	action = invalidateComponent;
+}
+
+PageId: WOTextField {
+	value = pageId;
+}
+
+ComponentId: WOTextField {
+	value = componentId;
+}
+
+PageId2: WOTextField {
+	value = pageId2;
+}
+
+ComponentId2: WOTextField {
+	value = componentId2;
+}

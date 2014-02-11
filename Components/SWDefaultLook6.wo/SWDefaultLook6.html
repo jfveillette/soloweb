@@ -1,0 +1,212 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!--
+	//	Code by SoloWeb
+-->
+<html lang="IS" xmlns:og="http://opengraphprotocol.org/schema/">
+<head>
+	<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+	<meta http-equiv="language" CONTENT="IS">
+	<meta name="generator" content="SoloWeb">
+	<webobject name="Keywords"/>
+	<webobject name="Description"/>
+	<link href="/sw32/css/default.css" rel="stylesheet" type="text/css" media="screen">
+	<link href="/sw32/css/defLook6_screen.css" rel="stylesheet" type="text/css" media="screen">
+	<link href="/sw32/css/solostaff.css" rel="stylesheet" type="text/css" media="screen">
+	<link href="/sw32/lightwindow/css/lightwindow.css" rel="stylesheet" type="text/css" media="screen" />
+	<!--[if lt IE 7]><link rel='stylesheet' type='text/css' href='/sw32/css/ie6fix.css' media='screen'/><![endif]-->
+	<!--[if IE 7]><link rel='stylesheet' type='text/css' href='/sw32/css/ie7fix.css' media='screen'/><![endif]-->
+	<webobject name="CustomCSSLoop">
+		<webobject name="CustomCSS"/>
+	</webobject>
+	<webobject name = "HasNotColumn"><style type="text/css" media="screen">
+		<webobject name = "HideRightColumnStyles"/>
+	</style></webobject>
+	<link href="/sw32/css/print.css" rel="stylesheet" type="text/css" media="print">
+
+	<!-- Dyslex and font stuff scripts -->	
+	<script type="text/javascript" src="/sw32/scripts/dyslex_switcher.js"></script>
+	<script type="text/javascript" src="/sw32/scripts/fontsize_switcher.js"></script>
+	<script type="text/javascript" src="/sw32/scripts/fstheme_utils.js"></script>
+	
+	<!-- JQuery -->
+	<script src="/sw32/jquery/jquery-1.7.2.min.js" type="text/javascript"></script>
+
+	<!-- LightWindow scripts -->
+	<script type="text/javascript" src="/sw32/lightwindow/javascript/prototype.js"></script>
+	<script type="text/javascript" src="/sw32/lightwindow/javascript/scriptaculous.js?load=effects"></script>
+	<script type="text/javascript" src="/sw32/lightwindow/javascript/lightwindow.js"></script>
+	
+	<!-- BxSlider scripts (requires JQuery to be loaded first) -->
+	<script src="/sw32/jquery/jquery.bxSlider.min.js" type="text/javascript"></script>
+	
+	<!-- Other script stuff -->
+	<script type="text/javascript" src="/sw32/scripts/forms.js"></script>
+
+	<!-- TopNav drop downs -->
+	<webobject name="HasTopNavigationDropDown"><script type="text/javascript">
+		<webobject name="condTopNavigationDropDownHover">
+			function addTopNavDropDown(hoverId, dropDownId) {
+				var hoverObj = jQuery(hoverId);
+				var dropDownObj = jQuery(dropDownId);
+				var topBarObj = jQuery("#topBar");
+				hoverObj.hover(
+					function() {
+						hoverObj.addClass('active');
+						if (dropDownObj.length == 1) {
+							dropDownObj.css({ "left": topBarObj.position().left + "px" });
+							dropDownObj.show();
+						}
+					},
+					function() {
+						hoverObj.removeClass('active');
+						if (dropDownObj.length == 1)
+							dropDownObj.hide();
+					}
+				);
+			}
+		</webobject>
+		<webobject name="condTopNavigationDropDownClick">
+			function addTopNavDropDown(clickId, dropDownId) {
+				var clickObj = jQuery(clickId);
+				var dropDownObj = jQuery(dropDownId);
+				var topBarObj = jQuery("#topBar");
+				clickObj.hover(
+					function() {
+						clickObj.addClass("active");
+					},
+					function() {
+						clickObj.removeClass("active");
+					}
+				);
+				clickObj.click(
+					function() {
+						var allowLinkClick = false;
+						jQuery("#topBar .open").removeClass("open");
+						if (dropDownObj.is(":visible")) {
+							dropDownObj.hide();
+						}
+						else {
+							jQuery(".topnav_dropdown_item").hide();
+							if (dropDownObj.length == 1) {
+								dropDownObj.css({ "left": topBarObj.position().left + "px" });
+								dropDownObj.show();
+								clickObj.addClass("open");
+							}
+							else
+								allowLinkClick = true;
+						}
+						return allowLinkClick;
+					}
+				);
+			}
+		</webobject>
+	</script></webobject>
+	
+	<title><webobject name="TheTitle"/></title>
+</head>
+<body>
+<!-- Page Start -->
+<div class="hold-page">
+	<webobject name="HasHeader">
+		<!-- Header -->
+		<div id="header">
+			<webobject name="HasLanguageNavigator">
+				<!--  Language navigator -->
+				<webobject name="LangugageNavigator"/>
+				<!--  Language navigator end -->
+			</webobject>
+			<webobject name="HeaderLoop"><webobject name = "HeaderItemDiv"><webobject name="ContentSwitch"/></webobject></webobject>
+		</div>
+		<!-- Header end -->
+	</webobject>
+	<webobject name="HasTopNavigationOrExtras">
+		<!-- TopNavigation -->
+		<div id="topBar"><div class="holder">
+			<webobject name = "HasTopLeft"><div id="topLeft">
+				<webobject name = "TopLeftLoop"><webobject name = "TopLeftItemDiv"><webobject name = "ContentSwitch"/></webobject></webobject>
+			</div></webobject>
+			<webobject name="HasTopNavigation">
+				<ul id="top"><webobject name="TopNavigationLoop">
+					<webobject name="TopNavigationItem">
+						<a class="topNavMenuItem" href="<webobject name=TopNavigationURL></webobject>"><webobject name="TopNavigationText"/></a>
+						<webobject name="condTopNavigationDropDownHover">
+							<webobject name="HasTopNavigationDropDownWithItems"><webobject name=TopNavigationDropDownItem/></webobject>
+						</webobject>
+					</webobject>
+				</webobject></ul>
+				<webobject name="condTopNavigationDropDownClick">
+					<webobject name="TopNavigationLoop">
+						<webobject name="HasTopNavigationDropDownWithItems"><webobject name=TopNavigationDropDownItem/></webobject>
+					</webobject>
+				</webobject>
+				<webobject name="HasTopNavigationDropDown">
+					<script type="text/javascript"><webobject name="TopNavigationLoop">
+						addTopNavDropDown('#<webobject name=TopNavigationItemId></webobject>', '#<webobject name=TopNavigationDropDownItemId></webobject>');
+					</webobject></script>
+				</webobject>
+			</webobject>
+			<webobject name = "HasTopExtras"><div id="topExtras">
+				<webobject name = "TopExtrasLoop"><webobject name = "TopExtrasItemDiv"><webobject name = "ContentSwitch"/></webobject></webobject>
+			</div></webobject>
+		 </div></div>
+		<!-- TopNavigation end -->
+	</webobject>
+	<webobject name = "HasTopper">
+		<!-- Topper -->
+		<div id="topper"><webobject name = "TopperLoop">
+			<webobject name = "TopperItemDiv"><webobject name = "ContentSwitch"/></webobject>
+		</webobject></div>
+		<!-- end Topper -->
+	</webobject>
+	<div id="container">
+		<!-- Sidebar -->
+		<div id="sidebar">
+			<!-- Extras Above -->
+			<webobject name = "HasExtrasAbove"><div id="extrasAbove"><webobject name = "ExtrasAboveLoop">
+				<webobject name = "ExtrasAboveItemDiv"><webobject name = "ContentSwitch"/></webobject>
+			</webobject></div></webobject>
+			<!-- end Extras Above -->
+			<!-- Navigation -->
+			<webobject name="ShowNavigation"><webobject name="SideNavigation"/></webobject>
+			<!-- Navigation end -->
+			<!-- Left column -->
+			<webobject name="ShowNavigation">
+				<webobject name="HasLeftColumn"><div id="leftcolumn"><webobject name="LeftColumnLoop">
+					<webobject name = "LeftColumnItemDiv"><webobject name="ContentSwitch"/></webobject>
+				</webobject></div></webobject>
+			</webobject>
+			<!-- Left column end -->
+			<!-- Extras -->
+			<webobject name="HasExtras"><div id="extras"><webobject name="ExtrasLoop">
+				<webobject name = "ExtrasItemDiv"><webobject name="ContentSwitch"/></webobject>
+			</webobject></div></webobject>
+			<!-- Extras end -->
+		</div>
+		<!-- Sidebar end -->
+		
+		<webobject name="HasColumn"><!-- Right Column --><div id="column"><webobject name="ColumnLoop">
+			<webobject name = "ColumnItemDiv"><webobject name="ContentSwitch"/></webobject>
+		</webobject></div><!-- Right Column end --></webobject>
+		
+		<div class="content-holder">
+			<!-- Content -->
+			<div id="content">
+				<webobject name = "HasAboveContent"><!-- Above Content -->
+					<div id="contentAbove"><webobject name = "AboveLoop"><webobject name="ContentAboveItemDiv"><webobject name = "ContentSwitch"/></webobject></webobject></div>
+				<!-- Above Content end --></webobject>
+				<webobject name="Content"/>
+				<webobject name = "HasBelowContent"><!-- Below Content -->
+					<div id="contentBelow"><webobject name = "BelowLoop"><webobject name = "ContentBelowItemDiv"><webobject name = "ContentSwitch"/></webobject></webobject></div>
+				<!-- Below Content end --></webobject>
+			</div>
+			<!-- Content end -->
+		</div>
+		<webobject name="HasFooter"><div id="footer"><webobject name="FooterLoop">
+			<webobject name = "FooterItemDiv"><webobject name="ContentSwitch"/></webobject>
+		</webobject></div></webobject>
+	</div>
+</div>
+<webobject name="Modernus" />
+<!-- Page End -->
+</body>
+</html>

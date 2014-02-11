@@ -1,0 +1,16 @@
+repLanguages: WORepetition {
+	item = curLanguage;
+	list = languages;
+}
+
+condHasLanguageUrl: WOConditional {
+	condition = hasLanguageUrl;
+}
+
+strLanguageUrl: WOString {
+	value = curLanguageUrl;
+}
+
+strLanguage: WOString {
+	value = curLanguage;
+}

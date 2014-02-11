@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="yes"?>
+<wodefinitions>
+	<wo class="SWNestedTree" wocomponentcontent="NO">
+
+		<binding name="topLevelList"/>
+
+		<validation message="&apos;topLevelList&apos; is a required binding">
+			<unbound name="topLevelList"/>
+		</validation>
+	</wo>
+</wodefinitions>

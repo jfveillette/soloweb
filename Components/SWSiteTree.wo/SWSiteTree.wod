@@ -1,0 +1,24 @@
+Conditional1: WOConditional {
+	condition = hasReachedMaxNumberOfSites;
+	negate = true;
+}
+
+Hyperlink1: WOHyperlink {
+	action = newSite;
+}
+
+SWAdminComponentWrapper1: SWAdminComponentWrapper {
+	backgroundColor = "#cccccc";
+}
+
+SWSiteListing1: SWSiteListing {
+	action = "selectObject";
+	selectedPage = currentPage;
+	siteAction = "selectSite";
+	selectedSite = currentSite;
+	showArrows = true;
+}
+
+String1: WOString {
+	value = session.@ls.newSiteString;
+}

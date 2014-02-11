@@ -1,0 +1,36 @@
+CheckBox1: WOCheckBox {
+	checked = selectedDictionary.enablePrivileges;
+}
+
+CheckBox2: WOCheckBox {
+	checked = selectedDictionary.onlyShowGroupPrivileges;
+}
+
+PopUpButton1: WOPopUpButton {
+	displayString = currentGroup.name;
+	item = currentGroup;
+	list = allGroups;
+	noSelectionString = "No group selected...";
+	selection = selectedGroup;
+}
+
+String1: WOString {
+	value = session.@ls.accessControlSettingsHeader;
+}
+
+String13: WOString {
+	value = session.@ls.gsEnablePrivileges;
+}
+
+String17: WOString {
+	value = session.@ls.gsOnlyShowGroupPrivileges;
+}
+
+String2: WOString {
+	value = session.@ls.gsAllUsersGroup;
+}
+
+SubmitButton4: WOSubmitButton {
+	action = save;
+	value = session.@ls.gsSaveButtonTitle;
+}

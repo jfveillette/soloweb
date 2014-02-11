@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<wodefinitions>
+	<wo class="SWDocumentHyperlink" wocomponentcontent="true">
+
+		<binding name="componentToReturn"/>
+		<binding name="fieldName"/>
+		<binding name="record"/>
+
+		<validation message="&apos;fieldName&apos; is a required binding">
+			<unbound name="fieldName"/>
+		</validation>
+
+		<validation message="&apos;record&apos; is a required binding">
+			<unbound name="record"/>
+		</validation>
+	</wo>
+</wodefinitions>

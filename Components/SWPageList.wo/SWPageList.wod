@@ -1,0 +1,28 @@
+DisplayConditional: WOConditional {
+	condition = isHidden;
+	negate = true;
+}
+
+TitleConditional: WOConditional {
+	condition = titleHidden;
+	negate = true;
+}
+
+Title: WOString {
+	value = title;
+	escapeHTML = false;
+}
+
+PageRepetition: WORepetition {
+	list = pages;
+	item = currentPage;
+}
+
+PageName: WOString {
+	value = currentPage.name;
+	escapeHTML = false;
+}
+
+PageNameLink: WOHyperlink {
+	href = currentPage.externalURL;
+}

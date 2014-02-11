@@ -1,0 +1,122 @@
+Conditional1: WOConditional {
+	condition = currentComponent.isFirst;
+}
+
+Conditional2: WOConditional {
+	condition = selectedPage.components.count;
+	negate = true;
+}
+
+componentIsLast: WOConditional {
+	condition = currentComponent.isLast;
+}
+
+DeleteButton2: WOImageButton {
+	action = deleteComponent;
+	title = session.@ls.componentDeleteMessage;
+	onClick = session.@cs.deletePageComponentWarning;
+	filename = "sw32/img/delete.gif";
+	framework = application.frameworkBundleName;
+}
+
+EditComponent: SWEditComponent {
+	currentComponent = currentComponent;
+}
+
+GenericContainer2: WOGenericContainer {
+	bgcolor = tdBGColor;
+	elementName = "td";
+	width = 10;
+	valign = "top";
+}
+
+Hyperlink1: WOHyperlink {
+	action = insertComponentBelow;
+	style = "padding: 5px; background-color: #dddddd";
+}
+
+Hyperlink2: WOHyperlink {
+	action = insertComponentAbove;
+	style = "padding: 5px; background-color: #dddddd";
+}
+
+Hyperlink3: WOHyperlink {
+	action = insertComponentAbove;
+}
+
+Image1: WOImage {
+	filename = "sw32/img/page_new.gif";
+	framework = application.frameworkBundleName;
+	title = session.@ls.componentAddMessage;
+}
+
+Image2: WOImage {
+	filename = "sw32/img/page_new.gif";
+	framework = application.frameworkBundleName;
+	title = session.@ls.componentAddMessage;
+}
+
+Image3: WOImage {
+	filename = "sw32/img/page_new.gif";
+	framework = application.frameworkBundleName;
+	title = session.@ls.componentAddMessage;
+}
+
+ImageButton11: WOImageButton {
+	action = buturUpp;
+	title = session.@ls.componentUpMessage;
+	filename = "sw32/img/arrow_up.gif";
+	framework = application.frameworkBundleName;
+}
+
+ImageButton4: WOImageButton {
+	action = buturNidur;
+	title = session.@ls.componentDownMessage;
+	filename = "sw32/img/arrow_down.gif";
+	framework = application.frameworkBundleName;
+}
+
+Repetition1: WORepetition {
+	item = currentComponent;
+	list = selectedPage.sortedComponents;
+}
+
+ResetHitCount2: SWTransferHyperlink {
+	componentToReturn = context.page;
+	record = currentComponent;
+	transferComponentName = "SWTransferComponent";
+}
+
+SWPrivilegeConditional1: SWPrivilegeConditional {
+	identifier = "canManageContent";
+	record = selectedPage;
+}
+
+SWPrivilegeConditional2: SWPrivilegeConditional {
+	identifier = "canManageContent";
+	negate = true;
+	record = selectedPage;
+}
+
+String1: WOString {
+	value = session.@ls.noAccessMessage;
+}
+
+String2: WOString {
+	value = session.@ls.noComponentsOnPageMessage;
+}
+
+TransferComponentImage: WOImage {
+	title = session.@ls.componentMoveMessage;
+	filename = "sw32/img/transfer_arrow.gif";
+}
+
+componentIsFirst: WOConditional {
+	condition = currentComponent.isFirst;
+	negate = true;
+}
+
+componentIsNotLast: WOConditional {
+	condition = currentComponent.isLast;
+	negate = true;
+}

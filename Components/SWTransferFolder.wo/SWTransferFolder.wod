@@ -1,0 +1,55 @@
+IsFolder: WOConditional {
+	condition = isFolder;
+}
+
+IsNotFolder: WOConditional {
+	condition = isFolder;
+	negate = true;
+}
+
+Hyperlink2: WOHyperlink {
+	action = cancel;
+}
+
+RecordName: WOString {
+	value = record.name;
+}
+
+SWAdminComponentWrapper1: SWAdminComponentWrapper {
+	backgroundColor = "#eeeeee";
+}
+
+SWFolderList1: SWFolderList {
+	actionName = "selectObject";
+	disabledBranch = record;
+	disabledFolder = record;
+	entityName = entityName;
+	selectedFolder = currentParent;
+}
+
+SWFolderList2: SWFolderList {
+	disabledFolder = record.containingFolder;
+	entityName = folderEntityName;
+	selectedFolder = currentParent;
+	actionName = "selectObject";
+}
+
+String1: WOString {
+	value = session.@ls.tdfPart1;
+}
+
+String2: WOString {
+	value = session.@ls.tdfPart2;
+}
+
+String3: WOString {
+	value = session.@ls.tdfHeader;
+}
+
+String4: WOString {
+	value = session.@ls.tdfCancel;
+}
+
+Record: WOString {
+	value = record.snapshot;
+}

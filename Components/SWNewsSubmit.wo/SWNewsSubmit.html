@@ -1,0 +1,150 @@
+<script language="javascript" type="text/javascript">
+
+var maxChars = 800;
+var isSubmit = true;
+var telja = 0;
+
+function doCancel() {
+	isSubmit = false;
+	}
+
+function doNew() {
+	isSubmit = false;
+	telja = 0;
+}
+
+function count() {
+	if (document.formEvent.maintext.value == "") {
+		telja = 0;
+	} else {
+	    telja = document.formEvent.maintext.value.length + 1;
+	}
+    document.formEvent.fld_count.value = maxChars - telja;
+}
+
+function validateForm() {
+
+	if (!isSubmit) { return false; }
+
+	if ( document.formEvent.fld_title.value == "") {
+		alert("Heiti vantar!");
+		return false;
+	}
+
+	/*if ( !dateIsValid ) {
+		alert("Dagsetningu vantar!");
+		return false;
+	}*/
+
+	if ( document.formEvent.maintext.value == "" ) {
+		alert("Texta vantar!");
+		return false;
+	}
+
+	//if ( document.formEvent.maintext.value.length + 1 > maxChars ) {
+	//	alert("Texti er of langur!");
+	//	return false;
+	//}
+
+	document.formEvent.submit();
+}
+
+function doSubmit() {
+	isSubmit = true;
+	validateForm();
+}
+</script>
+
+<WEBOBJECT NAME=Conditional2>
+
+		<div id="overDiv" style="position:absolute; visibility:hidden; z-index:1000;"></div>
+		<WEBOBJECT NAME=Form>
+			<CENTER>
+			<TABLE BORDER=1 CELLPADDING=2 WIDTH=400>
+				<webobject name=condShowErrorMsg><tr>
+					<td align="center"><span style="color: red; font-weight: bold;"><webobject name=txtErrorMsg/></span></td>
+				</tr></webobject>
+				<TR>
+					<TD ALIGN=CENTER id="rightnavigationCell">
+						<webobject name=TitleSpecifiedConditional><B><webobject name=String2></webobject></B></webobject>
+						<webobject name=TitleNotSpecifiedConditional><B>Skr&aacute;ning fr&eacute;ttar</B></webobject>
+					</TD>
+				</TR>
+				<TR>
+					<TD id="rightnavigationCell" ALIGN=CENTER><WEBOBJECT NAME=Conditional1>
+							<TABLE ID=tbl>
+								<TR>
+									<TD id="rightnavigationCell" COLSPAN="2">Heiti<BR>
+									<WEBOBJECT NAME=title></WEBOBJECT></TD>
+								</TR>
+								<TR>
+									<TD id="rightnavigationCell" COLSPAN="2">Dagsetning&nbsp;&nbsp;
+									<WEBOBJECT NAME=date></WEBOBJECT>&nbsp;&nbsp;
+									<a href="javascript:ggPosX=-1;ggPosY=-1;show_calendar('formEvent.newsdate', null, null, 'DD.MM.YYYY');">
+										<img src="http://sw.lausn.is/sw32/img/Calendar.gif" width=24 height=22 border=0>
+									</a>
+									&nbsp;&nbsp;&nbsp;
+									T&iacute;mi (hh:mm):&nbsp;&nbsp;<webobject name=time></webobject>
+									</TD>
+								</TR>
+								<WEBOBJECT NAME=ShowAuthorCond>
+									<TR>
+										<TD id="rightnavigationCell" COLSPAN="2">H&ouml;fundur<BR>
+										<WEBOBJECT NAME=efAuthor></WEBOBJECT></TD>
+	
+									</TR>
+								</WEBOBJECT>
+								<WEBOBJECT NAME=ShowWebUrlCond>
+									<TR>
+										<TD id="rightnavigationCell" COLSPAN="2">Vefsl&oacute;&eth;<BR>
+										<WEBOBJECT NAME=weburl></WEBOBJECT></TD>
+	
+									</TR>
+								</WEBOBJECT>
+								<webobject name=condShowMyndField>
+									<TR>
+										<TD id="rightnavigationCell" COLSPAN="2">Mynd<BR>
+										<WEBOBJECT NAME=myndField></WEBOBJECT><br>
+										(JPEG mynd, mest 250 pixlar &aacute; breidd og 175 pixlar &aacute; h&aelig;&eth;)</TD>
+									</TR>
+								</webobject>
+								<WEBOBJECT NAME=ShowExcerptCond>
+									<TR>
+										<TD id="rightnavigationCell" COLSPAN="2">&Uacute;rdr&aacute;ttur<BR>
+										<WEBOBJECT NAME=excerpt></WEBOBJECT></TD>
+	
+									</TR>
+								</WEBOBJECT>
+								<TR>
+									<TD id="rightnavigationCell" COLSPAN="2">Texti<BR>
+									<WEBOBJECT NAME=maintext></WEBOBJECT></TD>
+
+								</TR>
+								<TR>
+									<TD style="display: none;" id="rightnavigationCell">H&aacute;mark
+									<WEBOBJECT NAME=String1></WEBOBJECT>
+									t&aacute;kn.<BR><WEBOBJECT NAME=TextField1></WEBOBJECT>
+									t&aacute;kn laus.</TD>
+									<TD ALIGN=RIGHT><webobject name=btnSubmit/></TD>
+									<!-- <TD ALIGN=RIGHT><INPUT ONCLICK="return doSubmit();" VALUE="Skr&aacute;" NAME=btnSave ACCESSKEY=s TYPE=BUTTON></TD> -->
+								</TR>
+							</TABLE>
+						</WEBOBJECT>
+						<WEBOBJECT NAME=Conditional5>
+							Skr&aacute;ning t&oacute;kst !
+						</WEBOBJECT>
+					</TD>
+				</TR>
+			</TABLE>
+			</CENTER>
+			<BR>
+		</WEBOBJECT>
+</WEBOBJECT>
+
+<WEBOBJECT NAME=Conditional3>
+	<TABLE BORDER=1 BGCOLOR="#d3d1e0" WIDTH="100%">
+		<TR><TD ALIGN=CENTER>
+			<B>Skr&aacute;ning &iacute; fr&eacute;ttam&ouml;ppu</B> - Formi&eth; birtist ekki &iacute; vi&eth;haldskerfi.
+		</TD></TR>
+	</TABLE>
+</WEBOBJECT>

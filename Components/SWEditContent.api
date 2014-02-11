@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<wodefinitions>
+	<wo class="SWEditContent" wocomponentcontent="false">
+
+		<binding name="selectedPage"/>
+
+		<validation message="&apos;selectedPage&apos; is a required binding">
+			<unbound name="selectedPage"/>
+		</validation>
+	</wo>
+</wodefinitions>

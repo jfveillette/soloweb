@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<wodefinitions>
+	<wo class="SWFolderList" wocomponentcontent="false">
+
+		<binding name="entityName"/>
+		<binding name="selectedFolder"/>
+		<binding name="actionName"/>
+		<binding name="disabledBranch"/>
+		<binding name="disabledFolder"/>
+
+		<validation message="&apos;entityName&apos; is a required binding">
+			<unbound name="entityName"/>
+		</validation>
+	</wo>
+</wodefinitions>

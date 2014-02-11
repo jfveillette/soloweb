@@ -1,0 +1,70 @@
+GenericContainer1: WOXMLNode {
+	elementName = "link";
+}
+
+GenericContainer2: WOXMLNode {
+	elementName = "description";
+}
+
+GenericContainer3: WOXMLNode {
+	elementName = "webmaster";
+}
+
+GenericContainer4: WOXMLNode {
+	elementName = "language";
+}
+
+GenericContainer5: WOXMLNode {
+	elementName = "title";
+}
+
+Repetition1: WORepetition {
+	item = currentNewsItem;
+	list = newsItems;
+}
+
+String1: WOString {
+	value = currentNewsItem.heading;
+	escapeHTML = true;
+}
+
+String2: WOString {
+	value = urlString;
+}
+
+String3: WOString {
+	value = currentNewsItem.excerpt;
+	escapeHTML = true;
+}
+
+XMLNode2: WOXMLNode {
+	elementName = "item";
+}
+
+XMLNode3: WOXMLNode {
+	elementName = "title";
+}
+
+LinkNode: WOXMLNode {
+	elementName = "link";
+}
+
+XMLNode5: WOXMLNode {
+	elementName = "description";
+}
+
+PubDateNode: WOXMLNode {
+	elementName = "pubDate";
+}
+
+PubDateStr: WOString {
+	value = currentNewsItem.date;
+	dateformat = "%a, %d %b %Y %H:%M:%S GMT";
+}
+
+TitleString: WOString {
+	value = category.rssTitle;
+}
+LinkString: WOString {
+	value = category.rssLink;
+}

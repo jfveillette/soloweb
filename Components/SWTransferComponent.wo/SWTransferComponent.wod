@@ -1,0 +1,49 @@
+CheckBox1: WOCheckBox {
+	checked = shouldCopy;
+	onClick = "this.form.submit()";
+}
+
+Form1: WOForm {
+}
+
+ResetHitCount: WOString {
+	value = record.page.name;
+}
+
+ResetHitCount2: WOHyperlink {
+	action = cancel;
+}
+
+SWAdminComponentWrapper1: SWAdminComponentWrapper {
+	backgroundColor = "#eeeeee";
+}
+
+SWSiteListing1: SWSiteListing {
+	action = "selectObject";
+	selectedPage = currentParent;
+}
+
+String1: WOString {
+	value = session.@ls.tcPart1;
+}
+
+String2: WOString {
+	value = session.@ls.tcPart2;
+}
+
+String3: WOString {
+	value = session.@ls.tcCancel;
+}
+
+String4: WOString {
+	value = session.@ls.tcHeader;
+}
+
+String5: WOString {
+	value = session.@ls.copyTitle;
+}
+
+Style : WOResourceURL {
+    filename="SoloWeb.css";
+    mime="text/css";
+}

@@ -1,0 +1,103 @@
+InpSWHeader: WOTextField {
+	size = 20;
+	value = customInfo.swHeader;
+}
+ChkSWPageInLanguageNavigator: WOCheckBox {
+	checked = customInfo.swPageInLanguageNavigator;
+}
+InpLanguageCodes: WOTextField {
+	value = customInfo.swPageLanguageNavigatorLanguageCodes;
+	size = 8;
+}
+InpSWTopNavigation: WOTextField {
+	size = 20;
+	value = customInfo.swTopNavigation;
+	title = "enter root page name for navigation";
+}
+ChkSwTopNavigationDropDown: WOCheckBox {
+	checked = customInfo.swTopNavigationDropDown;
+}
+ChkSwTopNavigationDropDownHover: WOCheckBox {
+	checked = customInfo.swTopNavigationDropDownHover;
+}
+InpSwTopNavigationDropDownColumnCount: WOTextField {
+	size = 2;
+	value = customInfo.swTopNavigationDropDownColumnCount;
+}
+InpSwTopNavigationDropDownMaxSubSubPagesPerColumn: WOTextField {
+	size = 3;
+	value = customInfo.swTopNavigationDropDownMaxSubSubPagesPerColumn;
+}
+InpSWTopLeft: WOTextField {
+	size = 20;
+	value = customInfo.swTopLeft;
+}
+InpSWTopExtras: WOTextField {
+	size = 20;
+	value = customInfo.swTopExtras;
+}
+InpSWTopper: WOTextField {
+	size = 20;
+	value = customInfo.swTopper;
+}
+InpSWExtrasAbove: WOTextField {
+	size = 20;
+	value = customInfo.swExtrasAbove;
+}
+InpSWContentAbove: WOTextField {
+	size = 20;
+	value = customInfo.swAboveContent;
+}
+InpSWNavigation: WOTextField {
+	size = 20;
+	value = customInfo.swNavigationRoot;
+	title = "root page for navigation or empty";
+}
+InpSWLeftColumn: WOTextField {
+	size = 20;
+	value = customInfo.swLeftColumn;
+	title = "left column page instead of navigation";
+}
+InpSWColumn: WOTextField {
+	size = 20;
+	value = customInfo.swColumn;
+}
+InpSWExtras: WOTextField {
+	size = 20;
+	value = customInfo.swExtras;
+}
+InpSWContentBelow: WOTextField {
+	size = 20;
+	value = customInfo.swBelowContent;
+}
+InpSWFooter: WOTextField {
+	size = 20;
+	value = customInfo.swFooter;
+}
+ChkUseDyslex: WOCheckBox {
+	checked = customInfo.useDyslex;
+}
+ShowInherit: WOConditional {
+	condition = showInherit;
+}
+ChkInherit: WOCheckBox {
+	checked = customInfo.swInheritLook;
+}
+
+String7: WOString {
+	value = "Custom Elements";
+}
+String8: WOString {
+	value = "No Column Styles";
+}
+
+Text3: WOText {
+	value = customInfo.siteCSS;
+	rows = 6;
+	cols = 150;
+}
+Text4: WOText {
+	value = customInfo.hideRightColumnStyles;
+	rows = 3;
+	cols = 150;
+}

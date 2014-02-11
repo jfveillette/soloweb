@@ -1,0 +1,66 @@
+CSS_SRC: WOResourceURL {
+	filename = "sw32/css/soloweb.css";
+	framework = application.frameworkBundleName;
+}
+
+Form2: WOForm {
+	action = doLogin;
+	name = "f";
+	target = "_top";
+}
+
+Image1: WOImage {
+	height = 111;
+	width = 143;
+	filename = "sw32/img/soloweb_logo.gif";
+	framework = application.frameworkBundleName;
+}
+
+Image2: WOImage {
+	height = 30;
+	width = 453;
+	filename = "sw32/img/haus.gif";
+	framework = application.frameworkBundleName;
+}
+
+Image3: WOImage {
+	height = 1;
+	width = 1;
+	filename = "sw32/img/spacer.gif";
+	framework = application.frameworkBundleName;
+}
+
+Image4: WOImage {
+	height = 1;
+	width = 1;
+	filename = "sw32/img/spacer.gif";
+	framework = application.frameworkBundleName;
+}
+
+PasswordField1: WOPasswordField {
+	name = "p";
+	size = 20;
+	value = passString;
+}
+
+PopUpButton1: WOPopUpButton {
+	item = currentLanguage;
+	list = availableLanguages;
+	selection = selectedLanguage;
+}
+
+String1: WOString { 
+	value = wrongString;
+	escapeHTML = false;
+}
+
+SubmitButton1: WOSubmitButton {
+	value = "Login";
+	action = doLogin;
+}
+
+TextField1: WOTextField {
+	name = "q";
+	size = 20;
+	value = userString;
+}
