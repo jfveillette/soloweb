@@ -65,6 +65,13 @@ public class SWPage extends _SWPage implements SWTransferable, USHierarchy<SWPag
 	 * Tells us if this page has any subpages.
 	 */
 	public boolean hasSubPages() {
+		return hasChildren();
+	}
+
+	/**
+	 * Tells us if this page has any subpages.
+	 */
+	public boolean hasChildren() {
 		return USHierarchyUtilities.hasChildren( this );
 	}
 

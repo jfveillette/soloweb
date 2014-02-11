@@ -16,12 +16,13 @@ import concept.SWSession;
 import concept.data.SWSite;
 import concept.data.SWUser;
 import concept.deprecated.SWLoc;
+import er.extensions.components.ERXComponent;
 
 /**
  * The system's login window
  */
 
-public class SWLogin extends WOComponent {
+public class SWLogin extends ERXComponent {
 
 	private static final Logger logger = LoggerFactory.getLogger( SWLogin.class );
 
@@ -76,7 +77,6 @@ public class SWLogin extends WOComponent {
 		else {
 			languageString = DEFAULT_LANGUAGE;
 		}
-
 	}
 
 	/**
@@ -87,51 +87,47 @@ public class SWLogin extends WOComponent {
 		String defaultUsername = SWSettings.stringForKey( "defaultUsername", "admin" );
 		String defaultPassword = SWSettings.stringForKey( "defaultPassword", "admin" );
 
-		SWMainFrameset nextPage = (SWMainFrameset)pageWithName( "SWMainFrameset" );
+		SWMainFrameset nextPage = pageWithName( SWMainFrameset.class );
 		nextPage.context().response().addCookie( theCookie() );
 
-		try {
-			SWSession sess = (SWSession)session();
+		SWSession sess = (SWSession)session();
 
-			if( defaultUsername.equals( userString ) && defaultPassword.equals( passString ) ) {
-				sess.setIsLoggedIn( true );
-				sess.setTimeOut( 28800 ); // 8 hour timeout
-				return pageWithName( "SWManageSettings" );
-			}
-
-			SWUser tempUser = (SWUser)USEOUtilities.objectMatchingKeyAndValue( session().defaultEditingContext(), SWUser.ENTITY_NAME, SWUser.USERNAME_KEY, userString );
-
-			if( tempUser == null ) {
-				tempUser = (SWUser)USEOUtilities.objectMatchingKeyAndValue( session().defaultEditingContext(), SWUser.ENTITY_NAME, SWUser.EMAIL_ADDRESS_KEY, userString );
-			}
-
-			if( passString != null && tempUser != null && passString.equals( tempUser.password() ) ) {
-				sess.setActiveUser( tempUser );
-				sess.setIsLoggedIn( true );
-				sess.setTimeOut( 28800 ); // 8 hour timeout
-
-				if( tempUser.defaultSite() != null ) {
-					if( tempUser.hasPrivilegeFor( tempUser.defaultSite(), "allowToSee" ) ) {
-						;
-					}
-					session().takeValueForKey( tempUser.defaultSite(), "selectedSite" );
-				}
-				else {
-					NSArray<SWSite> a = tempUser.sites();
-
-					if( USArrayUtilities.hasObjects( a ) ) {
-						session().takeValueForKey( a.objectAtIndex( 0 ), "selectedSite" );
-					}
-				}
-
-				return nextPage;
-			}
+		if( defaultUsername.equals( userString ) && defaultPassword.equals( passString ) ) {
+			sess.setIsLoggedIn( true );
+			sess.setTimeOut( 28800 ); // 8 hour timeout
+			return pageWithName( "SWManageSettings" );
 		}
-		catch( Exception e ) {
-			logger.info( "Error on login", e );
+
+		SWUser tempUser = (SWUser)USEOUtilities.objectMatchingKeyAndValue( session().defaultEditingContext(), SWUser.ENTITY_NAME, SWUser.USERNAME_KEY, userString );
+
+		if( tempUser == null ) {
+			tempUser = (SWUser)USEOUtilities.objectMatchingKeyAndValue( session().defaultEditingContext(), SWUser.ENTITY_NAME, SWUser.EMAIL_ADDRESS_KEY, userString );
+		}
+
+		if( passString != null && tempUser != null && tempUser.validatePassword( passString ) ) {
+			sess.setActiveUser( tempUser );
+			sess.setIsLoggedIn( true );
+			sess.setTimeOut( 28800 ); // 8 hour timeout
+
+			if( tempUser.defaultSite() != null ) {
+				if( tempUser.hasPrivilegeFor( tempUser.defaultSite(), "allowToSee" ) ) {
+					;
+				}
+				session().takeValueForKey( tempUser.defaultSite(), "selectedSite" );
+			}
+			else {
+				NSArray<SWSite> a = tempUser.sites();
+
+				if( USArrayUtilities.hasObjects( a ) ) {
+					session().takeValueForKey( a.objectAtIndex( 0 ), "selectedSite" );
+				}
+			}
+
+			return nextPage;
 		}
 
 		wrongString = SWLoc.string( "wrongLoginCredentials", session() );
+
 		return null;
 	}
 

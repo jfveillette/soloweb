@@ -144,6 +144,22 @@ public class SWUser extends _SWUser implements HumanReadable, TimeStamped, SWUse
 		return null;
 	}
 
+	public boolean validatePassword( String password ) {
+		if( password == null ) {
+			return false;
+		}
+
+		if( password.equals( password() ) ) {
+			return true;
+		}
+
+		if( ERXCrypto.shaEncode( password ).equals( password() ) ) {
+			return true;
+		}
+
+		return false;
+	}
+
 	public void setPasswordHash( String value) {
 		if( StringUtilities.hasValue( value ) ) {
 			setPassword( ERXCrypto.shaEncode( value ) );
