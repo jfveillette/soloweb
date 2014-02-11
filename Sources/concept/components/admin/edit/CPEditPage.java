@@ -7,8 +7,6 @@ import com.webobjects.appserver.WOContext;
 import com.webobjects.foundation.NSDictionary;
 import com.webobjects.foundation.NSMutableDictionary;
 
-import concept.Inspection;
-import concept.SWSessionHelper;
 import concept.ViewPage;
 import concept.components.admin.SWReorderSubpages;
 import concept.data.SWPage;
@@ -90,6 +88,7 @@ public class CPEditPage extends ViewPage<SWPage> {
 	 * expands the selected page's branch in the site tree.
 	 */
 	public WOActionResults createSubPage() {
+		/*
 		SWPage p = selectedObject().createSubPage();
 
 		if( !SWSessionHelper.arrayWithKeyContainsObject( session(), SWPage.class.getSimpleName(), selectedObject() ) ) {
@@ -99,16 +98,19 @@ public class CPEditPage extends ViewPage<SWPage> {
 		saveChanges();
 
 		return Inspection.editObjectInContext( p, context() );
+		 */
+		return null;
 	}
 
 	/**
 	 * Deletes the selected page and all it's content
 	 */
 	public WOActionResults deletePage() {
+		/*
 		selectedObject().deletePage();
 
 		setSelectedStringTab( CPLoc.string( EPT_GENERAL, context() ) );
-
+		*/
 		return saveChanges();
 	}
 

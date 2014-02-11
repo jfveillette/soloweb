@@ -9,7 +9,6 @@ import com.webobjects.foundation.NSComparator;
 import com.webobjects.foundation.NSMutableArray;
 
 import concept.ViewPage;
-import concept.components.admin.SWSiteListing;
 import concept.data.SWSite;
 import er.extensions.foundation.ERXArrayUtilities;
 
@@ -45,7 +44,7 @@ public class CPEditSite extends ViewPage<SWSite> {
 	 */
 	public WOActionResults deleteSite() {
 		ec().deleteObject( selectedObject() );
-		SWSiteListing.setSelectedSite( session(), null );
+//		SWSiteListing.setSelectedSite( session(), null );
 		return saveChanges();
 	}
 }

@@ -2,17 +2,15 @@ package concept.data;
 
 import is.rebbi.core.util.StringUtilities;
 import is.rebbi.wo.interfaces.HumanReadable;
-import is.rebbi.wo.interfaces.SWCopyable;
 import is.rebbi.wo.interfaces.SWHasCustomInfo;
 import is.rebbi.wo.interfaces.SWInheritsPrivileges;
 import is.rebbi.wo.interfaces.SWTimedContent;
+import is.rebbi.wo.interfaces.SWTransferable;
 import is.rebbi.wo.util.SWCustomInfo;
 import is.rebbi.wo.util.SWTimedContentUtilities;
 import is.rebbi.wo.util.USArrayUtilities;
 import is.rebbi.wo.util.USHierarchy;
 import is.rebbi.wo.util.USHierarchyUtilities;
-import is.rebbi.wo.util.USSortable;
-import is.rebbi.wo.util.USSortableUtilities;
 import is.rebbi.wo.util.USUtilities;
 
 import java.util.Enumeration;
@@ -25,46 +23,49 @@ import com.webobjects.foundation.NSArray;
 import com.webobjects.foundation.NSMutableArray;
 import com.webobjects.foundation.NSMutableDictionary;
 
-import concept.components.client.SWComponentDetail;
+import concept.components.client.SWPageSearchResult;
 import concept.data.auto._SWPage;
+import concept.search.SWSearchItem;
 
-public class SWPage extends _SWPage implements USHierarchy<SWPage>, SWTimedContent, SWInheritsPrivileges, USSortable, SWHasCustomInfo, HumanReadable, SWCopyable<SWPage> {
+/**
+ * An SWPage represents a single page of content in SoloWeb
+ */
 
-	private SWCustomInfo _customInfo;
-
-	private static final String DEFAULT_COMPONENT_TEMPLATE_NAME = SWComponentDetail.class.getSimpleName();
-
-	/**
-	 * Registered SWPage.Operators in the system.
-	 */
-	private static NSMutableDictionary<String, SWPageOperator> _operators = new NSMutableDictionary<>();
+public class SWPage extends _SWPage implements SWTransferable, USHierarchy<SWPage>, SWTimedContent, SWInheritsPrivileges, SWSearchItem, SWHasCustomInfo, HumanReadable {
 
 	private static final NSArray<EOSortOrdering> DEFAULT_SORT_ORDERINGS = SORT_NUMBER.ascs();
 	private static final EOQualifier PUBLISHED_QUALIFIER = PUBLISHED.eq( 1 );
 
+	private static NSMutableDictionary<String,Operator> _operators = new NSMutableDictionary<>();
+	private SWCustomInfo _customInfo;
+	private String _searchItemContents;
+
+	@Override
+	public void setSearchItemContents( String contents ) {
+		_searchItemContents = contents;
+	}
+
+	@Override
+	public String searchItemText() {
+		return _searchItemContents;
+	}
+
 	/**
-	 * Deletes this page.
+	 * An object for accessing extended settings.
 	 */
-	public void deletePage() {
-		if( parent() != null ) {
-			parent().removeSubPage( this );
+	public SWCustomInfo customInfo() {
+		if( _customInfo == null ) {
+			_customInfo = new SWCustomInfo( this );
 		}
 
-		editingContext().deleteObject( this );
+		return _customInfo;
 	}
 
 	/**
-	 * @return True if this page has subpages.
+	 * Tells us if this page has any subpages.
 	 */
-	public boolean hasChildren() {
+	public boolean hasSubPages() {
 		return USHierarchyUtilities.hasChildren( this );
-	}
-
-	/**
-	 * @return True if this page has no subpages.
-	 */
-	public boolean hasNoChildren() {
-		return !hasChildren();
 	}
 
 	/**
@@ -78,13 +79,6 @@ public class SWPage extends _SWPage implements USHierarchy<SWPage>, SWTimedConte
 	 * Tells us if this page is the front page of the site
 	 */
 	public boolean isTopLevel() {
-		return isRoot();
-	}
-
-	/**
-	 * Tells us if this page is the front page of the site
-	 */
-	public boolean isRoot() {
 		return USHierarchyUtilities.isRoot( this );
 	}
 
@@ -96,7 +90,7 @@ public class SWPage extends _SWPage implements USHierarchy<SWPage>, SWTimedConte
 	}
 
 	/**
-	 * All approved subpages, sorted by their sortingnumber.
+		* All approved subpages, sorted by their sortingnumber.
 	 */
 
 	public NSArray<SWPage> sortedAndApprovedSubPages() {
@@ -107,28 +101,26 @@ public class SWPage extends _SWPage implements USHierarchy<SWPage>, SWTimedConte
 	/**
 	 * pages at the same level as this one in the site tree.
 	 */
-	public NSArray<SWPage> siblings() {
+	public NSArray<SWPage> siblingPages() {
 		return USHierarchyUtilities.siblings( this );
 	}
 
 	/**
-	 * Pages at the same level as this one in the site tree, sorted
-	 */
-	public NSArray<SWPage> sortedSiblings() {
-		return EOSortOrdering.sortedArrayUsingKeyOrderArray( siblings(), DEFAULT_SORT_ORDERINGS );
+	* Pages at the same level as this one in the site tree, sorted
+	*/
+	public NSArray<SWPage> sortedSiblingPages() {
+		return EOSortOrdering.sortedArrayUsingKeyOrderArray( siblingPages(), DEFAULT_SORT_ORDERINGS );
 	}
 
 	/**
-	 * A convenience method to insert a new subpage at the specified index.
-	 * Takes care of resorting all pages with sortnumber above the specified
-	 * index.
+	 * A convenience method to insert a new subpage at the specified index. Takes care of resorting all pages with sortnumber above the specified index.
 	 *
 	 * @param aPAge an SWPage object to insert
 	 * @param index sortingnumber for the new page
 	 */
 	public void insertSubPageAtIndex( SWPage aPage, int index ) {
 
-		if( hasChildren() ) {
+		if( hasSubPages() ) {
 			NSArray<SWPage> pages = sortedSubPages();
 			Enumeration<SWPage> e = pages.objectEnumerator();
 
@@ -147,15 +139,14 @@ public class SWPage extends _SWPage implements USHierarchy<SWPage>, SWTimedConte
 	}
 
 	/**
-	 * A convenience method to remove the specified subpage. Takes care of
-	 * resorting all pages with sortnumbers above the specified index.
+	 * A convenience method to remove the specified subpage. Takes care of resorting all pages with sortnumbers above the specified index.
 	 *
-	 * @param page an SWPage object to remove from subPages
+	 * @param aPAge an SWPage object to remove from subPages
 	 */
-	public void removeSubPage( SWPage page ) {
+	public void removeSubPage( SWPage aPage ) {
 
 		NSArray<SWPage> pages = sortedSubPages();
-		int index = pages.indexOfObject( page );
+		int index = pages.indexOfObject( aPage );
 		Enumeration<SWPage> e = pages.objectEnumerator();
 
 		while( e.hasMoreElements() ) {
@@ -167,17 +158,16 @@ public class SWPage extends _SWPage implements USHierarchy<SWPage>, SWTimedConte
 			}
 		}
 
-		removeObjectFromBothSidesOfRelationshipWithKey( page, CHILDREN_KEY );
+		removeObjectFromBothSidesOfRelationshipWithKey( aPage, CHILDREN_KEY );
 	}
 
 	/**
-	 * Used to shift the page's sort ordering (only done by "1" or "-1" in the
-	 * current version
+	 * Used to shift the page's sort ordering (only done by "1" or "-1" in the current version
 	 */
 	public void changeSortOrder( int offset ) {
 
 		if( !isTopLevel() ) {
-			NSMutableArray<SWPage> siblings = sortedSiblings().mutableClone();
+			NSMutableArray<SWPage> siblings = sortedSiblingPages().mutableClone();
 
 			// Check where the page is in the Array, remove it, and insert it again
 			int i = siblings.indexOfObject( this );
@@ -195,19 +185,17 @@ public class SWPage extends _SWPage implements USHierarchy<SWPage>, SWTimedConte
 	}
 
 	/**
-	 * A boolean telling us if this page is the uppermost of it`s siblingPages
-	 * array
+	 * A boolean telling us if this page is the uppermost of it`s siblingPages array
 	 */
-	public boolean isFirst() {
-		return USSortableUtilities.isFirst( this );
+	public boolean isAtTop() {
+		return sortNumber().intValue() == 0;
 	}
 
 	/**
-	 * A boolean telling us if this page is the bottom of it`s siblingPages
-	 * array
+	 * A boolean telling us if this page is the bottom of it`s siblingPages array
 	 */
-	public boolean isLast() {
-		return USSortableUtilities.isLast( this, siblings() );
+	public boolean isAtBottom() {
+		return sortNumber().intValue() == (siblingPages().count() - 1);
 	}
 
 	/**
@@ -218,20 +206,19 @@ public class SWPage extends _SWPage implements USHierarchy<SWPage>, SWTimedConte
 	}
 
 	/**
-	 * All published SWComponents related to this page, sorted by their
-	 * sortnumber
+	 * All published SWComponents related to this page, sorted by their sortnumber
 	 */
 	public NSArray<SWComponent> sortedAndApprovedComponents() {
-		NSArray<SWComponent> a = EOQualifier.filteredArrayWithQualifier( sortedComponents(), PUBLISHED_QUALIFIER );
-		return SWTimedContentUtilities.validateDisplayTimeForArray( a );
+		NSArray<SWComponent> anArray = EOQualifier.filteredArrayWithQualifier( sortedComponents(), PUBLISHED_QUALIFIER );
+		return SWTimedContentUtilities.validateDisplayTimeForArray( anArray );
 	}
 
 	/**
 	 * A convenience method to insert a component at the specified index
 	 */
-	public void insertComponentAtIndex( SWComponent componentToAdd, int index ) {
+	public void insertComponentAtIndex( SWComponent aComponent, int index ) {
 
-		NSMutableArray<SWComponent> components = (NSMutableArray<SWComponent>)sortedComponents();
+		NSMutableArray<SWComponent> components = (NSMutableArray)sortedComponents();
 		Enumeration<SWComponent> e = components.objectEnumerator();
 
 		while( e.hasMoreElements() ) {
@@ -242,49 +229,45 @@ public class SWPage extends _SWPage implements USHierarchy<SWPage>, SWTimedConte
 			}
 		}
 
-		if( componentToAdd.templateName() == null ) {
-			componentToAdd.setTemplateName( DEFAULT_COMPONENT_TEMPLATE_NAME );
+		if( aComponent.templateName() == null ) {
+			aComponent.setTemplateName( "ButurTemplate004" );
 		}
 
-		componentToAdd.setSortNumber( new Integer( index ) );
-		addObjectToBothSidesOfRelationshipWithKey( componentToAdd, COMPONENTS_KEY );
+		aComponent.setSortNumber( new Integer( index ) );
+		addObjectToBothSidesOfRelationshipWithKey( aComponent, COMPONENTS_KEY );
 	}
 
 	/**
-	 * A convenience method to remove a component from the page. Takes care of
-	 * keeping the sortnumbers correct.
+	 * A convenience method to remove a component from the page. Takes care of keeping the sortnumbers correct.
 	 */
-	public void removeComponent( SWComponent componentToRemove ) {
+	public void removeComponent( SWComponent aComponent ) {
 
-		NSMutableArray<SWComponent> components = (NSMutableArray<SWComponent>)sortedComponents();
-		int index = components.indexOfObject( componentToRemove );
-		Enumeration<SWComponent> e = components.objectEnumerator();
+		NSMutableArray<SWComponent> components = (NSMutableArray)sortedComponents();
+		int index = components.indexOfObject( aComponent );
+		Enumeration e = components.objectEnumerator();
 
 		while( e.hasMoreElements() ) {
-			SWComponent tc = e.nextElement();
+			SWComponent tc = (SWComponent)e.nextElement();
 			int h = components.indexOfObject( tc );
 			if( h >= index ) {
 				tc.setSortNumber( new Integer( h - 1 ) );
 			}
 		}
 
-		removeObjectFromBothSidesOfRelationshipWithKey( componentToRemove, COMPONENTS_KEY );
+		removeObjectFromBothSidesOfRelationshipWithKey( aComponent, "components" );
 	}
 
 	/**
-	 * Checks if aPage is a subpage of this page. Includingself indicates if
-	 * aPage should be included in the check.
-	 */
-	public boolean isParentPageOfPage( SWPage page, boolean includingSelf ) {
-		return USHierarchyUtilities.isParentNodeOfNode( this, page, includingSelf );
+	* Checks if aPage is a subpage of this page. Includingself indicates if aPage should be included in the check.
+	*/
+	public boolean isParentPageOfPage( SWPage aPage, boolean includingSelf ) {
+		return USHierarchyUtilities.isParentNodeOfNode( this, aPage, includingSelf );
 	}
 
 	/**
-	 * returns an array with all pages owing inheritance to this page, down the
-	 * entire site tree.
+	 * returns an array with all pages owing inheritance to this page, down the entire site tree.
 	 *
-	 * @param includingTopLevel indicates if the topLevePage should be included
-	 *        in the array.
+	 * @param includingTopLevel indicates if the topLevePage should be included in the array.
 	 */
 	public NSArray<SWPage> everySubPage( boolean includingSelf ) {
 		return USHierarchyUtilities.everyChild( this, includingSelf );
@@ -300,32 +283,27 @@ public class SWPage extends _SWPage implements USHierarchy<SWPage>, SWTimedConte
 	/**
 	 * Tells us if the specified page owes inheritance to the specified page
 	 *
-	 * @param page the page to check against
-	 * @param includingTopLevel if this is false, aPage will not be checked
-	 *        against, only it`s subpages
+	 * @param aPage the page to check against
+	 * @param includingTopLevel if this is false, aPage will not be checked against, only it`s subpages
 	 */
-	public boolean isSubPageOfPage( SWPage page, boolean includingTopLevel ) {
-		return USHierarchyUtilities.isChildOfNode( this, page, true );
+	public boolean isSubPageOfPage( SWPage aPage, boolean includingTopLevel ) {
+		return USHierarchyUtilities.isChildOfNode( this, aPage, true );
 	}
 
 	/**
-	 * A convenience method to transfer one page to another page. Takes care of
-	 * maintaining sortorder and relationships
+	 * A convenience method to transfer one page to another page. Takes care of maintaining sortorder and relationships
 	 *
 	 * @param newOwner the page to transfer ownership to
 	 */
+	@Override
 	public void transferOwnership( EOEnterpriseObject newOwner ) {
 		transferOwnershipWithIndex( newOwner, 0 );
 	}
 
-	/**
-	 * Addition for SWPage, to insert the page at a given index.
-	 */
 	public void transferOwnershipWithIndex( EOEnterpriseObject newOwner, int index ) {
 		if( newOwner.equals( parent() ) && index >= parent().sortedSubPages().indexOfObject( this ) ) {
 			index--;
 		}
-
 		parent().removeSubPage( this );
 		((SWPage)newOwner).insertSubPageAtIndex( this, index );
 	}
@@ -338,11 +316,11 @@ public class SWPage extends _SWPage implements USHierarchy<SWPage>, SWTimedConte
 	}
 
 	/**
-	 * Returns every published subpage of this page, sorted.
-	 */
+	* Returns every published subpage of this page, sorted.
+	*/
 	public NSArray<SWPage> sortedAndApprovedEverySubPage() {
 
-		NSMutableArray<SWPage> pageArray = new NSMutableArray<SWPage>();
+		NSMutableArray<SWPage> pageArray = new NSMutableArray<>();
 
 		if( this.hasApprovedSubPages() ) {
 			Enumeration<SWPage> e = sortedAndApprovedSubPages().objectEnumerator();
@@ -368,15 +346,14 @@ public class SWPage extends _SWPage implements USHierarchy<SWPage>, SWTimedConte
 	}
 
 	/**
-	 * Same as everyParentPage( true )
+	 * same as everyParentPage( true )
 	 */
 	public NSArray<SWPage> everyParentPage() {
 		return USHierarchyUtilities.everyParentNode( this, true );
 	}
 
 	/**
-	 * Returns an array of all parent pages. includeSelf indicates if the
-	 * calling page should be included.
+	 * Returns an array of all parent pages. includeSelf indicates if the calling page should be included.
 	 */
 	public NSArray<SWPage> everyParentPage( boolean includingSelf ) {
 		return USHierarchyUtilities.everyParentNode( this, includingSelf );
@@ -390,22 +367,21 @@ public class SWPage extends _SWPage implements USHierarchy<SWPage>, SWTimedConte
 	}
 
 	/**
-	 * Returns an array containing all parent pages in reverse order.
-	 * includeSelf indicates if the calling page should be included.
+	 * Returns an array containing all parent pages in reverse order. includeSelf indicates if the calling page should be included.
 	 */
 	public NSArray<SWPage> breadcrumb( boolean includeSelf ) {
 		return USHierarchyUtilities.everyParentNodeReversed( this, includeSelf );
 	}
 
 	/**
-	 * A boolean telling us if this page has been published.
+	 * A boolean telling us if this page has been published
 	 */
 	public boolean isPublished() {
 		return USUtilities.numberIsTrue( published() ) && isTimeValid();
 	}
 
 	/**
-	 * A boolean telling us if this page is accessible to the public.
+	 * A boolean telling us if this page is accessible to the public
 	 */
 	public boolean isAccessible() {
 		return USUtilities.numberIsTrue( accessible() ) && isTimeValid();
@@ -426,26 +402,26 @@ public class SWPage extends _SWPage implements USHierarchy<SWPage>, SWTimedConte
 	}
 
 	/**
-	 * Returns the nearest password protected parent page in the hierarchy
-	 */
+	 * Returns the nearest password public parent page in the hierarchy
+	 *
 	public SWPage passwordProtectedParent() {
 
-		Enumeration<SWPage> e = everyParentPage().objectEnumerator();
+		Enumeration e = this.everyParentPage().objectEnumerator();
 
 		while( e.hasMoreElements() ) {
-			SWPage p = e.nextElement();
+			SWPage p = (SWPage)e.nextElement();
 
-			if( p.isPasswordProtected() ) {
+			if( StringUtilities.hasValue( p.password() ) ) {
 				return p;
 			}
 		}
 
 		return null;
 	}
+	*/
 
 	/**
-	 * Returns this pages name, plus the prefix specified in a parent page. If
-	 * no prefix is specified, returns the page`s name
+	 * Returns this pages name, plus the prefix specified in a parent page. If no prefix is specified, returns the page`s name
 	 */
 	public String nameWithPrefix() {
 		String aString = (String)USHierarchyUtilities.valueInHierarchyForKeyPath( this, NAME_PREFIX_KEY );
@@ -453,13 +429,12 @@ public class SWPage extends _SWPage implements USHierarchy<SWPage>, SWTimedConte
 	}
 
 	/**
-	 * Returns this pages name, plus all prefixes specified for parent pages. If
-	 * no prefixes are specified, returns the page's name
+	 * Returns this pages name, plus all prefixes specified for parent pages. If no prefixes are specified, returns the page's name
 	 */
 	public String nameWithAccumulatedPrefix() {
 
 		Enumeration<SWPage> e = breadcrumb().objectEnumerator();
-		StringBuilder b = new StringBuilder();
+		StringBuffer b = new StringBuffer();
 
 		while( e.hasMoreElements() ) {
 			String s = e.nextElement().namePrefix();
@@ -474,40 +449,32 @@ public class SWPage extends _SWPage implements USHierarchy<SWPage>, SWTimedConte
 	}
 
 	/**
-	 * Returns true if this page`s display time has come, and has not expired.
-	 * Returns true if no values are specified for timeIn or timeOut.
-	 */
+	* Returns true if this page`s display time has come, and has not expired. Returns true if no values are specified for timeIn or timeOut.
+	*/
 	@Override
 	public boolean isTimeValid() {
 		return SWTimedContentUtilities.validateDisplayTime( this );
 	}
 
 	/**
-	 * Returns the page at the specified index in the parent page hierarchy. 0
-	 * is the front page of the site, 1 is the subpage of that page etc.
+	 * Returns the page at the specified index in the parent page hierarchy. 0 is the front page of the site, 1 is the subpage of that page etc.
 	 */
 	public SWPage parentPageAtLevel( int aLevel ) {
 		return (SWPage)USHierarchyUtilities.parentNodeAtLevel( this, aLevel );
 	}
 
 	/**
-	 * Implementation of SWInheritsPrivileges - return the parent page
-	 */
+	* Implementation of SWInheritsPrivileges - return the parent page
+	*/
 	@Override
-	public SWInheritsPrivileges inheritsPrivilegesFrom() {
+	public SWPage inheritsPrivilegesFrom() {
 		return parent();
 	}
 
-	/**
-	 * ???
-	 */
 	public NSArray<SWPage> expandedSiteTree() {
 		return expandedSiteTreeFromLevel( 1 );
 	}
 
-	/**
-	 * ???
-	 */
 	public NSArray<SWPage> expandedSiteTreeFromLevel( int level ) {
 
 		SWPage theParentPage = parentPageAtLevel( level );
@@ -516,10 +483,10 @@ public class SWPage extends _SWPage implements USHierarchy<SWPage>, SWTimedConte
 			return null;
 		}
 
-		NSArray<SWPage> subPages = theParentPage.sortedAndApprovedSubPages();
-		Enumeration<SWPage> e = subPages.objectEnumerator();
+		NSArray<SWPage> children = theParentPage.sortedAndApprovedSubPages();
+		Enumeration<SWPage> e = children.objectEnumerator();
 
-		NSMutableArray<SWPage> returnArray = new NSMutableArray<SWPage>();
+		NSMutableArray<SWPage> returnArray = new NSMutableArray<>();
 
 		while( e.hasMoreElements() ) {
 			SWPage currentSubPage = e.nextElement();
@@ -533,14 +500,11 @@ public class SWPage extends _SWPage implements USHierarchy<SWPage>, SWTimedConte
 		return returnArray;
 	}
 
-	/**
-	 * ???
-	 */
 	private NSArray<SWPage> everySubPageForSelectedPage( SWPage aPage ) {
-		NSArray<SWPage> subPages = aPage.sortedAndApprovedSubPages();
-		Enumeration<SWPage> e = subPages.objectEnumerator();
+		NSArray<SWPage> children = aPage.sortedAndApprovedSubPages();
+		Enumeration<SWPage> e = children.objectEnumerator();
 
-		NSMutableArray<SWPage> returnArray = new NSMutableArray<SWPage>();
+		NSMutableArray<SWPage> returnArray = new NSMutableArray<>();
 
 		while( e.hasMoreElements() ) {
 			SWPage currentPage = e.nextElement();
@@ -554,25 +518,29 @@ public class SWPage extends _SWPage implements USHierarchy<SWPage>, SWTimedConte
 		return returnArray;
 	}
 
-	/**
-	 * Creates a new subpage of this page with the given name.
-	 */
-	public SWPage createSubPage() {
-		SWPage newPage = new SWPage();
-		editingContext().insertObject( newPage );
+	public int getUserGroupID() {
+		NSArray<SWPage> pages = USHierarchyUtilities.everyParentNode( this, true );
 
-		newPage.setInheritsPrivileges( 1 );
-		newPage.setAccessible( 1 );
-		newPage.setPublished( 0 );
+		SWPage page;
+		Object pageGroupIDObject;
+		int pageGroupID;
 
-		insertSubPageAtIndex( newPage, children().count() );
+		for( int i = 0; i < pages.count(); i++ ) {
+			page = (pages.objectAtIndex( i ));
+			pageGroupIDObject = page.customInfo().valueForKey( "assignedGroup" );
 
-		return newPage;
+			if( pageGroupIDObject != null ) {
+				pageGroupID = USUtilities.integerFromObject( pageGroupIDObject ).intValue();
+
+				if( pageGroupID != -1 ) {
+					return pageGroupID;
+				}
+			}
+		}
+
+		return -1;
 	}
 
-	/**
-	 * FIXME: Implement generic way to copy stuff.
-	 */
 	public SWPage createCopy() {
 
 		SWPage newPage = new SWPage();
@@ -587,6 +555,8 @@ public class SWPage extends _SWPage implements USHierarchy<SWPage>, SWTimedConte
 		newPage.setSortNumber( sortNumber() );
 		newPage.setKeywords( keywords() );
 		newPage.setText( text() );
+		newPage.setImageOne( imageOne() );
+		newPage.setImageOne( imageTwo() );
 		newPage.setLanguage( language() );
 		newPage.setTimeIn( timeIn() );
 		newPage.setTimeOut( timeOut() );
@@ -597,15 +567,15 @@ public class SWPage extends _SWPage implements USHierarchy<SWPage>, SWTimedConte
 			while( e.hasMoreElements() ) {
 				SWComponent oldComponent = e.nextElement();
 				SWComponent newComponent = oldComponent.createCopy();
-				newPage.addObjectToBothSidesOfRelationshipWithKey( newComponent, "components" );
+				newPage.addObjectToBothSidesOfRelationshipWithKey( newComponent, COMPONENTS_KEY );
 			}
 		}
 
-		if( hasChildren() ) {
+		if( hasSubPages() ) {
 			Enumeration<SWPage> e = children().objectEnumerator();
 
 			while( e.hasMoreElements() ) {
-				newPage.addObjectToBothSidesOfRelationshipWithKey( e.nextElement().createCopy(), "subPages" );
+				newPage.addObjectToBothSidesOfRelationshipWithKey( e.nextElement().createCopy(), CHILDREN_KEY );
 			}
 		}
 
@@ -613,8 +583,42 @@ public class SWPage extends _SWPage implements USHierarchy<SWPage>, SWTimedConte
 	}
 
 	/**
-	 * ???
+	 * Returns the language field value for this page or the page's site
+	 * or is if nothing has been entered in either page or site.
 	 */
+	public String pageLanguageCode() {
+		String lang = language();
+
+		if( lang == null || lang.length() == 0 ) {
+			lang = siteForThisPage().language();
+			if( lang == null || lang.length() == 0 ) {
+				lang = "is";
+			}
+		}
+
+		if( lang.equalsIgnoreCase( "icelandic" ) ) {
+			lang = "is";
+		}
+		else if( lang.equalsIgnoreCase( "english" ) ) {
+			lang = "en";
+		}
+
+		return lang;
+	}
+
+	public boolean hasSymbol() {
+		return StringUtilities.hasValue( symbol() );
+	}
+
+	public String pageLink() {
+		if( hasSymbol() ) {
+			return "/page/" + symbol();
+		}
+		else {
+			return "/id/" + primaryKey();
+		}
+	}
+
 	@Override
 	public Object valueForKeyPath( String s ) {
 
@@ -626,9 +630,6 @@ public class SWPage extends _SWPage implements USHierarchy<SWPage>, SWTimedConte
 		}
 	}
 
-	/**
-	 * ???
-	 */
 	@Override
 	public Object valueForKey( String s ) {
 		if( s != null && s.charAt( 0 ) == '@' ) {
@@ -639,9 +640,6 @@ public class SWPage extends _SWPage implements USHierarchy<SWPage>, SWTimedConte
 		}
 	}
 
-	/**
-	 * ???
-	 */
 	private Object valueForKeyPathWithOperator( String s ) {
 
 		int i = s.indexOf( '.' );
@@ -656,7 +654,7 @@ public class SWPage extends _SWPage implements USHierarchy<SWPage>, SWTimedConte
 			s2 = i >= s.length() - 1 ? "" : s.substring( i + 1 );
 		}
 
-		SWPageOperator operator = operatorForKey( s1 );
+		Operator operator = operatorForKey( s1 );
 
 		if( operator != null ) {
 			return operator.compute( this, s2 );
@@ -666,10 +664,7 @@ public class SWPage extends _SWPage implements USHierarchy<SWPage>, SWTimedConte
 		}
 	}
 
-	/**
-	 * ???
-	 */
-	static class _ValueHierarchyOperator implements SWPageOperator {
+	static class _ValueHierarchyOperator implements Operator {
 
 		public _ValueHierarchyOperator() {}
 
@@ -679,10 +674,27 @@ public class SWPage extends _SWPage implements USHierarchy<SWPage>, SWTimedConte
 		}
 	}
 
-	/**
-	 * ???
-	 */
-	static class _LevelInHierarchyOperator implements SWPageOperator {
+	static class _TrueValueInHierachyOperator implements Operator {
+
+		public _TrueValueInHierachyOperator() {}
+
+		@Override
+		public Object compute( SWPage page, String s ) {
+			return USHierarchyUtilities.trueValueInHierarchy( page, s );
+		}
+	}
+
+	static class _TrueFalseInheritValueInHierarchyOperator implements Operator {
+
+		public _TrueFalseInheritValueInHierarchyOperator() {}
+
+		@Override
+		public Object compute( SWPage page, String s ) {
+			return USHierarchyUtilities.trueFalseInheritValueInHierarchy( page, s );
+		}
+	}
+
+	static class _LevelInHierarchyOperator implements Operator {
 
 		public _LevelInHierarchyOperator() {}
 
@@ -716,10 +728,7 @@ public class SWPage extends _SWPage implements USHierarchy<SWPage>, SWTimedConte
 		}
 	}
 
-	/**
-	 * ???
-	 */
-	static class _ExpandedHierarchyOperator implements SWPageOperator {
+	static class _ExpandedHierarchyOperator implements Operator {
 
 		public _ExpandedHierarchyOperator() {}
 
@@ -727,12 +736,15 @@ public class SWPage extends _SWPage implements USHierarchy<SWPage>, SWTimedConte
 		public Object compute( SWPage page, String s ) {
 			int i = s.indexOf( '.' );
 			String s1;
+			String s2;
 
 			if( i < 0 ) {
 				s1 = s;
+				s2 = null;
 			}
 			else {
 				s1 = s.substring( 0, i );
+				s2 = (i >= (s.length() - 1)) ? null : s.substring( i + 1 );
 			}
 
 			int pageLevel = Integer.parseInt( s1 );
@@ -740,18 +752,11 @@ public class SWPage extends _SWPage implements USHierarchy<SWPage>, SWTimedConte
 		}
 	}
 
-	/**
-	 * ???
-	 */
-	static interface SWPageOperator {
-
+	static interface Operator {
 		public abstract Object compute( SWPage page, String keyPath );
 	}
 
-	/**
-	 * ???
-	 */
-	public static void setOperatorForKey( String s, SWPageOperator operator ) {
+	public static void setOperatorForKey( String s, Operator operator ) {
 
 		if( s == null ) {
 			throw new IllegalArgumentException( "Operator key cannot be null" );
@@ -765,12 +770,9 @@ public class SWPage extends _SWPage implements USHierarchy<SWPage>, SWTimedConte
 		}
 	}
 
-	/**
-	 * ???
-	 */
-	public static SWPageOperator operatorForKey( String s ) {
+	public static Operator operatorForKey( String s ) {
 
-		SWPageOperator operator;
+		Operator operator;
 
 		synchronized( _operators ) {
 			operator = _operators.objectForKey( s );
@@ -779,24 +781,47 @@ public class SWPage extends _SWPage implements USHierarchy<SWPage>, SWTimedConte
 		return operator;
 	}
 
-	/**
-	 * ???
-	 */
 	static {
 		setOperatorForKey( "valueInHierarchyForKeyPath", new _ValueHierarchyOperator() );
 		setOperatorForKey( "parentPageAtLevel", new _LevelInHierarchyOperator() );
 		setOperatorForKey( "expandedSiteTreeFromLevel", new _ExpandedHierarchyOperator() );
+		setOperatorForKey( "trueValueInHierarchy", new _TrueValueInHierachyOperator() );
+		setOperatorForKey( "trueFalseInheritValueInHierarchy", new _TrueFalseInheritValueInHierarchyOperator() );
 	}
 
-	/**
-	 * An object for accessing extended settings
-	 */
-	public SWCustomInfo customInfo() {
-		if( _customInfo == null ) {
-			_customInfo = new SWCustomInfo( this );
-		}
+	@Override
+	public String searchResultComponentName() {
+		return SWPageSearchResult.class.getSimpleName();
+	}
 
-		return _customInfo;
+	@Override
+	public boolean isValidResult() {
+		return isPublished();
+	}
+
+	public Integer pageID () {
+		return id();
+	}
+
+	public void setPageID( Integer value ) {
+		setId( value );
+	}
+
+	public NSArray<SWPage> subPages() {
+		return children();
+	}
+
+	public SWPage parentPage() {
+		return parent();
+	}
+
+	public void setParentPage( SWPage value ) {
+		setParent( value );
+	}
+
+	@Override
+	public String toStringHuman() {
+		return name();
 	}
 
 	/**
@@ -824,10 +849,5 @@ public class SWPage extends _SWPage implements USHierarchy<SWPage>, SWTimedConte
 	 */
 	public String uniqueID() {
 		return "id" + primaryKey();
-	}
-
-	@Override
-	public String toStringHuman() {
-		return name();
 	}
 }

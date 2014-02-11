@@ -5,7 +5,6 @@ import com.webobjects.appserver.WOContext;
 import com.webobjects.foundation.NSArray;
 
 import concept.Inspection;
-import concept.components.admin.SWSiteListing;
 import concept.data.SWSite;
 
 /**
@@ -29,7 +28,7 @@ public class SWSettingsSites extends SWSettingsPanel {
 	 */
 	public WOActionResults newSite() {
 		SWSite site = SWSite.create( ec() );
-		SWSiteListing.setSelectedSite( session(), site );
+//		SWSiteListing.setSelectedSite( session(), site );
 		ec().saveChanges();
 		return Inspection.editObjectInContext( site, context() );
 	}

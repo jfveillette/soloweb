@@ -1,57 +1,65 @@
 package concept.components.admin;
 
 import is.rebbi.core.util.StringUtilities;
-import is.rebbi.wo.util.USArrayUtilities;
+import is.rebbi.wo.util.USEOUtilities;
+
+import java.util.Enumeration;
 
 import com.webobjects.appserver.WOActionResults;
 import com.webobjects.appserver.WOApplication;
+import com.webobjects.appserver.WOComponent;
 import com.webobjects.appserver.WOContext;
-import com.webobjects.appserver.WOSession;
 import com.webobjects.foundation.NSArray;
+import com.webobjects.foundation.NSMutableArray;
+import com.webobjects.foundation.NSMutableSet;
 
-import concept.Concept;
-import concept.Inspection;
-import concept.CPAdminComponent;
-import concept.SWSessionHelper;
+import concept.SWAdminComponent;
+import concept.SWApplication;
+import concept.SWSession;
 import concept.data.SWPage;
 import concept.data.SWSite;
-import concept.data.SWUser;
-import er.extensions.appserver.ERXSession;
+import er.extensions.foundation.ERXStringUtilities;
 
 /**
- * Displays all sites in the current system and their subpages in a hierarchical list.
+ * Displays all sites in the current SoloWeb system and their subpages in a hierarchical list.
  */
 
-public class SWSiteListing extends CPAdminComponent {
+public class SWSiteListing extends SWAdminComponent {
 
-	private static final String PLUS_GIF = "plus.gif";
-	private static final String MINUS_GIF = "minus.gif";
-	private static final String SPACER_GIF = "spacer.gif";
+	public static String CSS_UNPUBLISHED = "unpublished";
+	public static String CSS_INACCESSIBLE = "inaccessible";
+	public static String CSS_PUBLISHED = "published";
+	public static String CSS_HILITE = "hilite"; // used for search result hilite
 
 	/**
-	 * The link on subpages of this page will be disabled, including itself.
+	 * The hyperlink around all subpages of this page is disabled, including itself.
+	 * null if no pages should be disabled.
 	 */
 	public SWPage recordToDisableSubPagesOf;
 
 	/**
-	 * Index of the current page being iterated over in a repetition (reset for each branch in the hierarchy).
+	 * Index of the current page being iterated over ina  repetition (reset for each branch in the hierarchy).
 	 */
 	public int currentIndex;
 
+	public int currentDisplayIndex() {
+		return currentIndex + 1;
+	}
+
 	/**
-	 * Site being iterated over in the repetition.
+	 * The current site being iterated over in the repetition.
 	 */
 	public SWSite currentSite;
 
 	/**
-	 * Page being iterated over in the repetition.
+	 * The current site being iterated over in the repetition.
 	 */
 	public SWPage currentPage;
 
 	/**
 	 * Name of an action to perform in the parent component when a page is clicked.
 	 */
-	public String pageAction;
+	public String action;
 
 	/**
 	 * Name of an access privilege required to have the page active
@@ -61,99 +69,106 @@ public class SWSiteListing extends CPAdminComponent {
 	/**
 	 * The selected page.
 	 */
-	private SWPage _selectedObject;
+	public SWPage selectedPage;
+
+	/**
+	 * Name of an action to perform in the parent component when a site is clicked.
+	 */
+	public String siteAction;
+
+	/**
+	 * Determines if arrows to move pages up and down in the site tree should be shown.
+	 */
+	public boolean showArrows;
+
+	/**
+	 * Determines if we should show indicators for inbetween page transfers.
+	 */
+	public boolean inBetween = false;
+
+	/**
+	 * page id or hlekkjunarheiti to search for
+	 */
+	public String searchString;
+
+	public String tabNameTree = "Veftré";
+	public String tabNameSearch = "Leit";
+	public String selectedTab = tabNameTree;
+	public SWSite currentSearchSite;
+	public SWPage currentSearchPage;
+
+	public NSArray<SWPage> searchResultPages = NSArray.EmptyArray;
 
 	public SWSiteListing( WOContext context ) {
 		super( context );
 	}
 
-	@Override
-	public SWPage selectedObject() {
-		return _selectedObject;
-	}
-
-	/**
-	 * The site`s frontpage in an Array (for use with nested lists and such)
-	 */
-	public NSArray<SWPage> frontPageInArray() {
-		if( selectedSite() != null ) {
-			return new NSArray<SWPage>( selectedSite().frontpage() );
-		}
-
-		return NSArray.emptyArray();
-	}
-
-	public void setSelectedObject( SWPage value ) {
-		_selectedObject = value;
-	}
-
-	public SWSite selectedSite() {
-		return selectedSite( session() );
-	}
-
-	public void setSelectedSite( SWSite site ) {
-		setSelectedSite( session(), site );
-	}
-
-	/**
-	 * Selects the current site for editing in an SWEditSite component.
-	 */
-	public WOActionResults selectSite() {
-		return Inspection.editObjectInContext( selectedSite( session() ), context() );
-	}
-
-	/**
-	 * Set the currently active site.
-	 */
-	public static void setSelectedSite( WOSession s, SWSite site ) {
-		ERXSession session = (ERXSession)s;
-		session.objectStore().takeValueForKey( site, "selectedSite" );
-	}
-
-	public static SWSite selectedSite( WOSession s ) {
-		ERXSession session = (ERXSession)s;
-
-		SWSite site = (SWSite)session.objectStore().valueForKey( "selectedSite" );
-
-		if( site == null ) {
-			SWUser user = SWSessionHelper.userInSession( s );
-
-			if( user.defaultSite() != null ) {
-				site = user.defaultSite();
-			}
-			else {
-				NSArray<SWSite> sites = user.sites();
-
-				if( USArrayUtilities.hasObjects( sites ) ) {
-					site = sites.objectAtIndex( 0 );
-				}
-			}
-		}
-
-		return site;
-	}
 	/**
 	 * Selects the current page and performs the action specified in "action"
 	 */
-	public WOActionResults selectPage() {
-		setSelectedObject( currentPage );
-		return performParentAction( pageAction );
+	public WOComponent selectObject() {
+		selectedPage = currentPage;
+		return (WOComponent)performParentAction( action );
+	}
+
+	public WOComponent selectedSearchObject() {
+		setSelectedSite( currentSearchSite );
+		selectedPage = currentSearchPage;
+		return (WOComponent)performParentAction( action );
+	}
+
+	public WOComponent transferFirst() {
+		selectedPage = currentPage;
+		return (WOComponent)performParentAction( "transferFirst" );
+	}
+
+	public WOComponent transferOther() {
+		selectedPage = currentPage;
+		return (WOComponent)performParentAction( "transferOther" );
 	}
 
 	/**
-	 * The css class to set for a page link.
+	 * Selects the current site and performs the action specified in "siteAction"
+	 */
+	public WOComponent selectSite() {
+		setSelectedSite( selectedSite() );
+		return (WOComponent)performParentAction( siteAction );
+	}
+
+	public void setSelectedSite( SWSite aSite ) {
+		if( aSite != null ) {
+			session().takeValueForKey( aSite, "selectedSite" );
+		}
+	}
+
+	public SWSite selectedSite() {
+		Object o = session().valueForKey( "selectedSite" );
+
+		if( o != null ) {
+			return (SWSite)o;
+		}
+
+		return null;
+	}
+
+	/**
+	 * The css class to set for a page link, determined by it's accessibility/publishing status.<BR>
+	 * "inaccessible" if a page is inacessible<BR>
+	 * "unpublished" if a page is not publishsed<BR>
+	 * "published" if the page is both acessible and published.
 	 */
 	public String currentClass() {
+		String klass = CSS_PUBLISHED;
 
 		if( !currentPage.isAccessible() ) {
-			return "sw-inaccessible";
+			klass = CSS_INACCESSIBLE;
 		}
 
 		if( !currentPage.isPublished() ) {
-			return "sw-unpublished";
+			klass = CSS_UNPUBLISHED;
 		}
 
-		return "sw-published";
+		return klass;
 	}
 
 	/**
@@ -165,10 +180,9 @@ public class SWSiteListing extends CPAdminComponent {
 	}
 
 	/**
-	 * Toggles the subpage display status for the current page, if it's subpages should be displayed or not.
+	 * Toggles the subpage display status for the current page, if it's subpages should be dispalyed or not.
 	 */
-	public WOActionResults toggleBranch() {
-
+	public WOComponent toggleDisplay() {
 		if( isExpanded( currentPage ) ) {
 			collapseBranch( currentPage );
 		}
@@ -184,33 +198,69 @@ public class SWSiteListing extends CPAdminComponent {
 	 * front of the current page, based on if it's branch is expanded or not.
 	 * Returns the name of the picture to display.
 	 */
-	public String img() {
-		if( currentPage.hasNoChildren() ) {
-			return WOApplication.application().resourceManager().urlForResourceNamed( SPACER_GIF, Concept.sw().frameworkBundleName(), null, context().request() );
+	public String toggleString() {
+		try {
+			if( isExpanded( currentPage ) ) {
+				return WOApplication.application().resourceManager().urlForResourceNamed( "sw32/img/minus.gif", SWApplication.swapplication().frameworkBundleName(), null, context().request() );
+			}
+			else {
+				return WOApplication.application().resourceManager().urlForResourceNamed( "sw32/img/plus.gif", SWApplication.swapplication().frameworkBundleName(), null, context().request() );
+			}
 		}
-
-		if( isExpanded( currentPage ) ) {
-			return WOApplication.application().resourceManager().urlForResourceNamed( MINUS_GIF, Concept.sw().frameworkBundleName(), null, context().request() );
+		catch( Exception e ) {
+			return null;
 		}
-
-		return WOApplication.application().resourceManager().urlForResourceNamed( PLUS_GIF, Concept.sw().frameworkBundleName(), null, context().request() );
 	}
 
 	/**
-	 * Determines if the link for the current page should be disabled.
+	 * Determines if the hyperlink around the current page name should be disabled, based on "recordToDisableSubPagesOf".
+	 * Also disables the "recordToDisableSubPagesOf" itself.
 	 */
-	public boolean pageIsDisabled() {
+	public boolean isDisabled() {
+		boolean disabled = false;
 
 		if( recordToDisableSubPagesOf != null ) {
 			if( currentPage.isSubPageOfPage( recordToDisableSubPagesOf, true ) ) {
-				return true;
+				disabled = true;
 			}
 		}
 
 		if( StringUtilities.hasValue( requiredPrivilege ) ) {
-			if( !conceptUser().hasPrivilegeFor( currentPage, requiredPrivilege ) ) {
-				return true;
+			if( !user().hasPrivilegeFor( currentPage, requiredPrivilege ) ) {
+				disabled = true;
 			}
+		}
+
+		if( inBetween && currentPage.hasSubPages() ) {
+			disabled = true;
+		}
+
+		return disabled;
+	}
+
+	/**
+	 * Determines if the currentPage is the one that is being disabled.
+	 * @return True if so.
+	 */
+	public boolean isRecordBeingTransferred() {
+		if( recordToDisableSubPagesOf != null && currentPage != null && currentPage.primaryKey().equals( recordToDisableSubPagesOf.primaryKey() ) ) {
+			return true;
+		}
+		return false;
+	}
+
+	/**
+	 * Determines if this site's hyperlink should be disabled.
+	 * It's active only if siteAction is not null, and the current user is an administrator.
+	 */
+	public boolean siteIsDisabled() {
+
+		if( siteAction == null ) {
+			return true;
+		}
+
+		if( user().isAdministrator() ) {
+			return true;
 		}
 
 		return false;
@@ -219,28 +269,93 @@ public class SWSiteListing extends CPAdminComponent {
 	/**
 	 * Determines if the current branch should be expanded (if subpages should be displayed)
 	 */
-	private boolean isExpanded( SWPage page ) {
-		return SWSessionHelper.arrayWithKeyContainsObject( session(), SWPage.ENTITY_NAME, page );
+	public boolean isExpanded( SWPage aPage ) {
+		return ((SWSession)session()).arrayWithKeyContainsObject( "SWPage", aPage );
 	}
 
 	/**
 	 * Expands the current branch.
 	 */
-	private void expandBranch( SWPage page ) {
-		SWSessionHelper.addObjectToArrayWithKey( session(), page, SWPage.ENTITY_NAME );
+	public void expandBranch( SWPage aPage ) {
+		((SWSession)session()).addObjectToArrayWithKey( aPage, "SWPage" );
 	}
 
 	/**
 	 * Collapses the current branch.
 	 */
-	private void collapseBranch( SWPage page ) {
-		SWSessionHelper.removeObjectFromArrayWithKey( session(), page, SWPage.ENTITY_NAME );
+	public void collapseBranch( SWPage aPage ) {
+		((SWSession)session()).removeObjectFromArrayWithKey( aPage, "SWPage" );
 	}
 
-	/**
-	 * Indicates if the site pop up menu should be shown.
-	 */
 	public boolean showSitePopUp() {
-		return conceptUser().sites().count() > 1;
+		return user().sites().count() > 1;
+	}
+
+	public WOComponent expandAllBranches() {
+
+		NSArray<SWPage> a = selectedSite().frontpage().everySubPage();
+		Enumeration<SWPage> e = a.objectEnumerator();
+
+		while( e.hasMoreElements() ) {
+			expandBranch( e.nextElement() );
+		}
+
+		return null;
+	}
+
+	public String setTheSelectedSite() {
+		NSArray<SWSite> sites = user().sites();
+
+		if( sites.size() > 0 ) {
+			setSelectedSite( sites.get( 0 ) );
+		}
+
+		return null;
+	}
+
+	public NSArray<String> tabs() {
+		return new NSArray<>( new String[] { tabNameTree, tabNameSearch } );
+	}
+
+	public WOActionResults search() {
+		action = "selectObject";
+
+		if( ERXStringUtilities.isDigitsOnly( searchString ) ) {
+			searchResultPages = USEOUtilities.objectsMatchingKeyAndValue( session().defaultEditingContext(), SWPage.ENTITY_NAME, "pageID", new Integer( searchString ) );
+		}
+		else {
+			searchResultPages = USEOUtilities.objectsMatchingKeyAndValue( session().defaultEditingContext(), SWPage.ENTITY_NAME, "symbol", searchString );
+		}
+
+		return context().page();
+	}
+
+	public NSArray<SWSite> searchResultSites() {
+
+		NSMutableSet<SWSite> sites = new NSMutableSet<>();
+		Enumeration<SWPage> e = searchResultPages.objectEnumerator();
+
+		while( e.hasMoreElements() ) {
+			SWPage page = e.nextElement();
+			sites.addObject( page.siteForThisPage() );
+		}
+
+		return sites.allObjects();
+	}
+
+	public NSArray<SWPage> searchResultPagesForCurrentSite() {
+
+		NSMutableArray<SWPage> pages = new NSMutableArray<>();
+		Enumeration<SWPage> e = searchResultPages.objectEnumerator();
+
+		while( e.hasMoreElements() ) {
+			SWPage page = e.nextElement();
+
+			if( page.siteForThisPage().equals( currentSearchSite ) ) {
+				pages.addObject( page );
+			}
+		}
+
+		return pages;
 	}
 }
