@@ -16,4 +16,3 @@ Frame2: WOFrame {
 	marginheight = 0;
 	noresize = "NORESIZE";
 }
-
