@@ -1,17 +1,10 @@
 package concept;
 
-
 import com.webobjects.appserver.WOContext;
 import com.webobjects.appserver.WOResponse;
 
 import concept.data.SWUser;
-
 import er.extensions.components.ERXComponent;
-
-/**
- * SWAdminComponent is the common ancestor of most components presented in the SWAdmin framework.
- * It's function is to check if a user has logged in, - if he hasn't, nothing is appended to the response
- */
 
 public abstract class SWAdminComponent extends ERXComponent {
 
