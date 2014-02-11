@@ -85,7 +85,7 @@ public class CPLogin extends CPAdminComponent {
 			return error( errorMessage );
 		}
 
-		SWStartPage nextPage = pageWithName( SWStartPage.class );
+		CPStartPage nextPage = pageWithName( CPStartPage.class );
 		nextPage.context().response().addCookie( usernameCookie() );
 		return nextPage;
 	}

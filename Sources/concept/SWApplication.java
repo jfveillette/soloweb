@@ -11,15 +11,10 @@ import org.slf4j.LoggerFactory;
 import com.webobjects.appserver.WOApplication;
 import com.webobjects.appserver.WOContext;
 import com.webobjects.appserver.WOResponse;
-import com.webobjects.eoaccess.EOModel;
-import com.webobjects.eoaccess.EOModelGroup;
 import com.webobjects.foundation.NSArray;
 import com.webobjects.foundation.NSDictionary;
 import com.webobjects.foundation.NSMutableArray;
 import com.webobjects.foundation.NSMutableDictionary;
-import com.webobjects.foundation.NSNotification;
-import com.webobjects.foundation.NSNotificationCenter;
-import com.webobjects.foundation.NSSelector;
 import com.webobjects.foundation.NSTimestamp;
 
 import concept.components.SWErrorMessage;
@@ -89,7 +84,6 @@ public class SWApplication extends ERXApplication {
 		SoftUser.Manager.register();
 
 		SWPluginHandler.defaultInstance().loadRegisteredPlugins();
-		setupDatabaseConnection();
 		String defaultMailServer = SWSettings.stringForKey( "defaultMailServer" );
 
 		if( defaultMailServer != null ) {
@@ -167,13 +161,7 @@ public class SWApplication extends ERXApplication {
 	}
 
 	public NSArray<String> additionalModels() {
-		NSMutableArray<String> m = new NSMutableArray<>();
-		m.addObject( "SoloForms" );
-		m.addObject( "SoloMail" );
-		m.addObject( "SoloPoll" );
-		m.addObject( "SoloStaff" );
-		m.addObject( "SoloThreads" );
-		return m;
+		return NSArray.emptyArray();
 	}
 
 	public NSMutableArray<String> pluginModels() {
@@ -181,28 +169,19 @@ public class SWApplication extends ERXApplication {
 	}
 
 	public NSArray<String> activeModels() {
-		return pluginModels().arrayByAddingObjectsFromArray( additionalModels() );
+		NSMutableArray<String> m = new NSMutableArray<>();
+		m.addObject( "SoloForms" );
+		m.addObject( "SoloMail" );
+		m.addObject( "SoloPoll" );
+		m.addObject( "SoloStaff" );
+		m.addObject( "SoloThreads" );
+		m.addObjectsFromArray( pluginModels() );
+		m.addObjectsFromArray( additionalModels() );
+		return m;
 	}
 
 	public NSMutableArray<SWSession> activeUserSessions() {
 		return _activeUserSessions;
-	}
-
-	private void setupDatabaseConnection() {
-		NSSelector<Void> modelAddedSelector = new NSSelector<>( "handleModelAddedNotification", new Class[] { NSNotification.class } );
-		NSNotificationCenter.defaultCenter().addObserver( this, modelAddedSelector, EOModelGroup.ModelAddedNotification, null );
-	}
-
-	public void handleModelAddedNotification( NSNotification aNotication ) {
-		EOModel model = (EOModel)aNotication.object();
-
-		if( activeModels().containsObject( model.name() ) ) {
-			logger.info( "Reconfigured connection for EOModel:  " + model.name() );
-			model.setConnectionDictionary( SWSettings.connectionDictionary() );
-		}
-		else {
-			logger.info( "Did NOT reconfigure the connection for EOModel:  " + model.name() );
-		}
 	}
 
 	public SWDictionary<String, String> getLocalizedStringsForLanguage( String language ) {

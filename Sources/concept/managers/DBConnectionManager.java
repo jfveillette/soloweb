@@ -5,11 +5,14 @@ import is.rebbi.wo.util.SWSettings;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.webobjects.appserver.WOApplication;
 import com.webobjects.eoaccess.EOModel;
 import com.webobjects.eoaccess.EOModelGroup;
 import com.webobjects.foundation.NSNotification;
 import com.webobjects.foundation.NSNotificationCenter;
 import com.webobjects.foundation.NSSelector;
+
+import concept.SWApplication;
 
 /**
  * Handles the initialization of the database connection of the system.
@@ -50,7 +53,7 @@ public class DBConnectionManager {
 	public void handleModelAddedNotification( NSNotification aNotication ) {
 		EOModel model = (EOModel)aNotication.object();
 
-		if( "Concept".equals( model.name() ) ) {
+		if( "SoloWeb".equals( model.name() ) || ((WOApplication.application() instanceof SWApplication) && SWApplication.swapplication().activeModels().containsObject( model.name() )) ) {
 			logger.info( "Reconfigured connection for EOModel:  " + model.name() );
 			model.setConnectionDictionary( SWSettings.connectionDictionary() );
 		}

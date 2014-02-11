@@ -1,0 +1,11 @@
+#header, #sidebar, #column, #footer, #topper, #topBar, 
+#lightwindow_overlay, #lightwindow, #lightwindow_container, #lightwindow_title_bar { 
+	display: none;
+}
+
+body, td { font-size: 14px; }
+
+h1, h2, h3, h4, h5 { color: black; }
+
+.content-holder { margin: 0; }
+

@@ -1,0 +1,134 @@
+body{
+	font:12px Verdana, Arial, Helvetica, sans-serif;
+	margin:0;
+	min-width:900px;
+}
+/* Default */
+img{border-style:none;}
+a{
+	text-decoration:none;
+}
+a:hover{text-decoration:underline;}
+input,
+textarea,
+select{
+	font-size:100%;
+	vertical-align:middle;
+}
+form,fieldset{
+	margin:0;
+	padding:0;
+	border-style:none;
+}
+h5 { font-size: 100%; }
+h4 { font-size: 120%; }
+h3 { font-size: 140%; }
+h2 { font-size: 160%; }
+h1 { font-size: 180%; }
+
+/* Layouts */
+
+.hold-page{
+}
+#header{
+}
+#container{
+	width:100%;
+	background:#fff;
+	overflow:hidden;
+	padding:0 0 0 0;
+}
+#sidebar{
+	width:208px;
+	float:left;
+}
+.content-holder{ margin:0 197px 0 218px; }
+#content{
+	width:100%;
+	float:left;
+}
+#column{
+	float:right;
+	width:197px;
+	text-align:center;
+}
+/* Header */
+
+/*.hold-header-end{background:url(../images/bg-header.gif) no-repeat 100% 0;}
+.hold-header-start{background:url(../images/bg-header-start.gif) no-repeat;} */
+
+/* Top navigation */
+ul#top, ul#top li {
+	background-color: silver;
+	margin: 0px;
+	padding: 0px;
+}
+ul#top li { display: inline-block; }
+ul#top li a { display: block; }
+
+/* Navigation */
+.navigation {
+	list-style:none;
+	margin:0 0 0 0px;
+	padding:0;
+	font-size:12px;
+}
+li.nav {padding:0 0 5px;}
+a.nav {
+	background-color: silver;
+	background-image: url(http://sw.godurkodi.is/sw31/img/bg-nav-arrows.png) no-repeat 8px 4px;
+	display:block;
+	width:167px;
+	padding:2px 0 4px 25px;
+	outline:none;	
+}
+
+a.nav.closed {
+	background-image: url(http://sw.godurkodi.is/sw31/img/bg-nav-arrows.png);
+	background-repeat: no-repeat;
+	background-position: 8px 4px;
+}
+a.nav.open { 
+	background-image: url(http://sw.godurkodi.is/sw31/img/bg-nav-arrows.png);
+	background-repeat: no-repeat;
+	background-position: 8px -26px;
+}
+
+/*
+.navigation ul{
+	margin:0 0 -5px;
+	padding:5px 0 0;
+	list-style:none;
+}
+.navigation li.active ul a{
+	padding:8px 0 7px 45px;
+	width:154px;
+	background-position:22px 8px;
+}
+*/
+a.nav.selected {
+	color: white;
+	background-color: gray;
+}
+
+/* Extras */
+#extras {
+	margin-top: 20px;
+	text-align: center;
+}
+/* Content */
+#content {}
+
+/* Footer */
+#footer {
+	clear: both;
+	margin-top: 20px;
+	height: 20px;
+	background-color: silver;
+	text-align: center;
+}
+#footer p { margin: 0px; }
+
+.breadcrumb a { color: gray; }
+.breadcrumb:after { content: " >" }
+.breadcrumb.last:after { content: ""; }

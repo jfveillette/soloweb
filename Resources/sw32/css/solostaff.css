@@ -1,0 +1,104 @@
+#stafflist table {
+	font-size: 11px ;
+	width: 100% ;
+}
+
+#stafflist th {
+	text-align: left ;
+	text-transform: uppercase ;
+	
+	padding: 4px ;
+	
+	color: rgb(80,80,80) ;
+	background-color: rgb(240,240,240) ;
+	border-bottom: 1px solid silver ;
+	border-right: 1px solid silver ;
+	
+	width: auto ;
+}
+
+#stafflist_list tr:hover {
+	background-color: rgb(220,220,220) ;
+}
+
+#stafflist td {
+	border-bottom: 1px solid silver ;
+	padding: 4px ;
+}
+
+#stafflist a, {
+	color: #333399 ;
+	text-decoration: none ;
+	width: 100% ;
+	display: block ;
+	border-bottom: none ;
+}
+
+#stafflist a:hover {
+	color: black ;
+}
+
+#stafflist .row {
+	background-color: rgb(247,247,249) ;
+}
+
+#stafflist #selected {
+	background-color: rgb(220,220,220) ;
+	color: #333399;
+	font-weight: bold ;
+}
+
+#stafflist #selected a {
+	color: #333399 ;
+}
+
+#stafflist #selected a:hover {
+	color: black ;
+}
+
+#staffcard fieldset {
+	width: 100% ;
+	margin: 0px 20px 6px 0px;
+	
+	color: rgb(80,80,80) ;
+	text-transform: uppercase ;
+	font-size: 12px ;
+	font-weight: bold ;
+	
+	border: 1px solid silver ;
+}
+
+#staffcard td {
+	text-transform: none ;
+	font-size: 11px ;
+	font-weight: normal ;
+	padding-right: 4px;
+}
+
+#staffcard td.sep {
+	border-right: 1px solid silver ;
+}
+
+#staffcard a {
+	color: #333399;
+	text-decoration: none ;
+}
+
+#staffcard a:hover {
+	color: black ;
+}
+
+#staffcard img {
+	border: 1px solid gray ;
+}
+
+#stafflist .staffinfocellhdr {
+	width: 110px;
+	text-align: right;
+	vertical-align: top;
+}
+
+#stafflist .staffinfocellval {
+	text-align: left;
+	vertical-align: top;
+}

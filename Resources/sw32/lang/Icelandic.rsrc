@@ -1,0 +1,526 @@
+{
+    /* Page editing */
+	"noAccessMessage" = "Þú hefur ekki aðgangsheimild til að breyta þessari síðu.";
+	"noComponentsOnPageMessage" = "Það er ekkert efni á þessari síðu. Smelltu á græna plúsinn til að bæta síðubút á síðuna.";
+    "pageName" = "Heiti";
+    "linkingName" = "Hlekkjunarheiti";
+    "namePrefix" = "Forskeyti heitis";
+    "redirectTo" = "Beina á síðu";
+    "customLook" = "Sérsniðið útlit";
+    "pageGeneral" = "Almennt";
+    "pageDescription" = "Lýsing";
+    "pageKeywords" = "Lyklunarorð";
+    "createSubPage" = "Búa til undirsíðu";
+    "pagePublishingOptions" = "Stillingar birtingar";
+    "pagePassword" = "Aðgangshópur";
+	"pageLoginFormName" = "Innskráningarform";
+	"pageLoginFormOptions" = "Stillingar innskráningarforms";
+    "pageTimeIn" = "Birta dags";
+    "pageTimeOut" = "Taka úr birtingu dags";
+    "pageDisplayOnSite" = "Birta síðu í veftré";
+    "pageAccessible" = "Síða aðgengileg almenningi";
+    "pageLanguageFieldTitle" = "Tungumál";
+	"hideRightColumn" = "Fela hægri dálk";
+    "deletePage" = "Eyða síðu";
+    "deletePageWarning" = "Ertu viss um að þú viljir eyða þessari síðu og öllum undirsíðum hennar?";
+    "movePage" = "Flytja síðu";
+    "movePageMessage" = "Smelltu hér til að flytja þessa síðu til í veftrénu";
+    "previewPage" = "Skoða síðu";
+    "deletePageComponentWarning" = "Ertu viss um að þú viljir eyða þessum síðubúti?";
+    "savePageChangesButtonTitle" = "Vista";
+
+    /* Component editing */
+    "componentPublishingOptions" = "Stillingar birtingar";
+    "componentPublished" = "Birt";
+    "componentTimeIn" = "Birta dags";
+    "componentTimeOut" = "Taka úr birtingu dags";
+    "componentEncodeBreaks" = "Breyta færslumerkjum í BR-tög";
+    "componentUpMessage" = "Smelltu hér til að færa síðubútinn upp";
+    "componentDownMessage" = "Smelltu hér til að færa síðubútinn niður";
+    "componentMoveMessage" = "Smelltu hér til að flytja þennan bút yfir á aðra síðu";
+    "componentDeleteMessage" = "Smelltu hér tl að eyða þessum búti";
+    "componentAddMessage" = "Smelltu hér til að búa til nýjan bút á síðunni";
+
+    
+    /* Message displayed after logout */
+    "loggedOutStringOne" = "Þú hefur lokað tengingu þinni við SoloWeb-kerfið. Vinsamlegast";
+    "loggedOutStringTwo" = "smelltu hér";
+    "loggedOutStringThree" = "til að tengjast aftur.";
+
+    
+    /* Standard element editing components */
+    "arrayEditorAddMessage" = "Nýtt";
+    "arrayEditorAddButtonTitle" = "Bæta við";
+    "dictionaryEditorAddMessage" = "Nýr lykill";
+    "dictionaryEditorAddButtonTitle" = "Bæta við";
+
+
+    /* Date and time picker */
+    "datePickerHeading" = "Veljið dagsetningu og tíma";
+    "datePickerNoTimeSetString" = "Enginn tími valinn";
+    "datePickerButtonTitle" = "Velja";
+    "datePickerClearDate" = "Hreinsa dagsetningu";
+    "datePickerMinute" = "Mínúta";
+    "datePickerHour" = "Klukkustund";
+    "datePickerDay" = "Dagur";
+    "datePickerMonth" = "Mánuður";
+    "datePickerYear" = "Ár";
+    "selectDateButtonTitle" = "Breyta";
+    
+    /* Picture selection */
+    "pictureHyperlinkMessage" = "Smelltu hér til að velja mynd";
+    "pictureHyperlinkRemove" = "Fjarlægja mynd";
+	"pictureHyperlinkAdd" = "Velja mynd";
+
+    /* Document  administration*/
+    "documentsHeader" = "Skjöl";
+    "cancelDocumentSelection" = "Hætta við";
+    "createDocumentFolderInRoot" = "Ný mappa í rót";
+    "changeFolderNameButtonTitle" = "Breyta heiti";
+    "createNewDocument" = "Nýtt skjal";
+    "createDocumentSubFolder" = "Búa til undirmöppu";
+    "transferDocumentFolder" = "Flytja möppu";
+    "deleteDocumentFolder" = "Eyða möppu";
+    "documentNameTableHeader" = "Heiti";
+    "documentSizeTableHeader" = "Stærð";
+    "documentTotalSizeTableFooter" = "Samtals";
+    "newDocumentFolderName" = "Ný mappa";
+    "deleteDocumentFolderMessageString" = "Ertu viss um að þú viljir eyða þessari möppu og innihaldi hennar?";
+    "deleteDocumentWarning" = "Ertu viss um að þú viljir eyða þessu skjali?";
+
+	"documentSortingTitle" = "Birta lista í öfugri röð";
+    "documentNameFieldTitle" = "Heiti";
+    "documentTypeFieldTitle" = "Tag";
+    "documentDownloadFieldTitle" = "Sækja af Netinu";
+    "documentSelectFromDiskFieldTitle" = "Sækja af diski";
+    "documentSaveButtonTitle" = "Vista";
+    "documentNoDocumentTypeSelected" = "Ekki skilgreint...";
+
+    
+    /* Document component selection */
+    "documentComponentHeading" = "Skjöl";
+    "documentselectFieldTitle" = "Skjal";
+    "documentDisplayStyleTitle" = "Framsetning";
+    "documentIconFieldTitle" = "Birta táknmynd skjals";
+    "documentDownloadTextFieldTitle" = "Texti fyrir \"sækja\"-hlekk";
+    "documentNoDocumentSelectedString" = "Velja skjal...";
+
+    
+    /* News */
+    "newsSystemHeader" = "Fréttir";
+    "createNewsFolderInRoot" = "Búa til möppu í rót";
+    "changeNewsFolderNameButtonTitle" = "Breyta heiti";
+    "createNewNewsitem" = "Ný frétt";
+    "createNewsSubFolder" = "Búa til undirmöppu";
+    "transferNewsFolder" = "Flytja möppu";
+    "deleteNewsFolder" = "Eyða möppu";
+    "newsHeadingTableHeader" = "Fyrirsögn";
+    "newsDateTableHeader" = "Dags.";
+	"newsCustomMoreURLTitle" = "Hlekkur fyrir meira";
+    
+    /* Newsitem editing */
+    "newsGeneralHeading" = "Almennt";
+    "newsExcerptHeading" = "Útdráttur";
+    "newsPictureHeading" = "Mynd með texta fréttar";
+    "newsPictureHeading2" = "Mynd með útdrætti";
+    "newsMainTextHeading" = "Texti fréttar";
+    "newsAuthorTitle" = "Höfundur";
+    "newsHeadlineFieldTitle" = "Fyrirsögn";
+    "newsDateFieldTitle" = "Dagsetning";
+    "newsTimeInFieldTitle" = "Birta dags";
+    "newsTimeOutFieldTitle" = "Taka úr birtingu dags";
+    "newsPublishedFieldTitle" = "Birta";
+    "newsEncodeBreaksFieldTitle" = "Breyta færslumerkjum í BR-tög";
+    "newsExtraCategories" = "Auka birtingarflokkar";
+    "newsSaveChangesButtonTitle" = "Vista";
+    "deleteNewsWarning" = "Ertu viss um að þú viljir eyða þessari frétt?";
+    "deleteNewsFolderWarning" = "Ertu viss um að þú viljir eyða þessari möppu og innihaldi hennar?";
+
+
+    /* News Component */
+    "newsComponentHeading" = "Fréttir";
+    "newsComponentPublishingOptions" = "Stillingar birtingar";
+    "newsComponentDisplayStyle" = "Framsetning";
+    "newsComponentCategory" = "Fréttamöppur";
+    "newsComponentMaxItems" = "Hámarksfjöldi frétta til birtingar";
+    "newsComponentSkipItems" = "Sleppa fjölda hluta";
+    "newsComponentMaxDays" = "Hámarksfjöldi daga til birtingar";
+    "newsComponentSkipDays" = "Sleppa fjölda daga";
+	"newsComponentShowOnlyItemsFromPast" = "Birta eingöngu liðnar fréttir";
+	"newsComponentShowOneRandomItem" = "Birta eina frétt af handahófi";
+    "newsComponentSortFieldTitle" = "Raða eftir";
+    "newsComponentSortOrderFieldTitle" = "Raða í";
+    "newsComponentShowItemIfNoItemsFound" = "Birta þessa frétt ef engar fréttir fundust";
+    "newsComponentRandom" = "Slembibirting";
+	"newsComponentNewItemAutoPublished" = "Nýskráð frétt birt sjálfkrafa";
+    
+    "newsComponentDisplayOptions" = "Stillingar framsetningar";
+    "newsComponentShowPicture" = "Birta mynd";
+    "newsComponentShowAuthor" = "Birta höfund";
+    "newsComponentPictureAlignment" = "Mynd er";
+    "newsComponentDateDisplay" = "Sýna dagsetningu við fyrirsögn";
+    "newsComponentShowSettings" = "Birta";
+    "newsComponentDetailPageLinkingName" = "Hlekkjunarheiti birtingarsíðu frétta";
+    "newsComponentDetailPageNumber" = "Númer birtingarsíðu frétta";
+    "newsComponentShowMoreFieldTitle" = "\"Lesa meira\"-texti";
+    "newsComponentGoBackTextFieldTitle" = "\"Til baka\"-texti";
+
+    "newsComponentShowHeadingOnly" = "Aðeins fyrirsögn";
+    "newsComponentShowHeadingAndExcerpt" = "Fyrirsögn og útdráttur";
+    "newsComponentShowHeadingAndFullText" = "Fyrirsögn og allur texti fréttar";
+    "newsComponentFormTitle" = "Titill skráningarforms";
+    "newsComponentMoreLinkOnTitle" = "Meira hlekkur á titli";
+    "newsComponentMoreLinkOnExcerpt" = "Meira hlekkur á úrdrætti";
+    "newsComponentHideMoreText" = "Fela \"Lesa meira\" texta";
+    "newsComponentShowOlder" = "Birta hlekk fyrir eldri fréttir";
+    "newsComponentShowOlderText" = "texti";
+    "newsComponentShowOlderPage" = "hlekkjunarheiti";
+    "newsComponentShowHorizontalLine" = "Lárétt lína milli frétta";
+	"newsComponentShowUtils" = "Sýna deilistiku";
+    
+    /* Images */
+    "picturePreviewWindowName" = "Mynd";
+    "picturePreviewFormat" = "Snið";
+    "picturePreviewScale" = "Stærð";
+    "picturePreviewWidth" = "Breidd";
+    "picturePreviewHeight" = "Hæð";
+    "picturePreviewQuality" = "Gæði";
+    "picturePreviewResizeButtonTitle" = "Breyta stærð";
+
+    "pictureUploadName" = "Heiti";
+    "pictureUploadType" = "Tag";
+    "pictureUploadURL" = "Sækja af Netinu";
+    "pictureUploadSelectFromDisk" = "Sækja af diski";
+    "pictureUploadSaveButtonTitle" = "Vista";
+    "pictureUploadNoTypeSpecified" = "Ekki skilgreint...";
+    "pictureDescription" = "Lýsing";
+    "pictureAltText" = "ALT texti";
+	"pictureSizes" = "Stærðir";
+	
+    "pictureSystemHeader" = "Myndir";
+    "cancelPictureSelection" = "Hætta við";
+    "createPictureFolderInRoot" = "Búa til möppu í rót";
+    "changePictureFolderNameButtonTitle" = "Breyta heiti";
+    "createNewPicture" = "Ný mynd";
+    "createPictureSubFolder" = "Ný undirmappa";
+    "transferPictureFolder" = "Flytja möppu";
+    "deletePictureFolder" = "Eyða möppu";
+    "pictureNameTableHeader" = "Heiti";
+    "pictureSizeTableHeader" = "Stærð";
+    "pictureTotalSizeTableFooter" = "Samtals";
+    "newPictureFolderName" = "Ný mappa";
+    "deletePictureFolderMessageString" = "Ertu viss um að þú viljir eyða essari möppu og innihaldi hennar?";
+    "deletePictureConfirmString" = "Ertu viss um að þú viljir eyða þessari mynd?";
+
+    "deletePictureTitle" = "Eyða þessari mynd";
+    "transferPictureTitle" = "Færa þessa mynd í aðra möppu";    
+    "previewPictureTitle" = "Nanari upplýsingar um mynd";
+
+    
+    /* Settings */
+
+    "newsSettingsHeader" = "Fréttir";
+    "newsSettingsDomainFieldtitle" = "Lén í RSS-fangi";
+    "newsSettingsDetailPageTitle" = "Hlekkjunarheiti fréttasíðu fyrir RSS-birtingu";
+    "newsSettingsPreviewRSS" = "Skoða RSS-straum";
+    "newsSettingsRSSHeader" = "RSS-stillingar fyrir fréttir";
+    "newsSettingsStringsHeader" = "Sjálfgefnir strengir";
+    "newsSettingsShowMoreString" = "Sjálgefinn \"Lesa meira\"-strengur";
+    "newsSettingsGoBackString" = "Sjálfgefinn \"Til baka\"-strengur";
+    
+    "systemSettingsHeader" = "Kerfisstillingar";
+    "systemSettingsNoSettingsFile" = "Ekki hefur verið búið til stillingaskjal fyrir þetta SoloWeb-kerfi. Vinsamlegast skilgreinið.";
+    "systemSettingsLocationOfSettingsFile" = "Staðsetning skjals";
+    "systemSettingsSetLocationButtonTitle" = "Vista";
+
+    "documentSettingsHeader" = "Skjalatög";
+    "documentSettingsAddButtonTitle" = "Bæta við skjalatagi";
+    "documentSettingsTypeNameHeader" = "Heiti";
+    "documentSettingsMIMEHeader" = "MIME-tag";
+    "documentSettingsExtensionHeader" = "Viðskeyti";
+    "documentSettingsDeleteTypeMessageString" = "Ertu viss um að þú viljir eyða þessu skjalatagi?";
+    "documentSettingsSaveButtonTitle" = "Vista";
+
+    "accessControlSettingsHeader" = "Stillingar aðgangsstýringa";
+
+    "generalSettingsHeader" = "Almennar stillingar";
+    "gsLocationOfImageFolder" = "Staðsetning mynda á diski miðlara";
+    "gsURLToImageFolder" = "URL að myndum";
+    "gsLocationOfDocuments" = "Staðsetning skjala á diski miðlara";
+    "gsSoloWebResourcesURL" = "URL að SoloWeb-súrsum";
+    "gsAdminUsername" = "Notandanafn kerfisstjóra";
+    "gsAdminPassword" = "Aðgangsorð kerfisstjóra";
+    "gsDefaultSMTPServer" = "Póstmiðlari (SMTP)";
+    "gsEmailAddress" = "Netfang kerfisstjóra";
+    "gsSessionTimeOut" = "Hámarks tími óvirkni kerfis (í mínútum)";
+    "gs404LinkingName" = "Hlekkjunarheiti 404 villusíðu";
+    "gsNumberOfSites" = "Fjöldi vefa";
+	"gsIndexLocation" = "Staðsetning leitarvísis á diski";
+	"gsStrictSiteChecking" = "Skila síðum aðeins fyrir rétt lén";
+	"gsDebugRequestResponseLoop" = "Debug request/response loop";
+    "gsSaveButtonTitle" = "Vista";
+    "gsDefaultPasswordProtectedString" = "Sjálfgefin skilaboð fyrir aðgangsorðaverndaðar síður";
+    "gsDefaultPasswordProtectedButtonTitle" = "Sjálfgefið heiti hnapps fyrir aðgangsorðaverndaðar síður";
+    "gsDefaultDownloadFileString" = "Sjálfgefinn \"Sækja skjal\"-texti";
+	"gsAllUsersGroup" = "Hópur fyrir alla notendur";
+    "databaseSettingsHeader" = "Gagnagrunnsstillingar";
+    "dbsDatabaseType" = "Tegund gagnagrunns";
+    "dbsInitializeButtonTitle" = "Frumstilla";
+    "dbsSaveButtonTitle" = "Vista";
+    "dbsConnectionSwitchingHeader" = "Breyta tengingu";
+    "dbsConnectionSwitchingText" = "Smelltu á hnappinn \"Tengja að nýju\" Til að aftengjast gagnagrunninum og tengjast að nýju með stillingum kerfisins.";
+    "dbsSwitchConnectionButtonTitle" = "Tengja að nýju";
+    "dbsConstructionHeader" = "Aðlögun gagnagrunns";
+    "dbsConstructionText" = "Búa til eða eyða töflum í gagnagrunni fyrir þessar einingar";
+    "dbsConstructionModuleNameTableHeader" = "Eining";
+    "dbsConstructionCreateTablesCheckbox" = "Búa til töflur";
+    "dbsConstructionDropTablesCheckbox" = "Eyða töflum";
+    "dbsConstructButtonTitle" = "Aðlaga gagnagrunn";
+    "dbsConstructionWarning" = "Ertu viss?!";
+
+    "administrativeActionsHeader" = "Ýmislegt";
+    "aaActions" = "Aðgerðir";
+    "aaFlushCDF" = "Eyða flýtiminni WOComponent-hluta";
+    "aaInvalidateAll" = "invalidateAllObjects() í soloEC";
+    "aaStatistics" = "Tölulegar upplýsingar";
+    "aaTotalMemUse" = "Heildarminnisnotkun";
+    "aaEstimatedFreeMem" = "Laust minni (áætlað)";
+    "aaApplicationStartedAt" = "Forritið var ræst";
+    "aaNumberOfPagesServed" = "Fjöldi birtra síðna frá ræsingu";
+    "aaServerTime" = "Klukka á miðlara";
+
+    
+    /* Site editing */
+	"siteCSS" = "Stílsnið";
+    "siteDelete" = "Eyða";
+    "siteSaveButtonTitle" = "Vista";
+    "siteNameFieldTitle" = "Heiti";
+    "siteLookFieldTitle" = "Heiti útlitsskrár";
+    "siteLanguageFieldTitle" = "Tungumál";
+    "site404PageFieldTitle" = "Hlekkjunarheiti 404 villusíðu";
+    "siteDomainsFieldTitle" = "Lén";
+    "deleteSiteWarning" = "Ertu alveg viss?!";
+
+
+    /* Folder listing */
+    "folderListHeader" = "Möppur";
+
+    
+    /* System menu */
+    "smSiteTree" = "Veftré";
+    "smNews" = "Fréttir";
+    "smPictures" = "Myndir";
+    "smDocuments" = "Skjöl";
+    "smUsersAndGroups" = "Notendur";
+    "smSystemSettings" = "Kerfisstillingar";
+    "smMySettings" = "Stillingar";
+    "smLogOut" = "Aftengjast";
+    "smLogoutMessage" = "Ertu viss um að þú viljir aftengjast?";
+
+    
+    /* My settings */
+    "mySettingsHeader" = "Mínar stillingar";
+    "msPassword" = "Aðgangsorð mitt";
+    "msDefaultSite" = "Sjálfgefinn vefur";
+    "msPicture" = "Mynd af mér";
+    "msSaveButtonTitle" = "Vista";
+
+    
+    /* Site lists */
+    "siteListSitesString" = "Vefir...";
+    "newSiteString" = "Búa til nýjan vef";
+    
+
+    /* Access privileges */
+    "apTypeHeading" = "Heiti";
+    "apRecordHeading" = "Númer";
+    "apDontInheritHeading" = "Erfist ekki";
+
+    "apUserGroupNameHeading" = "Notandi/hópur";
+    "apSelectUserGroupString" = "Notandi/hópur...";
+    "apAddPrefix" = "Bæta við";
+    "apAddPrivilegeButtonTitle" = "Bæta við";
+    "apInheritPrivilegesFieldTitle" = "Erfir aðgangsheimildir frá foreldri (erfðar heimildir eru sýndar með gulum lit)";
+    "accessPrivilegeDeleteWarning" = "Ertu viss um að þú viljir eyða þessari aðgangsheimild?";
+
+
+    /* Users and groups */
+    "ugHeader" = "Notendur og hópar";
+    "ugGroups" = "Hópar";
+    "ugCreateGroup" = "Búa til hóp";
+    "ugUsers" = "Notendur";
+    "ugCreateUser" = "Búa til notanda";
+    "ugNoSelection" = "...";
+
+    
+    /* Groups */
+    "grpName" = "Heiti hóps";
+    "grpUsers" = "Notendur í hóp";
+    "grpAddUserToGroupButtonTitle" = "Bæta notanda í hóp";
+    "grpDeleteGroup" = "Eyða hóp";
+    "grpRemoveUserFromGroupWarning" = "Ertu viss um að þú viljir eyða þessum notanda úr hópnum?";
+    "grpSaveButtonTitle" = "Vista";
+    "grpSelectUser" = "Notendur...";
+    "deleteGroupWarning" = "Ertu viss um að þú viljir eyða þessum hópi?";
+	"grpIsCrmGroup" = "CRM notendahópur";
+
+    
+    /* Users */
+    "usrName" = "Fullt nafn";
+    "usrUsername" = "Notandanafn";
+    "usrPassword" = "Aðgangsorð";
+    "usrPhone" = "Símanúmer";
+    "usrDefaultSite" = "Sjálfgefinn vefur";
+    "usrComment" = "Athugasemdir";
+    "usrPicture" = "Mynd";    
+    "usrUnlimited" = "Ótakmarkaður aðgangur";
+    "usrGroups" = "Er í hópunum";
+    "usrDelete" = "Eyða notanda";
+    "usrSaveButtonTitle" = "Vista";
+    "usrDeleteWarning" = "Ertu viss um að þú viljir eyða þessum notanda?";
+    "usrRemoveFromGroupWarning" = "Ertu viss um að þú viljir fjarlægja valda notandann úr þessum hóp?";
+    "usrSelectGroupString" = "Hópar...";
+    "usrSelectSiteString" = "Enginn vefur valinn...";
+    "usrAddUserToGroupButtonTitle" = "Bæta notanda í hóp";
+
+    /* Transfer picture folder */
+    "tpfHeader" = "Flytja í aðra möppu";
+    "tpfCancel" = "Hætta við";
+    "tpfPart1" = "Þú ert að fara að flytja möppuna";
+    "tpfPart2" = "í aðra möppu. Vinsamlegast veldu á möppuna sem hún á að fara í.";
+
+    
+    /* Transfer Component */
+    "tcHeader" = "Flytja síðubút";
+    "tcCancel" = "Hætta við";
+    "tcPart1" = "þú ert að fara að flytja síðubút af síðunni";
+    "tcPart2" = "á aðra síðu. Vinsamlegast veldu nýju síðuna.";
+
+    
+    /* Transfer Document */
+    "tdHeader" = "Flytja skjal";
+    "tdCancel" = "Hætta við";
+    "tdPart1" = "Þú ert að fara að flytja skjalið";
+    "tdPart2" = "í aðra möppu. Vinsamlegast veldu á möppuna sem hún á að fara í.";
+
+    
+    /* Transfer Document Folder */
+    "tdfHeader" = "Flytja möppu";
+    "tdfCancel" = "Hætta við";
+    "tdfPart1" = "Þú ert að fara að flytja möppuna";
+    "tdfPart2" = "í aðra möppu. Vinsamlegast veldu á möppuna sem hún á að fara í.";
+
+
+    /* Transfer News Folder */
+    "tnfHeader" = "Flytja möppu";
+    "tnfCancel" = "Hætta við";
+    "tnfPart1" = "Þú ert að fara að flytja möppuna";
+    "tnfPart2" = "í aðra möppu. Vinsamlegast veldu á möppuna sem hún á að fara í.";
+
+    
+    /* Transfer News Item */
+    "tniHeader" = "Flytja frétt";
+    "tniCancel" = "Hætta við";
+    "tniPart1" = "Þú ert að fara að flytja fréttina";
+    "tniPart2" = "í aðra möppu. Vinsamlegast veldu á möppuna sem hún á að fara í.";
+
+
+    /* Transfer Page */
+    "tpHeader" = "Flytja síðu";
+    "tpCancel" = "Hætta við";
+    "tpPart1" = "Þú ert að fara að flytja eða afrita síðuna";
+    "tpPart2" = "Vinsamlegast smelltu á nýja yfirsíðu eða smelltu á hlekkinn \"hingað\" á milli tveggja annarra síða.";
+
+
+    /* Transfer Picture */
+    "tpicHeader" = "Flytja mynd";
+    "tpicCancel" = "Hætta við";
+    "tpicPart1" = "Þú ert að fara að flytja myndina";
+    "tpicPart2" = "í aðra möppu. Vinsamlegast veldu á möppuna sem hún á að fara í.";
+    
+    
+    /* Login screen */
+    "wrongLoginCredentials" = "Rangt notandanafn eða aðgangsorð";
+
+    "untitledObjectString" = "(Ónefnt)";
+    "newSiteName" = "Nýr vefur";
+    "newFrontPageName" = "Forsíða";
+    "newPageName" = "Ný síða";
+
+    /* New */
+    "aaCreateGroupWithAllUsers" = "Búa til hóp með öllum notendum";
+    "aaMakeAllFoldersPropagatePrivileges" = "Láta allar möppur erfa aðgagsheimildir";
+    "gsEnablePrivileges" = "Virkja aðgangsstýringar";
+    "gsOnlyShowGroupPrivileges" = "Einungis leyfa úthlutun heimilda til hópa";
+    "gsSystemFrontPageLinkingName" = "Hlekkjunarheiti forsíðu kerfis";
+
+    /* Standard page editing tabs */
+    "eptGeneral" = "Almennt";
+    "eptContent" = "Efni";
+    "eptPublishing" = "Birting";
+    "eptAccessPrivileges" = "Aðgangsheimildir";
+
+    /* Standard component editing tabs */
+    "cpteContent" = "Texti og myndir";
+    "cpteNews" = "Fréttir";
+    "cpteDocuments" = "Skjöl";
+
+    /* Standard site editing tabs */
+    "eSiteTabGeneral" = "Almennt";
+    "eSiteTabAccessPrivileges" = "Aðgangsheimildir";
+
+    /* Standard settings tabs */
+    "settingsTabGeneral" = "Almennt";
+    "settingsTabDatabase" = "Gagnagrunnur";
+    "settingsTabDocuments" = "Skjöl";
+    "settingsTabNews" = "Fréttir";
+    "settingsTabAdministration" = "Aðgerðir";
+    "settingsTabAccessControls" = "Aðgangsstýringar";
+	"settingsTabLocalization" = "Staðfærsla";
+	"settingsTabStatistics" = "Tölfræði";
+
+    /* Database settings tabs */
+    "dbsTabConnections" = "Tengingar";
+    "dbsTabSwitchAndConstruct" = "Aðgerðir";
+
+    /* Document administration tabs */
+    "sfAdminTabDocuments" = "Skjöl";
+    "sfAdminTabAccessPrivileges" = "Aðgangsheimildir";
+
+    /* Picture administration tabs */
+    "picAdminTabDocuments" = "Myndir";
+    "picAdminTabAccessPrivileges" = "Aðgangsheimildir";
+
+    /* News administration tabs */
+    "newsAdminTabDocuments" = "Fréttir";
+    "newsAdminTabAccessPrivileges" = "Aðgangsheimildir";
+
+    /* Page privilege names */
+    "ppDeletePages" = "Eyða síðum";
+    "ppModifyPage" = "Breyta stillingum síðu";
+    "ppModifyContent" = "Breyta efni síðu";
+    "ppControlPrivileges" = "Stýra aðgangsheimildum";
+
+    /* Site privilege names */
+    "spHasAccess" = "Leyfa aðgang að þessum vef";
+
+    /* Picture privilege names */
+    "picpSeeFolders" = "Sjá möppur";
+    "picpManagePrivileges" = "Stýra aðgangsheimildum";
+
+    /* Document privilege names */
+    "docpSeeFolders" = "Sjá möppur";
+    "docpManagePrivileges" = "Stýra aðgangsheimildum";
+
+    /* News privilege names */
+    "newspSeeFolders" = "Sjá möppur";
+    "newspManagePrivileges" = "Stýra aðgangsheimildum";
+
+    /* Document administration component */
+    "docComponentSingleDocument" = "Eitt skjal";
+    "docComponentListOfDocuments" = "Listi af skjölum (úr möppu valda skjalsins)";
+	
+	"applyPasswordToSubPages" = "Setja á undirsíður";
+	
+	"copyTitle" = "Afrita";
+}

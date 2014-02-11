@@ -1,0 +1,6 @@
+body {width:expression(document.documentElement.clientWidth < 900 ? "900px" : "auto");}
+#top li { display: inline; }
+.butur .image-holder.center .image { display: inline; }
+.newsItem .titill {
+	border: 1px solid red;
+}

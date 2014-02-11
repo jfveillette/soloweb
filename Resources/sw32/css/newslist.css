@@ -1,0 +1,16 @@
+
+form.news_years { vertical-align: middle; }
+form.news_years input.button { font-size: -2; margin-left: 12px; }
+* html form.news_years input.button { height: 23px; }
+.urdrattur { padding-bottom: 6px; }
+.fyrirsogn { font-weight: bold; }
+.dags { font-style: italic; font-size: -1; }
+.older { padding-top: 8px; }
+.til_baka { width: 100%; text-align: right; padding-top: 8px; }
+
+.news_items table.left {
+	padding-right: 10px;
+}
+.news_items table.right {
+	padding-left: 10px;
+}

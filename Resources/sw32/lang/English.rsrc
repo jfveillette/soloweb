@@ -1,0 +1,530 @@
+{
+    /* Page editing */
+	"noAccessMessage" = "You do not have access to edit this page";
+	"noComponentsOnPageMessage" = "There is no content on this page. Click the green plus to add content.";
+    "pageName" = "Name";
+    "linkingName" = "Linking name";
+    "namePrefix" = "Name prefix";
+    "redirectTo" = "Redirect to";
+    "customLook" = "Custom look";
+    "pageGeneral" = "General";
+    "pageDescription" = "Description";
+    "pageKeywords" = "Keywords";
+    "createSubPage" = "Create subpage";
+    "pagePublishingOptions" = "Publishing options";
+    "pagePassword" = "Access group";
+	"pageLoginFormName" = "Login form name";
+	"pageLoginFormOptions" = "Login form options";
+    "pageTimeIn" = "Time in";
+    "pageTimeOut" = "Time out";
+    "pageDisplayOnSite" = "Display on site";
+    "pageAccessible" = "Accessible";
+    "pageLanguageFieldTitle" = "Language";
+	"hideRightColumn" = "Hide right column";
+    "deletePage" = "Delete page";
+    "deletePageWarning" = "Are you sure you want to delete this page and all its subpages?";
+    "movePage" = "Move page";
+    "movePageMessage" = "Click here to transfer this page and its subpages to a different location";
+    "previewPage" = "Preview page";
+    "deletePageComponentWarning" = "Are you sure you want to permanently delete this component?";
+    "savePageChangesButtonTitle" = "Save";
+
+
+    /* Component editing */
+    "componentPublishingOptions" = "Publishing options";
+    "componentPublished" = "Published";
+    "componentTimeIn" = "Time in";
+    "componentTimeOut" = "Time out";
+    "componentEncodeBreaks" = "Encode breaks";
+    "componentUpMessage" = "Click here to move this component up one level";
+    "componentDownMessage" = "Click here to move this component down one level";
+    "componentMoveMessage" = "Click here to transfer this component to a different page";
+    "componentDeleteMessage" = "Click here to delete this component";
+    "componentAddMessage" = "Click here to add a new component here";
+
+    
+    /* Message displayed after logout */
+    "loggedOutStringOne" = "You have successfully logged out of the system. Please";
+    "loggedOutStringTwo" = "click here";
+    "loggedOutStringThree" = "to log in again.";
+
+    
+    /* Standard element editing components */
+    "arrayEditorAddMessage" = "Add object";
+    "arrayEditorAddButtonTitle" = "Add";
+    "dictionaryEditorAddMessage" = "New key";
+    "dictionaryEditorAddButtonTitle" = "Add";
+
+
+    /* Date and time picker */
+    "datePickerHeading" = "Select date and time";
+    "datePickerNoTimeSetString" = "No time set";
+    "datePickerButtonTitle" = "Select date";
+    "datePickerClearDate" = "Clear date";
+    "datePickerMinute" = "Minute";
+    "datePickerHour" = "Hour";
+    "datePickerDay" = "Day";
+    "datePickerMonth" = "Month";
+    "datePickerYear" = "Year";
+    "selectDateButtonTitle" = "Change";
+    
+    /* Picture selection */
+    "pictureHyperlinkMessage" = "Click here to select a picture";
+    "pictureHyperlinkRemove" = "Remove picture";
+	"pictureHyperlinkAdd" = "Select picture";
+
+    /* Document  administration*/
+    "documentsHeader" = "Documents";
+    "cancelDocumentSelection" = "Cancel document selection";
+    "createDocumentFolderInRoot" = "Create folder in root directory";
+    "changeFolderNameButtonTitle" = "Rename";
+    "createNewDocument" = "New document";
+    "createDocumentSubFolder" = "Create subfolder";
+    "transferDocumentFolder" = "Transfer folder";
+    "deleteDocumentFolder" = "Delete folder";
+    "documentNameTableHeader" = "Name";
+    "documentSizeTableHeader" = "Size";
+    "documentTotalSizeTableFooter" = "Total";
+    "newDocumentFolderName" = "New folder";
+    "deleteDocumentFolderMessageString" = "Are you sure you want to delete this folder and all its contents?";
+    "deleteDocumentWarning" = "Are you sure you want to delete this document?";
+
+	"documentSortingTitle" = "Reverse sort order";
+    "documentNameFieldTitle" = "Name";
+    "documentTypeFieldTitle" = "Type";
+    "documentDownloadFieldTitle" = "Download from";
+    "documentSelectFromDiskFieldTitle" = "Select from disk";
+    "documentSaveButtonTitle" = "Save";
+    "documentNoDocumentTypeSelected" = "Not specified...";
+
+    
+    /* Document component selection */
+    "documentComponentHeading" = "Documents";
+    "documentselectFieldTitle" = "Document";
+    "documentDisplayStyleTitle" = "Display style";
+    "documentIconFieldTitle" = "Display file icon";
+    "documentDownloadTextFieldTitle" = "Download text";
+    "documentNoDocumentSelectedString" = "Select a document...";
+
+    
+    /* News */
+    "newsSystemHeader" = "News";
+    "createNewsFolderInRoot" = "Create folder in root directory";
+    "changeNewsFolderNameButtonTitle" = "Rename";
+    "createNewNewsitem" = "New newsitem";
+    "createNewsSubFolder" = "Create subfolder";
+    "transferNewsFolder" = "Transfer folder";
+    "deleteNewsFolder" = "Delete folder";
+    "newsHeadingTableHeader" = "Name";
+    "newsDateTableHeader" = "Date";
+	"newsCustomMoreURLTitle" = "Link for 'more'";
+    
+    /* Newsitem editing */
+    "newsGeneralHeading" = "General";
+    "newsExcerptHeading" = "Excerpt";
+    "newsPictureHeading" = "Picture with news text";
+    "newsPictureHeading2" = "Picture with excerpt";
+    "newsMainTextHeading" = "Main text";
+    "newsAuthorTitle" = "Author";
+    "newsHeadlineFieldTitle" = "Headline";
+    "newsDateFieldTitle" = "Date";
+    "newsTimeInFieldTitle" = "Time in";
+    "newsTimeOutFieldTitle" = "Time out";
+    "newsPublishedFieldTitle" = "Published";
+    "newsEncodeBreaksFieldTitle" = "Encode breaks";
+    "newsExtraCategories" = "Extra categories";
+    "newsSaveChangesButtonTitle" = "Save";
+    "deleteNewsWarning" = "Are you sure you want to delete this item?";
+    "deleteNewsFolderWarning" = "Are you sure you want to delete this folder and all its contents?";
+
+
+    /* News Component */
+    "newsComponentHeading" = "News";
+    "newsComponentPublishingOptions" = "Publishing options";
+    "newsComponentDisplayStyle" = "Display style";
+    "newsComponentCategory" = "News categories";
+    "newsComponentMaxItems" = "Max number of items to show";
+    "newsComponentSkipItems" = "Number of items to skip";
+    "newsComponentMaxDays" = "Max number of days to include";
+    "newsComponentSkipDays" = "Number of days to skip";
+	"newsComponentShowOnlyItemsFromPast" = "Show only past items";
+	"newsComponentShowOneRandomItem" = "Show one random item";
+    "newsComponentSortFieldTitle" = "Sort";
+    "newsComponentSortOrderFieldTitle" = "Sort order";
+    "newsComponentShowItemIfNoItemsFound" = "Show this item if no items were found";
+    "newsComponentRandom" = "Random display";
+	"newsComponentNewItemAutoPublished" = "New news item published automatically";
+
+    "newsComponentDisplayOptions" = "Display options";
+    "newsComponentShowPicture" = "Show picture";
+    "newsComponentShowAuthor" = "Show author";
+    "newsComponentPictureAlignment" = "Picture alignment";
+    "newsComponentDateDisplay" = "Show date to headline";
+    "newsComponentShowSettings" = "Show";
+    "newsComponentDetailPageLinkingName" = "Linking name of detail page";
+    "newsComponentDetailPageNumber" = "Number of detail page";
+    "newsComponentShowMoreFieldTitle" = "\"Show more\" text";
+    "newsComponentGoBackTextFieldTitle" = "\"Go back\" text";
+
+    "newsComponentShowHeadingOnly" = "Heading only";
+    "newsComponentShowHeadingAndExcerpt" = "Heading and excerpt";
+    "newsComponentShowHeadingAndFullText" = "Heading and full text";
+    "newsComponentFormTitle" = "Title for entry form";
+    "newsComponentMoreLinkOnTitle" = "More link on title";
+    "newsComponentMoreLinkOnExcerpt" = "More link on excerpt";
+    "newsComponentHideMoreText" = "Hide \"Show more\" text";
+    "newsComponentShowOlder" = "Show link for older news";
+    "newsComponentShowOlderText" = "text";
+    "newsComponentShowOlderPage" = "page link";
+    "newsComponentShowHorizontalLine" = "Horizontal line between news items";
+	"newsComponentShowUtils" = "Show sharing bar";
+
+    /* Images */
+    "picturePreviewWindowName" = "Preview";
+    "picturePreviewFormat" = "Format";
+    "picturePreviewScale" = "Scale";
+    "picturePreviewWidth" = "Width";
+    "picturePreviewHeight" = "Height";
+    "picturePreviewQuality" = "Quality";
+    "picturePreviewResizeButtonTitle" = "Resize and recompress";
+
+    "pictureUploadName" = "Name";
+    "pictureUploadType" = "Type";
+    "pictureUploadURL" = "Download from";
+    "pictureUploadSelectFromDisk" = "Select from disk";
+    "pictureUploadSaveButtonTitle" = "Save";
+    "pictureUploadNoTypeSpecified" = "Not specified...";
+    "pictureDescription" = "Description";
+    "pictureAltText" = "ALT text";
+	"pictureSizes" = "Sizes";
+	
+    "pictureSystemHeader" = "Pictures";
+    "cancelPictureSelection" = "Cancel picture selection";
+    "createPictureFolderInRoot" = "Create folder in root directory";
+    "changePictureFolderNameButtonTitle" = "Rename";
+    "createNewPicture" = "New picture";
+    "createPictureSubFolder" = "Create subfolder";
+    "transferPictureFolder" = "Transfer folder";
+    "deletePictureFolder" = "Delete folder";
+    "pictureNameTableHeader" = "Name";
+    "pictureSizeTableHeader" = "Size";
+    "pictureTotalSizeTableFooter" = "Total";
+    "newPictureFolderName" = "New folder";
+    "deletePictureFolderMessageString" = "Are you sure you want to delete this folder and all its contents?";
+    "deletePictureConfirmString" = "Are you sure you want to delete this picture?";
+
+    "deletePictureTitle" = "Delete this picture";
+    "transferPictureTitle" = "Move this picture to a different folder";    
+    "previewPictureTitle" = "Preview this picture";
+
+    
+    /* Settings */
+
+    "newsSettingsHeader" = "External news publishing";
+    "newsSettingsDomainFieldtitle" = "Domain for RSS publishing";
+    "newsSettingsDetailPageTitle" = "Linking name of RSS news page";
+    "newsSettingsPreviewRSS" = "Preview RSS-stream";
+    "newsSettingsRSSHeader" = "RSS publishing settings";
+    "newsSettingsStringsHeader" = "Default strings";
+    "newsSettingsShowMoreString" = "Default \"Show more\" string";
+    "newsSettingsGoBackString" = "Default \"Go back\" string";
+
+    "systemSettingsHeader" = "System settings";
+    "systemSettingsNoSettingsFile" = "A settings file has note been specified for this SoloWeb system. Please specify.";
+    "systemSettingsLocationOfSettingsFile" = "Location of settings file";
+    "systemSettingsSetLocationButtonTitle" = "Set";
+
+    "documentSettingsHeader" = "Document types";
+    "documentSettingsAddButtonTitle" = "Add a document type";
+    "documentSettingsTypeNameHeader" = "Name";
+    "documentSettingsMIMEHeader" = "MIME type";
+    "documentSettingsExtensionHeader" = "Extension";
+    "documentSettingsDeleteTypeMessageString" = "Are you sure you want to delete this document type? Any associated documents will lose their type specification.";
+    "documentSettingsSaveButtonTitle" = "Save";
+
+    "accessControlSettingsHeader" = "Access control settings";
+    
+    "generalSettingsHeader" = "General settings";
+    "gsLocationOfImageFolder" = "Location of pictures on server disk";
+    "gsURLToImageFolder" = "Public URL to pictures";
+    "gsLocationOfDocuments" = "Location of documents on server disk";
+    "gsSoloWebResourcesURL" = "URL to folder containing SoloWeb resources";
+    "gsAdminUsername" = "Administrator username";
+    "gsAdminPassword" = "Administrator password";
+    "gsDefaultSMTPServer" = "Default mail (SMTP) server";
+    "gsEmailAddress" = "Webmaster e-mail address";
+    "gsSessionTimeOut" = "Session timeout in minutes";
+    "gs404LinkingName" = "Linking name of 404 error page";
+    "gsNumberOfSites" = "Number of licensed sites";
+	"gsIndexLocation" = "Location of search index on server disk";
+	"gsStrictSiteChecking" = "Return pages only for owning domain";
+	"gsDebugRequestResponseLoop" = "Debug request/response loop";
+    "gsSaveButtonTitle" = "Save";
+    "gsDefaultPasswordProtectedString" = "Default password protected page message";
+    "gsDefaultPasswordProtectedButtonTitle" = "Default password protected button title";
+    "gsDefaultDownloadFileString" = "Default \"Download file\" string for documents";
+    "gsAllUsersGroup" = "Group that contains all users";
+
+    "databaseSettingsHeader" = "Database settings";
+    "dbsDatabaseType" = "Database type";
+    "dbsInitializeButtonTitle" = "Initialize";
+    "dbsSaveButtonTitle" = "Save";
+    "dbsConnectionSwitchingHeader" = "Connection switching";
+    "dbsConnectionSwitchingText" = "Click \"Switch connection\" to drop all active database connections and reconnect with the parameters specified in the current connection dictionary.";
+    "dbsSwitchConnectionButtonTitle" = "Switch connection";
+    "dbsConstructionHeader" = "Database construction";
+    "dbsConstructionText" = "Construct/Drop schema for these modules";
+    "dbsConstructionModuleNameTableHeader" = "Module";
+    "dbsConstructionCreateTablesCheckbox" = "Create tables";
+    "dbsConstructionDropTablesCheckbox" = "Drop tables";
+    "dbsConstructButtonTitle" = "Construct database";
+    "dbsConstructionWarning" = "Are you sure you want to proceed!?";
+
+    "administrativeActionsHeader" = "Administrative actions";
+    "aaActions" = "Actions";
+    "aaFlushCDF" = "Flush component definition cache";
+    "aaInvalidateAll" = "Invalidate all objects in soloEC";
+    "aaStatistics" = "Statistics";
+    "aaTotalMemUse" = "Total memory use";
+    "aaEstimatedFreeMem" = "Estimated free memory";
+    "aaApplicationStartedAt" = "Application started at";
+    "aaNumberOfPagesServed" = "Number of pages served since startup";
+    "aaServerTime" = "Server time";
+
+    
+    /* Site editing */
+	"siteCSS" = "Stylesheets";
+	"siteDelete" = "Delete";
+    "siteSaveButtonTitle" = "Save";
+    "siteNameFieldTitle" = "Name";
+    "siteLookFieldTitle" = "Look";
+    "siteLanguageFieldTitle" = "Language";
+    "site404PageFieldTitle" = "404 page linking name";
+    "siteDomainsFieldTitle" = "Domains";
+    "deleteSiteWarning" = "Are you absolutely 100% sure?";
+
+
+    /* Folder listing */
+    "folderListHeader" = "Folders";
+
+    
+    /* System menu */
+    "smSiteTree" = "Site tree";
+    "smNews" = "News";
+    "smPictures" = "Pictures";
+    "smDocuments" = "Documents";
+    "smUsersAndGroups" = "Users and groups";
+    "smSystemSettings" = "System settings";
+    "smMySettings" = "My settings";
+    "smLogOut" = "Log out";
+    "smLogoutMessage" = "Are you sure you want to log out? Unsaved changes will be lost.";
+
+    
+    /* My settings */
+    "mySettingsHeader" = "My settings";
+    "msPassword" = "My password";
+    "msDefaultSite" = "My default site";
+    "msPicture" = "My picture";
+    "msSaveButtonTitle" = "Save";
+
+    
+    /* Site lists */
+    "siteListSitesString" = "Sites...";
+    "newSiteString" = "Create new site";
+    
+
+    /* Access privileges */
+    "apTypeHeading" = "Type";
+    "apRecordHeading" = "Record";
+    "apDontInheritHeading" = "Not inherited";
+
+    "apUserGroupNameHeading" = "User/Group";
+    "apSelectUserGroupString" = "Select...";
+    "apAddPrefix" = "Add";
+    "apAddPrivilegeButtonTitle" = "Add";
+    "apInheritPrivilegesFieldTitle" = "Inherit privileges from parent (Inherited privileges are shown in yellow)";
+    "accessPrivilegeDeleteWarning" = "Are you sure you want to delete this access privilege?";
+
+
+    /* Users and groups */
+    "ugHeader" = "Users & Groups";
+    "ugGroups" = "Groups";
+    "ugCreateGroup" = "Create group";
+    "ugUsers" = "Users";
+    "ugCreateUser" = "Create user";
+    "ugNoSelection" = "Select...";
+
+    
+    /* Groups */
+    "grpName" = "Group name";
+    "grpUsers" = "Users";
+    "grpAddUserToGroupButtonTitle" = "Add user to group";
+    "grpDeleteGroup" = "Delete group";
+    "grpRemoveUserFromGroupWarning" = "Are you sure you want to remove this user from the selected group?";
+    "grpSaveButtonTitle" = "Save";
+    "grpSelectUser" = "Select a user...";
+    "deleteGroupWarning" = "Are you sure you want to delete this group?";
+	"grpIsCrmGroup" = "CRM group";
+
+    
+    /* Users */
+    "usrName" = "Full name";
+    "usrUsername" = "Username";
+    "usrPassword" = "Password";
+    "usrPhone" = "Phone";
+    "usrDefaultSite" = "Default site";
+    "usrComment" = "Comment";
+    "usrPicture" = "Picture";    
+    "usrUnlimited" = "Unlimited access";
+    "usrGroups" = "Member of";
+    "usrDelete" = "Delete user";
+    "usrSaveButtonTitle" = "Save";
+    "usrDeleteWarning" = "Are you sure you want to delete this user?";
+    "usrRemoveFromGroupWarning" = "Are you sure you want to remove the selected user from this group?";
+    "usrSelectGroupString" = "Select a group...";
+    "usrSelectSiteString" = "No site selected";
+    "usrAddUserToGroupButtonTitle" = "Add user to group";
+
+    /* Transfer folder */
+    "tpfHeader" = "Transfer to another folder";
+    "tpfCancel" = "Cancel transfer";
+    "tpfPart1" = "you are about to move";
+    "tpfPart2" = "to a different folder. Please click the desired destination folder.";
+
+    
+    /* Transfer Component */
+    "tcHeader" = "Transfer component";
+    "tcCancel" = "Cancel transfer";
+    "tcPart1" = "You are about to move a component from the page";
+    "tcPart2" = "to a different page. Please click the desired destination page.";
+
+    
+    /* Transfer Document */
+    "tdHeader" = "Transfer document";
+    "tdCancel" = "Cancel transfer";
+    "tdPart1" = "You are about to move the document";
+    "tdPart2" = "to a different folder. Please click the desired destination folder.";
+
+    
+    /* Transfer Document Folder */
+    "tdfHeader" = "Transfer folder";
+    "tdfCancel" = "Cancel transfer";
+    "tdfPart1" = "You are about to move the folder";
+    "tdfPart2" = "to a different folder. Please click the desired destination folder.";
+
+
+    /* Transfer News Folder */
+    "tnfHeader" = "Transfer folder";
+    "tnfCancel" = "Cancel transfer";
+    "tnfPart1" = "You are about to move the folder";
+    "tnfPart2" = "to a different folder. Please click the desired destination folder.";
+
+    
+    /* Transfer News Item */
+    "tniHeader" = "Transfer newsitem";
+    "tniCancel" = "Cancel transfer";
+    "tniPart1" = "You are about to move the newsitem";
+    "tniPart2" = "to a different folder. Please click the desired destination folder.";
+
+
+    /* Transfer Page */
+    "tpHeader" = "Transfer page";
+    "tpCancel" = "Cancel transfer";
+    "tpPart1" = "You are about to move the page";
+    "tpPart2" = "to a different parent page, along with all its subpages. Please click the desired destination page.";
+
+
+    /* Transfer Picture */
+    "tpicHeader" = "Transfer picture";
+    "tpicCancel" = "Cancel transfer";
+    "tpicPart1" = "You are about to move the picture";
+    "tpicPart2" = "to a different folder. Please click the desired destination folder.";
+
+
+    /* Login screen */
+    "wrongLoginCredentials" = "Wrong username or password";
+
+    /* Potpourri system strings */
+    "untitledObjectString" = "(Untitled)";
+    "newSiteName" = "New site";
+    "newFrontPageName" = "Home page";
+    "newPageName" = "New page";
+
+
+    /*New */
+    "aaCreateGroupWithAllUsers" = "Create a group containing all users";
+    "aaMakeAllFoldersPropagatePrivileges" = "Set \"inherits privileges\" on all folders";
+    "gsEnablePrivileges" = "Enable access controls";
+    "gsOnlyShowGroupPrivileges" = "Allow privileges to be granted only to groups";
+    "gsSystemFrontPageLinkingName" = "Linking name of system front page";
+
+    /* Standard page editing tabs */
+    "eptGeneral" = "General";
+    "eptContent" = "Content";
+    "eptPublishing" = "Publishing options";
+    "eptAccessPrivileges" = "Access privileges";
+
+    /* Standard component editing tabs */
+    "cpteContent" = "Content";
+    "cpteNews" = "News";
+    "cpteDocuments" = "Documents";
+
+    /* Standard site editing tabs */
+    "eSiteTabGeneral" = "General";
+    "eSiteTabAccessPrivileges" = "Access privileges";
+
+    /* Standard settings tabs */
+    "settingsTabGeneral" = "General settings";
+    "settingsTabDatabase" = "Database settings";
+    "settingsTabDocuments" = "Document settings";
+    "settingsTabNews" = "News settings";
+    "settingsTabAdministration" = "Administrative actions";
+    "settingsTabAccessControls" = "Access control settings";
+	"settingsTabLocalization" = "Localization";
+	"settingsTabStatistics" = "Statistics";
+
+    /* Database settings tabs */
+    "dbsTabConnections" = "Connections";
+    "dbsTabSwitchAndConstruct" = "Switch & construct";
+
+    /* Document administration tabs */
+    "sfAdminTabDocuments" = "Documents";
+    "sfAdminTabAccessPrivileges" = "Access privileges";
+
+    /* Picture administration tabs */
+    "picAdminTabDocuments" = "Pictures";
+    "picAdminTabAccessPrivileges" = "Access privileges";
+
+    /* News administration tabs */
+    "newsAdminTabDocuments" = "Newsitems";
+    "newsAdminTabAccessPrivileges" = "Access privileges";
+
+    /* Page privilege names */
+    "ppDeletePages" = "Delete pages";
+    "ppModifyPage" = "Modify page information";
+    "ppModifyContent" = "Edit content";
+    "ppControlPrivileges" = "Control Privileges";
+
+    /* Site privilege names */
+    "spHasAccess" = "Has access to this site";
+
+    /* Picture privilege names */
+    "picpSeeFolders" = "See folders";
+    "picpManagePrivileges" = "Manage privileges";
+
+    /* Document privilege names */
+    "docpSeeFolders" = "See folders";
+    "docpManagePrivileges" = "Manage privileges";
+
+    /* News privilege names */
+    "newspSeeFolders" = "See folders";
+    "newspManagePrivileges" = "Manage privileges";
+
+    /* Document administration component */
+    "docComponentSingleDocument" = "A single document";
+    "docComponentListOfDocuments" = "A list of documents from folder";
+	
+	"applyPasswordToSubPages" = "Apply to subpages";
+	
+	"copyTitle" = "Copy";
+}
