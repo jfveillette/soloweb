@@ -39,7 +39,7 @@ public class CPLogin extends CPAdminComponent {
 	/**
 	 * The error string displayed if authentication fails
 	 */
-	private String _errorMessage;
+	private String _message;
 
 	/**
 	 * The language currently displayed in the language pop-up menu
@@ -79,10 +79,10 @@ public class CPLogin extends CPAdminComponent {
 			return pageWithName( SWSettingsPanel.class );
 		}
 
-		String errorMessage = SWUser.loginInContext( ec, username(), password(), context() );
+		String message = SWUser.loginInContext( ec, username(), password(), context() );
 
-		if( errorMessage != null ) {
-			return error( errorMessage );
+		if( message != null ) {
+			return error( message );
 		}
 
 		CPStartPage nextPage = pageWithName( CPStartPage.class );
@@ -118,12 +118,12 @@ public class CPLogin extends CPAdminComponent {
 		_password = newValue;
 	}
 
-	public void setErrorMessage( String errorMessage ) {
-		_errorMessage = errorMessage;
+	public void setMessage( String value ) {
+		_message = value;
 	}
 
-	public String errorMessage() {
-		return _errorMessage;
+	public String message() {
+		return _message;
 	}
 
 	/**
@@ -144,14 +144,14 @@ public class CPLogin extends CPAdminComponent {
 	 * Sets the session's selected language
 	 */
 	public void setSelectedLanguage( String value ) {
-		session().setLanguages( new NSArray<String>( value, CPLoc.DEFAULT_LANGUAGE ) );
+		session().setLanguages( new NSArray<>( value, CPLoc.DEFAULT_LANGUAGE ) );
 	}
 
 	/**
 	 * For returning an error message to the user.
 	 */
 	public WOActionResults error( String message ) {
-		setErrorMessage( message );
+		setMessage( message );
 		return context().page();
 	}
 

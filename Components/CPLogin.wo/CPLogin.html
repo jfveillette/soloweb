@@ -4,7 +4,7 @@
 			<wo:form class="form-horizontal" role="form" name="f" target="_top">
 		    	<fieldset>
 		    		<legend><wo:str value="$sw.productName" /> <sup style="color: gray"><wo:str value="$sw.productVersion" /></sup></legend>
-		    		<wo:if condition="$errorMessage.length"><div class="alert alert-danger"><wo:str value="$errorMessage" /></div></wo:if>
+		    		<wo:if condition="$message.length"><div class="alert alert-danger"><wo:str value="$message" /></div></wo:if>
 		    		<div class="form-group">
 		    			<label for="username">Notandanafn</label>
 		    			<wo:textfield value="$username" id="username" class="form-control" />
