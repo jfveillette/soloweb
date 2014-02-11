@@ -9,7 +9,7 @@ import com.webobjects.foundation.NSMutableDictionary;
 
 import concept.SWGenericComponent;
 import concept.data.SWDocument;
-import concept.deprecated.SWLoc;
+import concept.util.CPLoc;
 
 public class SWSFAdminComponent extends SWGenericComponent {
 
@@ -24,8 +24,8 @@ public class SWSFAdminComponent extends SWGenericComponent {
 	public NSMutableDictionary componentsAndKeys() {
 		NSMutableDictionary d = new NSMutableDictionary();
 
-		d.setObjectForKey( "SWSFComponent", SWLoc.string( "docComponentSingleDocument", session() ) );
-		d.setObjectForKey( "SWSFFileList", SWLoc.string( "docComponentListOfDocuments", session() ) );
+		d.setObjectForKey( "SWSFComponent", CPLoc.string( "docComponentSingleDocument", session() ) );
+		d.setObjectForKey( "SWSFFileList", CPLoc.string( "docComponentListOfDocuments", session() ) );
 
 		return d;
 	}

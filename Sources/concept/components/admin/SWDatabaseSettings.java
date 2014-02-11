@@ -24,17 +24,17 @@ import com.webobjects.foundation.NSMutableArray;
 import com.webobjects.foundation.NSMutableDictionary;
 
 import concept.SWApplication;
-import concept.deprecated.SWLoc;
 import concept.plugin.SWPlugin;
 import concept.plugin.SWPluginHandler;
 import concept.plugin.SWPluginItem;
+import concept.util.CPLoc;
 
 import er.extensions.eof.ERXEC;
 
 public class SWDatabaseSettings extends SWManageSettings {
 
-	public String connectionsTabName = SWLoc.string( "dbsTabConnections", session() );
-	public String switchTabName = SWLoc.string( "dbsTabSwitchAndConstruct", session() );
+	public String connectionsTabName = CPLoc.string( "dbsTabConnections", session() );
+	public String switchTabName = CPLoc.string( "dbsTabSwitchAndConstruct", session() );
 	public NSArray tabs = new NSArray( new Object[] {
 	connectionsTabName, switchTabName
 	} );

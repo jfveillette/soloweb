@@ -15,7 +15,7 @@ import com.webobjects.foundation.NSArray;
 import concept.SWSession;
 import concept.data.SWSite;
 import concept.data.SWUser;
-import concept.deprecated.SWLoc;
+import concept.util.CPLoc;
 import er.extensions.components.ERXComponent;
 
 /**
@@ -126,7 +126,7 @@ public class SWLogin extends ERXComponent {
 			return nextPage;
 		}
 
-		wrongString = SWLoc.string( "wrongLoginCredentials", session() );
+		wrongString = CPLoc.string( "wrongLoginCredentials", session() );
 
 		return null;
 	}

@@ -7,7 +7,7 @@ import com.webobjects.foundation.NSKeyValueCoding;
 import com.webobjects.foundation.NSTimestamp;
 import com.webobjects.foundation.NSTimestampFormatter;
 
-import concept.deprecated.SWLoc;
+import concept.util.CPLoc;
 
 public class SWDateField extends WOComponent {
 
@@ -37,7 +37,7 @@ public class SWDateField extends WOComponent {
 	public String dateAsString() {
 
 		if( timestamp() == null ) {
-			return SWLoc.string( "datePickerNoTimeSetString", session() );
+			return CPLoc.string( "datePickerNoTimeSetString", session() );
 		}
 
 		return formatter.format( timestamp() );

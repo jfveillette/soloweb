@@ -11,7 +11,7 @@ import concept.SWAdminComponent;
 import concept.SWApplication;
 import concept.SWSession;
 import concept.data.SWSite;
-import concept.deprecated.SWLoc;
+import concept.util.CPLoc;
 
 /**
  * SWEditSite is used to edit information for an SWSite
@@ -19,7 +19,7 @@ import concept.deprecated.SWLoc;
 
 public class SWEditSite extends SWAdminComponent {
 
-    public String selectedTab = SWLoc.string( "eSiteTabGeneral", session() );
+    public String selectedTab = CPLoc.string( "eSiteTabGeneral", session() );
     public NSArray tabs = tabDictionary().allKeys();
 
     public SWEditSite(WOContext context) {
@@ -28,10 +28,10 @@ public class SWEditSite extends SWAdminComponent {
 
     public NSDictionary tabDictionary() {
         NSMutableDictionary activeSiteEditingComponents = new NSMutableDictionary( SWApplication.swapplication().activeSiteEditingComponents() );
-        activeSiteEditingComponents.setObjectForKey( "SWEditSiteGeneralInfo", 	SWLoc.string( "eSiteTabGeneral", session() ) );
+        activeSiteEditingComponents.setObjectForKey( "SWEditSiteGeneralInfo", 	CPLoc.string( "eSiteTabGeneral", session() ) );
 
         if( SWSettings.booleanForKey( "enablePrivileges" ) ) {
-			activeSiteEditingComponents.setObjectForKey( "SWEditSitePrivileges", SWLoc.string( "eSiteTabAccessPrivileges", session() ) );
+			activeSiteEditingComponents.setObjectForKey( "SWEditSitePrivileges", CPLoc.string( "eSiteTabAccessPrivileges", session() ) );
 		}
 
         Integer intAdmin = ((SWSession)session()).activeUser().administrator();

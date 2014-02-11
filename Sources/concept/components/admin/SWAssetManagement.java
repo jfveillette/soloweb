@@ -39,7 +39,7 @@ import concept.data.SWDocument;
 import concept.data.SWNewsCategory;
 import concept.data.SWNewsItem;
 import concept.data.SWPicture;
-import concept.deprecated.SWLoc;
+import concept.util.CPLoc;
 import er.extensions.eof.qualifiers.ERXInQualifier;
 
 public class SWAssetManagement extends SWAdminComponent {
@@ -66,8 +66,8 @@ public class SWAssetManagement extends SWAdminComponent {
 
 	public int tableIndex;
 
-	public String documentsTabName = SWLoc.string( "sfAdminTabDocuments", session() );
-	public String privilegesTabName = SWLoc.string( "sfAdminTabAccessPrivileges", session() );
+	public String documentsTabName = CPLoc.string( "sfAdminTabDocuments", session() );
+	public String privilegesTabName = CPLoc.string( "sfAdminTabAccessPrivileges", session() );
 
 	private NSArray _tabs;
 	public String selectedTab = documentsTabName;
@@ -351,8 +351,8 @@ public class SWAssetManagement extends SWAdminComponent {
 
 	private NSDictionary defaultPrivilegePairs() {
 		NSMutableDictionary d = new NSMutableDictionary();
-		d.setObjectForKey( "allowToSee", SWLoc.string( "docpSeeFolders", session() ) );
-		d.setObjectForKey( "canManageUsers", SWLoc.string( "docpManagePrivileges", session() ) );
+		d.setObjectForKey( "allowToSee", CPLoc.string( "docpSeeFolders", session() ) );
+		d.setObjectForKey( "canManageUsers", CPLoc.string( "docpManagePrivileges", session() ) );
 		return d;
 	}
 

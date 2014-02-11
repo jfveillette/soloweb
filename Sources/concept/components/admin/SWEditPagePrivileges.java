@@ -7,7 +7,7 @@ import com.webobjects.foundation.NSDictionary;
 import com.webobjects.foundation.NSMutableDictionary;
 
 import concept.data.SWPage;
-import concept.deprecated.SWLoc;
+import concept.util.CPLoc;
 
 public class SWEditPagePrivileges extends WOComponent {
 
@@ -19,10 +19,10 @@ public class SWEditPagePrivileges extends WOComponent {
 
 	public NSDictionary privilegePairs() {
 		NSMutableDictionary d = new NSMutableDictionary();
-		d.setObjectForKey( "canDeletePage", SWLoc.string( "ppDeletePages", session() ) );
-		d.setObjectForKey( "canManagePage", SWLoc.string( "ppModifyPage", session() ) );
-		d.setObjectForKey( "canManageContent", SWLoc.string( "ppModifyContent", session() ) );
-		d.setObjectForKey( "canManageUsers", SWLoc.string( "ppControlPrivileges", session() ) );
+		d.setObjectForKey( "canDeletePage", CPLoc.string( "ppDeletePages", session() ) );
+		d.setObjectForKey( "canManagePage", CPLoc.string( "ppModifyPage", session() ) );
+		d.setObjectForKey( "canManageContent", CPLoc.string( "ppModifyContent", session() ) );
+		d.setObjectForKey( "canManageUsers", CPLoc.string( "ppControlPrivileges", session() ) );
 		return d.immutableClone();
 	}
 }

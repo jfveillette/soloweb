@@ -7,7 +7,7 @@ import com.webobjects.foundation.NSDictionary;
 import com.webobjects.foundation.NSMutableDictionary;
 
 import concept.data.SWSite;
-import concept.deprecated.SWLoc;
+import concept.util.CPLoc;
 
 public class SWEditSitePrivileges extends WOComponent {
 
@@ -19,7 +19,7 @@ public class SWEditSitePrivileges extends WOComponent {
 
 	public NSDictionary privilegePairs() {
 		NSMutableDictionary d = new NSMutableDictionary();
-		d.setObjectForKey( "allowToSee", SWLoc.string( "spHasAccess", session() ) );
+		d.setObjectForKey( "allowToSee", CPLoc.string( "spHasAccess", session() ) );
 		return d.immutableClone();
 	}
 }
