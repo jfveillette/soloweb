@@ -8,6 +8,7 @@ import com.webobjects.foundation.NSMutableDictionary;
 import com.webobjects.foundation.NSPropertyListSerialization;
 
 import concept.data.auto._SWTransaction;
+import concept.definitions.EntityViewDefinition;
 import er.extensions.eof.ERXGenericRecord;
 
 /**
@@ -78,20 +79,20 @@ public class SWTransaction extends _SWTransaction implements HasFakeRelationship
 		return entityName() + ": " + date();
 	}
 
-//	public EntityViewDefinition viewDefinition() {
-//		return EntityViewDefinition.get( targetEntityName() );
-//	}
-//
-//	/**
-//	 * @return Localized description of the entity this record applies to.
-//	 */
-//	public String localizedDescriptionOfEntity() {
-//		String s = viewDefinition().icelandicName();
-//
-//		if( s == null ) {
-//			s = targetEntityName();
-//		}
-//
-//		return s;
-//	}
+	public EntityViewDefinition viewDefinition() {
+		return EntityViewDefinition.get( targetEntityName() );
+	}
+
+	/**
+	 * @return Localized description of the entity this record applies to.
+	 */
+	public String localizedDescriptionOfEntity() {
+		String s = viewDefinition().icelandicName();
+
+		if( s == null ) {
+			s = targetEntityName();
+		}
+
+		return s;
+	}
 }

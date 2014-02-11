@@ -2,7 +2,6 @@ package concept;
 
 import is.rebbi.wo.util.SWDictionary;
 import is.rebbi.wo.util.SWSettings;
-import is.rebbi.wo.util.SoftUser;
 import is.rebbi.wo.util.USUtilities;
 
 import org.slf4j.Logger;
@@ -47,11 +46,7 @@ public class SWApplication extends ERXApplication {
 	private static NSMutableArray<String> _looks = new NSMutableArray<>();
 
 	public SWApplication() {
-		setDefaultRequestHandler( requestHandlerForKey( directActionRequestHandlerKey() ) );
-		setPageRefreshOnBacktrackEnabled( true );
-		registerRequestHandler( new SWDocumentRequestHandler(), SWDocumentRequestHandler.KEY );
 		setIncludeCommentsInResponses( true );
-		setDefaultEncoding( "UTF-8" );
 
 		_activeSystems = new NSMutableDictionary<>( additionalSystems() );
 		_activeComponents = new NSMutableDictionary<>( additionalComponents() );
@@ -80,8 +75,6 @@ public class SWApplication extends ERXApplication {
 		SWLuceneUtilities.addExtension( new SWNewsItemLuceneUtilities() );
 
 		SWYouTubeUtils.init();
-
-		SoftUser.Manager.register();
 
 		SWPluginHandler.defaultInstance().loadRegisteredPlugins();
 		String defaultMailServer = SWSettings.stringForKey( "defaultMailServer" );

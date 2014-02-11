@@ -1,5 +1,8 @@
 package concept.plugin;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import com.webobjects.foundation.NSArray;
 
 /**
@@ -9,6 +12,8 @@ import com.webobjects.foundation.NSArray;
  */
 
 public class SWPlugin extends Object {
+
+	private static final Logger logger = LoggerFactory.getLogger( SWPlugin.class );
 
 	private String _name;
 	private NSArray<String> _components;
@@ -20,6 +25,7 @@ public class SWPlugin extends Object {
 
 	public void registerWithApplication() {
 		SWPluginHandler.defaultInstance().registerPlugin( this );
+		logger.info( "Registered plugin: " + this.name() );
 	}
 
 	public void setName( String newName ) {

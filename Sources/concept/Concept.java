@@ -6,7 +6,6 @@ import is.rebbi.wo.util.SoftUser;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.webobjects.appserver.WOApplication;
 import com.webobjects.foundation.NSNotification;
 import com.webobjects.foundation.NSNotificationCenter;
 import com.webobjects.foundation.NSSelector;
@@ -21,7 +20,6 @@ import concept.managers.TransactionLogger;
 import concept.managers.TransactionStamper;
 import concept.search.IndexManager;
 import er.extensions.appserver.ERXApplication;
-import er.extensions.appserver.ERXMessageEncoding;
 import er.extensions.eof.ERXConstant;
 
 /**
@@ -76,12 +74,12 @@ public class Concept {
 		IndexManager.register();
 		StatsManager.register();
 
-		WOApplication app = WOApplication.application();
-		app.setDefaultRequestHandler( WOApplication.application().requestHandlerForKey( app.directActionRequestHandlerKey() ) );
+		ERXApplication app = ERXApplication.erxApplication();
+		app.setDefaultRequestHandler( app.requestHandlerForKey( app.directActionRequestHandlerKey() ) );
 		app.registerRequestHandler( new CPDocumentRequestHandler(), CPDocumentRequestHandler.KEY );
+		app.registerRequestHandler( new SWDocumentRequestHandler(), SWDocumentRequestHandler.KEY );
 		app.registerRequestHandler( new SWThumbnailRequestHandler(), SWThumbnailRequestHandler.KEY );
-
-		ERXMessageEncoding.setDefaultEncodingForAllLanguages( "UTF-8");
+		app.setDefaultEncoding( "UTF-8");
 
 		if( SWSettings.sessionTimeOut() != null ) {
 			int sessionTimeOutInSeconds = SWSettings.sessionTimeOut() * 60;

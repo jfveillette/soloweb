@@ -2,7 +2,6 @@ package concept.plugin;
 
 import java.util.Enumeration;
 
-
 import com.webobjects.foundation.NSMutableArray;
 import com.webobjects.foundation.NSMutableDictionary;
 
@@ -41,7 +40,7 @@ public class SWPluginHandler extends Object {
 		}
 	}
 
-	private void loadPlugin( SWPlugin aPlugin ) {
+	public void loadPlugin( SWPlugin aPlugin ) {
 
 		if( aPlugin.componentAdminComponent() != null ) {
 			SWApplication.swapplication().activeComponents().setObjectForKey( aPlugin.componentAdminComponent(), aPlugin.name() );
