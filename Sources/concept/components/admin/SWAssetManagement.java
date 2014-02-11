@@ -463,7 +463,6 @@ public class SWAssetManagement extends SWAdminComponent {
 				int endNo = startNo + 50;
 				for( int i = 0; i < 50 && (i + startNo) < rawIds.count(); i++ ) {
 					NSDictionary row = (NSDictionary)rawIds.objectAtIndex( startNo + i );
-					System.out.println( row );
 					Object itemID = row.valueForKey( SWNewsItem.ID_KEY );
 					ids.addObject( itemID );
 				}
