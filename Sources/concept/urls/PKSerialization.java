@@ -1,4 +1,4 @@
-package concept.util;
+package concept.urls;
 
 import org.apache.commons.lang.StringUtils;
 
