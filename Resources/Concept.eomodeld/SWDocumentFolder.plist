@@ -1,0 +1,58 @@
+{
+    attributes = (
+        {allowsNull = N; columnName = id; name = id; prototypeName = intNumber; }, 
+        {
+            allowsNull = Y; 
+            columnName = "inherits_privileges"; 
+            name = inheritsPrivileges; 
+            prototypeName = intNumber; 
+        }, 
+        {allowsNull = Y; columnName = name; name = name; prototypeName = longText; }, 
+        {
+            allowsNull = Y; 
+            columnName = "parent_folder_id"; 
+            name = parentFolderID; 
+            prototypeName = intNumber; 
+        }
+    ); 
+    attributesUsedForLocking = (id, inheritsPrivileges, name, parentFolderID); 
+    className = "concept.data.SWDocumentFolder"; 
+    classProperties = (
+        documents, 
+        id, 
+        inheritsPrivileges, 
+        name, 
+        parentFolder, 
+        parentFolderID, 
+        subFolders
+    ); 
+    externalName = "sw_file_folder"; 
+    fetchSpecificationDictionary = {}; 
+    name = SWDocumentFolder; 
+    primaryKeyAttributes = (id); 
+    relationships = (
+        {
+            deleteRule = EODeleteRuleCascade; 
+            destination = SWDocument; 
+            isToMany = Y; 
+            joinSemantic = EOInnerJoin; 
+            joins = ({destinationAttribute = documentFolderID; sourceAttribute = id; }); 
+            name = documents; 
+        }, 
+        {
+            destination = SWDocumentFolder; 
+            isToMany = N; 
+            joinSemantic = EOInnerJoin; 
+            joins = ({destinationAttribute = id; sourceAttribute = parentFolderID; }); 
+            name = parentFolder; 
+        }, 
+        {
+            deleteRule = EODeleteRuleCascade; 
+            destination = SWDocumentFolder; 
+            isToMany = Y; 
+            joinSemantic = EOInnerJoin; 
+            joins = ({destinationAttribute = parentFolderID; sourceAttribute = id; }); 
+            name = subFolders; 
+        }
+    ); 
+}

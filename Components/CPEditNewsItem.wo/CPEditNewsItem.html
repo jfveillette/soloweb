@@ -1,0 +1,13 @@
+<fieldset>
+	<legend>Stillingar birtingar</legend>
+	<label><wo:str value="$@ls.newsPublishedFieldTitle" /></label><wo:checkbox checked="$selectedObject.published" /><br />
+	<label><wo:str value="$@ls.newsDateFieldTitle" /></label><wo:USDateAndTimeField value="$selectedObject.date" /><br />
+	<label><wo:str value="$@ls.newsTimeInFieldTitle" /></label><wo:USDateAndTimeField value="$selectedObject.timeOut" /><br />
+	<label><wo:str value="$@ls.newsTimeOutFieldTitle" /></label><wo:USDateAndTimeField value="$selectedObject.timeOut" /><br />
+</fieldset>
+
+<label><wo:str value="$@ls.newsHeadlineFieldTitle" /></label><wo:textfield value="$selectedObject.name" /><br />
+<h3><wo:str value="$@ls.newsExcerptHeading" /></h3>
+<wo:text value="$selectedObject.excerpt" />
+<h3><wo:str value="$@ls.newsMainTextHeading" /></h3>
+<wo:SWCKEditor object="$selectedObject" keyPath="text" />

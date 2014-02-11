@@ -1,0 +1,12 @@
+<fieldset>
+	<legend>Vefur</legend>
+	<label>Locale:</label> <wo:popUpButton list="$availableLocaleNames" item="$currentLocaleName" displayString="$currentLocaleDisplayName" selection="$selectedObject.language" /><br />
+	<label><wo:str value="$@ls.siteNameFieldTitle" />: </label><wo:textfield value="$selectedObject.name" /><br />
+	<label><wo:str value="$@ls.siteLookFieldTitle" />: </label><wo:textfield value="$selectedObject.look" /><br />
+	<label><wo:str value="$@ls.site404PageFieldTitle" />: </label><wo:textfield value="$selectedObject.noPageFoundErrorPageLinkingName" /><br />
+	<label><wo:str value="$@ls.siteDomainsFieldTitle" />: </label><wo:text value="$selectedObject.qual" rows="10" /><br />
+</fieldset>
+
+<wo:SWPrivilegesEnabled>
+	<wo:SWAssignPrivileges record="$selectedObject" privilegePairs="$privilegePairs" />
+</wo:SWPrivilegesEnabled>

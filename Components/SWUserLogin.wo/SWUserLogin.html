@@ -1,0 +1,23 @@
+<wo:form class="form-inline">
+	<wo:textfield value="$emailAddress" id="emailAddress" class="input-sm" placeholder="Netfang" />
+	<wo:password value="$password" id="password" class="input-sm" placeholder="Aðgangsorð" />
+	<wo:submit id="loginButton" action="$login" class="btn btn-success btn-sm" value="Innskráning" />
+	<wo:if condition="$allowUserRegistration"><wo:link directActionName="InspectAction/createUser" class="btn btn-default btn-sm" string="Nýskráning" /></wo:if>
+	<wo:link directActionName="InspectAction/forgottenPassword" class="btn btn-default btn-sm" string="Gleymt aðgangsorð" />
+</wo:form>
+<!-- 
+<wo:AjaxModalDialog id="modal" slideDownDuration="0.2" slideUpDuration="0.2"><wo:str value="$errorMessage" /> </wo:AjaxModalDialog>
+<script type="text/javascript">
+	jQuery(document).keypress(function(e) {
+		emailAddressField = jQuery('#emailAddress');
+		passwordField = jQuery('#password');
+		loginButton = jQuery('#loginButton');
+		hasFocus = emailAddressField.is( ':focus' ) || passwordField.is( ':focus' ) || loginButton.is( ':focus' );
+
+		if( hasFocus && e.which == 13) {
+			loginButton.click();
+			return false;
+		}
+	});
+</script>
+ -->

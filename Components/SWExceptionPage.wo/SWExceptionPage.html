@@ -1,0 +1,48 @@
+<!doctype html>
+<html>
+	<head>
+		<wo:SiteInfo />
+		<meta charset="utf-8">
+		<title>Villa</title>
+	</head>
+	<body style="padding: 20px">
+		<div class="row">
+			<div class="col-md-12">
+				<h1>Villa kom upp</h1>
+				<p><wo:link directActionName="InspectAction" target="_top">Forsíða</wo:link></p>
+
+				<table class="table table-condensed table-bordered" style="margin-top: 20px">
+					<tr>
+						<td><strong>Forrit</strong></td>
+						<td><wo:str value="$application.name" /></td>
+					</tr>
+					<tr>
+						<td><strong>Villa</strong></td>
+						<td><wo:str value="$exception" /></td>
+					</tr>
+					<tr>
+						<td><strong>Ástæða</strong></td>
+						<td><wo:str value="$error.message" /></td>
+					</tr>
+				</table>
+
+				<table class="table table-condensed table-bordered table-striped">
+					<tr>
+						<th>Skjal</th>
+						<th>Lína #</th>
+						<th>Fall</th>
+						<th>Pakki</th>
+					</tr>
+					<wo:repetition list="$error.stackTrace" item="$errorline">
+						<tr>
+							<td><wo:str value="$errorline.fileName" /></td>
+							<td><wo:str value="$errorline.lineNumber" /></td>
+							<td><wo:str value="$errorline.methodName" /></td>
+							<td><wo:str value="$errorline.packageName" /></td>
+						</tr>
+					</wo:repetition>
+				</table>
+			</div>
+		</div>
+	</body>
+</html>

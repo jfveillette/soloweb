@@ -1,0 +1,200 @@
+{
+    attributes = (
+        {
+            allowsNull = Y; 
+            columnName = address; 
+            name = address; 
+            prototypeName = longText; 
+        }, 
+        {
+            allowsNull = Y; 
+            columnName = administrator; 
+            name = administrator; 
+            prototypeName = intNumber; 
+        }, 
+        {allowsNull = Y; columnName = city; name = city; prototypeName = longText; }, 
+        {
+            allowsNull = Y; 
+            columnName = comment; 
+            name = comment; 
+            prototypeName = longText; 
+        }, 
+        {
+            allowsNull = Y; 
+            columnName = country; 
+            name = country; 
+            prototypeName = longText; 
+        }, 
+        {
+            allowsNull = Y; 
+            columnName = "creation_date"; 
+            name = creationDate; 
+            prototypeName = dateTime; 
+        }, 
+        {
+            allowsNull = Y; 
+            columnName = "crm_nafn_id"; 
+            name = crmNafnId; 
+            prototypeName = intNumber; 
+        }, 
+        {
+            allowsNull = Y; 
+            columnName = "default_site_id"; 
+            name = defaultSiteID; 
+            prototypeName = intNumber; 
+        }, 
+        {
+            allowsNull = Y; 
+            columnName = "email_address"; 
+            name = emailAddress; 
+            prototypeName = longText; 
+        }, 
+        {allowsNull = N; columnName = id; name = id; prototypeName = intNumber; }, 
+        {
+            allowsNull = Y; 
+            columnName = "last_login_agent"; 
+            name = lastLoginAgent; 
+            prototypeName = longText; 
+        }, 
+        {
+            allowsNull = Y; 
+            columnName = "last_login_date"; 
+            name = lastLoginDate; 
+            prototypeName = dateTime; 
+        }, 
+        {
+            allowsNull = Y; 
+            columnName = "last_login_ip"; 
+            name = lastLoginIP; 
+            prototypeName = longText; 
+        }, 
+        {
+            allowsNull = Y; 
+            columnName = "modification_date"; 
+            name = modificationDate; 
+            prototypeName = dateTime; 
+        }, 
+        {allowsNull = Y; columnName = name; name = name; prototypeName = longText; }, 
+        {
+            allowsNull = Y; 
+            columnName = password; 
+            name = password; 
+            prototypeName = longText; 
+        }, 
+        {
+            allowsNull = Y; 
+            columnName = "picture_id"; 
+            name = pictureID; 
+            prototypeName = intNumber; 
+        }, 
+        {allowsNull = Y; columnName = ssn; name = ssn; prototypeName = longText; }, 
+        {
+            allowsNull = Y; 
+            columnName = telephone; 
+            name = telephone; 
+            prototypeName = longText; 
+        }, 
+        {
+            allowsNull = Y; 
+            columnName = username; 
+            name = username; 
+            prototypeName = longText; 
+        }, 
+        {allowsNull = Y; columnName = uuid; name = uuid; prototypeName = longText; }, 
+        {allowsNull = Y; columnName = zip; name = zip; prototypeName = intNumber; }
+    ); 
+    attributesUsedForLocking = (
+        address, 
+        administrator, 
+        city, 
+        country, 
+        creationDate, 
+        crmNafnId, 
+        defaultSiteID, 
+        emailAddress, 
+        id, 
+        name, 
+        password, 
+        pictureID, 
+        ssn, 
+        telephone, 
+        username, 
+        uuid, 
+        zip
+    ); 
+    className = "concept.data.SWUser"; 
+    classProperties = (
+        accessPrivileges, 
+        address, 
+        administrator, 
+        city, 
+        comment, 
+        country, 
+        creationDate, 
+        crmNafnId, 
+        defaultSite, 
+        defaultSiteID, 
+        emailAddress, 
+        groups, 
+        id, 
+        lastLoginAgent, 
+        lastLoginDate, 
+        lastLoginIP, 
+        modificationDate, 
+        name, 
+        password, 
+        picture, 
+        pictureID, 
+        ssn, 
+        sWGroupSWUsers, 
+        telephone, 
+        username, 
+        uuid, 
+        zip
+    ); 
+    externalName = "sw_user"; 
+    fetchSpecificationDictionary = {}; 
+    name = SWUser; 
+    primaryKeyAttributes = (id); 
+    relationships = (
+        {
+            deleteRule = EODeleteRuleCascade; 
+            destination = SWAccessPrivilege; 
+            isToMany = Y; 
+            joinSemantic = EOInnerJoin; 
+            joins = ({destinationAttribute = userID; sourceAttribute = id; }); 
+            name = accessPrivileges; 
+        }, 
+        {
+            destination = SWSite; 
+            isToMany = N; 
+            joinSemantic = EOInnerJoin; 
+            joins = ({destinationAttribute = id; sourceAttribute = defaultSiteID; }); 
+            name = defaultSite; 
+        }, 
+        {
+            definition = "sWGroupSWUsers.sWGroup"; 
+            joinSemantic = EOInnerJoin; 
+            name = groups; 
+            userInfo = {modificationDate = "2001-06-03 19:53:43 +0000"; }; 
+        }, 
+        {
+            destination = SWPicture; 
+            isToMany = N; 
+            joinSemantic = EOInnerJoin; 
+            joins = ({destinationAttribute = id; sourceAttribute = pictureID; }); 
+            name = picture; 
+        }, 
+        {
+            deleteRule = EODeleteRuleCascade; 
+            destination = SWGroupUser; 
+            isToMany = Y; 
+            joinSemantic = EOInnerJoin; 
+            joins = ({destinationAttribute = userID; sourceAttribute = id; }); 
+            name = sWGroupSWUsers; 
+            propagatesPrimaryKey = Y; 
+            userInfo = {modificationDate = "2001-06-03 19:53:43 +0000"; }; 
+        }
+    ); 
+    userInfo = {modificationDate = "2001-06-03 19:53:43 +0000"; }; 
+}

@@ -1,0 +1,18 @@
+<div class="row">
+	<div class="col-md-8">
+		<h1><wo:str value="$selectedObject.name" /></h1>
+		
+		<table class="table table-condensed">
+			<tr>
+				<th>Hlutur</th>
+				<th>Tegund</th>
+			</tr>
+			<wo:repetition list="$objects" item="$currentObject">
+				<tr>
+					<td><wo:ViewLink object="$currentObject"><wo:IMValue object="$currentObject" /></wo:ViewLink></td>
+					<td><wo:str value="$currentViewDefinition.icelandicName" /></td>
+				</tr>
+			</wo:repetition>
+		</table>
+	</div>
+</div>

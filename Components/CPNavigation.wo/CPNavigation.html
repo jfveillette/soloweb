@@ -1,0 +1,14 @@
+<wo:conditional condition="$list.count">
+	<ul>
+		<wo:repetition list="$list" item="$currentObject" index="$currentIndex">
+			<li>
+				<wo:ViewLink object="$currentObject" class="$currentClass"><wo:str value="$currentObject.name" /></wo:ViewLink>
+				<wo:conditional condition="$^noHierarchy" negate="$true">
+					<wo:conditional condition="$subPageIsSelected">
+						<wo:CPNavigation list="$currentObject.sortedAndApprovedSubPages" selectedObject="$selectedObject" />
+					</wo:conditional>
+				</wo:conditional>
+			</li>
+		</wo:repetition>
+	</ul>
+</wo:conditional>

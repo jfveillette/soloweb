@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<wodefinitions>
+    <wo class="IMHumanReadable" wocomponentcontent="false">    <binding name="object"/>
+        <validation message="'object' is a required binding.">
+            <unbound name="object"/>
+        </validation>
+    <binding name="displayKey"/>
+    <binding defaults="Boolean" name="disabled"/>
+    <binding name="valueWhenEmpty"/>
+    </wo>
+</wodefinitions>

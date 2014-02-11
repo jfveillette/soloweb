@@ -1,0 +1,29 @@
+<div class="row">
+	<div class="col-md-3">
+		<fieldset>
+			<legend><wo:str value="$@ls.pageGeneral" /></legend>
+			<label>Heiti</label> <wo:textfield value="$selectedObject.name" />
+			<label>Merki</label> <wo:textfield value="$selectedObject.symbol" />
+			<label><wo:str value="$@ls.namePrefix" /></label> <wo:textfield value="$selectedObject.namePrefix" />
+			<label><wo:str value="$@ls.redirectTo" /></label> <wo:textfield value="$selectedObject.externalURL" />
+			<label><wo:str value="$@ls.customLook" /></label> <wo:textfield value="$selectedObject.look" />
+		</fieldset>
+	</div>
+	<div class="col-md-3">
+		<fieldset>
+			<legend><wo:str value="$@ls.pagePublishingOptions" /></legend>
+			<label><wo:str value="$@ls.pagePassword" /></label> <wo:textfield value="$selectedObject.password" />
+			<label><wo:str value="$@ls.pageTimeIn" /></label> <wo:USDateAndTimeField value="$selectedObject.timeIn" />
+			<label><wo:str value="$@ls.pageTimeOut" /></label> <wo:USDateAndTimeField value="$selectedObject.timeOut" />
+			<label><wo:str value="$@ls.pageDisplayOnSite" /></label> <wo:checkbox checked="$selectedObject.published" />
+			<label><wo:str value="$@ls.pageAccessible" /></label> <wo:checkbox checked="$selectedObject.accessible" />
+		</fieldset>
+	</div>
+	<div class="col-md-3">
+		<fieldset>
+			<legend>Leitarvélar</legend>
+			<label><wo:str value="$@ls.pageDescription" /></label> <wo:text value="$selectedObject.text" />
+			<label><wo:str value="$@ls.pageKeywords" /></label> <wo:text value="$selectedObject.keywords" />
+		</fieldset>
+	</div>
+</div>

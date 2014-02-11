@@ -1,0 +1,30 @@
+<wo:form>
+	<div id="editable" contenteditable="true" style="min-height: 40px">
+		<wo:str value="$stringValue" escapeHTML="$false" />
+	</div>
+</wo:form>
+<script>
+	CKEDITOR.disableAutoInline = true;
+	
+	var savedData, newData;
+
+	CKEDITOR.inline( 'editable', {
+	    on: {
+	        blur: function( event ) {
+	        	newData = event.editor.getData();
+	        	newData = encodeURIComponent(newData);
+
+				if( newData !== savedData ) {
+					savedData = newData;
+
+					jQuery.ajax({
+						url: '<wo:actionURL action="$save" />',
+						type:'post',
+						async: false,
+						data: savedData
+					});
+				}
+	        }
+	    }
+	} );
+</script>

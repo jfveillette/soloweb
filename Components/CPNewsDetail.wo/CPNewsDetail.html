@@ -1,0 +1,76 @@
+<div class="sw-newsitem">
+	<h3 class="sw-newsheading"><wo:str value="$selectedObject.name" /></h3>
+	<h4 class="sw-newsdate"><wo:str value="$selectedObject.date" formatter="$dateFormatter" /> <span class="sw-newstime"><wo:str value="$selectedObject.date" formatter="$timeFormatter" /></span></h4>
+	<div class="sw-newsitem-text">
+		<wo:if condition="$conceptUser.isAdministrator" negate="$true">
+			<wo:str value="$selectedObject.text" escapeHTML="$false" />
+		</wo:if>
+		<wo:if condition="$conceptUser.isAdministrator">
+			<wo:SWCKEditor object="$selectedObject" keyPath="text" />
+		</wo:if>
+	</div>
+	<div class="sw-newsitem-image"><wo:SWDocumentDisplay document="$document" /></div>
+	<div class="sw-fblike">
+		<wo:USFBLikeButton url="$absoluteURL" />
+	</div>
+</div>
+
+<wo:conditional condition="0">
+	<br style="clear:both" />
+	<h3 class="comments_header"><wo:str value="$@ls.commentsHeader" /></h3>
+	<wo:AjaxUpdateContainer id="updateContainer">
+		<wo:conditional condition="$selectedObject.comments.count">
+		<div class="conversation"><wo:repetition list="$selectedObject.comments.@sortAsc.date" item="$currentComment">
+			<wo:AjaxHighlight elementName="div" value="$currentComment" class="comment">
+				<wo:container elementName="a" name="$currentComment.anchor" />
+				<div class="commentPerson"><wo:container elementName="a" omitTags="$currentComment.noUrl" href="$currentComment.fixedUrl" target="_blank"><wo:str value="$currentComment.name" valueWhenEmpty="(Ónafngreind rola)" /></wo:container></div>
+				<div class="commentDate"><span class="commentTime"><wo:str value="$currentComment.date" dateformat="%H:%M" /></span> <wo:str value="$currentNewsItem.date" formatter="$dateFormatter" /> <span class="sw-newstime"><wo:str value="$currentNewsItem.date" formatter="$timeFormatter" /></span></div>
+				<div class="commentText"><wo:str value="$currentComment.textForDisplay" escapeHTML="$false" /><br style="clear: both;" /></div>
+			</wo:AjaxHighlight></wo:repetition>
+		</div>
+		</wo:conditional>
+		<wo:conditional condition="$selectedObject.comments.count" negate="$true"><p><wo:str value="$@ls.commentsNoComments" />.</p></wo:conditional>
+
+		<div class="comments">
+			<h3><wo:str value="$@ls.addCommentHeader" /></h3>
+			
+			<wo:form>
+				<label for="name"><wo:str value="$@ls.commentsName" />:</label>
+				<wo:textfield value="$userName" id="name" /><br />
+				
+				<label for="url"><wo:str value="$@ls.commentsURL" />:</label>
+				<wo:textfield value="$userUrl" id="url" /><br />
+				
+				<label for="emailAddress"><wo:str value="$@ls.commentsEmailAddress" />:</label>
+				<wo:textfield value="$userEmailAddress" id="emailAddress" /><br />
+				
+				<label for="notifyOnNewComments">&nbsp;</label>
+				<wwo:checkbox id="notifyOnNewComments" checked="$userNotifyOnNewComments" style="width: auto" /> <wo:str value="$@ls.commentsEmailNotification" /><br />
+				
+				<label for="comments"><wo:str value="$@ls.commentsText" />:</label>
+				<wo:text value="$text" id="comments" rows="5" /><br />
+				
+				<label for="spam"><wo:str value="$@ls.commentsDoYouHateSpam" /></label>
+				<wo:textfield value="$hatesSpamString" id="spamStringField" size="$expectedSpamAnswer.length" style="width: 30px" /> <wo:conditional condition="$errorMessage.length"><div id="commentsErrorMessage"> <wo:str value="$errorMessage" /></div></wo:conditional><br /> 
+				<script type = "text/javascript" language="javascript">
+				
+					var field = document.getElementById( 'spamStringField' );
+			
+					if( field )
+						field.value = '<wo:str value="$expectedSpamAnswer" />';
+				
+					var commentArea = document.getElementById( 'comments' );
+			
+					if( commentArea ) {
+						if( commentArea.value )
+							commentArea.value = commentArea.value.trim;
+					}
+			
+				</script>
+				<label for="commentSubmitButton">&nbsp;</label>
+				<wo:AjaxSubmitButton value="$@ls.commentsSubmitButtonLabel" action="$publishComment" class="commentSubmitButton" id="commentSubmitButton" updateContainerID="updateContainer" onClick="this.disabled=true" onComplete="this.disabled=false" />
+			</wo:form>
+			<br style="clear: both"/>
+		</div>
+	</wo:AjaxUpdateContainer>
+</wo:conditional>

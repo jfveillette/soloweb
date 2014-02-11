@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<wodefinitions>
+    <wo class="IMTabContainer" wocomponentcontent="false">    <binding name="selectedTab"/>
+    <binding name="tabs"/>
+        <validation message="'tabs' is a required binding.">
+            <unbound name="tabs"/>
+        </validation>
+    <validation message="'selectedTab' is a required binding.">
+            <unbound name="selectedTab"/>
+        </validation>
+    </wo>
+</wodefinitions>

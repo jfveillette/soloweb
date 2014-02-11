@@ -1,0 +1,31 @@
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title>Bera saman</title>
+	</head>
+	<body>
+		<div class="container">
+			<div class="row">
+				<div class="col-md-8">
+					<h2>Saga</h2>
+					<table class="table">
+						<tr>
+							<th>Tími</th>
+							<th>Notandi</th>
+							<th>&nbsp;</th>
+							<th>&nbsp;</th>
+						</tr>
+						<wo:repetition list="$transactions" item="$currentTransaction">
+							<tr>
+								<td><wo:str value="$currentTransaction.date" dateformat="%d.%m.%Y - %H:%M" /></td>
+								<td><wo:str value="$currentTransaction.user.name" /></td>
+								<td><wo:link class="btn btn-xs" target="_blank" action="$use">Nota þessa útgáfu</wo:link></td>
+								<td><wo:link class="btn btn-xs" target="_blank" action="$preview">Skoða á vefnum</wo:link></td>
+							</tr>
+						</wo:repetition>
+					</table>
+				</div>
+			</div>
+		</div>
+	</body>
+</html>

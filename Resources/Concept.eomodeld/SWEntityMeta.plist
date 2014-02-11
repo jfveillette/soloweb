@@ -1,0 +1,96 @@
+{
+    attributes = (
+        {
+            allowsNull = Y; 
+            columnName = "category_name"; 
+            name = categoryName; 
+            prototypeName = longText; 
+        }, 
+        {
+            allowsNull = Y; 
+            columnName = "edit_component_name"; 
+            name = editComponentName; 
+            prototypeName = longText; 
+        }, 
+        {
+            allowsNull = Y; 
+            columnName = "icelandic_name"; 
+            name = icelandicName; 
+            prototypeName = longText; 
+        }, 
+        {
+            allowsNull = Y; 
+            columnName = "icelandic_name_plural"; 
+            name = icelandicNamePlural; 
+            prototypeName = longText; 
+        }, 
+        {
+            allowsNull = Y; 
+            columnName = "icon_file_name"; 
+            name = iconFileName; 
+            prototypeName = longText; 
+        }, 
+        {allowsNull = N; columnName = id; name = id; prototypeName = intNumber; }, 
+        {allowsNull = Y; columnName = name; name = name; prototypeName = longText; }, 
+        {
+            allowsNull = Y; 
+            columnName = "show_in_lists"; 
+            name = showInLists; 
+            prototypeName = intNumber; 
+        }, 
+        {allowsNull = Y; columnName = text; name = text; prototypeName = longText; }, 
+        {
+            allowsNull = Y; 
+            columnName = "url_prefix"; 
+            name = urlPrefix; 
+            prototypeName = longText; 
+        }, 
+        {
+            allowsNull = Y; 
+            columnName = "view_component_name"; 
+            name = viewComponentName; 
+            prototypeName = longText; 
+        }
+    ); 
+    attributesUsedForLocking = (
+        categoryName, 
+        editComponentName, 
+        icelandicName, 
+        icelandicNamePlural, 
+        iconFileName, 
+        id, 
+        name, 
+        showInLists, 
+        text, 
+        urlPrefix, 
+        viewComponentName
+    ); 
+    className = "concept.data.SWEntityMeta"; 
+    classProperties = (
+        categoryName, 
+        columns, 
+        editComponentName, 
+        icelandicName, 
+        icelandicNamePlural, 
+        iconFileName, 
+        name, 
+        showInLists, 
+        text, 
+        urlPrefix, 
+        viewComponentName
+    ); 
+    externalName = "sw_entity_meta"; 
+    fetchSpecificationDictionary = {}; 
+    name = SWEntityMeta; 
+    primaryKeyAttributes = (id); 
+    relationships = (
+        {
+            deleteRule = EODeleteRuleCascade; 
+            destination = SWAttributeMeta; 
+            isToMany = Y; 
+            joinSemantic = EOInnerJoin; 
+            joins = ({destinationAttribute = tableID; sourceAttribute = id; }); 
+            name = columns; 
+        }
+    ); 
+}

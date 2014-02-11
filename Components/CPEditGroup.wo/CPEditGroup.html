@@ -1,0 +1,32 @@
+<label><wo:str value="$@ls.grpName" />: </label> <wo:textfield value="$selectedObject.name" size="30" /><br />
+<label><wo:str value="$@ls.grpUsers" />: </label> <wo:popUpButton displayString="$currentUser.name" item="$currentUser" list="$selectedObject.usersNotInGroup" selection="$selectedUser" noSelectionString="$@ls.grpSelectUser"  /> <wo:submit action="$addUserToGroup" value="$@ls.grpAddUserToGroupButtonTitle" />
+
+<table class="table table-condensed table-bordered table-striped">
+	<wo:repetition list="$selectedObject.users" item="$currentGroupUser" index="$tableIndex">
+		<tr>
+			<td width="16"><wo:img filename="user.gif" framework="$sw.frameworkBundleName" /></td>
+			<td width = "280">
+				<wo:EditLink object="$currentGroupUser"><wo:str value="$currentGroupUser.name" valueWhenEmpty="$@ls.untitledObjectString" /></wo:EditLink>
+			</td>
+			<td width="10">
+				<wo:link action="$removeUserFromGroup" onclick="$@cs.grpRemoveUserFromGroupWarning">X</wo:link>
+			</td>
+		</tr>
+	</wo:repetition>
+</table>
+
+<wo:if condition="$selectedObject.accessPrivileges.count">
+	<h2>Aðgangsheimildir</h2>
+	<table>
+		<tr>
+			<th>Tegund</th>
+			<th>Hlutur</th>
+		</tr>
+		<wo:repetition list="$selectedObject.accessPrivileges" item="$currentPrivilege">
+			<tr>
+				<td><wo:str value="$currentPrivilege.localizedDescriptionOfEntity" /></td>
+				<td><wo:EditLink object="$currentPrivilege.targetObject"><wo:str value="$currentPrivilege.targetObject.toString" /></wo:EditLink></td>
+			</tr>
+		</wo:repetition>
+	</table>
+</wo:if>

@@ -1,0 +1,43 @@
+{
+    attributes = (
+        {
+            allowsNull = N; 
+            columnName = "group_id"; 
+            name = groupID; 
+            prototypeName = intNumber; 
+        }, 
+        {
+            allowsNull = N; 
+            columnName = "user_id"; 
+            name = userID; 
+            prototypeName = intNumber; 
+        }
+    ); 
+    attributesUsedForLocking = (groupID, userID); 
+    className = EOGenericRecord; 
+    externalName = "sw_group_user"; 
+    fetchSpecificationDictionary = {}; 
+    name = SWGroupUser; 
+    primaryKeyAttributes = (groupID, userID); 
+    relationships = (
+        {
+            destination = SWGroup; 
+            isMandatory = Y; 
+            isToMany = N; 
+            joinSemantic = EOInnerJoin; 
+            joins = ({destinationAttribute = id; sourceAttribute = groupID; }); 
+            name = sWGroup; 
+            userInfo = {modificationDate = "2001-06-03 19:53:43 +0000"; }; 
+        }, 
+        {
+            destination = SWUser; 
+            isMandatory = Y; 
+            isToMany = N; 
+            joinSemantic = EOInnerJoin; 
+            joins = ({destinationAttribute = id; sourceAttribute = userID; }); 
+            name = sWUser; 
+            userInfo = {modificationDate = "2001-06-03 19:53:43 +0000"; }; 
+        }
+    ); 
+    userInfo = {modificationDate = "2001-06-03 19:53:43 +0000"; }; 
+}

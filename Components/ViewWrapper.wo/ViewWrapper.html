@@ -1,0 +1,31 @@
+<wo:switch WOComponentName="$lookName" selectedObject="$selectedObject">
+	<wo:switch WOComponentName="$displayComponentName" callingComponent="$callingComponent" selectedObject="$selectedObject" />
+	<wo:ViewWrapperTools selectedObject="$selectedObject" />
+	<wo:if condition="$conceptUser.isAdministrator">
+		<style type="text/css">
+			.admin-button {
+				position: fixed;
+				top: 0px;
+				left: 0px;
+			}
+		</style>
+		<div class="admin-button">
+			<div class="btn-group">
+				<a class="btn btn-default dropdown-toggle btn-xs" data-toggle="dropdown" href="#"><i class="glyphicon glyphicon-cog"></i> <span class="caret"></span></a>
+				<ul class="dropdown-menu">
+					<li><wo:EditLink object="$selectedObject"><i class="glyphicon glyphicon-pencil"></i> Opna í stjórnkerfi</wo:EditLink></li>
+					<li><wo:link action="$viewDocuments"><i class="glyphicon glyphicon-file"></i> Tengd skjöl</wo:link></li>
+					<li><wo:link action="$viewMeta"><i class="glyphicon glyphicon-th-list"></i> Eigindi</wo:link></li>
+					<li><wo:link action="$viewTags"><i class="glyphicon glyphicon-tags"></i> Merki</wo:link></li>
+					<li class="divider"></li>
+					<li><wo:link action="$viewGenericVersion"><i class="glyphicon glyphicon-eye-open"></i> Skoða almenna útgáfu</wo:link></li>
+					<li><wo:link action="$viewTransactions" target="_blank"><i class="glyphicon glyphicon-list"></i> Hreyfingasaga</wo:link></li>
+					<wo:if condition="$selectedObjectIsPage">
+						<li class="divider"></li>
+						<li><wo:link action="$createComponent"><i class="glyphicon glyphicon-eye-open"></i> Bæta efni á síðu</wo:link></li>
+					</wo:if>
+				</ul>
+			</div>
+		</div>
+	</wo:if>
+</wo:switch>

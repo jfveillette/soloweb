@@ -1,0 +1,9 @@
+<wo:CPAdminComponentWrapper>
+	<table class="table">
+		<wo:repetition list="$taskClasses" item="$currentTaskClass">
+			<tr>
+				<td><wo:link action="$run"><wo:str value="$currentTaskClass.name" /></wo:link></td>
+			</tr>
+		</wo:repetition>
+	</table>
+</wo:CPAdminComponentWrapper>

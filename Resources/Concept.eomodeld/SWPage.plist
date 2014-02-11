@@ -1,0 +1,211 @@
+{
+    attributes = (
+        {
+            allowsNull = Y; 
+            columnName = "is_accessible"; 
+            name = accessible; 
+            prototypeName = intNumber; 
+        }, 
+        {
+            allowsNull = Y; 
+            columnName = "custom_info"; 
+            name = customInfoData; 
+            prototypeName = longText; 
+        }, 
+        {
+            allowsNull = Y; 
+            columnName = "external_url"; 
+            name = externalURL; 
+            prototypeName = longText; 
+        }, 
+        {allowsNull = N; columnName = id; name = id; prototypeName = intNumber; }, 
+        {
+            allowsNull = Y; 
+            columnName = "inherits_privileges"; 
+            name = inheritsPrivileges; 
+            prototypeName = intNumber; 
+        }, 
+        {
+            allowsNull = Y; 
+            columnName = keywords; 
+            name = keywords; 
+            prototypeName = longText; 
+        }, 
+        {
+            allowsNull = Y; 
+            columnName = language; 
+            name = language; 
+            prototypeName = longText; 
+        }, 
+        {allowsNull = Y; columnName = look; name = look; prototypeName = longText; }, 
+        {allowsNull = Y; columnName = name; name = name; prototypeName = longText; }, 
+        {
+            allowsNull = Y; 
+            columnName = "name_prefix"; 
+            name = namePrefix; 
+            prototypeName = longText; 
+        }, 
+        {
+            allowsNull = Y; 
+            columnName = "parent_id"; 
+            name = parentID; 
+            prototypeName = intNumber; 
+        }, 
+        {
+            allowsNull = Y; 
+            columnName = password; 
+            name = password; 
+            prototypeName = longText; 
+        }, 
+        {
+            allowsNull = Y; 
+            columnName = "picture_one_id"; 
+            name = pictureOneID; 
+            prototypeName = intNumber; 
+        }, 
+        {
+            allowsNull = Y; 
+            columnName = "picture_two_id"; 
+            name = pictureTwoID; 
+            prototypeName = intNumber; 
+        }, 
+        {
+            allowsNull = Y; 
+            columnName = published; 
+            name = published; 
+            prototypeName = intNumber; 
+        }, 
+        {
+            allowsNull = Y; 
+            columnName = "sort_number"; 
+            name = sortNumber; 
+            prototypeName = intNumber; 
+        }, 
+        {
+            allowsNull = Y; 
+            columnName = symbol; 
+            name = symbol; 
+            prototypeName = longText; 
+        }, 
+        {allowsNull = Y; columnName = text; name = text; prototypeName = longText; }, 
+        {
+            allowsNull = Y; 
+            columnName = "time_in"; 
+            name = timeIn; 
+            prototypeName = dateTime; 
+        }, 
+        {
+            allowsNull = Y; 
+            columnName = "time_out"; 
+            name = timeOut; 
+            prototypeName = dateTime; 
+        }
+    ); 
+    attributesUsedForLocking = (
+        accessible, 
+        externalURL, 
+        id, 
+        inheritsPrivileges, 
+        keywords, 
+        language, 
+        look, 
+        name, 
+        namePrefix, 
+        parentID, 
+        password, 
+        pictureOneID, 
+        pictureTwoID, 
+        published, 
+        sortNumber, 
+        symbol, 
+        text, 
+        timeIn, 
+        timeOut
+    ); 
+    className = "concept.data.SWPage"; 
+    classProperties = (
+        accessible, 
+        children, 
+        components, 
+        customInfoData, 
+        externalURL, 
+        id, 
+        imageOne, 
+        imageTwo, 
+        inheritsPrivileges, 
+        keywords, 
+        language, 
+        look, 
+        name, 
+        namePrefix, 
+        parent, 
+        parentID, 
+        password, 
+        pictureOneID, 
+        pictureTwoID, 
+        published, 
+        site, 
+        sortNumber, 
+        symbol, 
+        text, 
+        timeIn, 
+        timeOut
+    ); 
+    externalName = "sw_page"; 
+    fetchSpecificationDictionary = {}; 
+    name = SWPage; 
+    primaryKeyAttributes = (id); 
+    relationships = (
+        {
+            deleteRule = EODeleteRuleCascade; 
+            destination = SWPage; 
+            isToMany = Y; 
+            joinSemantic = EOInnerJoin; 
+            joins = ({destinationAttribute = parentID; sourceAttribute = id; }); 
+            name = children; 
+            userInfo = {modificationDate = "2001-06-03 19:53:43 +0000"; }; 
+        }, 
+        {
+            deleteRule = EODeleteRuleCascade; 
+            destination = SWComponent; 
+            isToMany = Y; 
+            joinSemantic = EOInnerJoin; 
+            joins = ({destinationAttribute = pageID; sourceAttribute = id; }); 
+            name = components; 
+            userInfo = {modificationDate = "2001-06-03 19:53:43 +0000"; }; 
+        }, 
+        {
+            destination = SWPicture; 
+            isToMany = N; 
+            joinSemantic = EOInnerJoin; 
+            joins = ({destinationAttribute = id; sourceAttribute = pictureOneID; }); 
+            name = imageOne; 
+            userInfo = {modificationDate = "2001-06-03 19:53:43 +0000"; }; 
+        }, 
+        {
+            destination = SWPicture; 
+            isToMany = N; 
+            joinSemantic = EOInnerJoin; 
+            joins = ({destinationAttribute = id; sourceAttribute = pictureTwoID; }); 
+            name = imageTwo; 
+            userInfo = {modificationDate = "2001-06-03 19:53:43 +0000"; }; 
+        }, 
+        {
+            destination = SWPage; 
+            isToMany = N; 
+            joinSemantic = EOInnerJoin; 
+            joins = ({destinationAttribute = id; sourceAttribute = parentID; }); 
+            name = parent; 
+            userInfo = {modificationDate = "2001-06-03 19:53:43 +0000"; }; 
+        }, 
+        {
+            destination = SWSite; 
+            isToMany = Y; 
+            joinSemantic = EOInnerJoin; 
+            joins = ({destinationAttribute = pageID; sourceAttribute = id; }); 
+            name = site; 
+            userInfo = {modificationDate = "2001-06-03 19:53:43 +0000"; }; 
+        }
+    ); 
+    userInfo = {modificationDate = "2001-06-03 19:53:43 +0000"; }; 
+}

@@ -1,0 +1,50 @@
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title>Bera saman</title>
+	</head>
+	<body>
+		<div class="container">
+			<div class="row">
+				<div class="col-md-6">
+					<h2>Saga</h2>
+					<table class="table">
+						<tr>
+							<th>Tími</th>
+							<th>Notandi</th>
+						</tr>
+						<wo:repetition list="$transactions" item="$currentTransaction">
+							<tr>
+								<td><wo:AjaxUpdateLink updateContainerID="content" action="$selectTransaction"><wo:str value="$currentTransaction.date" dateformat="%d.%m.%Y - %H:%M" /></wo:AjaxUpdateLink></td>
+								<td><wo:str value="$currentTransaction.user.name" /></td>
+							</tr>
+						</wo:repetition>
+					</table>
+				</div>
+				<wo:AjaxUpdateContainer id="content">
+					<wo:if condition="$selectedTransaction">
+						<div class="col-md-6">
+							<h2>&nbsp;</h2>
+							<wo:form>
+								<div class="btn-group">
+									<wo:link class="btn btn-xs" action="$use">Nota þessa útgáfu</wo:link>
+									<wo:link class="btn btn-xs" action="$preview">Skoða á vefnum</wo:link>
+								</div>
+								<wo:checkbox checked="$escapeHTML" id="escapeHTML" /> Sýna HTML
+								<wo:AjaxObserveField observeFieldID="escapeHTML" updateContainerID="content" />
+							</wo:form>
+							<div class="well">
+								<wo:if condition="$escapeHTML">
+									<pre><wo:str value="$selectedValue" /></pre>
+								</wo:if>
+								<wo:if condition="$escapeHTML" negate="$true">
+									<wo:str value="$selectedValue" escapeHTML="$escapeHTML" />
+								</wo:if>
+							</div>
+						</div>
+					</wo:if>
+				</wo:AjaxUpdateContainer>
+			</div>
+		</div>
+	</body>
+</html>

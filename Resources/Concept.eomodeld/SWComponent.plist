@@ -1,0 +1,132 @@
+{
+    attributes = (
+        {
+            allowsNull = Y; 
+            columnName = "custom_info"; 
+            name = customInfoData; 
+            prototypeName = longText; 
+        }, 
+        {
+            allowsNull = Y; 
+            columnName = "encode_breaks"; 
+            name = encodeBreaks; 
+            prototypeName = intNumber; 
+        }, 
+        {allowsNull = N; columnName = id; name = id; prototypeName = intNumber; }, 
+        {
+            allowsNull = Y; 
+            columnName = "page_id"; 
+            name = pageID; 
+            prototypeName = intNumber; 
+        }, 
+        {
+            allowsNull = Y; 
+            columnName = "picture_id"; 
+            name = pictureID; 
+            prototypeName = intNumber; 
+        }, 
+        {
+            allowsNull = Y; 
+            columnName = published; 
+            name = published; 
+            prototypeName = intNumber; 
+        }, 
+        {
+            allowsNull = Y; 
+            columnName = "sort_number"; 
+            name = sortNumber; 
+            prototypeName = intNumber; 
+        }, 
+        {
+            allowsNull = Y; 
+            columnName = "template_name"; 
+            name = templateName; 
+            prototypeName = longText; 
+        }, 
+        {
+            allowsNull = Y; 
+            columnName = "text_one"; 
+            name = textOne; 
+            prototypeName = longText; 
+        }, 
+        {
+            allowsNull = Y; 
+            columnName = "text_two"; 
+            name = textTwo; 
+            prototypeName = longText; 
+        }, 
+        {
+            allowsNull = Y; 
+            columnName = "time_in"; 
+            name = timeIn; 
+            prototypeName = dateTime; 
+        }, 
+        {
+            allowsNull = Y; 
+            columnName = "time_out"; 
+            name = timeOut; 
+            prototypeName = dateTime; 
+        }
+    ); 
+    attributesUsedForLocking = (
+        encodeBreaks, 
+        id, 
+        pageID, 
+        pictureID, 
+        published, 
+        sortNumber, 
+        templateName, 
+        textOne, 
+        textTwo, 
+        timeIn, 
+        timeOut
+    ); 
+    className = "concept.data.SWComponent"; 
+    classProperties = (
+        encodeBreaks, 
+        page, 
+        pageID, 
+        swPictureLinks, 
+        picture, 
+        pictureID, 
+        published, 
+        sortNumber, 
+        templateName, 
+        textOne, 
+        textTwo, 
+        timeIn, 
+        timeOut, 
+        customInfoData, 
+        id
+    ); 
+    externalName = "sw_component"; 
+    fetchSpecificationDictionary = {}; 
+    name = SWComponent; 
+    primaryKeyAttributes = (id); 
+    relationships = (
+        {
+            destination = SWPage; 
+            isToMany = N; 
+            joinSemantic = EOInnerJoin; 
+            joins = ({destinationAttribute = id; sourceAttribute = pageID; }); 
+            name = page; 
+            userInfo = {modificationDate = "2001-06-03 19:53:43 +0000"; }; 
+        }, 
+        {
+            destination = SWPicture; 
+            isToMany = N; 
+            joinSemantic = EOInnerJoin; 
+            joins = ({destinationAttribute = id; sourceAttribute = pictureID; }); 
+            name = picture; 
+            userInfo = {modificationDate = "2001-06-03 19:53:43 +0000"; }; 
+        }, 
+        {
+            destination = SWPictureLink; 
+            isToMany = Y; 
+            joinSemantic = EOInnerJoin; 
+            joins = ({destinationAttribute = componentID; sourceAttribute = id; }); 
+            name = swPictureLinks; 
+        }
+    ); 
+    userInfo = {modificationDate = "2001-06-03 19:53:43 +0000"; }; 
+}

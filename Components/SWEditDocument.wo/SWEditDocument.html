@@ -1,0 +1,14 @@
+<label>Heiti</label>
+<wo:textfield value="$selectedObject.name" />
+
+<label>Tegund</label>
+<wo:textfield value="$selectedObject.extension" />
+
+<label>Uppruni</label>
+<wo:textfield value="$selectedObject.credit" />
+
+<label>Upplýsingar</label>
+<wo:text value="$selectedObject.text" cols="120" rows="10" />
+
+<label>Gögn</label>
+<wo:fileUpload outputStream="$selectedObject.outputStream" filePath="$filename" />

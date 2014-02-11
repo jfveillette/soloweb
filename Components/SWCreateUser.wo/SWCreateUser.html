@@ -1,0 +1,36 @@
+<wo:switch WOComponentName="$lookName">
+	<wo:conditional condition="$errorMessage.length">
+		<div class="row">
+			<div class="col-md-4">
+				<div class="alert alert-error">
+					<wo:str value="$errorMessage" />
+				</div>
+			</div>
+		</div>
+	</wo:conditional>
+	<div class="row">
+		<div class="col-md-8">
+			<wo:form>
+				<fieldset>
+					<legend>Stofna notanda</legend>
+	
+					<label>Nafn</label>
+					<wo:textfield value="$newUser.name" />
+	
+					<label>Netfang</label>
+					<wo:textfield value="$newUser.emailAddress" />
+	
+					<label>Aðgangsorð</label>
+					<wo:password value="$newUser.password" />
+	
+					<label>Aðgangsorð aftur</label>
+					<wo:password value="$passwordForComparison" />
+	
+					<div class="controls">
+						<wo:submit action="$saveChanges" class="btn btn-success" value="Stofna aðgang" />
+					</div>
+				</fieldset>
+			</wo:form>
+		</div>
+	</div>
+</wo:switch>

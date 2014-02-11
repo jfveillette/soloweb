@@ -1,0 +1,25 @@
+<wo:conditional condition="$selectedObject.components.count" negate="$true">
+	<wo:link action="$insertComponentAbove"><wo:img filename="page_new.gif" /></wo:link>
+	<br />
+	<br />
+	<wo:str value="$@ls.noComponentsOnPageMessage" />
+</wo:conditional>
+
+<wo:repetition list="$selectedObject.sortedComponents" item="$currentComponent" index="$currentIndex">
+	<br style="clear:both" />
+	<div class="btn-group">
+		<wo:link action="$insertComponentAbove" class="btn btn-success">Búa til síðubút</wo:link>
+		<wo:EditLink object="$currentComponent" class="btn">Opna bút</wo:EditLink>
+		<a href="#transfer" class="btn">Flytja bút á aðra síðu</a>
+		<wo:conditional condition="$currentComponent.isFirst" negate="$true"><wo:link class="btn" action="$moveComponentUp">Færa bút upp</wo:link></wo:conditional>
+		<wo:conditional condition="$currentComponent.isLast" negate="$true"><wo:link class="btn" action="$moveComponentDown">Færa bút niður</wo:link></wo:conditional>
+		<wo:link action="$deleteComponent" class="btn btn-danger" onClick="$@cs.deletePageComponentWarning">Eyða bút</wo:link>
+	</div>
+
+	<wo:switch WOComponentName="$templateName" currentComponent="$currentComponent" />
+
+	<wo:conditional condition="$currentComponent.isLast">
+		<div class="sw-menu"><wo:link action="$insertComponentBelow" class="btn btn-success">Búa til síðubút</wo:link></div>
+	</wo:conditional>
+	<hr />
+</wo:repetition>

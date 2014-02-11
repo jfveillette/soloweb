@@ -1,0 +1,79 @@
+{
+    attributes = (
+        {
+            allowsNull = Y; 
+            columnName = "alt_text"; 
+            name = altText; 
+            prototypeName = longText; 
+        }, 
+        {
+            allowsNull = Y; 
+            columnName = "asset_folder_id"; 
+            name = assetFolderID; 
+            prototypeName = intNumber; 
+        }, 
+        {
+            allowsNull = Y; 
+            columnName = description; 
+            name = description; 
+            prototypeName = longText; 
+        }, 
+        {allowsNull = Y; columnName = name; name = name; prototypeName = longText; }, 
+        {
+            allowsNull = Y; 
+            columnName = "display_name"; 
+            name = displayName; 
+            prototypeName = longText; 
+        }, 
+        {
+            allowsNull = Y; 
+            columnName = "custom_info"; 
+            name = customInfoData; 
+            prototypeName = longText; 
+        }, 
+        {
+            allowsNull = Y; 
+            columnName = "document_type_ext"; 
+            name = extension; 
+            prototypeName = longText; 
+        }, 
+        {allowsNull = N; columnName = id; name = id; prototypeName = intNumber; }
+    ); 
+    attributesUsedForLocking = (altText, assetFolderID, description, displayName, extension, id, name); 
+    className = "concept.data.SWPicture"; 
+    classProperties = (
+        altText, 
+        assetFolderID, 
+        description, 
+        folder, 
+        name, 
+        swPictureLinks, 
+        displayName, 
+        customInfoData, 
+        extension, 
+        id
+    ); 
+    externalName = "sw_picture"; 
+    fetchSpecificationDictionary = {}; 
+    name = SWPicture; 
+    primaryKeyAttributes = (id); 
+    relationships = (
+        {
+            deleteRule = EODeleteRuleCascade; 
+            destination = SWPictureLink; 
+            isToMany = Y; 
+            joinSemantic = EOInnerJoin; 
+            joins = ({destinationAttribute = pictureID; sourceAttribute = id; }); 
+            name = swPictureLinks; 
+        }, 
+        {
+            destination = SWAssetFolder; 
+            isToMany = N; 
+            joinSemantic = EOInnerJoin; 
+            joins = ({destinationAttribute = id; sourceAttribute = assetFolderID; }); 
+            name = folder; 
+            userInfo = {modificationDate = "2001-06-03 19:53:43 +0000"; }; 
+        }
+    ); 
+    userInfo = {modificationDate = "2001-06-03 19:53:43 +0000"; }; 
+}

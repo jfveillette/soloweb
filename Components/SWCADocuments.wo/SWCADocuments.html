@@ -1,0 +1,17 @@
+<h2><wo:str value="$@ls.documentComponentHeading" /></h2>
+
+<wo:str value="$@ls.documentselectFieldTitle" />
+
+<wo:SWDocumentHyperlink componentToReturn="$context.page" fieldName="selectedDocument" record="$self">
+	<wo:conditional condition="$selectedDocument">
+		<wo:str value="$selectedDocument.name" />
+	</wo:conditional>
+	<wo:conditional condition="$selectedDocument" negate="$true">
+		<wo:str value="$@ls.documentNoDocumentSelectedString" />
+	</wo:conditional>
+</wo:SWDocumentHyperlink>
+
+<wo:str value="$@ls.documentDisplayStyleTitle" />: <wo:popUpButton list="$componentKeys" selection="$selectedComponentKey" /><br />
+<wo:str value="$@ls.documentSortingTitle" />: <wo:checkbox checked="$currentComponent.customInfo.reverseSortOrder" /><br />
+<wo:str value="$@ls.documentIconFieldTitle" />: <wo:checkbox checked="$currentComponent.customInfo.displayIcon" /><br />
+<wo:str value="$@ls.documentDownloadTextFieldTitle" />: <wo:textfield value="$currentComponent.customInfo.downloadText" size="30" /><br />

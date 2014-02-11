@@ -1,0 +1,34 @@
+{
+    attributes = (
+        {
+            allowsNull = Y; 
+            columnName = "access_privilege_id"; 
+            name = accessPrivilegeID; 
+            prototypeName = intNumber; 
+        }, 
+        {allowsNull = N; columnName = id; name = id; prototypeName = intNumber; }, 
+        {
+            allowsNull = Y; 
+            columnName = identifier; 
+            name = identifier; 
+            prototypeName = longText; 
+        }, 
+        {allowsNull = Y; columnName = value; name = value; prototypeName = intNumber; }
+    ); 
+    attributesUsedForLocking = (accessPrivilegeID, id, identifier, value); 
+    className = "concept.data.SWAccessPrivilegeValue"; 
+    classProperties = (accessPrivilege, identifier, value); 
+    externalName = "sw_access_privilege_value"; 
+    fetchSpecificationDictionary = {}; 
+    name = SWAccessPrivilegeValue; 
+    primaryKeyAttributes = (id); 
+    relationships = (
+        {
+            destination = SWAccessPrivilege; 
+            isToMany = N; 
+            joinSemantic = EOInnerJoin; 
+            joins = ({destinationAttribute = id; sourceAttribute = accessPrivilegeID; }); 
+            name = accessPrivilege; 
+        }
+    ); 
+}

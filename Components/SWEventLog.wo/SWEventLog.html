@@ -1,0 +1,29 @@
+<wo:CPAdminComponentWrapper>
+	<wo:link action="$search" class="btn">Leita</wo:link>
+	<div class="row">
+		<div class="col-md-8">
+		<h2>Viðburðir</h2>
+		<wo:AjaxUpdateContainer id="list">
+		<wo:IMBatchNavigation dg="$dg" />
+			<table class="table table-striped table-bordered table-condensed">
+				<tr>
+					<th>Dags.</th>
+					<th>Tími</th>
+					<th>Notandi</th>
+					<th>Viðburður</th>
+					<th>Lýsing</th>
+				</tr>
+				<wo:repetition list="$dg.displayedObjects" item="$currentObject">
+					<tr>
+						<td><wo:str value="$currentObject.creationDate" dateformat="%d.%m" /></td>
+						<td><wo:str value="$currentObject.creationDate" dateformat="%H:%M" /></td>
+						<td><wo:str value="$currentObject.user.name" /></td>
+						<td><wo:str value="$currentObject.type" /></td>
+						<td><wo:str value="$currentObject.text" /></td>
+					</tr>
+				</wo:repetition>
+		</table>
+	</wo:AjaxUpdateContainer>
+	</div>
+	</div>
+</wo:CPAdminComponentWrapper>

@@ -1,0 +1,106 @@
+{
+    attributes = (
+        {
+            allowsNull = Y; 
+            columnName = "creation_date"; 
+            name = creationDate; 
+            prototypeName = dateTime; 
+        }, 
+        {
+            allowsNull = Y; 
+            columnName = credit; 
+            name = credit; 
+            prototypeName = longText; 
+        }, 
+        {
+            allowsNull = Y; 
+            columnName = "file_folder_id"; 
+            name = documentFolderID; 
+            prototypeName = intNumber; 
+        }, 
+        {
+            allowsNull = Y; 
+            columnName = extension; 
+            name = extension; 
+            prototypeName = longText; 
+        }, 
+        {allowsNull = N; columnName = id; name = id; prototypeName = intNumber; }, 
+        {
+            allowsNull = Y; 
+            columnName = "link_key"; 
+            name = linkKey; 
+            prototypeName = longText; 
+        }, 
+        {
+            allowsNull = Y; 
+            columnName = "modification_date"; 
+            name = modificationDate; 
+            prototypeName = dateTime; 
+        }, 
+        {allowsNull = Y; columnName = name; name = name; prototypeName = longText; }, 
+        {
+            allowsNull = Y; 
+            columnName = "stored_directory"; 
+            name = storedDirectory; 
+            prototypeName = longText; 
+        }, 
+        {
+            allowsNull = Y; 
+            columnName = "stored_filename"; 
+            name = storedFilename; 
+            prototypeName = longText; 
+        }, 
+        {allowsNull = Y; columnName = text; name = text; prototypeName = longText; }, 
+        {allowsNull = Y; columnName = uuid; name = uuid; prototypeName = longText; }
+    ); 
+    attributesUsedForLocking = (
+        creationDate, 
+        credit, 
+        documentFolderID, 
+        extension, 
+        id, 
+        linkKey, 
+        modificationDate, 
+        name, 
+        storedDirectory, 
+        storedFilename, 
+        uuid
+    ); 
+    className = "concept.data.SWDocument"; 
+    classProperties = (
+        creationDate, 
+        credit, 
+        documentFolderID, 
+        extension, 
+        folder, 
+        id, 
+        linkKey, 
+        links, 
+        modificationDate, 
+        name, 
+        storedDirectory, 
+        storedFilename, 
+        text, 
+        uuid
+    ); 
+    externalName = "sw_document"; 
+    fetchSpecificationDictionary = {}; 
+    name = SWDocument; 
+    primaryKeyAttributes = (id); 
+    relationships = (
+        {
+            destination = SWDocumentFolder; 
+            isToMany = N; 
+            joinSemantic = EOInnerJoin; 
+            joins = ({destinationAttribute = id; sourceAttribute = documentFolderID; }); 
+            name = folder; 
+        }, 
+        {
+            destination = SWDocumentLink; 
+            isToMany = Y; 
+            joinSemantic = EOInnerJoin; 
+            joins = ({destinationAttribute = documentID; sourceAttribute = id; }); 
+            name = links; 
+        }
+    ); 
+}

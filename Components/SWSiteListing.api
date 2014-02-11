@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<wodefinitions>
+	<wo class="SWSiteListing" wocomponentcontent="false">
+
+		<binding name="pageAction"/>
+		<binding name="selectedObject"/>
+		<binding name="recordToDisableSubPagesOf"/>
+		<binding name="selectedSite"/>
+		<binding name="siteAction"/>
+		<binding name="requiredPrivilege"/>
+		<binding defaults="Boolean" name="inBetween"/>
+		<binding name="currentIndex"/>
+
+		<validation message="'currentIndex' must be bound to a settable value">
+			<unsettable name="currentIndex"/>
+		</validation>
+	</wo>
+</wodefinitions>

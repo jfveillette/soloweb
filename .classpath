@@ -15,5 +15,9 @@
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
 	<classpathentry kind="con" path="WOFramework/USWebObjects"/>
 	<classpathentry kind="con" path="WOFramework/Ajax"/>
+	<classpathentry kind="lib" path="Libraries/jtidy-r938.jar"/>
+	<classpathentry kind="lib" path="Libraries/lucene-analyzers-common-4.6.0.jar"/>
+	<classpathentry kind="lib" path="Libraries/lucene-core-4.6.0.jar"/>
+	<classpathentry kind="lib" path="Libraries/lucene-queryparser-4.6.0.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

@@ -1,0 +1,34 @@
+{
+    attributes = (
+        {
+            allowsNull = Y; 
+            columnName = "creation_date"; 
+            name = creationDate; 
+            prototypeName = dateTime; 
+        }, 
+        {allowsNull = N; columnName = id; name = id; prototypeName = intNumber; }, 
+        {
+            allowsNull = Y; 
+            columnName = "modification_date"; 
+            name = modificationDate; 
+            prototypeName = dateTime; 
+        }, 
+        {allowsNull = Y; columnName = name; name = name; prototypeName = longText; }
+    ); 
+    attributesUsedForLocking = (creationDate, id, name); 
+    className = "concept.data.SWTag"; 
+    classProperties = (creationDate, modificationDate, name, taggings); 
+    externalName = "sw_tag"; 
+    fetchSpecificationDictionary = {}; 
+    name = SWTag; 
+    primaryKeyAttributes = (id); 
+    relationships = (
+        {
+            destination = SWTagging; 
+            isToMany = Y; 
+            joinSemantic = EOInnerJoin; 
+            joins = ({destinationAttribute = tagID; sourceAttribute = id; }); 
+            name = taggings; 
+        }
+    ); 
+}

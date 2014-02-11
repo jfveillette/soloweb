@@ -1,0 +1,12 @@
+<wo:CPAdminComponentWrapper>
+	<div class="col-md-3">
+		<ul class="nav nav-tabs nav-stacked">
+			<wo:repetition list="$tabs.allKeys" item="$currentTab">
+				<li><wo:link action="$selectSetting"><wo:str value="$currentTab" /></wo:link></li>
+			</wo:repetition>
+		</ul>
+	</div>
+	<div class="col-md-8">
+		<wo:switch WOComponentName="$selectedComponent" />
+	</div>
+</wo:CPAdminComponentWrapper>

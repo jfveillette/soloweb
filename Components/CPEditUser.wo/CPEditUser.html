@@ -1,0 +1,49 @@
+<fieldset>
+	<legend>Notandi</legend>
+	<label><wo:str value="$@ls.usrName" />: </label><wo:textfield value="$selectedObject.name" size="30" /><br />
+	<label><wo:str value="$@ls.usrUsername" />: </label><wo:textfield value="$selectedObject.username" size="30" /><br />
+	<label>Netfang: </label><wo:textfield value="$selectedObject.emailAddress" /><br />
+	<label><wo:str value="$@ls.usrPassword" />: </label><wo:password value="$password" size="30" placeholder="Aðgangsorð eru ekki sýnd" /><br />
+	<wo:if condition="$allSites.count">
+		<label><wo:str value="$@ls.usrDefaultSite" />: </label><wo:popUpButton list="$allSites" item="$currentSite" displayString="$currentSite.name" selection="$selectedObject.defaultSite" noSelectionString="$@ls.usrSelectSiteString" /><br />
+	</wo:if>
+	<label><wo:str value="$@ls.usrUnlimited" />: </label><wo:checkbox checked="$selectedObject.administrator" /><br />
+	
+	<wo:str value="$@ls.usrGroups" />
+	<wo:popUpButton displayString="$currentGroup.name" item="$currentGroup" list="$selectedObject.groupsNotIn" selection="$selectedGroup" noSelectionString="$@ls.usrSelectGroupString" />
+	<wo:submit action="$addGroupToUser" value="$@ls.usrAddUserToGroupButtonTitle" />
+	
+	<table class="table table-condensed table-bordered table-striped">
+		<wo:repetition list="$selectedObject.groups" item="$currentUserGroup">
+			<tr>
+				<td width="16"><wo:img filename="group.gif" framework="$sw.frameworkBundleName" /></td>
+				<td width="280"><wo:EditLink object="$currentUserGroup"><wo:str value="$currentUserGroup.name" valueWhenEmpty="$@ls.untitledObjectString" /></wo:EditLink></td>
+				<td width="10"><wo:link action="$removeGroupFromUser" onclick="$@cs.usrRemoveFromGroupWarning">X</wo:link></td>
+			</tr>
+		</wo:repetition>
+	</table>
+	<wo:if condition="$selectedObject.accessPrivileges.count">
+		<h2>Aðgangsheimildir</h2>
+		<table>
+			<tr>
+				<th>Tegund</th>
+				<th>Hlutur</th>
+				<th>Úr hópi</th>
+			</tr>
+			<wo:repetition list="$selectedObject.accessPrivileges" item="$currentPrivilege">
+				<tr>
+					<td><wo:str value="$currentPrivilege.localizedDescriptionOfEntity" /></td>
+					<td><wo:EditLink object="$currentPrivilege.targetObject"><wo:str value="$currentPrivilege.targetObject.toString" /></wo:EditLink></td>
+					<td><em style="color: gray">Úthlutað beint til notanda</em></td>
+				</tr>
+			</wo:repetition>
+			<wo:repetition list="$selectedObject.groupPrivileges" item="$currentPrivilege">
+				<tr>
+					<td><wo:str value="$currentPrivilege.localizedDescriptionOfEntity" /></td>
+					<td><wo:EditLink object="$currentPrivilege.targetObject"><wo:str value="$currentPrivilege.targetObject.toString" /></wo:EditLink></td>
+					<td><wo:str value="$currentPrivilege.group.name" /></td>
+				</tr>
+			</wo:repetition>
+		</table>
+	</wo:if>
+</fieldset>

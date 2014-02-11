@@ -1,0 +1,30 @@
+<wo:repetition list="$newslist" item="$currentNewsItem">
+	<div class="sw-newsitem">
+		<h3 class="sw-newsheading"><wo:ViewLink object="$currentNewsItem"><wo:str value="$currentNewsItem.name" /></wo:ViewLink></h3>
+		<h4 class="sw-newsdate"><wo:str value="$currentNewsItem.date" formatter="$dateFormatter" /> <span class="sw-newstime"><wo:str value="$currentNewsItem.date" formatter="$timeFormatter" /></span></h4>
+		<wo:condition condition="$currentComponent.customInfo.showPicture">
+			<wo:SWDocumentDisplay documents="$currentNewsItem.documents" align="$currentComponent.customInfo.imageAlignment" />
+		</wo:condition>
+		<wo:condition condition="$displayExcerpt">
+			<div class="sw-newsitem-text">
+				<wo:str value="$currentNewsItem.excerpt" escapeHTML="$false" />
+			</div>
+			<wo:ViewLink object="$currentNewsItem" class="sw-newsitem_more_link"><wo:str value="$@ls.defaultNewsShowMoreString" /></wo:ViewLink>
+		</wo:condition>
+		<wo:condition condition="$displayText">
+			<div class="sw-newsitem-text">
+				<wo:str value="$currentNewsItem.text" escapeHTML="$false" />
+			</div>
+		</wo:condition>
+		<wo:condition condition="$displayLinkOnly">
+			<wo:ViewLink object="$currentNewsItem" class="sw-newsitem_more_link"><wo:str value="$@ls.defaultNewsShowMoreString" /></wo:ViewLink>
+		</wo:condition>
+		<wo:condition condition="$currentComponent.customInfo.allowComments">
+			<div class="sw-talkblock">
+				<wo:ViewLink object="$currentNewsItem" class="sw-newsitem_more_link">
+					<wo:SWCommentInfo selectedNewsItem="$currentNewsItem" />
+				</wo:ViewLink>
+			</div>
+		</wo:condition>
+	</div>
+</wo:repetition>

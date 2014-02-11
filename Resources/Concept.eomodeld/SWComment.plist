@@ -1,0 +1,92 @@
+{
+    attributes = (
+        {allowsNull = Y; columnName = date; name = date; prototypeName = dateTime; }, 
+        {
+            allowsNull = Y; 
+            columnName = "email_address"; 
+            name = emailAddress; 
+            prototypeName = longText; 
+        }, 
+        {allowsNull = N; columnName = id; name = id; prototypeName = intNumber; }, 
+        {
+            allowsNull = Y; 
+            columnName = "ip_address"; 
+            name = ipAddress; 
+            prototypeName = longText; 
+        }, 
+        {allowsNull = Y; columnName = name; name = name; prototypeName = longText; }, 
+        {
+            allowsNull = Y; 
+            columnName = "notify_on_new_comments"; 
+            name = notifyOnNewComments; 
+            prototypeName = intNumber; 
+        }, 
+        {
+            allowsNull = Y; 
+            columnName = "target_entity_name"; 
+            name = targetEntityName; 
+            prototypeName = longText; 
+        }, 
+        {
+            allowsNull = Y; 
+            columnName = "target_id"; 
+            name = targetID; 
+            prototypeName = longText; 
+        }, 
+        {allowsNull = Y; columnName = text; name = text; prototypeName = longText; }, 
+        {allowsNull = Y; columnName = url; name = url; prototypeName = longText; }, 
+        {
+            allowsNull = Y; 
+            columnName = "user_agent"; 
+            name = userAgent; 
+            prototypeName = longText; 
+        }, 
+        {
+            allowsNull = Y; 
+            columnName = "user_id"; 
+            name = userID; 
+            prototypeName = intNumber; 
+        }
+    ); 
+    attributesUsedForLocking = (
+        date, 
+        emailAddress, 
+        id, 
+        ipAddress, 
+        name, 
+        notifyOnNewComments, 
+        targetEntityName, 
+        targetID, 
+        text, 
+        url, 
+        userAgent, 
+        userID
+    ); 
+    className = "concept.data.SWComment"; 
+    classProperties = (
+        date, 
+        emailAddress, 
+        ipAddress, 
+        name, 
+        notifyOnNewComments, 
+        targetEntityName, 
+        targetID, 
+        text, 
+        url, 
+        user, 
+        userAgent
+    ); 
+    externalName = "sw_comment"; 
+    fetchSpecificationDictionary = {}; 
+    name = SWComment; 
+    primaryKeyAttributes = (id); 
+    relationships = (
+        {
+            destination = SWUser; 
+            isToMany = N; 
+            joinSemantic = EOInnerJoin; 
+            joins = ({destinationAttribute = id; sourceAttribute = userID; }); 
+            name = user; 
+        }
+    ); 
+}

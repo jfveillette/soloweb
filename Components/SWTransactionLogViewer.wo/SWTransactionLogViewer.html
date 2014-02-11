@@ -1,0 +1,67 @@
+<wo:CPAdminComponentWrapper>
+	<div class="row">
+		<div class="col-md-4">
+			<wo:form class="col-md-4">
+				<fieldset>
+					<legend>Hreyfingaskrá</legend>
+	
+					<label>Dags. frá</label>
+					<wo:textfield value="$dateFrom" dateformat="%d.%m.%Y" class="col-md-2" />
+	
+					<label>Dags. til</label>
+					<wo:textfield value="$dateTo" dateformat="%d.%m.%Y" class="col-md-2" />
+	
+					<label>Tegund hlutar</label>
+					<wo:textfield value="$targetEntityName" class="col-md-2" />
+	
+					<label>Nr. hlutar</label>
+					<wo:textfield value="$targetID" class="col-md-2" />
+	
+					<label>Notandi</label>
+					<wo:AjaxUpdateContainer id="me">
+						<wo:popUpButton noSelectionString="Allir notendur…" list="$users" item="$currentUser" selection="$selectedUser" displayString="$currentUser.name"/>
+						<wo:AjaxUpdateLink action="$me" updateContainerID="me">Ég</wo:AjaxUpdateLink>
+					</wo:AjaxUpdateContainer>
+					<br />
+					
+					<wo:submit action="$search" value="Sækja hreyfingar" class="btn btn-primary" />
+				</fieldset>
+			</wo:form>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-12">
+			<wo:conditional condition="$transactions.count">
+				<table class="table table-condensed table-bordered">
+					<tr>
+						<th>&nbsp;</th>
+						<th>Dags.</th>
+						<th>Notandi</th>
+						<th>Aðgerð</th>
+						<th>Hlutur</th>
+						<th>Lýsing</th>
+					</tr>
+					<wo:repetition list="$transactions" item="$currentTransaction">
+						<tr>
+							<td>
+								<div class="btn-group">
+									<a class="btn dropdown-toggle btn-xs" data-toggle="dropdown" href="#"><i class="glyphicon glyphicon-cog"></i> <span class="caret"></span></a>
+									<ul class="dropdown-menu">
+										<li><wo:EditLink object="$currentTransaction">Skoða breytingar</wo:EditLink></li>
+										<li><wo:EditLink object="$currentTransaction.targetObject">Opna í stjórnkerfi</wo:EditLink></li>
+										<li><wo:ViewLink object="$currentTransaction.targetObject">Opna á vefnum</wo:ViewLink></li>
+									</ul>
+								</div>
+							</td>
+							<td><wo:str value="$currentTransaction.date" dateformat="%Y-%m-%d %H:%M" /></td>
+							<td><wo:str value="$currentTransaction.user.name" /></td>
+							<td><wo:str value="$currentTransaction.localizedDescriptionOfAction" /></td>
+							<td><wo:str value="$currentTransaction.localizedDescriptionOfEntity" /> #<wo:str value="$currentTransaction.targetID" /></td>
+							<td><wo:str value="$currentDisplayString" /></td>
+						</tr>
+					</wo:repetition>
+				</table>
+			</wo:conditional>
+		</div>
+	</div>
+</wo:CPAdminComponentWrapper>

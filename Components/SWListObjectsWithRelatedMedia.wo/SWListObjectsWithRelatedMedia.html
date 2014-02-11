@@ -1,0 +1,26 @@
+<wo:CPAdminComponentWrapper>
+	<h4>Finna hluti tengda mörgum skjölum</h4>
+	<wo:form>
+		<wo:popUpButton list="$list.@sortAsc.icelandicNamePlural" item="$item" selection="$selection" displayString="$item.icelandicNamePlural"/> með tengingu við fleiri en <wo:textfield value="$maxItems" numberformat="0" class="input-mini" /> skjal/skjöl.</p>
+		<wo:submit action="$search" value="Sækja lista" class="btn btn-primary" />
+	</wo:form>
+	<wo:if condition="$links.count">
+		<table class="table">
+			<tr>
+				<th>Skjal</th>
+				<th>Kenni</th>
+				<th colspan="2">Opna</th>
+				<th colspan="2">#</th>
+			</tr>
+			<wo:repetition list="$links" item="$currentLink" index="$currentIndex">
+				<tr>
+					<td><wo:IMValue object="$currentLink.targetObject" /></td>
+					<td><wo:IMString value="" valueWhenEmpty="$currentLink.targetID" /></td>
+					<td><wo:ViewLink object="$currentLink.targetObject">Vefur</wo:ViewLink></td>
+					<td><wo:EditLink object="$currentLink.targetObject">Stjórnkerfi</wo:EditLink></td>
+					<td><wo:str value="$currentIndexForDisplay" /></td>
+				</tr>
+			</wo:repetition>
+		</table>
+	</wo:if>
+</wo:CPAdminComponentWrapper>

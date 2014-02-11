@@ -1,0 +1,26 @@
+{
+    attributes = (
+        {allowsNull = N; columnName = id; name = id; prototypeName = intNumber; }, 
+        {allowsNull = Y; columnName = name; name = name; prototypeName = longText; }, 
+        {
+            allowsNull = Y; 
+            columnName = "target_entity_name"; 
+            name = targetEntityName; 
+            prototypeName = longText; 
+        }, 
+        {
+            allowsNull = Y; 
+            columnName = "target_id"; 
+            name = targetID; 
+            prototypeName = longText; 
+        }, 
+        {allowsNull = Y; columnName = text; name = text; prototypeName = longText; }
+    ); 
+    attributesUsedForLocking = (id, name, targetEntityName, targetID, text); 
+    className = "concept.data.SWMeta"; 
+    classProperties = (name, targetEntityName, targetID, text); 
+    externalName = "sw_meta"; 
+    fetchSpecificationDictionary = {}; 
+    name = SWMeta; 
+    primaryKeyAttributes = (id); 
+}

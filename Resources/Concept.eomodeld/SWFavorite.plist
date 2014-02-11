@@ -1,0 +1,40 @@
+{
+    attributes = (
+        {allowsNull = N; columnName = id; name = id; prototypeName = intNumber; }, 
+        {
+            allowsNull = Y; 
+            columnName = "target_entity_name"; 
+            name = targetEntityName; 
+            prototypeName = longText; 
+        }, 
+        {
+            allowsNull = Y; 
+            columnName = "target_id"; 
+            name = targetID; 
+            prototypeName = longText; 
+        }, 
+        {allowsNull = Y; columnName = text; name = text; prototypeName = longText; }, 
+        {
+            allowsNull = Y; 
+            columnName = "user_id"; 
+            name = userID; 
+            prototypeName = intNumber; 
+        }
+    ); 
+    attributesUsedForLocking = (id, targetEntityName, targetID, text, userID); 
+    className = "concept.data.SWFavorite"; 
+    classProperties = (targetEntityName, targetID, text, user); 
+    externalName = "sw_favorite"; 
+    fetchSpecificationDictionary = {}; 
+    name = SWFavorite; 
+    primaryKeyAttributes = (id); 
+    relationships = (
+        {
+            destination = SWUser; 
+            isToMany = N; 
+            joinSemantic = EOInnerJoin; 
+            joins = ({destinationAttribute = id; sourceAttribute = userID; }); 
+            name = user; 
+        }
+    ); 
+}

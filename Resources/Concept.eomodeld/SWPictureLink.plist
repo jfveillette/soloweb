@@ -1,0 +1,102 @@
+{
+    attributes = (
+        {
+            allowsNull = Y; 
+            columnName = "component_id"; 
+            name = componentID; 
+            prototypeName = intNumber; 
+        }, 
+        {
+            allowsNull = Y; 
+            columnName = "link_to_large"; 
+            name = linkToLarge; 
+            prototypeName = intNumber; 
+        }, 
+        {
+            allowsNull = Y; 
+            columnName = "picture_id"; 
+            name = pictureID; 
+            prototypeName = intNumber; 
+        }, 
+        {allowsNull = Y; columnName = align; name = align; prototypeName = intNumber; }, 
+        {allowsNull = Y; columnName = name; name = name; prototypeName = longText; }, 
+        {
+            allowsNull = Y; 
+            columnName = "show_caption"; 
+            name = showCaption; 
+            prototypeName = intNumber; 
+        }, 
+        {allowsNull = Y; columnName = size; name = size; prototypeName = longText; }, 
+        {allowsNull = Y; columnName = url; name = url; prototypeName = longText; }, 
+        {
+            allowsNull = Y; 
+            columnName = "news_item_id"; 
+            name = newsItemID; 
+            prototypeName = intNumber; 
+        }, 
+        {
+            allowsNull = Y; 
+            columnName = "size_large"; 
+            name = sizeLarge; 
+            prototypeName = longText; 
+        }, 
+        {allowsNull = N; columnName = id; name = id; prototypeName = intNumber; }
+    ); 
+    attributesUsedForLocking = (
+        componentID, 
+        linkToLarge, 
+        pictureID, 
+        showCaption, 
+        size, 
+        align, 
+        name, 
+        url, 
+        newsItemID, 
+        sizeLarge, 
+        id
+    ); 
+    className = "concept.data.SWPictureLink"; 
+    classProperties = (
+        component, 
+        componentID, 
+        linkToLarge, 
+        picture, 
+        pictureID, 
+        showCaption, 
+        size, 
+        align, 
+        name, 
+        url, 
+        newsItem, 
+        newsItemID, 
+        sizeLarge, 
+        id
+    ); 
+    externalName = "sw_picture_link"; 
+    fetchSpecificationDictionary = {}; 
+    name = SWPictureLink; 
+    primaryKeyAttributes = (id); 
+    relationships = (
+        {
+            destination = SWComponent; 
+            isToMany = N; 
+            joinSemantic = EOInnerJoin; 
+            joins = ({destinationAttribute = id; sourceAttribute = componentID; }); 
+            name = component; 
+        }, 
+        {
+            destination = SWNewsItem; 
+            isToMany = N; 
+            joinSemantic = EOInnerJoin; 
+            joins = ({destinationAttribute = id; sourceAttribute = newsItemID; }); 
+            name = newsItem; 
+        }, 
+        {
+            destination = SWPicture; 
+            isToMany = N; 
+            joinSemantic = EOInnerJoin; 
+            joins = ({destinationAttribute = id; sourceAttribute = pictureID; }); 
+            name = picture; 
+        }
+    ); 
+}

@@ -1,0 +1,39 @@
+<br style="clear: both" />
+<div class="sw-viewwrappertools">
+	<div id="fb-root"></div>
+	
+	<script>(function(d, s, id) {
+		var js, fjs = d.getElementsByTagName(s)[0];
+		
+		if (d.getElementById(id)) return;
+		js = d.createElement(s); js.id = id;
+		js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&appId=513346025353237";
+		fjs.parentNode.insertBefore(js, fjs);
+		}
+		(document, 'script', 'facebook-jssdk'));
+	</script>
+	
+	<div class="row">
+		<div class="col-md-10">
+			<wo:container elementName="div" class="fb-like" data-href="$urlOfSelectedObject" data-send="false" data-width="450" data-show-faces="true" data-action="recommend"></wo:container>
+		</div>
+	</div>
+	<wo:conditional condition="$conceptUser">
+		<div class="row">
+			<div class="col-md-10">
+				<wo:AjaxUpdateContainer id="buttonContainer">
+					<div class="buttons btn-group">
+						<wo:if condition="$allowFavorites">
+								<wo:if condition="$isFavorite" negate="$true">
+									<wo:AjaxUpdateLink updateContainerID="buttonContainer" action="$createFavorite" class="btn btn-sm"><i class="glyphicon glyphicon-tag"></i> Bæta í sarp</wo:AjaxUpdateLink>
+								</wo:if>
+								<wo:if condition="$isFavorite">
+									<wo:AjaxUpdateLink updateContainerID="buttonContainer" action="$deleteFavorite" class="btn btn-sm"> <i class="glyphicon glyphicon-tag"></i> Taka úr sarpi</wo:AjaxUpdateLink>
+								</wo:if>
+						</wo:if>
+					</div>
+				</wo:AjaxUpdateContainer>
+			</div>
+		</div>
+	</wo:conditional>
+</div>

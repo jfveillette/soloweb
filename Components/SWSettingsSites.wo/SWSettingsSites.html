@@ -1,0 +1,12 @@
+<wo:conditional condition="$conceptUser.isAdministrator">
+	<!-- the site popup actually belongs here -->
+</wo:conditional>
+<p><wo:link action="$newSite" class="btn btn-success"><wo:str value="$@ls.newSiteString" /></wo:link></p>
+
+<table class="table table-striped table-condensed">
+	<wo:repetition list="$sites" item="$currentSite">
+		<tr>
+			<td><wo:EditLink object="$currentSite"><wo:str value="$currentSite.name" valueWhenEmpty="(Ónefndur vefur)" /></wo:EditLink></td>
+		</tr>
+	</wo:repetition>
+</table>

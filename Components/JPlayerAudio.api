@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<wodefinitions>
+    <wo class="JPlayer" wocomponentcontent="false">    <binding name="mp3"/>
+    <binding name="title"/>
+        <validation message="'mp3' is a required binding.">
+            <unbound name="mp3"/>
+        </validation>
+    <binding name="mp3Next"/>
+    </wo>
+</wodefinitions>

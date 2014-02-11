@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<wodefinitions>
+    <wo class="SWCKEditor" wocomponentcontent="false">    <binding name="keyPath"/>
+        <binding name="object"/>
+        <validation message="'keyPath' is a required binding.">
+            <unbound name="keyPath"/>
+        </validation>
+        <validation message="'object' is a required binding.">
+            <unbound name="object"/>
+        </validation>
+    </wo>
+</wodefinitions>

@@ -1,0 +1,109 @@
+{
+    attributes = (
+        {
+            allowsNull = Y; 
+            columnName = "alternate_default_page_id"; 
+            name = alternateDefaultPageID; 
+            prototypeName = intNumber; 
+        }, 
+        {
+            allowsNull = Y; 
+            columnName = "client_key"; 
+            name = clientKey; 
+            prototypeName = longText; 
+            width = 20; 
+        }, 
+        {
+            allowsNull = Y; 
+            columnName = "custom_info"; 
+            name = customInfoData; 
+            prototypeName = longText; 
+        }, 
+        {allowsNull = N; columnName = id; name = id; prototypeName = intNumber; }, 
+        {
+            allowsNull = Y; 
+            columnName = language; 
+            name = language; 
+            prototypeName = longText; 
+        }, 
+        {allowsNull = Y; columnName = look; name = look; prototypeName = longText; }, 
+        {allowsNull = Y; columnName = name; name = name; prototypeName = longText; }, 
+        {
+            allowsNull = Y; 
+            columnName = "no_page_error_page"; 
+            name = noPageFoundErrorPageLinkingName; 
+            prototypeName = longText; 
+        }, 
+        {
+            allowsNull = Y; 
+            columnName = "page_id"; 
+            name = pageID; 
+            prototypeName = intNumber; 
+        }, 
+        {
+            allowsNull = Y; 
+            columnName = "print_template"; 
+            name = printTemplate; 
+            prototypeName = longText; 
+        }, 
+        {allowsNull = Y; columnName = qual; name = qual; prototypeName = longText; }, 
+        {
+            allowsNull = Y; 
+            columnName = sitegroup; 
+            name = sitegroup; 
+            prototypeName = longText; 
+        }
+    ); 
+    attributesUsedForLocking = (
+        alternateDefaultPageID, 
+        clientKey, 
+        id, 
+        language, 
+        look, 
+        name, 
+        noPageFoundErrorPageLinkingName, 
+        pageID, 
+        printTemplate, 
+        qual, 
+        sitegroup
+    ); 
+    className = "concept.data.SWSite"; 
+    classProperties = (
+        alternateDefaultPage, 
+        alternateDefaultPageID, 
+        clientKey, 
+        customInfoData, 
+        frontpage, 
+        language, 
+        look, 
+        name, 
+        noPageFoundErrorPageLinkingName, 
+        pageID, 
+        printTemplate, 
+        qual, 
+        sitegroup
+    ); 
+    externalName = "sw_site"; 
+    fetchSpecificationDictionary = {}; 
+    name = SWSite; 
+    primaryKeyAttributes = (id); 
+    relationships = (
+        {
+            destination = SWPage; 
+            isToMany = N; 
+            joinSemantic = EOInnerJoin; 
+            joins = ({destinationAttribute = id; sourceAttribute = alternateDefaultPageID; }); 
+            name = alternateDefaultPage; 
+        }, 
+        {
+            deleteRule = EODeleteRuleCascade; 
+            destination = SWPage; 
+            isToMany = N; 
+            joinSemantic = EOInnerJoin; 
+            joins = ({destinationAttribute = id; sourceAttribute = pageID; }); 
+            name = frontpage; 
+            userInfo = {modificationDate = "2001-06-03 19:53:43 +0000"; }; 
+        }
+    ); 
+    userInfo = {modificationDate = "2001-06-03 19:53:43 +0000"; }; 
+}

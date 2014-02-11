@@ -1,0 +1,14 @@
+<wo:repetition list="$documents" item="$currentDocument">
+	<wo:if condition="$currentDocument.isImage">
+		<wo:img src="$currentDocument.url" />
+	</wo:if>
+	<wo:if condition="$currentDocument.isAudio">
+		<wo:JPlayerAudio mp3="$currentDocument.url" title="$currentDocument.name" mp3Next="$^mp3Next" />
+	</wo:if>
+	<wo:if condition="$currentDocument.isVideo">
+		<wo:JPlayerVideo video="$currentDocument" />
+	</wo:if>
+	<wo:if condition="$currentDocument.isOther">
+		<wo:link href="$currentDocument.url" class="btn">Sækja skjal</wo:link>
+	</wo:if>
+</wo:repetition>

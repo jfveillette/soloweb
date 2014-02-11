@@ -1,0 +1,24 @@
+<wo:form enctype="multipart/form-data">
+	<wo:fileUpload filePath="$filePath" data="$data" />
+	<wo:submit action="$create" value="Hlaða upp skjali" class="btn" />
+</wo:form>
+<table class="table table-condensed">
+	<tr>
+		<th></th>
+		<th></th>
+		<th>Heiti</th>
+		<th>Viðskeyti</th>
+		<th>Tegund</th>
+		<th></th>
+	</tr>
+	<wo:repetition list="$objects" item="$currentObject">
+		<tr>
+			<td><wo:radio name="primaryPicture" checked="$primary" /></td>
+			<td><wo:if condition="$currentObject.isImage"><wo:SWDocumentImage picture="$currentObject" size="64" /></wo:if></td>
+			<td><wo:EditLink object="$currentObject"><wo:IMString value="$currentObject.name" valueWhenEmpty="Ónefnt skjal" /></wo:EditLink></td>
+			<td><wo:str value="$currentObject.extension" /></td>
+			<td><wo:str value="$currentObject.category" /></td>
+			<td><wo:link action="$delete">Eyða</wo:link></td>
+		</tr>
+	</wo:repetition>
+</table>

@@ -1,0 +1,16 @@
+<wo:form>
+	<table class="table table-condensed">
+		<tr>
+			<td><wo:textfield value="$newName" /></td>
+			<td><wo:textfield value="$newText" /></td>
+			<td><wo:submit action="$create" value="+" class="btn" /></td>
+		</tr>
+		<wo:repetition list="$meta" item="$currentObject">
+			<tr>
+				<td><wo:str value="$currentObject.name" /></td>
+				<td><wo:str value="$currentObject.text" /></td>
+				<td><wo:link action="$delete">x</wo:link></td>
+			</tr>
+		</wo:repetition>
+	</table>
+</wo:form>

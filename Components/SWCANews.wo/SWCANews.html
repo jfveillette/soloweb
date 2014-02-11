@@ -1,0 +1,27 @@
+<h2><wo:str value="$@ls.newsComponentHeading" /></h2>
+
+<h3><wo:str value="$@ls.newsComponentPublishingOptions" /></h3>
+<label><wo:str value="$@ls.newsComponentDisplayStyle" />: </label><wo:popUpButton list="$componentKeys" selection="$selectedComponentKey" /><br />
+<label><wo:str value="$@ls.newsComponentCategory" />: </label><wo:popUpButton displayString="$currentFolder.name" item="$currentFolder" list="$allCategories" noSelectionString="Select a folder..." selection="$selectedFolder" /><br />
+<label><wo:str value="$@ls.newsComponentMaxItems" />: </label><wo:textfield value="$currentComponent.customInfo.itemsToShow" size="2" /><br />
+<label><wo:str value="$@ls.newsComponentSkipItems" />: </label><wo:textfield value="$currentComponent.customInfo.itemsToSkip" size="2" /><br />
+<label><wo:str value="$@ls.newsComponentMaxDays" />: </label><wo:textfield value="$currentComponent.customInfo.daysToInclude" size="2" /><br />
+<label><wo:str value="$@ls.newsComponentSkipDays" />: </label><wo:textfield value="$currentComponent.customInfo.daysToExclude" size="2" /><br />
+<label><wo:str value="$@ls.newsComponentSortFieldTitle" />: </label><wo:popUpButton list="$sortKeys" selection="$currentComponent.customInfo.sortKey" /><br />
+<label><wo:str value="$@ls.newsComponentSortOrderFieldTitle" />: </label><wo:popUpButton list="$sortOrderings" selection="$currentComponent.customInfo.sortOrder" /><br />
+
+<h2><wo:str value="$@ls.newsComponentDisplayOptions" /></h2>
+<label><wo:str value="$@ls.newsComponentShowPicture" />: </label><wo:checkbox checked="$currentComponent.customInfo.showPicture" /><br />
+<label>Leyfa tjáskipti: </label><wo:checkbox checked="$currentComponent.customInfo.allowComments" /><br />
+<label><wo:str value="$@ls.newsComponentPictureAlignment" />: </label><wo:popUpButton list="$imageAlignment" selection="$currentComponent.customInfo.imageAlignment" /><br />
+
+<h2><wo:str value="$@ls.newsComponentShowSettings" /></h2>
+<label><wo:str value="$@ls.newsComponentShowHeadingOnly" />: </label><wo:radio name="viewMode" selection="$currentComponent.customInfo.viewMode" value="1" /><br />
+<label><wo:str value="$@ls.newsComponentShowHeadingAndExcerpt" />: </label><wo:radio name="viewMode" selection="$currentComponent.customInfo.viewMode" value="2" /><br />
+<label><wo:str value="$@ls.newsComponentShowHeadingAndFullText" /></label><wo:radio name="viewMode" selection="$currentComponent.customInfo.viewMode" value="3" /><br />
+
+<h2>Hlekkir & texti</h2>
+<label><wo:str value="$@ls.newsComponentDetailPageLinkingName" />: </label><wo:textfield value="$currentComponent.customInfo.detailPageName" size="20" /></label><br />
+<label><wo:str value="$@ls.newsComponentDetailPageNumber" />: </label><wo:textfield value="$currentComponent.customInfo.detailPageID" size="20" /><br />
+<label><wo:str value="$@ls.newsComponentShowMoreFieldTitle" />: </label><wo:textfield value="$currentComponent.customInfo.showMoreText" size="20" /><br />
+<label><wo:str value="$@ls.newsComponentGoBackTextFieldTitle" />: </label><wo:textfield value="$currentComponent.customInfo.goBackText" size="20" /><br />

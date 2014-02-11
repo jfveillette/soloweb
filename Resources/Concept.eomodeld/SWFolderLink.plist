@@ -1,0 +1,39 @@
+{
+    attributes = (
+        {
+            allowsNull = Y; 
+            columnName = "folder_id"; 
+            name = folderID; 
+            prototypeName = intNumber; 
+        }, 
+        {allowsNull = N; columnName = id; name = id; prototypeName = intNumber; }, 
+        {
+            allowsNull = Y; 
+            columnName = "target_entity_name"; 
+            name = targetEntityName; 
+            prototypeName = longText; 
+        }, 
+        {
+            allowsNull = Y; 
+            columnName = "target_id"; 
+            name = targetID; 
+            prototypeName = longText; 
+        }
+    ); 
+    attributesUsedForLocking = (folderID, id, targetEntityName, targetID); 
+    className = "concept.data.SWFolderLink"; 
+    classProperties = (folder, targetEntityName, targetID); 
+    externalName = "sw_folder_link"; 
+    fetchSpecificationDictionary = {}; 
+    name = SWFolderLink; 
+    primaryKeyAttributes = (id); 
+    relationships = (
+        {
+            destination = SWFolder; 
+            isToMany = N; 
+            joinSemantic = EOInnerJoin; 
+            joins = ({destinationAttribute = id; sourceAttribute = folderID; }); 
+            name = folder; 
+        }
+    ); 
+}

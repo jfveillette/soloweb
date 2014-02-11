@@ -1,0 +1,11 @@
+<wo:CPAdminComponentWrapper>
+	<wo:form>
+		<fieldset>
+			<legend><wo:str value="$@ls.mySettingsHeader" /></legend>
+		    <label>Nýtt aðgangsorð: </label><wo:password value="$password" /><br />
+		    <label>Nýtt aðgangsorð aftur: </label><wo:password value="$passwordAgain" /><br />
+	    	<label><wo:str value="$@ls.msDefaultSite" />: </label><wo:popUpButton list="$conceptUser.sites" item="$currentSite" displayString="$currentSite.name" selection="$conceptUser.defaultSite" noSelectionString="No site selected..." /><br />
+	    	<label>&nbsp;</label><wo:submit action="$saveChanges" value="$@ls.msSaveButtonTitle" />
+	    </fieldset>
+	</wo:form>
+</wo:CPAdminComponentWrapper>

@@ -1,0 +1,68 @@
+{
+    attributes = (
+        {
+            allowsNull = Y; 
+            columnName = "group_id"; 
+            name = groupID; 
+            prototypeName = intNumber; 
+        }, 
+        {allowsNull = N; columnName = id; name = id; prototypeName = intNumber; }, 
+        {
+            allowsNull = Y; 
+            columnName = "not_inherited"; 
+            name = notInherited; 
+            prototypeName = intNumber; 
+        }, 
+        {
+            allowsNull = Y; 
+            columnName = "target_entity_name"; 
+            name = targetEntityName; 
+            prototypeName = longText; 
+        }, 
+        {
+            allowsNull = Y; 
+            columnName = "target_id"; 
+            name = targetID; 
+            prototypeName = longText; 
+        }, 
+        {
+            allowsNull = Y; 
+            columnName = "user_id"; 
+            name = userID; 
+            prototypeName = intNumber; 
+        }
+    ); 
+    attributesUsedForLocking = (groupID, id, notInherited, targetEntityName, targetID, userID); 
+    className = "concept.data.SWAccessPrivilege"; 
+    classProperties = (group, notInherited, targetEntityName, targetID, user, values); 
+    externalName = "sw_access_privilege"; 
+    fetchSpecificationDictionary = {}; 
+    name = SWAccessPrivilege; 
+    primaryKeyAttributes = (id); 
+    relationships = (
+        {
+            destination = SWGroup; 
+            isToMany = N; 
+            joinSemantic = EOInnerJoin; 
+            joins = ({destinationAttribute = id; sourceAttribute = groupID; }); 
+            name = group; 
+            userInfo = {modificationDate = "2001-06-03 19:53:43 +0000"; }; 
+        }, 
+        {
+            destination = SWUser; 
+            isToMany = N; 
+            joinSemantic = EOInnerJoin; 
+            joins = ({destinationAttribute = id; sourceAttribute = userID; }); 
+            name = user; 
+            userInfo = {modificationDate = "2001-06-03 19:53:43 +0000"; }; 
+        }, 
+        {
+            deleteRule = EODeleteRuleCascade; 
+            destination = SWAccessPrivilegeValue; 
+            isToMany = Y; 
+            joinSemantic = EOInnerJoin; 
+            joins = ({destinationAttribute = accessPrivilegeID; sourceAttribute = id; }); 
+            name = values; 
+        }
+    ); 
+}

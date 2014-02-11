@@ -1,0 +1,9 @@
+<wo:conditional condition="$showSitePopUp"><wo:form><wo:popUpButton list="$conceptUser.sites" item="$currentSite" displayString="$currentSite.name" selection="$selectedSite" noSelectionString="$@ls.siteListSitesString" onChange="this.form.submit()" /></wo:form></wo:conditional>
+
+<wo:conditional condition="$selectedSite">
+	<wo:AjaxUpdateContainer id="treeStuff">
+		<wo:USNestedList list="$frontPageInArray" item="$currentPage" index="$currentIndex" sublist="$theSubPages">
+			<wo:AjaxUpdateLink action="$toggleBranch" updateContainerID="treeStuff" disabled="$currentPage.hasNoChildren"><wo:img src="$img" width="9" /></wo:AjaxUpdateLink> <wo:link action="$selectPage" class="$currentClass" disabled="$pageIsDisabled"><wo:str value="$currentPage.name" valueWhenEmpty="$@ls.untitledObjectString" /></wo:link>
+		</wo:USNestedList>
+	</wo:AjaxUpdateContainer>
+</wo:conditional>

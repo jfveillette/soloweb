@@ -1,0 +1,8 @@
+<wo:repetition list="$months" item="$currentMonth">
+	<h3><wo:str value="$currentMonthString" /></h3>
+	<ul style="list-style-type: none">
+		<wo:repetition list="$newsitems" item="$currentNewsItem">
+			<li><wo:ViewLink object="$currentNewsItem"><wo:str value="$currentNewsItem.name" /></wo:ViewLink> <em style="color:gray">(<wo:str value="$currentNewsItem.date" formatter="$dayFormat" />)</em><wo:conditional condition="$currentComponent.customInfo.allowComments"> - <wo:str value="$currentNewsItem.comments.count" numberformat="0" /> tjáskipti</wo:conditional></li>
+		</wo:repetition>
+	</ul>
+</wo:repetition>

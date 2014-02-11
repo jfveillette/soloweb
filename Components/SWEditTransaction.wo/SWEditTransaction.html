@@ -1,0 +1,17 @@
+<wo:CPAdminComponentWrapper>
+	<p><wo:link action="$returnToCallingcomponent">Til baka</wo:link></p>
+	<table class="table table-striped table-bordered table-condensed">
+		<tr>
+			<th>Reitur</th>
+			<th>Fyrir breytingu</th>
+			<th>Eftir breytingu</th>
+		</tr>
+		<wo:repetition list="$selectedObject.beforeDictionary.allKeys" item="$currentKey">
+		<wo:container elementName="tr" class="$trClass">
+			<td><wo:str value="$currentKey" /></td>
+			<td><wo:str value="$currentBeforeValue" /></td>
+			<td><wo:str value="$currentAfterValue" /></td>
+		</wo:container >
+		</wo:repetition>
+	</table>
+</wo:CPAdminComponentWrapper>

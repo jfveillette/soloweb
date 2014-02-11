@@ -1,0 +1,49 @@
+{
+    attributes = (
+        {allowsNull = N; columnName = id; name = id; prototypeName = intNumber; }, 
+        {
+            allowsNull = Y; 
+            columnName = "inherits_privileges"; 
+            name = inheritsPrivileges; 
+            prototypeName = intNumber; 
+        }, 
+        {allowsNull = Y; columnName = name; name = name; prototypeName = longText; }, 
+        {
+            allowsNull = Y; 
+            columnName = "parent_id"; 
+            name = parentID; 
+            prototypeName = intNumber; 
+        }
+    ); 
+    attributesUsedForLocking = (id, inheritsPrivileges, name, parentID); 
+    className = "concept.data.SWFolder"; 
+    classProperties = (children, inheritsPrivileges, links, name, parent); 
+    externalName = "sw_folder"; 
+    fetchSpecificationDictionary = {}; 
+    name = SWFolder; 
+    primaryKeyAttributes = (id); 
+    relationships = (
+        {
+            destination = SWFolder; 
+            isToMany = Y; 
+            joinSemantic = EOInnerJoin; 
+            joins = ({destinationAttribute = parentID; sourceAttribute = id; }); 
+            name = children; 
+        }, 
+        {
+            destination = SWFolderLink; 
+            isToMany = Y; 
+            joinSemantic = EOInnerJoin; 
+            joins = ({destinationAttribute = folderID; sourceAttribute = id; }); 
+            name = links; 
+        }, 
+        {
+            destination = SWFolder; 
+            isToMany = N; 
+            joinSemantic = EOInnerJoin; 
+            joins = ({destinationAttribute = id; sourceAttribute = parentID; }); 
+            name = parent; 
+        }
+    ); 
+    userInfo = {modificationDate = "2001-06-22 10:28:36 +0000"; }; 
+}

@@ -1,0 +1,46 @@
+{
+    attributes = (
+        {
+            allowsNull = Y; 
+            columnName = "crm_group"; 
+            name = crmGroup; 
+            prototypeName = intNumber; 
+        }, 
+        {allowsNull = N; columnName = id; name = id; prototypeName = intNumber; }, 
+        {allowsNull = Y; columnName = name; name = name; prototypeName = longText; }
+    ); 
+    attributesUsedForLocking = (crmGroup, id, name); 
+    className = "concept.data.SWGroup"; 
+    classProperties = (accessPrivileges, crmGroup, id, name, users); 
+    externalName = "sw_group"; 
+    fetchSpecificationDictionary = {}; 
+    name = SWGroup; 
+    primaryKeyAttributes = (id); 
+    relationships = (
+        {
+            deleteRule = EODeleteRuleCascade; 
+            destination = SWAccessPrivilege; 
+            isToMany = Y; 
+            joinSemantic = EOInnerJoin; 
+            joins = ({destinationAttribute = groupID; sourceAttribute = id; }); 
+            name = accessPrivileges; 
+        }, 
+        {
+            deleteRule = EODeleteRuleCascade; 
+            destination = SWGroupUser; 
+            isToMany = Y; 
+            joinSemantic = EOInnerJoin; 
+            joins = ({destinationAttribute = groupID; sourceAttribute = id; }); 
+            name = sWGroupSWUsers; 
+            propagatesPrimaryKey = Y; 
+            userInfo = {modificationDate = "2001-06-03 19:53:43 +0000"; }; 
+        }, 
+        {
+            definition = "sWGroupSWUsers.sWUser"; 
+            joinSemantic = EOInnerJoin; 
+            name = users; 
+            userInfo = {modificationDate = "2001-06-03 19:53:43 +0000"; }; 
+        }
+    ); 
+    userInfo = {modificationDate = "2001-06-03 19:53:43 +0000"; }; 
+}

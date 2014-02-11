@@ -1,0 +1,5 @@
+# Migrations
+# er.migration.migrateAtStartup=true
+# er.migration.createTablesIfNecessary=true
+# er.migration.modelNames=Concept
+# Concept.MigrationClassPrefix=concept.migrations.Concept

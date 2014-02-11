@@ -1,0 +1,36 @@
+{
+    EOModelVersion = "2.1"; 
+    adaptorName = JDBC; 
+    entities = (
+        {className = "concept.data.SWAccessPrivilege"; name = SWAccessPrivilege; }, 
+        {
+            className = "concept.data.SWAccessPrivilegeValue"; 
+            name = SWAccessPrivilegeValue; 
+        }, 
+        {className = "concept.data.SWAssetFolder"; name = SWAssetFolder; },
+		{className = "concept.data.SWAttributeMeta"; name = SWAttributeMeta; },
+        {className = "concept.data.SWComment"; name = SWComment; },  
+        {className = "concept.data.SWComponent"; name = SWComponent; }, 
+        {className = "concept.data.SWDocument"; name = SWDocument; }, 
+        {className = "concept.data.SWDocumentFolder"; name = SWDocumentFolder; },
+        {className = "concept.data.SWDocumentLink"; name = SWDocumentLink; },
+        {className = "concept.data.SWEntityMeta"; name = SWEntityMeta; }, 
+        {className = "concept.data.SWFavorite"; name = SWFavorite; },
+        {className = "concept.data.SWFolder"; name = SWFolder; }, 
+        {className = "concept.data.SWFolderLink"; name = SWFolderLink; },  
+        {className = "concept.data.SWGroup"; name = SWGroup; }, 
+        {className = EOGenericRecord; name = SWGroupUser; }, 
+		{className = "concept.data.SWMeta"; name = SWMeta; },
+        {className = "concept.data.SWNewsCategory"; name = SWNewsCategory; }, 
+        {className = "concept.data.SWNewsItem"; name = SWNewsItem; }, 
+        {className = "concept.data.SWPage"; name = SWPage; }, 
+        {className = "concept.data.SWPicture"; name = SWPicture; }, 
+        {className = "concept.data.SWPictureLink"; name = SWPictureLink; }, 
+        {className = "concept.data.SWSite"; name = SWSite; },
+        {className = "concept.data.SWSystemEvent"; name = SWSystemEvent; },
+		{className = "concept.data.SWTag"; name = SWTag; }, 
+        {className = "concept.data.SWTagging"; name = SWTagging; },
+        {className = "concept.data.SWTransaction"; name = SWTransaction; },  
+        {className = "concept.data.SWUser"; name = SWUser; }
+    ); 
+}

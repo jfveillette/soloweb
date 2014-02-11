@@ -1,0 +1,53 @@
+<div class="row">
+	<div class="col-md-8">
+		<h3><wo:IMString value="$selectedObject.name" valueWhenEmpty="Ekkert heiti skráð" /></h3>
+		<table class="table table-condensed well">
+			<tr>
+				<td>Upplýsingar</td>
+				<td><wo:IMString value="$selectedObject.text" valueWhenEmpty="Engar upplýsingar skráðar" /></td>
+			</tr>
+			<tr>
+				<td>Uppruni</td>
+				<td><wo:IMString value="$selectedObject.credit" valueWhenEmpty="Ekki skráður" /></td>
+			</tr>
+			<tr>
+				<td>Tengdir hlutir</td>
+				<td>
+					<wo:if condition="$moreThanOneRelatedObject" negate="$true">
+						<wo:repetition list="$objects" item="$currentObject">
+							<wo:ViewLink object="$currentObject"><wo:str value="$targetObjectName" /></wo:ViewLink> <em style="color: gray">(<wo:str value="$targetType.icelandicName" />)</em>
+						</wo:repetition>					
+					</wo:if>
+					<wo:if condition="$moreThanOneRelatedObject">
+						<ul>
+							<wo:repetition list="$objects" item="$currentObject">
+								<li><wo:ViewLink object="$currentObject"><wo:str value="$targetObjectName" /></wo:ViewLink> <em style="color: gray">(<wo:str value="$targetType.icelandicName" />)</em></li>
+							</wo:repetition>
+						</ul>
+					</wo:if>
+				</td>
+			</tr>
+			<tr>
+				<td>Tegund</td>
+				<td><wo:str value="$selectedObject.category" /> (<wo:str value="$selectedObject.extension" />)</td>
+			</tr>
+			<tr>
+				<td>Stærð</td>
+				<td><wo:str value="$formattedSize" /></td>
+			</tr>
+		</table>
+		<div style="text-align: center">
+			<p>Skjal <wo:str value="$indexOfCurrentDocument" /> af <wo:str value="$allRelatedDocuments.count" /></p>
+			<div class="buttons btn-group" style="margin-bottom: 10px;">
+				<wo:if condition="$previousDocument">
+					<wo:ViewLink class="btn btn-default btn-sm" object="$previousDocument"><i class="glyphicon glyphicon-arrow-left"></i> Fyrra skjal</wo:ViewLink>
+				</wo:if>
+				<wo:if condition="$nextDocument">
+					<wo:ViewLink class="btn btn-default btn-sm" object="$nextDocument">Næsta skjal <i class="glyphicon glyphicon-arrow-right"></i></wo:ViewLink>
+				</wo:if>
+			</div>
+			<br style="clear: both" />
+			<wo:SWDocumentDisplay document="$selectedObject" />
+		</div>
+	</div>
+</div>

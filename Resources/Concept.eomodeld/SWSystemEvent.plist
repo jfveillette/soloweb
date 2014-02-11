@@ -1,0 +1,41 @@
+{
+    attributes = (
+        {
+            allowsNull = Y; 
+            columnName = "creation_date"; 
+            name = creationDate; 
+            prototypeName = dateTime; 
+        }, 
+        {allowsNull = N; columnName = id; name = id; prototypeName = intNumber; }, 
+        {
+            allowsNull = Y; 
+            columnName = "modification_date"; 
+            name = modificationDate; 
+            prototypeName = dateTime; 
+        }, 
+        {allowsNull = Y; columnName = text; name = text; prototypeName = longText; }, 
+        {allowsNull = Y; columnName = type; name = type; prototypeName = longText; }, 
+        {
+            allowsNull = Y; 
+            columnName = "user_id"; 
+            name = userID; 
+            prototypeName = intNumber; 
+        }
+    ); 
+    attributesUsedForLocking = (creationDate, id, modificationDate, text, type, userID); 
+    className = "concept.data.SWSystemEvent"; 
+    classProperties = (creationDate, modificationDate, text, type, user); 
+    externalName = "sw_system_event"; 
+    fetchSpecificationDictionary = {}; 
+    name = SWSystemEvent; 
+    primaryKeyAttributes = (id); 
+    relationships = (
+        {
+            destination = SWUser; 
+            isToMany = N; 
+            joinSemantic = EOInnerJoin; 
+            joins = ({destinationAttribute = id; sourceAttribute = userID; }); 
+            name = user; 
+        }
+    ); 
+}

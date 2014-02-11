@@ -1,0 +1,54 @@
+<wo:IMTabContainer tabs="$tabs" selectedTab="$selectedTab">
+	<wo:IMTabComponent tab="Almennt">
+		<label>Birta í listum:</label><wo:checkbox checked="$selectedObject.showInLists" />
+		<label>Innra: </label><wo:textfield value="$selectedObject.name" />
+		<label>Heiti: </label><wo:textfield value="$selectedObject.icelandicName" />
+		<label>Heiti ft.: </label><wo:textfield value="$selectedObject.icelandicNamePlural" />
+		<label>Flokkur: </label><wo:textfield value="$selectedObject.categoryName" />
+		<label>Birtingarsíða: </label><wo:textfield value="$selectedObject.viewComponentName" />
+		<label>Vinnusíða: </label><wo:textfield value="$selectedObject.editComponentName" />
+		<label>URL: </label><wo:textfield value="$selectedObject.urlPrefix" />
+		<label>Táknmynd: </label><wo:textfield value="$selectedObject.iconFileName" />
+		<label>Lýsing: </label><wo:text value="$selectedObject.text" cols="40" rows="5" />
+	</wo:IMTabComponent>
+	
+	<wo:IMTabComponent tab="Skilgreindir reitir">
+		<h3>Skilgreint</h3>
+		<table class="table table-bordered table-condensed">
+			<tr>
+				<th>Birta</th>
+				<th>Röð</th>
+				<th>Heiti</th>
+				<th>Innra heiti</th>
+				<th>Lýsing</th>
+				<th>Athugasemdir</th>
+				<th>&nbsp;</th>
+			</tr>
+			<wo:repetition list="$selectedObject.columnsSorted" item="$currentColumn">
+				<tr>
+					<td><wo:checkbox checked="$currentColumn.showNumeric" /></td>
+					<td><wo:textfield value="$currentColumn.sortOrder" numberformat="0" class="col-md-1" /></td>
+					<td><wo:textfield value="$currentColumn.icelandicName" class="col-md-2" /></td>
+					<td><wo:textfield value="$currentColumn.name" class="col-md-2" /></td>
+					<td><wo:textfield value="$currentColumn.text" class="col-md-4" /></td>
+					<td><wo:textfield value="$currentColumn.comments" class="col-md-1" /></td>
+					<td><wo:AjaxUpdateLink action="$deleteAttributeMeta" updateContainerID="tabContainer" class="btn btn-sm">x</wo:AjaxUpdateLink></td>
+				</tr>
+			</wo:repetition>
+		</table>
+	</wo:IMTabComponent>
+	<wo:IMTabComponent tab="Óskilgreindir reitir">
+		<table class="table table-bordered table-condensed">
+			<tr>
+				<th>Heiti</th>
+				<th>Tag</th>
+			</tr>
+			<wo:repetition list="$unmappedAttributeNames" item="$currentAttributeName">
+				<tr>
+					<td><wo:str value="$currentAttributeName" /></td>
+					<td><wo:AjaxUpdateLink action="$createAttributeMeta" updateContainerID="tabContainer" class="btn btn-sm">Skilgreina</wo:AjaxUpdateLink></td>
+				</tr>
+			</wo:repetition>
+		</table>
+	</wo:IMTabComponent>
+</wo:IMTabContainer>

@@ -1,0 +1,9 @@
+.fd-login {
+  margin-bottom: -12px;
+}
+.fd-login input[type=text],
+.fd-login input[type=password] {
+  font-size: 12px;
+  margin-top: 6px;
+  padding: 2px 5px;
+}

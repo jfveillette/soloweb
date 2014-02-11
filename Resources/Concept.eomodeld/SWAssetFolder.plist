@@ -1,0 +1,63 @@
+{
+    attributes = (
+        {allowsNull = N; columnName = id; name = id; prototypeName = intNumber; }, 
+        {
+            allowsNull = Y; 
+            columnName = "inherits_privileges"; 
+            name = inheritsPrivileges; 
+            prototypeName = intNumber; 
+        }, 
+        {allowsNull = Y; columnName = name; name = name; prototypeName = longText; }, 
+        {
+            allowsNull = Y; 
+            columnName = "parent_folder_id"; 
+            name = parentFolderID; 
+            prototypeName = intNumber; 
+        }
+    ); 
+    attributesUsedForLocking = (id, inheritsPrivileges, name, parentFolderID); 
+    className = "concept.data.SWAssetFolder"; 
+    classProperties = (
+        id, 
+        inheritsPrivileges, 
+        name, 
+        parentFolder, 
+        parentFolderID, 
+        pictures, 
+        subFolders
+    ); 
+    externalName = "sw_ass_fol"; 
+    fetchSpecificationDictionary = {}; 
+    name = SWAssetFolder; 
+    primaryKeyAttributes = (id); 
+    relationships = (
+        {
+            destination = SWAssetFolder; 
+            isToMany = N; 
+            joinSemantic = EOInnerJoin; 
+            joins = ({destinationAttribute = id; sourceAttribute = parentFolderID; }); 
+            name = parentFolder; 
+            userInfo = {modificationDate = "2001-06-03 19:53:43 +0000"; }; 
+        }, 
+        {
+            deleteRule = EODeleteRuleCascade; 
+            destination = SWPicture; 
+            isToMany = Y; 
+            joinSemantic = EOInnerJoin; 
+            joins = ({destinationAttribute = assetFolderID; sourceAttribute = id; }); 
+            name = pictures; 
+            ownsDestination = Y; 
+            userInfo = {modificationDate = "2001-06-03 19:53:43 +0000"; }; 
+        }, 
+        {
+            deleteRule = EODeleteRuleCascade; 
+            destination = SWAssetFolder; 
+            isToMany = Y; 
+            joinSemantic = EOInnerJoin; 
+            joins = ({destinationAttribute = parentFolderID; sourceAttribute = id; }); 
+            name = subFolders; 
+            userInfo = {modificationDate = "2001-06-03 19:53:43 +0000"; }; 
+        }
+    ); 
+    userInfo = {modificationDate = "2001-06-03 19:53:43 +0000"; }; 
+}

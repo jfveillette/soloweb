@@ -1,0 +1,58 @@
+{
+    attributes = (
+        {
+            allowsNull = Y; 
+            columnName = "action_string"; 
+            name = action; 
+            prototypeName = longText; 
+        }, 
+        {
+            allowsNull = Y; 
+            columnName = "after_string"; 
+            name = after; 
+            prototypeName = longText; 
+        }, 
+        {
+            allowsNull = Y; 
+            columnName = "before_string"; 
+            name = before; 
+            prototypeName = longText; 
+        }, 
+        {allowsNull = Y; columnName = date; name = date; prototypeName = dateTime; }, 
+        {allowsNull = N; columnName = id; name = id; prototypeName = intNumber; }, 
+        {
+            allowsNull = Y; 
+            columnName = "target_entity_name"; 
+            name = targetEntityName; 
+            prototypeName = longText; 
+        }, 
+        {
+            allowsNull = Y; 
+            columnName = "target_id"; 
+            name = targetID; 
+            prototypeName = longText; 
+        }, 
+        {
+            allowsNull = Y; 
+            columnName = "user_id"; 
+            name = userID; 
+            prototypeName = intNumber; 
+        }
+    ); 
+    attributesUsedForLocking = (action, after, before, date, id, targetEntityName, targetID, userID); 
+    className = "concept.data.SWTransaction"; 
+    classProperties = (action, after, before, date, targetEntityName, targetID, user, userID); 
+    externalName = "sw_transaction"; 
+    fetchSpecificationDictionary = {}; 
+    name = SWTransaction; 
+    primaryKeyAttributes = (id); 
+    relationships = (
+        {
+            destination = SWUser; 
+            isToMany = N; 
+            joinSemantic = EOInnerJoin; 
+            joins = ({destinationAttribute = id; sourceAttribute = userID; }); 
+            name = user; 
+        }
+    ); 
+}

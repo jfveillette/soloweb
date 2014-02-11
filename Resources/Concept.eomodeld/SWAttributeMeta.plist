@@ -1,0 +1,102 @@
+{
+    attributes = (
+        {
+            allowsNull = Y; 
+            columnName = actions; 
+            name = actions; 
+            prototypeName = longText; 
+        }, 
+        {
+            allowsNull = Y; 
+            columnName = comments; 
+            name = comments; 
+            prototypeName = longText; 
+        }, 
+        {
+            allowsNull = Y; 
+            columnName = "edit_component_name"; 
+            name = editComponentName; 
+            prototypeName = longText; 
+        }, 
+        {
+            allowsNull = Y; 
+            columnName = "field_type"; 
+            name = fieldType; 
+            prototypeName = longText; 
+        }, 
+        {
+            allowsNull = Y; 
+            columnName = "icelandic_name"; 
+            name = icelandicName; 
+            prototypeName = longText; 
+        }, 
+        {allowsNull = N; columnName = id; name = id; prototypeName = intNumber; }, 
+        {allowsNull = Y; columnName = name; name = name; prototypeName = longText; }, 
+        {
+            allowsNull = Y; 
+            columnName = "show_numeric"; 
+            name = showNumeric; 
+            prototypeName = intNumber; 
+        }, 
+        {
+            allowsNull = Y; 
+            columnName = "sort_order"; 
+            name = sortOrder; 
+            prototypeName = intNumber; 
+        }, 
+        {
+            allowsNull = Y; 
+            columnName = "table_id"; 
+            name = tableID; 
+            prototypeName = intNumber; 
+        }, 
+        {allowsNull = Y; columnName = text; name = text; prototypeName = longText; }, 
+        {
+            allowsNull = Y; 
+            columnName = "view_component_name"; 
+            name = viewComponentName; 
+            prototypeName = longText; 
+        }
+    ); 
+    attributesUsedForLocking = (
+        actions, 
+        comments, 
+        editComponentName, 
+        fieldType, 
+        icelandicName, 
+        id, 
+        name, 
+        showNumeric, 
+        sortOrder, 
+        tableID, 
+        text, 
+        viewComponentName
+    ); 
+    className = "concept.data.SWAttributeMeta"; 
+    classProperties = (
+        actions, 
+        comments, 
+        editComponentName, 
+        fieldType, 
+        icelandicName, 
+        name, 
+        showNumeric, 
+        sortOrder, 
+        table, 
+        text, 
+        viewComponentName
+    ); 
+    externalName = "sw_attribute_meta"; 
+    fetchSpecificationDictionary = {}; 
+    name = SWAttributeMeta; 
+    primaryKeyAttributes = (id); 
+    relationships = (
+        {
+            destination = SWEntityMeta; 
+            isToMany = N; 
+            joinSemantic = EOInnerJoin; 
+            joins = ({destinationAttribute = id; sourceAttribute = tableID; }); 
+            name = table; 
+        }
+    ); 
+}

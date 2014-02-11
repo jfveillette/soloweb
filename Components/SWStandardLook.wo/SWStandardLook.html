@@ -1,0 +1,40 @@
+<!doctype html>
+<wo:SiteInfo />
+<html>
+	<head>
+		<title><wo:str value="$pageTitle" /></title>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
+		<script src="http://code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+		<script type="text/javascript">
+			$.noConflict();
+		</script>
+		<wo:if condition="$pageDescription.length"><wo:element elementName="meta" name="description" content="$pageDescription" /></wo:if>
+		<wo:if condition="$pageKeywords.length"><wo:element elementName="meta" name="keywords" content="$pageKeywords" /></wo:if>
+	</head>
+	<body>
+		<wo:AjaxBusySpinner />
+		<div class="navbar navbar-static-top">
+			<a class="brand" href="/" style="margin-left: 10px"><wo:str value="$siteTitle" /></a>
+			<div class="pull-right">
+				<div class="fd-login">
+					<wo:SWUserBar />
+				</div>
+			</div>
+		</div>
+		<div class="container">
+			<div class="row">
+				<wo:AjaxUpdateContainer id="content" class="col-md-12" style="padding-top: 10px">
+					<wo:content />
+				</wo:AjaxUpdateContainer>
+			</div>
+		</div>
+		<script src="http://www.google-analytics.com/urchin.js" type="text/javascript">
+		</script>
+		<script type="text/javascript">
+			_uacct = "UA-1108979-1";
+			urchinTracker();
+		</script>
+	</body>
+</html>

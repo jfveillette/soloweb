@@ -1,0 +1,5 @@
+<ul class="nav nav-tabs">
+	<wo:repetition list="$^tabs" item="$currentTab">
+		<wo:container elementName="li" class="$currentTabClass"><wo:AjaxUpdateLink action="$selectTab" updateContainerID="tabContainer" class="$linkClass"><wo:str value="$currentTab.nameWithCount" /></wo:AjaxUpdateLink></wo:container>
+	</wo:repetition>
+</ul>

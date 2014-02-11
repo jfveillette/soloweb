@@ -1,0 +1,16 @@
+<wo:switch WOComponentName="$lookName">
+	<br />
+	<wo:conditional condition="$results.count">
+		<wo:str value="$results.count" /> <wo:conditional condition="$oneResult" negate="$true">síður fundust sem innihalda orðið</wo:conditional><wo:conditional condition="$oneResult">síða fannst sem inniheldur orðið</wo:conditional> &quot;<strong><wo:str value="$searchString" /></strong>&quot;<br />
+	</wo:conditional>
+	<wo:conditional condition="$results.count" negate="$true">Engar síður fundust við leit að &quot;<b><wo:str value="$searchString" /></b>&quot;</wo:conditional>
+	<br />
+	<wo:repetition list="$results" item="$currentPage">
+		<b><wo:ViewLink object="$currentPage"><wo:str value="$currentPage.name" /></wo:ViewLink></b><br />
+		<wo:conditional condition="$currentPage.text.length">
+			<wo:str value="$currentPage.text" escapeHTML="$false" /><br />
+		</wo:conditional>
+		<wo:CPNavigation list="$currentPage.everyParentPage" selectedObject="$currentPage" /><br />
+		<br />
+	</wo:repetition>
+</wo:switch>

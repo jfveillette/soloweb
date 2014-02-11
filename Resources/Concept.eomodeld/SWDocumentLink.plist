@@ -1,0 +1,45 @@
+{
+    attributes = (
+        {
+            allowsNull = Y; 
+            columnName = "document_id"; 
+            name = documentID; 
+            prototypeName = intNumber; 
+        }, 
+        {allowsNull = N; columnName = id; name = id; prototypeName = intNumber; }, 
+        {
+            allowsNull = Y; 
+            columnName = "primary_marker"; 
+            name = primaryMarker; 
+            prototypeName = intNumber; 
+        }, 
+        {
+            allowsNull = Y; 
+            columnName = "target_entity_name"; 
+            name = targetEntityName; 
+            prototypeName = longText; 
+        }, 
+        {
+            allowsNull = Y; 
+            columnName = "target_id"; 
+            name = targetID; 
+            prototypeName = longText; 
+        }
+    ); 
+    attributesUsedForLocking = (documentID, id, primaryMarker, targetEntityName, targetID); 
+    className = "concept.data.SWDocumentLink"; 
+    classProperties = (document, documentID, primaryMarker, targetEntityName, targetID); 
+    externalName = "sw_document_link"; 
+    fetchSpecificationDictionary = {}; 
+    name = SWDocumentLink; 
+    primaryKeyAttributes = (id); 
+    relationships = (
+        {
+            destination = SWDocument; 
+            isToMany = N; 
+            joinSemantic = EOInnerJoin; 
+            joins = ({destinationAttribute = id; sourceAttribute = documentID; }); 
+            name = document; 
+        }
+    ); 
+}

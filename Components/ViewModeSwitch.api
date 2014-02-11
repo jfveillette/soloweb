@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<wodefinitions>
+    <wo class="ViewModeSwitch" wocomponentcontent="false">    <binding name="updateContainerID"/>
+        <validation message="'uniqueID' is a required binding.">
+            <unbound name="updateContainerID"/>
+        </validation>
+    <binding defaults="Boolean" name="table"/>
+        <validation message="'table' is a required binding.">
+            <unbound name="table"/>
+        </validation>
+        <validation message="'table' must be bound to a settable value">
+            <unsettable name="table"/>
+        </validation>
+    </wo>
+</wodefinitions>

@@ -1,0 +1,32 @@
+<wo:CPAdminComponentWrapper>
+	<style type="text/css">
+		.allPictures {
+			text-align: center;
+		}
+	
+		.allPictures div {
+			float: left;
+			width: 70px;
+			height: 70px;
+			border: 0px solid black;
+			font-size: 10px;
+			text-align: center;
+		}
+		
+	</style>
+	<wo:link action="$search" class="btn">Leita</wo:link>
+	<wo:AjaxUpdateContainer id="list">
+		<div class="row">
+			<div class="col-md-11" style="text-align: center">
+				<wo:IMBatchNavigation dg="$dg" />
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-11">
+				<div class="allPictures">
+					<wo:repetition list="$dg.displayedObjects" item="$currentDocument"><div><wo:SWDocumentImage picture="$currentDocument" size="128" /></div></wo:repetition>
+				</div>
+			</div>
+		</div>
+	</wo:AjaxUpdateContainer>
+</wo:CPAdminComponentWrapper>

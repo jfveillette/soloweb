@@ -1,0 +1,51 @@
+{
+    attributes = (
+        {
+            allowsNull = Y; 
+            columnName = "creation_date"; 
+            name = creationDate; 
+            prototypeName = dateTime; 
+        }, 
+        {allowsNull = N; columnName = id; name = id; prototypeName = intNumber; }, 
+        {
+            allowsNull = Y; 
+            columnName = "modification_date"; 
+            name = modificationDate; 
+            prototypeName = dateTime; 
+        }, 
+        {
+            allowsNull = Y; 
+            columnName = "tag_id"; 
+            name = tagID; 
+            prototypeName = intNumber; 
+        }, 
+        {
+            allowsNull = Y; 
+            columnName = "target_entity_name"; 
+            name = targetEntityName; 
+            prototypeName = longText; 
+        }, 
+        {
+            allowsNull = Y; 
+            columnName = "target_id"; 
+            name = targetID; 
+            prototypeName = longText; 
+        }
+    ); 
+    attributesUsedForLocking = (creationDate, id, tagID, targetEntityName, targetID); 
+    className = "concept.data.SWTagging"; 
+    classProperties = (creationDate, modificationDate, tag, targetEntityName, targetID); 
+    externalName = "sw_tagging"; 
+    fetchSpecificationDictionary = {}; 
+    name = SWTagging; 
+    primaryKeyAttributes = (id); 
+    relationships = (
+        {
+            destination = SWTag; 
+            isToMany = N; 
+            joinSemantic = EOInnerJoin; 
+            joins = ({destinationAttribute = id; sourceAttribute = tagID; }); 
+            name = tag; 
+        }
+    ); 
+}

@@ -1,0 +1,215 @@
+{
+    attributes = (
+        {
+            allowsNull = Y; 
+            columnName = author; 
+            name = author; 
+            prototypeName = longText; 
+        }, 
+        {
+            allowsNull = Y; 
+            columnName = "created_by_id"; 
+            name = createdByID; 
+            prototypeName = intNumber; 
+        }, 
+        {
+            allowsNull = Y; 
+            columnName = "creation_date"; 
+            isReadOnly = Y; 
+            name = creationDate; 
+            prototypeName = dateTime; 
+        }, 
+        {
+            allowsNull = Y; 
+            columnName = "crm_nafn_id"; 
+            name = crmNafnID; 
+            prototypeName = intNumber; 
+        }, 
+        {
+            allowsNull = Y; 
+            columnName = "custom_info"; 
+            name = customInfoData; 
+            prototypeName = longText; 
+        }, 
+        {
+            allowsNull = Y; 
+            columnName = "custom_more_url"; 
+            name = customMoreURL; 
+            prototypeName = longText; 
+        }, 
+        {allowsNull = Y; columnName = date; name = date; prototypeName = dateTime; }, 
+        {
+            allowsNull = Y; 
+            columnName = "encode_breaks"; 
+            name = encodeBreaks; 
+            prototypeName = intNumber; 
+        }, 
+        {
+            allowsNull = Y; 
+            columnName = excerpt; 
+            name = excerpt; 
+            prototypeName = longText; 
+        }, 
+        {
+            allowsNull = Y; 
+            columnName = heading; 
+            name = heading; 
+            prototypeName = longText; 
+        }, 
+        {allowsNull = N; columnName = id; name = id; prototypeName = intNumber; }, 
+        {
+            allowsNull = Y; 
+            columnName = "modification_date"; 
+            name = modificationDate; 
+            prototypeName = dateTime; 
+        }, 
+        {
+            allowsNull = Y; 
+            columnName = "modified_by_id"; 
+            name = modifiedByID; 
+            prototypeName = intNumber; 
+        }, 
+        {
+            allowsNull = Y; 
+            columnName = "news_category_id"; 
+            name = newsCategoryID; 
+            prototypeName = intNumber; 
+        }, 
+        {
+            allowsNull = Y; 
+            columnName = "original_item_id"; 
+            name = originalItemID; 
+            prototypeName = intNumber; 
+        }, 
+        {
+            allowsNull = Y; 
+            columnName = "picture2_id"; 
+            name = picture2ID; 
+            prototypeName = intNumber; 
+        }, 
+        {
+            allowsNull = Y; 
+            columnName = "picture_id"; 
+            name = pictureID; 
+            prototypeName = intNumber; 
+        }, 
+        {
+            allowsNull = Y; 
+            columnName = published; 
+            name = published; 
+            prototypeName = intNumber; 
+        }, 
+        {allowsNull = Y; columnName = text; name = text; prototypeName = longText; }, 
+        {
+            allowsNull = Y; 
+            columnName = "time_in"; 
+            name = timeIn; 
+            prototypeName = dateTime; 
+        }, 
+        {
+            allowsNull = Y; 
+            columnName = "time_out"; 
+            name = timeOut; 
+            prototypeName = dateTime; 
+        }
+    ); 
+    attributesUsedForLocking = (
+        author, 
+        createdByID, 
+        crmNafnID, 
+        customMoreURL, 
+        date, 
+        encodeBreaks, 
+        excerpt, 
+        heading, 
+        id, 
+        modificationDate, 
+        modifiedByID, 
+        newsCategoryID, 
+        originalItemID, 
+        picture2ID, 
+        pictureID, 
+        published, 
+        text, 
+        timeIn, 
+        timeOut
+    ); 
+    className = "concept.data.SWNewsItem"; 
+    classProperties = (
+        author, 
+        category, 
+        createdBy, 
+        creationDate, 
+        crmNafnID, 
+        customInfoData, 
+        customMoreURL, 
+        date, 
+        encodeBreaks, 
+        excerpt, 
+        heading, 
+        id, 
+        modificationDate, 
+        modifiedBy, 
+        newsCategoryID, 
+        originalItemID, 
+        picture, 
+        picture2, 
+        picture2ID, 
+        pictureID, 
+        published, 
+        swPictureLinks, 
+        text, 
+        timeIn, 
+        timeOut
+    ); 
+    externalName = "sw_news_item"; 
+    fetchSpecificationDictionary = {}; 
+    name = SWNewsItem; 
+    primaryKeyAttributes = (id); 
+    relationships = (
+        {
+            destination = SWNewsCategory; 
+            isToMany = N; 
+            joinSemantic = EOInnerJoin; 
+            joins = ({destinationAttribute = id; sourceAttribute = newsCategoryID; }); 
+            name = category; 
+            userInfo = {modificationDate = "2001-06-22 10:28:36 +0000"; }; 
+        }, 
+        {
+            destination = SWUser; 
+            isToMany = N; 
+            joinSemantic = EOInnerJoin; 
+            joins = ({destinationAttribute = id; sourceAttribute = createdByID; }); 
+            name = createdBy; 
+        }, 
+        {
+            destination = SWUser; 
+            isToMany = N; 
+            joinSemantic = EOInnerJoin; 
+            joins = ({destinationAttribute = id; sourceAttribute = modifiedByID; }); 
+            name = modifiedBy; 
+        }, 
+        {
+            destination = SWPicture; 
+            isToMany = N; 
+            joinSemantic = EOInnerJoin; 
+            joins = ({destinationAttribute = id; sourceAttribute = pictureID; }); 
+            name = picture; 
+            userInfo = {modificationDate = "2001-06-22 10:28:36 +0000"; }; 
+        }, 
+        {
+            destination = SWPicture; 
+            joinSemantic = EOInnerJoin; 
+            joins = ({destinationAttribute = id; sourceAttribute = picture2ID; }); 
+            name = picture2; 
+        }, 
+        {
+            destination = SWPictureLink; 
+            isToMany = Y; 
+            joinSemantic = EOInnerJoin; 
+            joins = ({destinationAttribute = newsItemID; sourceAttribute = id; }); 
+            name = swPictureLinks; 
+        }
+    ); 
+    userInfo = {modificationDate = "2001-06-22 10:28:36 +0000"; }; 
+}

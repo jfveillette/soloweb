@@ -1,0 +1,88 @@
+{
+    attributes = (
+        {allowsNull = N; columnName = id; name = id; prototypeName = intNumber; }, 
+        {
+            allowsNull = Y; 
+            columnName = "inherits_privileges"; 
+            name = inheritsPrivileges; 
+            prototypeName = intNumber; 
+        }, 
+        {allowsNull = Y; columnName = name; name = name; prototypeName = longText; }, 
+        {
+            allowsNull = Y; 
+            columnName = "parent_category_id"; 
+            name = parentCategoryID; 
+            prototypeName = intNumber; 
+        }, 
+        {
+            allowsNull = Y; 
+            columnName = "rss_link"; 
+            name = rssLink; 
+            prototypeName = longText; 
+        }, 
+        {
+            allowsNull = Y; 
+            columnName = "rss_page_name"; 
+            name = rssPageName; 
+            prototypeName = longText; 
+        }, 
+        {
+            allowsNull = Y; 
+            columnName = "rss_title"; 
+            name = rssTitle; 
+            prototypeName = longText; 
+        }
+    ); 
+    attributesUsedForLocking = (
+        id, 
+        inheritsPrivileges, 
+        name, 
+        parentCategoryID, 
+        rssLink, 
+        rssPageName, 
+        rssTitle
+    ); 
+    className = "concept.data.SWNewsCategory"; 
+    classProperties = (
+        id, 
+        inheritsPrivileges, 
+        name, 
+        news, 
+        parentCategoryID, 
+        parentFolder, 
+        rssLink, 
+        rssPageName, 
+        rssTitle, 
+        subFolders
+    ); 
+    externalName = "sw_news_category"; 
+    fetchSpecificationDictionary = {}; 
+    name = SWNewsCategory; 
+    primaryKeyAttributes = (id); 
+    relationships = (
+        {
+            destination = SWNewsItem; 
+            isToMany = Y; 
+            joinSemantic = EOInnerJoin; 
+            joins = ({destinationAttribute = newsCategoryID; sourceAttribute = id; }); 
+            name = news; 
+            userInfo = {modificationDate = "2001-06-22 10:28:36 +0000"; }; 
+        }, 
+        {
+            destination = SWNewsCategory; 
+            isToMany = N; 
+            joinSemantic = EOInnerJoin; 
+            joins = ({destinationAttribute = id; sourceAttribute = parentCategoryID; }); 
+            name = parentFolder; 
+        }, 
+        {
+            deleteRule = EODeleteRuleCascade; 
+            destination = SWNewsCategory; 
+            isToMany = Y; 
+            joinSemantic = EOInnerJoin; 
+            joins = ({destinationAttribute = parentCategoryID; sourceAttribute = id; }); 
+            name = subFolders; 
+        }
+    ); 
+    userInfo = {modificationDate = "2001-06-22 10:28:36 +0000"; }; 
+}

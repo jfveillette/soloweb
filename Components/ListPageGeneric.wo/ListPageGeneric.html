@@ -1,0 +1,49 @@
+<wo:IMLookNew>
+	<div class="row">
+		<div class="col-md-11">
+			<h4><wo:str value="$viewDefinition.icelandicNamePlural" /></h4>
+			<wo:form>
+				<wo:textfield value="$searchString" id="searchString" placeholder="Leita…" />
+				<wo:AjaxObserveField observeFieldID="searchString" updateContainerID="list" observeFieldFrequency="1" action="$resetDG" />
+			</wo:form>
+
+			<wo:AjaxUpdateContainer id="list">
+				<wo:conditional condition="$dg.hasMultipleBatches">
+					<div align="center">
+						<p>Færslur <wo:str value="$dg.indexOfFirstDisplayedObject" /> til <wo:str value="$dg.indexOfLastDisplayedObject" /> af <wo:str value="$dg.allObjects.count" /></p>
+						<wo:IMBatchNavigation dg="$dg" />
+					</div>
+				</wo:conditional>
+				<wo:conditional condition="$dg.hasMultipleBatches" negate="$true">
+					<p><wo:str value="$dg.displayedObjects.count" /> færslur
+				</wo:conditional><br />
+				
+				<wo:form>
+					<table class="table table-bordered table-condensed" style="background-color: white">
+						<wo:conditional condition="$viewDefinition.attributesToShow.count">
+							<tr>
+								<wo:repetition list="$viewDefinition.attributesToShow" item="$currentAttribute">
+									<th><wo:AjaxSortOrder displayGroup="$dg" key="$currentAttribute.name" /> <wo:str value="$currentAttribute.icelandicName" /></th>
+								</wo:repetition>
+							</tr>
+							<wo:repetition list="$dg.displayedObjects" item="$currentObject">
+								<tr>
+									<wo:repetition list="$viewDefinition.attributesToShow" item="$currentAttribute" index="$currentColumnIndex">
+										<td><wo:ViewLink object="$currentObject" disabled="$isNotFirst"><wo:IMValue object="$currentValue" /></wo:ViewLink></td>
+									</wo:repetition>
+								</tr>
+							</wo:repetition>
+						</wo:conditional>
+						<wo:conditional condition="$viewDefinition.attributesToShow.count" negate="$true">
+							<wo:repetition list="$dg.displayedObjects" item="$currentObject">
+								<tr>
+									<td><wo:ViewLink object="$currentObject" disabled="$isNotFirst"><wo:IMValue object="$currentObject" /></wo:ViewLink></td>
+								</tr>
+							</wo:repetition>						
+						</wo:conditional>
+					</table>
+				</wo:form>
+			</wo:AjaxUpdateContainer>
+		</div>
+	</div>
+</wo:IMLookNew>

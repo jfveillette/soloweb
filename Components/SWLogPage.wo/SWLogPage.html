@@ -1,0 +1,26 @@
+<wo:CPAdminComponentWrapper>
+	<table class="table table-condensed">
+		<tr>
+			<th>Dags</th>
+			<th>Tími</th>
+			<th>Forrit</th>
+			<th>Flokkun</th>
+			<th>Texti</th>
+			<th>User agent</th>
+			<th>User ID</th>
+			<th>Nánar</th>
+		</tr>
+		<wo:repetition list="$objects.@sortDesc.date" item="$current">
+			<tr>
+				<td><wo:str value="$current.timestamp" dateformat="%d.%m.%Y" /></td>
+				<td><wo:str value="$current.timestamp" dateformat="%H:%M" /></td>
+				<td><wo:str value="$current.applicationName" /></td>
+				<td><wo:str value="$current.type" /></td>
+				<td><wo:str value="$current.text" /></td>
+				<td><wo:str value="$current.userAgent" /></td>
+				<td><wo:str value="$current.softUserID" /></td>
+				<!-- <td><wo:str value="$current.info" /></td>-->
+			</tr>
+		</wo:repetition>
+	</table>
+</wo:CPAdminComponentWrapper>
