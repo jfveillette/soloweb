@@ -10,7 +10,6 @@ import er.extensions.appserver.ERXSession;
 
 public class SWSession extends ERXSession {
 
-	private SWUser _activeUser;
 	private boolean _isLoggedIn = false;
 	private String _language = null;
 
@@ -21,13 +20,13 @@ public class SWSession extends ERXSession {
 		setLanguages( new NSArray<>( "Icelandic" ) );
 	}
 
-	public void setActiveUser( SWUser newUser ) {
-		_activeUser = newUser;
+	public void setActiveUser( SWUser value ) {
+		SWSessionHelper.setUserInSession( this, value );
 		SWApplication.swapplication().activeUserSessions().addObject( this );
 	}
 
 	public SWUser activeUser() {
-		return _activeUser;
+		return SWSessionHelper.userInSession( this );
 	}
 
 	@Override
