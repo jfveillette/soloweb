@@ -2,10 +2,13 @@ package concept.data;
 
 import is.rebbi.core.util.DataUtilities;
 import is.rebbi.core.util.ImageUtilities;
+import is.rebbi.core.util.StringUtilities;
 import is.rebbi.wo.formatters.FileSizeFormatter;
 import is.rebbi.wo.interfaces.HumanReadable;
+import is.rebbi.wo.interfaces.SWDataAsset;
 import is.rebbi.wo.interfaces.TimeStamped;
 import is.rebbi.wo.interfaces.UUIDStamped;
+import is.rebbi.wo.util.FileType;
 import is.rebbi.wo.util.FileTypes;
 import is.rebbi.wo.util.SWSettings;
 import is.rebbi.wo.util.USDataUtilities;
@@ -24,6 +27,7 @@ import org.slf4j.LoggerFactory;
 
 import com.webobjects.appserver.WOContext;
 import com.webobjects.eocontrol.EOEditingContext;
+import com.webobjects.eocontrol.EOEnterpriseObject;
 import com.webobjects.foundation.NSArray;
 import com.webobjects.foundation.NSData;
 
@@ -36,7 +40,7 @@ import concept.documents.Storage;
 import er.extensions.appserver.ERXApplication;
 import er.extensions.appserver.ERXWOContext;
 
-public class SWDocument extends _SWDocument implements HumanReadable, TimeStamped, UUIDStamped {
+public class SWDocument extends _SWDocument implements SWDataAsset<SWDocument,SWDocumentFolder>, HumanReadable, TimeStamped, UUIDStamped {
 
 	private static final Logger logger = LoggerFactory.getLogger( SWDocument.class );
 
@@ -80,6 +84,21 @@ public class SWDocument extends _SWDocument implements HumanReadable, TimeStampe
 		return _storage;
 	}
 
+	@Override
+	public FileType documentType() {
+		return FileTypes.documentTypeWithExtension( extension() );
+	}
+
+	@Override
+	public void setDocumentType( FileType value ) {
+		if( value != null ) {
+			setExtension( value.extension() );
+		}
+		else {
+			setExtension( null );
+		}
+	}
+
 	/**
 	 * @return An InputStream that can be used to write to this document.
 	 */
@@ -97,6 +116,7 @@ public class SWDocument extends _SWDocument implements HumanReadable, TimeStampe
 	/**
 	 * @return The document's data
 	 */
+	@Override
 	public NSData data() {
 		return USDataUtilities.consumeStream( inputStream() );
 	}
@@ -104,6 +124,7 @@ public class SWDocument extends _SWDocument implements HumanReadable, TimeStampe
 	/**
 	 * Sets the document's data
 	 */
+	@Override
 	public void setData( NSData newData ) {
 		storage().writeData( this, newData );
 		updateThumbnails();
@@ -112,6 +133,7 @@ public class SWDocument extends _SWDocument implements HumanReadable, TimeStampe
 	/**
 	 * @return Size in bytes.
 	 */
+	@Override
 	public long size() {
 		return storage().sizeOfData( this );
 	}
@@ -128,6 +150,32 @@ public class SWDocument extends _SWDocument implements HumanReadable, TimeStampe
 	 */
 	public static SWDocument documentWithID( EOEditingContext ec, Integer id ) {
 		return USEOUtilities.objectWithPK( ec, SWDocument.ENTITY_NAME, id );
+	}
+
+	@Override
+	public void deleteAsset() {
+		removeObjectFromBothSidesOfRelationshipWithKey( folder(), FOLDER_KEY );
+		editingContext().deleteObject( this );
+	}
+
+	@Override
+	public void transferOwnership( EOEnterpriseObject newOwner ) {
+		removeObjectFromBothSidesOfRelationshipWithKey( folder(), FOLDER_KEY );
+		addObjectToBothSidesOfRelationshipWithKey( newOwner, FOLDER_KEY );
+	}
+
+	@Override
+	public SWDocumentFolder containingFolder() {
+		return folder();
+	}
+
+	@Override
+	public void setContainingFolder( SWDocumentFolder newFolder ) {
+		if( this.folder() != null ) {
+			removeObjectFromBothSidesOfRelationshipWithKey( this.folder(), FOLDER_KEY );
+		}
+
+		addObjectToBothSidesOfRelationshipWithKey( newFolder, FOLDER_KEY );
 	}
 
 	/**
@@ -185,6 +233,48 @@ public class SWDocument extends _SWDocument implements HumanReadable, TimeStampe
 	public boolean hasData() {
 		return storage().hasData( this );
 	}
+
+	@Override
+	public void expandZip() {
+//		SWZipUtilities.expandZipFileAndInsertIntoFolder( editingContext(), file(), containingFolder(), SWDocument.ENTITY_NAME, SWDocumentFolder.ENTITY_NAME );
+		// FIXME!
+	}
+
+	@Override
+	public String extension() {
+		String ext = super.extension();
+
+		if( !StringUtilities.hasValue( ext ) ) {
+			if( StringUtilities.hasValue( name() ) ) {
+				NSArray<String> parts = NSArray.componentsSeparatedByString( name(), "." );
+
+				if( parts.count() > 1 ) {
+					ext = parts.lastObject();
+				}
+
+				if( ext != null && (ext.length() > 5 || ext.indexOf( " " ) > -1) ) {
+					ext = null;
+				}
+			}
+		}
+
+		return ext;
+	}
+
+	/*
+	 * FIXME: Old implementation, must pick.
+	public String iconURL() {
+		String url = "/sw32/img/document_icons/";
+		String ext = extension();
+
+		if( ext == null ) {
+			ext = "other";
+		}
+
+		return url + ext + ".png";
+	}
+	*/
+
 
 	/**
 	 * @return The name of the icon file for this document.
