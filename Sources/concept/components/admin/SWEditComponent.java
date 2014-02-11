@@ -101,7 +101,7 @@ public class SWEditComponent extends SWAdminComponent {
 		activeSystemsAndComponents.setObjectForKey( SWLoc.string( "cpteNews", session() ), SWNewsSubmit.class.getSimpleName() );
 		activeSystemsAndComponents.setObjectForKey( SWLoc.string( "cpteDocuments", session() ), SWSFComponent.class.getSimpleName() );
 		activeSystemsAndComponents.setObjectForKey( SWLoc.string( "cpteDocuments", session() ), SWSFFileList.class.getSimpleName() );
-//		FIXME: Removed when combining Soloweb32 & co activeSystemsAndComponents.setObjectForKey( "SoloStaff", SWSStaffListComponent.class.getSimpleName() );
+//		FIXME: Removed when combining Soloweb frmeworks & co activeSystemsAndComponents.setObjectForKey( "SoloStaff", SWSStaffListComponent.class.getSimpleName() );
 		activeSystemsAndComponents.setObjectForKey( "Myndir", SWImageGallery.class.getSimpleName() );
 		activeSystemsAndComponents.setObjectForKey( "Multi", SWSideBySide.class.getSimpleName() );
 		activeSystemsAndComponents.setObjectForKey( "Media", SWMedia.class.getSimpleName() );

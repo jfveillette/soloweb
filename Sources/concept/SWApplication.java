@@ -75,8 +75,8 @@ public class SWApplication extends ERXApplication {
 
 		SWSettings.register();
 
-		String englishString = USUtilities.stringFromResource( "sw32/lang/English.rsrc", "Soloweb32" );
-		String icelandicString = USUtilities.stringFromResource( "sw32/lang/Icelandic.rsrc", "Soloweb32" );
+		String englishString = USUtilities.stringFromResource( "sw32/lang/English.rsrc", Concept.sw().frameworkBundleName() );
+		String icelandicString = USUtilities.stringFromResource( "sw32/lang/Icelandic.rsrc", Concept.sw().frameworkBundleName() );
 
 		_localizedStrings.setObjectForKey( new SWDictionary( englishString ), "English" );
 		_localizedStrings.setObjectForKey( new SWDictionary( icelandicString ), "Icelandic" );
@@ -214,6 +214,6 @@ public class SWApplication extends ERXApplication {
 	}
 
 	public String frameworkBundleName() {
-		return "Soloweb32";
+		return Concept.sw().frameworkBundleName();
 	}
 }

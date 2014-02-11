@@ -9,7 +9,6 @@ import com.webobjects.appserver.WOContext;
 import com.webobjects.appserver.WOResponse;
 
 import concept.data.SWPage;
-
 import er.extensions.appserver.ERXResponseRewriter;
 import er.extensions.appserver.ERXResponseRewriter.TagMissingBehavior;
 
@@ -53,7 +52,7 @@ public abstract class SWGenericSiteLook extends WOComponent {
 		}
 
 		if( StringUtilities.hasValue( code ) ) {
-			String googleHtml = USUtilities.stringFromResource( "GoogleAnalyticsTrackingCode.txt", "Soloweb32" );
+			String googleHtml = USUtilities.stringFromResource( "GoogleAnalyticsTrackingCode.txt", Concept.sw().frameworkBundleName() );
 			googleHtml = StringUtilities.replace( googleHtml, "UA-XXXXX-X", "UA-" + code );
 			ERXResponseRewriter.insertInResponseBeforeHead( response, context, googleHtml, TagMissingBehavior.SkipAndWarn );
 		}
