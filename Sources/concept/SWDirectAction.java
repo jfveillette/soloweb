@@ -32,7 +32,6 @@ import com.webobjects.foundation.NSTimestamp;
 import concept.components.SWECard;
 import concept.components.SWErrorMessage;
 import concept.components.admin.SWLogin;
-import concept.components.admin.SWManageSettings;
 import concept.components.admin.SWNewsCategoriesSelectComponent;
 import concept.components.client.SWNoPageFoundErrorComponent;
 import concept.components.client.SWPasswordFieldComponent;
@@ -67,11 +66,6 @@ public class SWDirectAction extends ERXDirectAction {
 	 * @return The login page.
 	 */
 	public WOActionResults loginAction() {
-		if( SWSettings.stringForKey( "solowebResourcesURL" ) == null ) {
-			((SWSession)session()).setIsLoggedIn( true );
-			return pageWithName( SWManageSettings.class );
-		}
-
 		return pageWithName( SWLogin.class );
 	}
 
