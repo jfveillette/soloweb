@@ -4,9 +4,6 @@ import is.rebbi.wo.util.SWSettings;
 import is.rebbi.wo.util.USArrayUtilities;
 import is.rebbi.wo.util.USEOUtilities;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 import com.webobjects.appserver.WOComponent;
 import com.webobjects.appserver.WOContext;
 import com.webobjects.appserver.WOCookie;
@@ -23,8 +20,6 @@ import er.extensions.components.ERXComponent;
  */
 
 public class SWLogin extends ERXComponent {
-
-	private static final Logger logger = LoggerFactory.getLogger( SWLogin.class );
 
 	/**
 	 * The username entered
