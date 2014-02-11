@@ -493,13 +493,13 @@ public class SWAssetManagement extends SWAdminComponent {
 		return null;
 	}
 
-	public NSArray previewSizesList() {
+	public NSArray<String> previewSizesList() {
 		if( currentAsset == null ) {
 			return null;
 		}
 		SWPicture pic = (SWPicture)currentAsset;
 		String sizes = (String)pic.customInfo().valueForKey( "sizes" );
-		NSArray list = new NSArray( sizes.split( "," ) );
+		NSArray<String> list = new NSArray<>( sizes.split( "," ) );
 		return list;
 	}
 
