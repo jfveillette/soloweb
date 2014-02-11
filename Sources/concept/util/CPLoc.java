@@ -5,7 +5,6 @@ import java.util.Locale;
 import com.webobjects.appserver.WOApplication;
 import com.webobjects.appserver.WOContext;
 import com.webobjects.appserver.WORequest;
-import com.webobjects.appserver.WOSession;
 import com.webobjects.foundation.NSArray;
 
 import concept.Concept;
@@ -97,10 +96,6 @@ public class CPLoc {
 		return "Localized string not found [" + key + "]";
 	}
 
-	/**
-	 * Returns a localized string based on a key (the string's key in the localizedStrings-file) and
-	 * the language selected in the given session.
-	 */
 	public static String string( String key, com.webobjects.appserver.WOSession session ) {
 		return ((SWSession)session).localizedStringForKey( key );
 	}

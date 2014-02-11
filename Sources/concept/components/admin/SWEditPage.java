@@ -30,41 +30,42 @@ public class SWEditPage extends SWAdminComponent {
 	 */
 	public SWPage selectedPage;
 
-	public SWEditPage(WOContext context) {
-		super(context);
+	public SWEditPage( WOContext context ) {
+		super( context );
 	}
 
 	public NSDictionary tabDictionary() {
-		NSMutableDictionary apec = new NSMutableDictionary(SWApplication.swapplication().activePageEditingComponents());
+		NSMutableDictionary apec = new NSMutableDictionary( SWApplication.swapplication().activePageEditingComponents() );
 
-		if (user().hasPrivilegeFor(selectedPage, "canManagePage")) {
-			apec.setObjectForKey("SWEditPageGeneralInfo", CPLoc.string("eptGeneral", session()));
-			if ("SWDefaultLook6".equals(selectedPage.siteForThisPage().look())) {
-				apec.setObjectForKey("SWDefaultLook6Admin", "SWDefaultLook6");
+		if( user().hasPrivilegeFor( selectedPage, "canManagePage" ) ) {
+			apec.setObjectForKey( "SWEditPageGeneralInfo", CPLoc.string( "eptGeneral", session() ) );
+
+			if( "SWDefaultLook6".equals( selectedPage.siteForThisPage().look() ) ) {
+				apec.setObjectForKey( "SWDefaultLook6Admin", "SWDefaultLook6" );
 			}
 		}
 
-		apec.setObjectForKey("SWEditContent", CPLoc.string("eptContent", session()));
+		apec.setObjectForKey( "SWEditContent", CPLoc.string( "eptContent", session() ) );
 
-		if (SWSettings.booleanForKey("enablePrivileges") && user().hasPrivilegeFor(selectedPage, "canManageUsers")) {
-			apec.setObjectForKey("SWEditPagePrivileges", CPLoc.string("eptAccessPrivileges", session()));
+		if( SWSettings.booleanForKey( "enablePrivileges" ) && user().hasPrivilegeFor( selectedPage, "canManageUsers" ) ) {
+			apec.setObjectForKey( "SWEditPagePrivileges", CPLoc.string( "eptAccessPrivileges", session() ) );
 		}
 
 		return apec;
 	}
 
 	public String selectedComponentName() {
-		return (String) tabDictionary().valueForKey(selectedTab());
+		return (String)tabDictionary().valueForKey( selectedTab() );
 	}
 
 	/**
 	 * The currently selected tab
 	 */
 	public String selectedTab() {
-		String selected = (String) session().valueForKey("solowebSelectedPageTab");
+		String selected = (String)session().valueForKey( "solowebSelectedPageTab" );
 
-		if (selected == null) {
-			selected = CPLoc.string("eptContent", session());
+		if( selected == null ) {
+			selected = CPLoc.string( "eptContent", session() );
 		}
 
 		return selected;
@@ -77,9 +78,9 @@ public class SWEditPage extends SWAdminComponent {
 		NSMutableArray theTabs = new NSMutableArray();
 		NSArray allTabs = tabDictionary().allKeys();
 
-		for (int i = 0; i < allTabs.count(); i++) {
-			if (((String) allTabs.objectAtIndex(i)).charAt(0) != '(') {
-				theTabs.addObject(allTabs.objectAtIndex(i));
+		for( int i = 0; i < allTabs.count(); i++ ) {
+			if( ((String)allTabs.objectAtIndex( i )).charAt( 0 ) != '(' ) {
+				theTabs.addObject( allTabs.objectAtIndex( i ) );
 			}
 		}
 
@@ -92,8 +93,8 @@ public class SWEditPage extends SWAdminComponent {
 	 * @param newSelectedTab
 	 *           the tab to select
 	 */
-	public void setSelectedTab(String newSelectedTab) {
-		session().takeValueForKey(newSelectedTab, "solowebSelectedPageTab");
+	public void setSelectedTab( String newSelectedTab ) {
+		session().takeValueForKey( newSelectedTab, "solowebSelectedPageTab" );
 	}
 
 	/**
@@ -102,7 +103,7 @@ public class SWEditPage extends SWAdminComponent {
 	 * @param newSelectedPage
 	 *           the page to select
 	 */
-	public WOComponent setSelectedPage(SWPage newSelectedPage) {
+	public WOComponent setSelectedPage( SWPage newSelectedPage ) {
 		selectedPage = newSelectedPage;
 		return null;
 	}
@@ -111,10 +112,10 @@ public class SWEditPage extends SWAdminComponent {
 	 * Deletes the selected page and all it's content
 	 */
 	public WOComponent deletePage() {
-		selectedPage.parent().removeSubPage(selectedPage);
-		session().defaultEditingContext().deleteObject(selectedPage);
+		selectedPage.parent().removeSubPage( selectedPage );
+		session().defaultEditingContext().deleteObject( selectedPage );
 		session().defaultEditingContext().saveChanges();
-		setSelectedPage(null);
+		setSelectedPage( null );
 		return null;
 	}
 
@@ -124,26 +125,26 @@ public class SWEditPage extends SWAdminComponent {
 	 * page.
 	 */
 	public WOComponent createSubPage() {
-		String newPageName = CPLoc.string("newPageName", session());
+		String newPageName = CPLoc.string( "newPageName", session() );
 
-		if (!((SWSession) session()).arrayWithKeyContainsObject("SWPage", selectedPage)) {
-			((SWSession) session()).addObjectToArrayWithKey(selectedPage, "SWPage");
+		if( !((SWSession)session()).arrayWithKeyContainsObject( "SWPage", selectedPage ) ) {
+			((SWSession)session()).addObjectToArrayWithKey( selectedPage, "SWPage" );
 		}
 
 		SWPage newPage = new SWPage();
-		session().defaultEditingContext().insertObject(newPage);
+		session().defaultEditingContext().insertObject( newPage );
 
-		newPage.setName(newPageName);
-		newPage.setInheritsPrivileges(1);
-		newPage.setAccessible(1);
-		newPage.setPublished(0);
+		newPage.setName( newPageName );
+		newPage.setInheritsPrivileges( 1 );
+		newPage.setAccessible( 1 );
+		newPage.setPublished( 0 );
 
-		selectedPage.insertSubPageAtIndex(newPage, selectedPage.children().count());
+		selectedPage.insertSubPageAtIndex( newPage, selectedPage.children().count() );
 
 		session().defaultEditingContext().saveChanges();
 
-		setSelectedPage(newPage);
-		setSelectedTab(CPLoc.string("eptGeneral", session()));
+		setSelectedPage( newPage );
+		setSelectedTab( CPLoc.string( "eptGeneral", session() ) );
 
 		return null;
 	}
@@ -153,49 +154,31 @@ public class SWEditPage extends SWAdminComponent {
 	 */
 	public WOComponent saveChanges() {
 		session().defaultEditingContext().saveChanges();
-		SWLuceneUtilities.indexObject(null, selectedPage);
+		SWLuceneUtilities.indexObject( null, selectedPage );
 		return null;
 	}
 
 	public String previewURL() {
-		String host = this.context().request().headerForKey("host");
-		boolean isDirectConnect = StringUtilities.hasValue(host) && (host.indexOf(':') > -1);
+		String host = this.context().request().headerForKey( "host" );
+		boolean isDirectConnect = StringUtilities.hasValue( host ) && (host.indexOf( ':' ) > -1);
 		String url = "";
 
-		if (isDirectConnect) {
-			url = "http://localhost:" + host.substring(host.indexOf(':') + 1);
+		if( isDirectConnect ) {
+			url = "http://localhost:" + host.substring( host.indexOf( ':' ) + 1 );
 		}
 		else {
 			SWSite site = selectedPage.siteForThisPage();
 			url = site.primaryDomain();
-			if (!StringUtilities.hasValue(url)) {
+
+			if( !StringUtilities.hasValue( url ) ) {
 				url = host;
 			}
+
 			url = "http://" + url;
 		}
+
 		url += selectedPage.pageLink();
 
 		return url;
-
-		/*
-		 * Object urlSetting = SWSettings.settingForKey("pagePreviewURL"); String
-		 * url = (urlSetting != null ? (String)urlSetting : null); String host =
-		 * this.context().request().headerForKey("host"); boolean isDirectConnect
-		 * = StringUtilities.hasValue(host) && (host.indexOf(':') > -1);
-		 *
-		 * if (!isDirectConnect && url != null) { // Have preview url, just add
-		 * the page id to it url = url + selectedPage.pageLink(); } else { //
-		 * Don't have a preview url, try to get one from the site SWSite site =
-		 * selectedPage.siteForThisPage(); url = site.primaryDomain(); if
-		 * (!isDirectConnect && StringUtilities.hasValue(url)) { if
-		 * (StringUtilities.hasValue(selectedPage.symbol())) url =
-		 * "http://" + url + "/page/" + selectedPage.symbol(); else url =
-		 * "http://" + url + "/id/" + selectedPage.pageID(); } else { // Don't
-		 * have a primary domain, create one using the current url (should only be
-		 * for running in direct connect mode) NSDictionary queryDict = new
-		 * NSMutableDictionary(); queryDict.takeValueForKey(selectedPage.pageID(),
-		 * "id"); url = this.context().directActionURLForActionNamed("dp",
-		 * queryDict); } }
-		 */
 	}
 }
