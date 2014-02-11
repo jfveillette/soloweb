@@ -1,0 +1,74 @@
+Misc: 
+* Pluggable data provides for setting and getting image data.
+* Locale Support in sites and pages.
+* A really simple setup procedure.
+* Declare a standardized interface for copying objects.
+* Download document folders zipped.
+* "Dynamic documents" (generated for example via URL-fetching)
+* encodeBreaks should not be stored with data, it's a presentational thing. What we CAN store with data is an indication of file type, thus text/plain implies that we want to encode breaks when displayed as HTML.
+* Version control.
+* WebDAV.
+* Move stuff using drag and drop.
+* Import/export of data in xml-form.
+* Support H2.
+* Streaming downloads.
+* Meta data for documents.
+* Default edit templates for document types.
+* Default view templates for document types.
+* HTML5 file uploads.
+* Implement basic workflow system.
+* Advanced user tracking using cookies.
+* Compbine SWExternalUser with SWUser.
+* One folder entity/table
+* Users and groups as regular documents.
+
+Zip-files:
+* Improve interface.
+* Show status of expansion.
+* View file contents.
+ 
+Templates:
+* Standard CSS-classes in all components (prefixed with "sw").
+* Dynamic templates configured in database.
+* Versioned templates.
+
+Feeds:
+* Improved RSS feeds.
+
+Searching:
+* Lucene index.
+* Highlighting of search strings in results.
+* Search in asset database.
+* Synonyms 6 co
+* Support for Icelandic.
+* Tagging/categorization of content, searchable.
+
+URLS:
+* Standardized URL schemes
+* URL-rewriting, configurable
+
+Access controls:
+* Built in access restrictions based on IP-address.
+* Nicer implementation of password protected pages.
+* Ability to see all privileges granted to users and groups.
+* Access control for system settings (administrators only).
+
+Editor:
+* Cleanup of messy Word and Excel HTML.
+* Allow HTML-editing in Windows without using FCK.
+* Wiki markup
+
+Localization:
+* Move localizable Strings in templates to a more sensible location
+* Actual multiple language support.
+
+Audit trail:
+* creation date
+* modification date
+
+In progress:
+* Macros {sw:document id="100000" /} {sw:snippet id="Texti" /} {sw:macro id="bla"}{/sw:macro}
+* Streaming AJAX data upload.
+
+Statistics and user tracking:
+* Content hit count.

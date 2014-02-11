@@ -1,0 +1,14 @@
+{
+	"aac",
+	"doc",
+	"flv",
+	"gif",
+	"jpg",
+	"mp3",
+	"pdf",
+	"png",
+	"ppt",
+	"swf",
+	"xls",
+	"tif",
+}
