@@ -37,7 +37,7 @@ import concept.util.SWStringUtilities;
  * An SWPicture represents a picture in SoloWeb
  */
 
-public class SWPicture extends _SWPicture implements SWDataAsset<SWPicture,SWAssetFolder>, SWHasCustomInfo {
+public class SWPicture extends _SWPicture implements SWDataAsset<SWPicture, SWAssetFolder>, SWHasCustomInfo {
 
 	private static final Logger logger = LoggerFactory.getLogger( SWPicture.class );
 
@@ -50,6 +50,11 @@ public class SWPicture extends _SWPicture implements SWDataAsset<SWPicture,SWAss
 	private SWCustomInfo _customInfo;
 
 	public SWPicture() {
+
+		if( LOCATION_ON_SERVER == null || LOCATION_ON_DISK == null ) {
+			throw new RuntimeException( "You must specify image location on server and disk in the SoloWeb settings" );
+		}
+
 		NSSelector saveSelector = new NSSelector( "writeDataToDisk", new Class[] { NSNotification.class } );
 		NSNotificationCenter.defaultCenter().addObserver( this, saveSelector, EOEditingContext.EditingContextDidSaveChangesNotification, null );
 	}
@@ -61,6 +66,7 @@ public class SWPicture extends _SWPicture implements SWDataAsset<SWPicture,SWAss
 	public void setName( String value ) {
 		if( !value.equals( name() ) ) { // file has (possibly) been renamed - try renaming preview files
 			String[] list = file().getParentFile().list();
+
 			for( int i = 0; list != null && i < list.length; i++ ) {
 				String name = list[i];
 				if( !name.startsWith( "." ) ) { // skip system files
@@ -560,7 +566,7 @@ public class SWPicture extends _SWPicture implements SWDataAsset<SWPicture,SWAss
 
 	public void updateDimensions() {
 		NSArray<String> sizes = availablePictureSizes();
-		NSMutableDictionary<String,String> dimensions = new NSMutableDictionary<>();
+		NSMutableDictionary<String, String> dimensions = new NSMutableDictionary<>();
 		String dim, size;
 
 		ImageInfo ii = new ImageInfo();

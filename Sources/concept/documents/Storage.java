@@ -27,8 +27,7 @@ public abstract class Storage {
 
 	public NSData fetchData( ERXGenericRecord document ) {
 
-		try {
-			InputStream is = in( document );
+		try( InputStream is = in( document ) ) {
 			long length = sizeOfData( document );
 
 			if( length > Integer.MAX_VALUE ) {
@@ -39,6 +38,7 @@ public abstract class Storage {
 
 			int offset = 0;
 			int numRead = 0;
+
 			while( offset < bytes.length && (numRead = is.read( bytes, offset, bytes.length - offset )) >= 0 ) {
 				offset += numRead;
 			}
@@ -51,8 +51,7 @@ public abstract class Storage {
 			return new NSData( bytes );
 		}
 		catch( IOException e ) {
-			logger.debug( "Failed to read data" );
-			return null;
+			throw new RuntimeException( "Failed to read data", e );
 		}
 	}
 
@@ -66,13 +65,11 @@ public abstract class Storage {
 			bytes = data.bytes();
 		}
 
-		try {
-			OutputStream out = out( document );
+		try( OutputStream out = out( document ) ) {
 			out.write( bytes );
-			out.close();
 		}
 		catch( IOException e ) {
-			throw new RuntimeException( e );
+			throw new RuntimeException( "Failed to write data", e );
 		}
 	}
 }

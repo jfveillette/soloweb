@@ -261,21 +261,6 @@ public class SWDocument extends _SWDocument implements SWDataAsset<SWDocument,SW
 		return ext;
 	}
 
-	/*
-	 * FIXME: Old implementation, must pick.
-	public String iconURL() {
-		String url = "/sw32/img/document_icons/";
-		String ext = extension();
-
-		if( ext == null ) {
-			ext = "other";
-		}
-
-		return url + ext + ".png";
-	}
-	*/
-
-
 	/**
 	 * @return The name of the icon file for this document.
 	 */
