@@ -28,10 +28,16 @@ public class FileStorage extends Storage {
 			if( !StringUtilities.hasValue( _documentPath ) ) {
 				throw new RuntimeException( "You must define a document path to store documents using FileStorage." );
 			}
+
+			if( _documentPath.endsWith( "/" ) ) {
+				_documentPath = _documentPath.substring( 0, _documentPath.length()-1 );
+			}
 		}
+
 
 		return _documentPath;
 	}
+
 	/**
 	 * @return The file on disk
 	 */
