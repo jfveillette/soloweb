@@ -29,9 +29,11 @@ import com.webobjects.foundation.NSNotification;
 import com.webobjects.foundation.NSNotificationCenter;
 import com.webobjects.foundation.NSSelector;
 
+import concept.SWPictureRequestHandler;
 import concept.data.auto._SWPicture;
 import concept.util.SWPictureUtilities;
 import concept.util.SWStringUtilities;
+import er.extensions.appserver.ERXWOContext;
 
 /**
  * An SWPicture represents a picture in SoloWeb
@@ -43,16 +45,16 @@ public class SWPicture extends _SWPicture implements SWDataAsset<SWPicture, SWAs
 
 	private static final NSArray<String> IMAGE_EXTENSIONS = NSArray.componentsSeparatedByString( "jpg,jpeg,png,gif,bmp,tif,tiff", "," );
 
-	private static final String LOCATION_ON_SERVER = SWSettings.stringForKey( "imageLocationOnServer" );
-	private static final String LOCATION_ON_DISK = SWSettings.stringForKey( "imageLocationOnDisk" );
+	private static final String LOCATION_ON_SERVER = SWSettings.imageURL() + "/";
+	private static final String LOCATION_ON_DISK = SWSettings.imagePath() + "/";
 	private NSData temporaryData = null;
 
 	private SWCustomInfo _customInfo;
 
 	public SWPicture() {
 
-		if( LOCATION_ON_SERVER == null || LOCATION_ON_DISK == null ) {
-			throw new RuntimeException( "You must specify image location on server and disk in the SoloWeb settings" );
+		if( LOCATION_ON_DISK == null ) {
+			throw new RuntimeException( "You must specify image location on disk in the SoloWeb settings" );
 		}
 
 		NSSelector saveSelector = new NSSelector( "writeDataToDisk", new Class[] { NSNotification.class } );
@@ -307,7 +309,12 @@ public class SWPicture extends _SWPicture implements SWDataAsset<SWPicture, SWAs
 			url = pictureURL();
 		}
 		else if( file( size ).exists() ) {
-			url = LOCATION_ON_SERVER + id() + "/" + nameOnly( name() ) + "_" + size + extension( name(), true );
+			if( LOCATION_ON_SERVER != null ) {
+				url = LOCATION_ON_SERVER + id() + "/" + nameOnly( name() ) + "_" + size + extension( name(), true );
+			}
+			else {
+				url = ERXWOContext.currentContext().urlWithRequestHandlerKey( SWPictureRequestHandler.KEY, primaryKey() + "/" + "smu", null );
+			}
 		}
 		else {
 			url = pictureURL();
@@ -444,38 +451,40 @@ public class SWPicture extends _SWPicture implements SWDataAsset<SWPicture, SWAs
 
 	@Override
 	public void deleteAsset() {
-		// remove all files from directory
 		String[] list = file().getParentFile().list();
 
-		for( int i = 0; i < list.length; i++ ) {
-			File file = new File( LOCATION_ON_DISK + id() + "/" + list[i] );
+		if( list != null ) {
+			for( int i = 0; i < list.length; i++ ) {
+				File file = new File( LOCATION_ON_DISK + id() + "/" + list[i] );
+
+				try {
+					file.delete();
+				}
+				catch( Exception e ) {
+					logger.debug( "Error deleting asset", e );
+				}
+			}
+
+			// delete the directory ?
 			try {
-				file.delete();
+				file().getParentFile().delete();
 			}
 			catch( Exception e ) {
-				logger.debug( "Error deleting asset", e );
+				logger.debug( "Error deleting parent file", e );
 			}
-		}
 
-		// delete the directory ?
-		try {
-			file().getParentFile().delete();
-		}
-		catch( Exception e ) {
-			logger.debug( "Error deleting parent file", e );
-		}
+			// delete picture links
+			Enumeration<SWPictureLink> e = swPictureLinks().objectEnumerator();
 
-		// delete picture links
-		Enumeration<SWPictureLink> e = swPictureLinks().objectEnumerator();
+			while( e.hasMoreElements() ) {
+				SWPictureLink link = e.nextElement();
+				link.removeObjectFromBothSidesOfRelationshipWithKey( this, SWPictureLink.PICTURE_KEY );
+				editingContext().deleteObject( link );
+			}
 
-		while( e.hasMoreElements() ) {
-			SWPictureLink link = e.nextElement();
-			link.removeObjectFromBothSidesOfRelationshipWithKey( this, SWPictureLink.PICTURE_KEY );
-			editingContext().deleteObject( link );
+			removeObjectFromBothSidesOfRelationshipWithKey( folder(), FOLDER_KEY );
+			editingContext().deleteObject( this );
 		}
-
-		removeObjectFromBothSidesOfRelationshipWithKey( folder(), FOLDER_KEY );
-		editingContext().deleteObject( this );
 	}
 
 	@Override

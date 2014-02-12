@@ -88,6 +88,7 @@ public class Concept {
 		app.registerRequestHandler( new CPDocumentRequestHandler(), CPDocumentRequestHandler.KEY );
 		app.registerRequestHandler( new SWDocumentRequestHandler(), SWDocumentRequestHandler.KEY );
 		app.registerRequestHandler( new SWThumbnailRequestHandler(), SWThumbnailRequestHandler.KEY );
+		app.registerRequestHandler( new SWPictureRequestHandler(), SWPictureRequestHandler.KEY );
 		app.setDefaultEncoding( "UTF-8");
 
 		if( SWSettings.sessionTimeOut() != null ) {
