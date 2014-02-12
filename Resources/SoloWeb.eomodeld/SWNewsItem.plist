@@ -15,7 +15,7 @@
         {
             allowsNull = Y; 
             columnName = "creation_date"; 
-            isReadOnly = Y; 
+            isReadOnly = N; 
             name = creationDate; 
             prototypeName = dateTime; 
         }, 
