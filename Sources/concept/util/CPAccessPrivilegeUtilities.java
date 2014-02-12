@@ -6,6 +6,7 @@ import is.rebbi.wo.util.USArrayUtilities;
 import is.rebbi.wo.util.USUtilities;
 
 import java.util.Enumeration;
+import java.util.Objects;
 
 import com.webobjects.appserver.WOContext;
 import com.webobjects.eocontrol.EOAndQualifier;
@@ -52,7 +53,7 @@ public class CPAccessPrivilegeUtilities extends Object {
 	 */
 	public static NSArray<SWAccessPrivilege> privilegesForObject( EOEnterpriseObject record ) {
 		EOEditingContext ec = record.editingContext();
-		Number primaryKey = (Number)((EOKeyGlobalID)ec.globalIDForObject( record )).keyValuesArray().objectAtIndex( 0 );
+		String primaryKey = Objects.toString( ((EOKeyGlobalID)ec.globalIDForObject( record )).keyValuesArray().objectAtIndex( 0 ) );
 
 		EOQualifier q1 = new EOKeyValueQualifier( SWAccessPrivilege.TARGET_ENTITY_NAME_KEY, EOQualifier.QualifierOperatorEqual, record.entityName() );
 		EOQualifier q2 = new EOKeyValueQualifier( SWAccessPrivilege.TARGET_ID_KEY, EOQualifier.QualifierOperatorEqual, primaryKey );
@@ -178,7 +179,7 @@ public class CPAccessPrivilegeUtilities extends Object {
 		while( e.hasMoreElements() ) {
 			SWAccessPrivilege p = e.nextElement();
 
-			if( USUtilities.numberIsTrue( (Number)p.valueForKey( privilegeName ) ) ) {
+			if( USUtilities.numberIsTrue( p.valueForIdentifier( privilegeName ) ) ) {
 				return true;
 			}
 		}
