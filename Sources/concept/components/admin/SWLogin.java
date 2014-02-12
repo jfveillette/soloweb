@@ -7,12 +7,15 @@ import is.rebbi.wo.util.USEOUtilities;
 import com.webobjects.appserver.WOComponent;
 import com.webobjects.appserver.WOContext;
 import com.webobjects.appserver.WOCookie;
+import com.webobjects.appserver.WOResponse;
 import com.webobjects.foundation.NSArray;
 
+import concept.Concept;
 import concept.SWSession;
 import concept.data.SWSite;
 import concept.data.SWUser;
 import concept.util.CPLoc;
+import er.ajax.AjaxUtils;
 import er.extensions.components.ERXComponent;
 
 /**
@@ -21,35 +24,25 @@ import er.extensions.components.ERXComponent;
 
 public class SWLogin extends ERXComponent {
 
-	/**
-	 * The username entered
-	 */
 	public String userString;
-
-	/**
-	 * The password entered
-	 */
 	public String passString;
-
-	/**
-	 * The error string displayed if authentication fails
-	 */
 	public String wrongString;
-
-	/**
-	 * The language currently displayed in the language pop-up menu
-	 */
 	public String currentLanguage;
-
-	/**
-	 * The list of languages displayed in the language-select pop-up menu
-	 */
+	public String currentSystem;
+	public String selectedSystem;
 	public NSArray<String> availableLanguages = new NSArray<>( new String[] { "Icelandic", "English" } );
+	public NSArray<String> availableSystems = new NSArray<>( new String[] { "SoloWeb 3", "SoloWeb 4 (beta)" } );
 
 	public static final String DEFAULT_LANGUAGE = "Icelandic";
 
 	public SWLogin( WOContext context ) {
 		super( context );
+	}
+
+	@Override
+	public void appendToResponse( WOResponse r, WOContext c ) {
+		super.appendToResponse( r, c );
+		AjaxUtils.addStylesheetResourceInHead( context(), r, Concept.sw().frameworkBundleName(), "sw32/css/soloweb.css" );
 	}
 
 	/**
@@ -79,45 +72,48 @@ public class SWLogin extends ERXComponent {
 	 */
 	public WOComponent doLogin() {
 
-		String defaultUsername = SWSettings.stringForKey( "defaultUsername", "admin" );
-		String defaultPassword = SWSettings.stringForKey( "defaultPassword", "admin" );
+		SWSession session = (SWSession)session();
 
-		SWMainFrameset nextPage = pageWithName( SWMainFrameset.class );
-		nextPage.context().response().addCookie( theCookie() );
-
-		SWSession sess = (SWSession)session();
-
-		if( defaultUsername.equals( userString ) && defaultPassword.equals( passString ) ) {
-			sess.setIsLoggedIn( true );
-			sess.setTimeOut( 28800 ); // 8 hour timeout
-			return pageWithName( "SWManageSettings" );
+		if( SWSettings.adminUsername().equals( userString ) && SWSettings.adminUsername().equals( passString ) ) {
+			session.setIsLoggedIn( true );
+			return pageWithName( SWManageSettings.class );
 		}
 
-		SWUser tempUser = (SWUser)USEOUtilities.objectMatchingKeyAndValue( session().defaultEditingContext(), SWUser.ENTITY_NAME, SWUser.USERNAME_KEY, userString );
+		SWUser user = (SWUser)USEOUtilities.objectMatchingKeyAndValue( session().defaultEditingContext(), SWUser.ENTITY_NAME, SWUser.USERNAME_KEY, userString );
 
-		if( tempUser == null ) {
-			tempUser = (SWUser)USEOUtilities.objectMatchingKeyAndValue( session().defaultEditingContext(), SWUser.ENTITY_NAME, SWUser.EMAIL_ADDRESS_KEY, userString );
+		if( user == null ) {
+			user = (SWUser)USEOUtilities.objectMatchingKeyAndValue( session().defaultEditingContext(), SWUser.ENTITY_NAME, SWUser.EMAIL_ADDRESS_KEY, userString );
 		}
 
-		if( passString != null && tempUser != null && tempUser.validatePassword( passString ) ) {
-			sess.setActiveUser( tempUser );
-			sess.setIsLoggedIn( true );
-			sess.setTimeOut( 28800 ); // 8 hour timeout
+		if( passString != null && user != null && user.validatePassword( passString ) ) {
+			session.setActiveUser( user );
+			session.setIsLoggedIn( true );
+			session.setTimeOut( 28800 ); // 8 hour timeout
 
-			if( tempUser.defaultSite() != null ) {
-				if( tempUser.hasPrivilegeFor( tempUser.defaultSite(), "allowToSee" ) ) {
+			if( user.defaultSite() != null ) {
+				if( user.hasPrivilegeFor( user.defaultSite(), "allowToSee" ) ) {
 					;
 				}
-				session().takeValueForKey( tempUser.defaultSite(), "selectedSite" );
+				session().takeValueForKey( user.defaultSite(), "selectedSite" );
 			}
 			else {
-				NSArray<SWSite> a = tempUser.sites();
+				NSArray<SWSite> a = user.sites();
 
 				if( USArrayUtilities.hasObjects( a ) ) {
 					session().takeValueForKey( a.objectAtIndex( 0 ), "selectedSite" );
 				}
 			}
 
+			WOComponent nextPage;
+
+			if( selectedSystem.equals( "SoloWeb 3" ) ) {
+				nextPage = pageWithName( SWMainFrameset.class );
+			}
+			else {
+				nextPage = pageWithName( CPStartPage.class );
+			}
+
+			nextPage.context().response().addCookie( theCookie() );
 			return nextPage;
 		}
 

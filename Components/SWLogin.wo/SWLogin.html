@@ -1,62 +1,68 @@
-<!DOCTYPE HTML="" PUBLIC="" -//W3C//DTD HTML 4.0//EN="">
-<HTML>
-<HEAD>
-	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-	<META NAME=generator CONTENT="WebObjects 5.2">
-	<TITLE>SoloWeb 3.2 Login</TITLE>
-	<LINK REL="stylesheet" type="text/css" href="<WEBOBJECT NAME=CSS_SRC></WEBOBJECT>">
-	<script>
-	
-	function setFocus() {
-	    document.f.q.focus();
-	    document.f.q.select();
-	}
-	
-	</script>
-</HEAD>
-<BODY BGCOLOR=#FFFFFF onLoad="setFocus()">
-	<WEBOBJECT NAME=Form2>
-		<TABLE WIDTH=100% BORDER=0 CELLSPACING=0 CELLPADDING=0 HEIGHT=100%>
-			<TR>
-				<TD ALIGN=center VALIGN=middle>
-					<WEBOBJECT NAME=Image1></WEBOBJECT><BR><BR>
-					<TABLE WIDTH=453 BORDER=0 CELLSPACING=0 CELLPADDING=0>
-						<TR>
-							<TD COLSPAN=3 HEIGHT=30><WEBOBJECT NAME=Image2></WEBOBJECT></TD>
-						</TR>
-						<TR>
-							<TD WIDTH=1 BGCOLOR=#4A6B8C><WEBOBJECT NAME=Image3></WEBOBJECT></TD>
-							<TD WIDTH=451 ALIGN=center VALIGN=top>
-								<FONT SIZE=4><FONT COLOR=#ff0000><WEBOBJECT NAME=String1></WEBOBJECT></FONT></FONT><BR>
-								<TABLE WIDTH=300 BORDER=0 CELLSPACING=0 CELLPADDING=6 HEIGHT=50>
-									<TR>
-										<TD WIDTH=80 CLASS=loginFieldTitle>Language:</TD>
-										<TD WIDTH=290><WEBOBJECT NAME=PopUpButton1></WEBOBJECT></TD>
-									</TR>
-								</TABLE>
-								<TABLE WIDTH=300 BORDER=0 CELLSPACING=0 CELLPADDING=6 HEIGHT=50>
-									<TR>
-										<TD WIDTH=80 CLASS=loginFieldTitle>Username:</TD>
-										<TD WIDTH=290><WEBOBJECT NAME=TextField1></WEBOBJECT></TD>
-									</TR>
-								</TABLE>
-								<TABLE WIDTH=300 BORDER=0 CELLSPACING=0 CELLPADDING=6 HEIGHT=50>
-									<TR>
-										<TD WIDTH=80 CLASS=loginFieldTitle>Password:</TD>
-										<TD WIDTH=290><WEBOBJECT NAME=PasswordField1></WEBOBJECT></TD>
-									</TR>
-								</TABLE>
-								<WEBOBJECT NAME=SubmitButton1></WEBOBJECT><BR><BR>
-							</TD>
-							<TD WIDTH=1 BGCOLOR=#4A6B8C><WEBOBJECT NAME=Image4></WEBOBJECT></TD>
-						</TR>
-						<TR ALIGN=left VALIGN=top BGCOLOR=#4A6B8C>
-							<TD COLSPAN=3 HEIGHT=6></TD>
-						</TR>
-					</TABLE>
-				</TD>
-			</TR>
-		</TABLE>
-	</WEBOBJECT>
-</BODY>
-</HTML>
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title>SoloWeb Login</title>
+		<script type="text/javascript">
+			function setFocus() {
+			    document.f.q.focus();
+			    document.f.q.select();
+			}
+		</script>
+	</head>
+	<body onLoad="setFocus()">
+		<wo:form action="$doLogin" name="f" target="_top" style="margin-top: 200px">
+			<table width="100%" border="0" cellspacing="0" cellpadding="0" height="100%">
+				<tr>
+					<td align="center" valign="middle">
+						<webobject name="Image1" /><br /><br />
+						<table width="453" border="0" cellspacing="0" cellpadding="0">
+							<tr>
+								<td colspan="3" height="30"><webobject name="Image2" /></td>
+							</tr>
+							<tr>
+								<td width="1" bgcolor="#4A6B8C"><webobject name="Image3" /></td>
+								<td width="451" align="center" valign="top">
+									<font size="4"><font color="#ff0000"><webobject name="String1" /></font></font><BR>
+									<table border="0" cellspacing="0" cellpadding="6">
+										<tr>
+											<td width="50"></td>
+											<td width="80" class="loginFieldTitle">System:</td>
+											<td width="290"><webobject name="PopUpButton2" /></td>
+										</tr>
+									</table>
+									<table border="0" cellspacing="0" cellpadding="6">
+										<tr>
+											<td width="50"></td>
+											<td width="80" class="loginFieldTitle">Language:</td>
+											<td width="290"><webobject name="PopUpButton1" /></td>
+										</tr>
+									</table>
+									<table border="0" cellspacing="0" cellpadding="6">
+										<tr>
+											<td width="50"></td>
+											<td width="80" class="loginFieldTitle">Username:</td>
+											<td width="290"><webobject name="TextField1" /></td>
+										</tr>
+									</table>
+									<table border="0" cellspacing="0" cellpadding="6">
+										<tr>
+											<td width="50"></td>
+											<td width="80" class="loginFieldTitle">Password:</td>
+											<td width="290"><webobject name="PasswordField1" /></td>
+										</tr>
+									</table>
+									<webobject name="SubmitButton1" /><br /><br />
+								</td>
+								<td width="1" bgcolor="#4A6B8C"><webobject name="Image4" /></td>
+							</tr>
+							<tr align="left" valign="top" bgcolor="#4A6B8C">
+								<td colspan="3" height="6"></td>
+							</tr>
+						</table>
+					</td>
+				</tr>
+			</table>
+		</wo:form>
+	</body>
+</html>

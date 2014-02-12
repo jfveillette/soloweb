@@ -67,6 +67,11 @@ public class Concept {
 	private synchronized void init() {
 		logger.info( "*** Welcome to " + productNameAndVersion() );
 
+		if( SWSettings.home() == null ) {
+			logger.error( "The property concept.home must be set" );
+			System.exit(1);
+		}
+
 		SWSettings.register();
 		SoftUser.Manager.register();
 		DBConnectionManager.register();

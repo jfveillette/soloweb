@@ -1,14 +1,3 @@
-CSS_SRC: WOResourceURL {
-	filename = "sw32/css/soloweb.css";
-	framework = application.frameworkBundleName;
-}
-
-Form2: WOForm {
-	action = doLogin;
-	name = "f";
-	target = "_top";
-}
-
 Image1: WOImage {
 	height = 111;
 	width = 143;
@@ -47,6 +36,12 @@ PopUpButton1: WOPopUpButton {
 	item = currentLanguage;
 	list = availableLanguages;
 	selection = selectedLanguage;
+}
+
+PopUpButton2: WOPopUpButton {
+	item = currentSystem;
+	list = availableSystems;
+	selection = selectedSystem;
 }
 
 String1: WOString { 
