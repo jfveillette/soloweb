@@ -126,16 +126,14 @@ public class SWUser extends _SWUser implements HumanReadable, TimeStamped, SWUse
 			}
 		}
 
-		String passwordEncrypted = ERXCrypto.shaEncode( password );
+		String passwordHash = ERXCrypto.shaEncode( password );
 
-		// Migrating to crypted password. Keep this for a couple of months.
 		if( password.equals( user.password() ) ) {
-			password = passwordEncrypted;
-			user.setPassword( passwordEncrypted );
+			user.setPassword( passwordHash );
 			user.editingContext().saveChanges();
 		}
 
-		if( !passwordEncrypted.equals( user.password() ) ) {
+		if( !passwordHash.equals( user.password() ) ) {
 			return "Rangt aðgangsorð";
 		}
 
@@ -144,7 +142,8 @@ public class SWUser extends _SWUser implements HumanReadable, TimeStamped, SWUse
 		return null;
 	}
 
-	public boolean validatePassword( String password ) {
+	public boolean validatePasswordIsCorrect( String password ) {
+
 		if( password == null ) {
 			return false;
 		}

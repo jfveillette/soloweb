@@ -1,15 +1,28 @@
 // DO NOT EDIT.  Make changes to concept.data.SWUser.java instead.
 package concept.data.auto;
 
-import com.webobjects.eoaccess.*;
-import com.webobjects.eocontrol.*;
-import com.webobjects.foundation.*;
-import java.math.*;
-import java.util.*;
+import java.util.Enumeration;
+import java.util.NoSuchElementException;
+
 import org.apache.log4j.Logger;
 
-import er.extensions.eof.*;
-import er.extensions.foundation.*;
+import com.webobjects.eoaccess.EOUtilities;
+import com.webobjects.eocontrol.EOAndQualifier;
+import com.webobjects.eocontrol.EOClassDescription;
+import com.webobjects.eocontrol.EOEditingContext;
+import com.webobjects.eocontrol.EOEnterpriseObject;
+import com.webobjects.eocontrol.EOGenericRecord;
+import com.webobjects.eocontrol.EOKeyValueQualifier;
+import com.webobjects.eocontrol.EOQualifier;
+import com.webobjects.eocontrol.EOSortOrdering;
+import com.webobjects.foundation.NSArray;
+import com.webobjects.foundation.NSMutableArray;
+import com.webobjects.foundation.NSTimestamp;
+
+import er.extensions.eof.ERXEOControlUtilities;
+import er.extensions.eof.ERXFetchSpecification;
+import er.extensions.eof.ERXGenericRecord;
+import er.extensions.eof.ERXKey;
 
 @SuppressWarnings("all")
 public abstract class _SWUser extends  ERXGenericRecord {
@@ -330,7 +343,7 @@ public abstract class _SWUser extends  ERXGenericRecord {
   public concept.data.SWSite defaultSite() {
     return (concept.data.SWSite)storedValueForKey(_SWUser.DEFAULT_SITE_KEY);
   }
-  
+
   public void setDefaultSite(concept.data.SWSite value) {
     takeStoredValueForKey(value, _SWUser.DEFAULT_SITE_KEY);
   }
@@ -351,11 +364,11 @@ public abstract class _SWUser extends  ERXGenericRecord {
     	addObjectToBothSidesOfRelationshipWithKey(value, _SWUser.DEFAULT_SITE_KEY);
     }
   }
-  
+
   public concept.data.SWPicture picture() {
     return (concept.data.SWPicture)storedValueForKey(_SWUser.PICTURE_KEY);
   }
-  
+
   public void setPicture(concept.data.SWPicture value) {
     takeStoredValueForKey(value, _SWUser.PICTURE_KEY);
   }
@@ -376,7 +389,7 @@ public abstract class _SWUser extends  ERXGenericRecord {
     	addObjectToBothSidesOfRelationshipWithKey(value, _SWUser.PICTURE_KEY);
     }
   }
-  
+
   public NSArray<concept.data.SWAccessPrivilege> accessPrivileges() {
     return (NSArray<concept.data.SWAccessPrivilege>)storedValueForKey(_SWUser.ACCESS_PRIVILEGES_KEY);
   }
@@ -394,7 +407,7 @@ public abstract class _SWUser extends  ERXGenericRecord {
     if (fetch) {
       EOQualifier fullQualifier;
       EOQualifier inverseQualifier = new EOKeyValueQualifier(concept.data.SWAccessPrivilege.USER_KEY, EOQualifier.QualifierOperatorEqual, this);
-    	
+
       if (qualifier == null) {
         fullQualifier = inverseQualifier;
       }
@@ -418,7 +431,7 @@ public abstract class _SWUser extends  ERXGenericRecord {
     }
     return results;
   }
-  
+
   public void addToAccessPrivileges(concept.data.SWAccessPrivilege object) {
     includeObjectIntoPropertyWithKey(object, _SWUser.ACCESS_PRIVILEGES_KEY);
   }
@@ -490,7 +503,7 @@ public abstract class _SWUser extends  ERXGenericRecord {
       }
     return results;
   }
-  
+
   public void addToGroups(concept.data.SWGroup object) {
     includeObjectIntoPropertyWithKey(object, _SWUser.GROUPS_KEY);
   }
@@ -562,7 +575,7 @@ public abstract class _SWUser extends  ERXGenericRecord {
       }
     return results;
   }
-  
+
   public void addToSWGroupSWUsers(EOGenericRecord object) {
     includeObjectIntoPropertyWithKey(object, _SWUser.S_W_GROUP_SW_USERS_KEY);
   }
@@ -618,7 +631,7 @@ public abstract class _SWUser extends  ERXGenericRecord {
 
   public static concept.data.SWUser createSWUser(EOEditingContext editingContext, Integer id
 ) {
-    concept.data.SWUser eo = (concept.data.SWUser) EOUtilities.createAndInsertInstance(editingContext, _SWUser.ENTITY_NAME);    
+    concept.data.SWUser eo = (concept.data.SWUser) EOUtilities.createAndInsertInstance(editingContext, _SWUser.ENTITY_NAME);
 		eo.setId(id);
     return eo;
   }
