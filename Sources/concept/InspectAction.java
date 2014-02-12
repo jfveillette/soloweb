@@ -11,7 +11,7 @@ import com.webobjects.eocontrol.EOEditingContext;
 import com.webobjects.foundation.NSDictionary;
 
 import concept.components.ListPageGeneric;
-import concept.components.admin.CPLogin;
+import concept.components.admin.SWLogin;
 import concept.components.user.SWCreateUser;
 import concept.components.user.SWForgottenPassword;
 import concept.data.SWPage;
@@ -73,7 +73,7 @@ public class InspectAction extends ERXDirectAction {
 	 * @return The login page.
 	 */
 	public WOActionResults loginAction() {
-		return pageWithName( CPLogin.class );
+		return pageWithName( SWLogin.class );
 	}
 
 	/**

@@ -29,7 +29,7 @@ Image4: WOImage {
 PasswordField1: WOPasswordField {
 	name = "p";
 	size = 20;
-	value = passString;
+	value = password;
 }
 
 PopUpButton1: WOPopUpButton {
@@ -45,7 +45,7 @@ PopUpButton2: WOPopUpButton {
 }
 
 String1: WOString { 
-	value = wrongString;
+	value = message;
 	escapeHTML = false;
 }
 
@@ -55,7 +55,7 @@ SubmitButton1: WOSubmitButton {
 }
 
 TextField1: WOTextField {
+	value = username;
 	name = "q";
 	size = 20;
-	value = userString;
 }

@@ -2,8 +2,9 @@ package concept.components.admin;
 
 import is.rebbi.wo.util.SWSettings;
 import is.rebbi.wo.util.USArrayUtilities;
-import is.rebbi.wo.util.USEOUtilities;
+import is.rebbi.wo.util.USHTTPUtilities;
 
+import com.webobjects.appserver.WOActionResults;
 import com.webobjects.appserver.WOComponent;
 import com.webobjects.appserver.WOContext;
 import com.webobjects.appserver.WOCookie;
@@ -12,9 +13,9 @@ import com.webobjects.foundation.NSArray;
 
 import concept.Concept;
 import concept.SWSession;
+import concept.SWSessionHelper;
 import concept.data.SWSite;
 import concept.data.SWUser;
-import concept.util.CPLoc;
 import er.ajax.AjaxUtils;
 import er.extensions.components.ERXComponent;
 
@@ -24,10 +25,14 @@ import er.extensions.components.ERXComponent;
 
 public class SWLogin extends ERXComponent {
 
-	public String userString;
-	public String passString;
-	public String wrongString;
+	private static final int COOKIE_LIFETIME_IN_SECONDS = 2592000;
+	private static final String COOKIE_USERNAME = "SW_USER_ID";
+
+	private String _username;
+	private String _password;
+	public String _message;
 	public String currentLanguage;
+
 	public String currentSystem;
 	public String selectedSystem;
 	public NSArray<String> availableLanguages = new NSArray<>( new String[] { "Icelandic", "English" } );
@@ -46,97 +51,67 @@ public class SWLogin extends ERXComponent {
 	}
 
 	/**
-	 * Check for a cookie with the username
-	 */
-	@Override
-	public void awake() {
-
-		String cookieString = context().request().cookieValueForKey( "SW_USER_ID" );
-
-		if( cookieString != null ) {
-			userString = cookieString;
-		}
-
-		String languageString = context().request().cookieValueForKey( "SW_LANGUAGE" );
-
-		if( languageString != null ) {
-			setSelectedLanguage( languageString );
-		}
-		else {
-			languageString = DEFAULT_LANGUAGE;
-		}
-	}
-
-	/**
 	 * Executes a login attempt
 	 */
-	public WOComponent doLogin() {
+	public WOActionResults doLogin() {
 
 		SWSession session = (SWSession)session();
 
-		if( SWSettings.adminUsername().equals( userString ) && SWSettings.adminUsername().equals( passString ) ) {
+		if( SWSettings.adminUsername().equals( username() ) && SWSettings.adminUsername().equals( password() ) ) {
 			session.setIsLoggedIn( true );
 			return pageWithName( SWManageSettings.class );
 		}
 
-		SWUser user = (SWUser)USEOUtilities.objectMatchingKeyAndValue( session().defaultEditingContext(), SWUser.ENTITY_NAME, SWUser.USERNAME_KEY, userString );
+		String message = SWUser.loginInContext( session().defaultEditingContext(), username(), password(), context() );
 
-		if( user == null ) {
-			user = (SWUser)USEOUtilities.objectMatchingKeyAndValue( session().defaultEditingContext(), SWUser.ENTITY_NAME, SWUser.EMAIL_ADDRESS_KEY, userString );
+		if( message != null ) {
+			return error( message );
 		}
 
-		if( passString != null && user != null && user.validatePassword( passString ) ) {
-			session.setActiveUser( user );
-			session.setIsLoggedIn( true );
-			session.setTimeOut( 28800 ); // 8 hour timeout
+		SWUser user = SWSessionHelper.userInSession( session );
+		session.setIsLoggedIn( true );
+		session.setTimeOut( 28800 );
 
-			if( user.defaultSite() != null ) {
-				if( user.hasPrivilegeFor( user.defaultSite(), "allowToSee" ) ) {
-					;
-				}
+		if( user.defaultSite() != null ) {
+			if( user.hasPrivilegeFor( user.defaultSite(), "allowToSee" ) ) {
 				session().takeValueForKey( user.defaultSite(), "selectedSite" );
 			}
-			else {
-				NSArray<SWSite> a = user.sites();
+		}
+		else {
+			NSArray<SWSite> a = user.sites();
 
-				if( USArrayUtilities.hasObjects( a ) ) {
-					session().takeValueForKey( a.objectAtIndex( 0 ), "selectedSite" );
-				}
+			if( USArrayUtilities.hasObjects( a ) ) {
+				session().takeValueForKey( a.objectAtIndex( 0 ), "selectedSite" );
 			}
-
-			WOComponent nextPage;
-
-			if( selectedSystem.equals( "SoloWeb 3" ) ) {
-				nextPage = pageWithName( SWMainFrameset.class );
-			}
-			else {
-				nextPage = pageWithName( CPStartPage.class );
-			}
-
-			nextPage.context().response().addCookie( theCookie() );
-			return nextPage;
 		}
 
-		wrongString = CPLoc.string( "wrongLoginCredentials", session() );
+		WOComponent nextPage;
 
-		return null;
+		if( selectedSystem.equals( "SoloWeb 3" ) ) {
+			nextPage = pageWithName( SWMainFrameset.class );
+		}
+		else {
+			nextPage = pageWithName( CPStartPage.class );
+		}
+
+		nextPage.context().response().addCookie( usernameCookie() );
+		return nextPage;
+	}
+
+
+	/**
+	 * For returning an error message to the user.
+	 */
+	public WOActionResults error( String message ) {
+		setMessage( message );
+		return context().page();
 	}
 
 	/**
 	 * Creates and returns the username cookie
 	 */
-	public WOCookie theCookie() {
-		String host = context().request().headerForKey( "Host" );
-
-		if( host.indexOf( "localhost" ) > -1 ) {
-			host = "";
-		}
-
-		return new WOCookie( "SW_USER_ID", userString, "/", host, 2592000, false );
-	}
-
-	public WOCookie langaugeCookie() {
-		return new WOCookie( "SW_LANGUAGE", selectedLanguage(), "/", context().request().headerForKey( "Host" ), 2592000, false );
+	private WOCookie usernameCookie() {
+		return new WOCookie( COOKIE_USERNAME, username(), "/", "." + USHTTPUtilities.domain( context().request() ), COOKIE_LIFETIME_IN_SECONDS, false );
 	}
 
 	/**
@@ -151,5 +126,42 @@ public class SWLogin extends ERXComponent {
 	 */
 	public void setSelectedLanguage( String newSelectedLanguage ) {
 		session().setLanguages( new NSArray<>( new String[] { newSelectedLanguage, DEFAULT_LANGUAGE } ) );
+	}
+
+
+	/**
+	 * Check for a cookie with the username
+	 */
+	public String username() {
+
+		if( _username == null ) {
+			String cookieString = context().request().cookieValueForKey( COOKIE_USERNAME );
+
+			if( cookieString != null ) {
+				_username = cookieString;
+			}
+		}
+
+		return _username;
+	}
+
+	public void setUsername( String s ) {
+		_username = s;
+	}
+
+	public String password() {
+		return _password;
+	}
+
+	public void setPassword( String newValue ) {
+		_password = newValue;
+	}
+
+	public void setMessage( String value ) {
+		_message = value;
+	}
+
+	public String message() {
+		return _message;
 	}
 }

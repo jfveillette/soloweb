@@ -109,7 +109,7 @@ public class SWUser extends _SWUser implements HumanReadable, TimeStamped, SWUse
 	public static String loginInContext( EOEditingContext ec, String emailAddress, String password, WOContext context ) {
 
 		if( !StringUtilities.hasValue( emailAddress ) ) {
-			return "Vinsamlegast sláðu inn netfangið þitt";
+			return "Vinsamlegast sláðu inn netfang eða notandanafn";
 		}
 
 		if( !StringUtilities.hasValue( password ) ) {
