@@ -1,7 +1,6 @@
 package concept;
 
 import is.rebbi.wo.util.SWDictionary;
-import is.rebbi.wo.util.SWSettings;
 import is.rebbi.wo.util.USUtilities;
 
 import org.slf4j.Logger;
@@ -155,10 +154,6 @@ public class SWApplication extends ERXApplication {
 
 	public SWDictionary<String, String> getLocalizedStringsForLanguage( String language ) {
 		return _localizedStrings.objectForKey( language );
-	}
-
-	public boolean crmEnabled() {
-		return SWSettings.booleanForKey( "crmEnabled" );
 	}
 
 	public String frameworkBundleName() {

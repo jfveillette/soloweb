@@ -11,7 +11,7 @@ Hyperlink1: WOHyperlink {
 Hyperlink2: WOHyperlink {
 	action = removeUserFromGroup;
 	onClick = session.@cs.grpRemoveUserFromGroupWarning;
-        class = "topLevelAsset";
+	class = "topLevelAsset";
 }
 
 Hyperlink3: WOHyperlink {
@@ -55,10 +55,6 @@ String4: WOString {
 	value = session.@ls.grpDeleteGroup;
 }
 
-String5: WOString {
-	value = session.@ls.grpIsCrmGroup;
-}
-
 SubmitButton3: WOSubmitButton {
 	action = addUserToGroup;
 	value = session.@ls.grpAddUserToGroupButtonTitle;
@@ -72,12 +68,4 @@ SubmitButton5: WOSubmitButton {
 TextField1: WOTextField {
 	size = 30;
 	value = selectedGroup.name;
-}
-
-CrmEnabled: WOConditional {
-	condition = application.crmEnabled;
-}
-
-ChkIsCrmGroup: WOCheckBox {
-	checked = selectedGroup.crmGroup;
 }
