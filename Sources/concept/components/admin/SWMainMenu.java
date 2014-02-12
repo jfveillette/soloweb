@@ -1,6 +1,5 @@
 package concept.components.admin;
 
-
 import com.webobjects.appserver.WOApplication;
 import com.webobjects.appserver.WOComponent;
 import com.webobjects.appserver.WOContext;

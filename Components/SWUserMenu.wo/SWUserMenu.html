@@ -4,9 +4,9 @@
 	<ul class="dropdown-menu pull-right">
 		<li><wo:ViewLink object="$conceptUser"><i class="glyphicon glyphicon-home"></i> Mín síða</wo:ViewLink></li>
 		<wo:conditional condition="$conceptUser.isAdministrator">
-			<li><wo:link pageName="CPMySettings"><i class="glyphicon glyphicon-pencil"></i> Breyta aðgangsorði</wo:link></li>
+			<li><wo:link action="$mySettings"><i class="glyphicon glyphicon-pencil"></i> Breyta aðgangsorði</wo:link></li>
 			<li class="divider"></li>
-			<li><wo:link pageName="SWStartPage"><i class="glyphicon glyphicon-cog"></i> Stjórnkerfi</wo:link></li>
+			<li><wo:link action="$admin"><i class="glyphicon glyphicon-cog"></i> Stjórnkerfi</wo:link></li>
 		</wo:conditional>
 		<li class="divider"></li>
 		<li><wo:link action="$logout"><i class="glyphicon glyphicon-ban-circle"></i> Aftengjast</wo:link></li>

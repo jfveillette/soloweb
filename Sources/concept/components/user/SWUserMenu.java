@@ -9,6 +9,8 @@ import com.webobjects.appserver.WOResponse;
 
 import concept.CPBaseComponent;
 import concept.SWSessionHelper;
+import concept.components.admin.CPStartPage;
+import concept.components.admin.SWMySettings;
 
 public class SWUserMenu extends CPBaseComponent {
 
@@ -21,5 +23,13 @@ public class SWUserMenu extends CPBaseComponent {
 		WOResponse r = USHTTPUtilities.redirectTemporary( "/" );
 		SoftUser.deleteUserCookie( context().request(), r );
 		return r;
+	}
+
+	public WOActionResults admin() {
+		return pageWithName( CPStartPage.class );
+	}
+
+	public WOActionResults mySettings() {
+		return pageWithName( SWMySettings.class );
 	}
 }
