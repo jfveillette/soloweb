@@ -19,10 +19,10 @@ public class FileStorage extends Storage {
 
 	private String documentPath() {
 		if( _documentPath == null ) {
-			_documentPath = SWSettings.documentPath();
+			_documentPath = SWSettings.stringForKey( "documentLocationOnDisk" );
 
 			if( !StringUtilities.hasValue( _documentPath ) ) {
-				_documentPath = SWSettings.stringForKey( "documentLocationOnDisk" );
+				_documentPath = SWSettings.documentPath();
 			}
 
 			if( !StringUtilities.hasValue( _documentPath ) ) {
