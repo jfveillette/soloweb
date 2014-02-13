@@ -34,7 +34,6 @@ public class FileStorage extends Storage {
 			}
 		}
 
-
 		return _documentPath;
 	}
 
@@ -50,6 +49,7 @@ public class FileStorage extends Storage {
 			file = new File( path );
 		}
 
+		System.out.println( file );
 		return file;
 	}
 
