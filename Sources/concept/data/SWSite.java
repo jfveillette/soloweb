@@ -71,10 +71,7 @@ public class SWSite extends _SWSite implements HumanReadable, SWHasCustomInfo {
 
 		for( String next : qual().split( SITENAME_DELIMITER ) ) {
 			String domain = next.trim();
-			if( domain.length() > 2 ) {
-				domain = next.substring( 1, domain.length() - 1 );
-				list.add( domain );
-			}
+			list.add( domain );
 		}
 
 		return list;

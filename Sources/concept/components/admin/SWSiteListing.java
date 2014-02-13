@@ -260,7 +260,7 @@ public class SWSiteListing extends SWAdminComponent {
 		}
 
 		if( user().isAdministrator() ) {
-			return true;
+			return false;
 		}
 
 		return false;
