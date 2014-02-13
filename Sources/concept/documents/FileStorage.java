@@ -49,7 +49,6 @@ public class FileStorage extends Storage {
 			file = new File( path );
 		}
 
-		System.out.println( file );
 		return file;
 	}
 
