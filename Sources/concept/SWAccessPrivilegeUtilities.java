@@ -10,7 +10,6 @@ import com.webobjects.eocontrol.EOAndQualifier;
 import com.webobjects.eocontrol.EOEditingContext;
 import com.webobjects.eocontrol.EOEnterpriseObject;
 import com.webobjects.eocontrol.EOFetchSpecification;
-import com.webobjects.eocontrol.EOKeyGlobalID;
 import com.webobjects.eocontrol.EOKeyValueQualifier;
 import com.webobjects.eocontrol.EOQualifier;
 import com.webobjects.foundation.NSArray;
@@ -18,6 +17,7 @@ import com.webobjects.foundation.NSMutableArray;
 
 import concept.data.SWAccessPrivilege;
 import concept.data.SWUser;
+import er.extensions.eof.ERXGenericRecord;
 
 /**
  * A utility class for working with access privileges
@@ -30,10 +30,9 @@ public class SWAccessPrivilegeUtilities extends Object {
 	 */
 	public static NSArray<SWAccessPrivilege> privilegesForObject( EOEnterpriseObject record ) {
 		EOEditingContext ec = record.editingContext();
-		Integer primaryKey = (Integer)((EOKeyGlobalID)ec.globalIDForObject( record )).keyValuesArray().objectAtIndex( 0 );
 
 		EOQualifier q1 = new EOKeyValueQualifier( SWAccessPrivilege.TARGET_ENTITY_NAME_KEY, EOQualifier.QualifierOperatorEqual, record.entityName() );
-		EOQualifier q2 = new EOKeyValueQualifier( SWAccessPrivilege.TARGET_ID_KEY, EOQualifier.QualifierOperatorEqual, primaryKey );
+		EOQualifier q2 = new EOKeyValueQualifier( SWAccessPrivilege.TARGET_ID_KEY, EOQualifier.QualifierOperatorEqual, ((ERXGenericRecord)record).primaryKey() );
 		NSArray<EOQualifier> qualArray = new NSArray<>( new EOQualifier[] { q1, q2 } );
 		EOQualifier andQual = new EOAndQualifier( qualArray );
 		EOFetchSpecification fs = new EOFetchSpecification( SWAccessPrivilege.ENTITY_NAME, andQual, null );
