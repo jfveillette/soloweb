@@ -73,5 +73,6 @@
 	<classpathentry exported="true" kind="lib" path="Libraries/thumbelina.jar"/>
 	<classpathentry kind="con" path="WOFramework/ERJavaMail"/>
 	<classpathentry kind="src" path="Tests"/>
+	<classpathentry kind="con" path="WOFramework/PostgresqlPlugIn"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

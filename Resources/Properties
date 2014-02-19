@@ -1,3 +1,5 @@
+com.webobjects.jdbcadaptor.PostgresqlExpression.enableIdentifierQuoting=true
+
 # Migrations
 # er.migration.migrateAtStartup=true
 # er.migration.createTablesIfNecessary=true
