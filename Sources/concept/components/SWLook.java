@@ -1,7 +1,6 @@
 package concept.components;
 
 import is.rebbi.core.util.StringUtilities;
-import is.rebbi.wo.interfaces.HumanReadable;
 import is.rebbi.wo.util.USHTTPUtilities;
 
 import com.webobjects.appserver.WOContext;
@@ -11,6 +10,7 @@ import concept.CPBaseComponent;
 import concept.definitions.EntityViewDefinition;
 import concept.search.Indexable;
 import concept.search.Indexer;
+import concept.util.HumanReadable;
 import er.extensions.appserver.ERXApplication;
 import er.extensions.eof.ERXGenericRecord;
 

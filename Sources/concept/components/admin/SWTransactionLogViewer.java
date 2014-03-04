@@ -1,6 +1,5 @@
 package concept.components.admin;
 
-import is.rebbi.wo.interfaces.HumanReadable;
 import is.rebbi.wo.util.USEOUtilities;
 import is.rebbi.wo.util.USTimestampUtilities;
 
@@ -17,6 +16,7 @@ import com.webobjects.foundation.NSTimestamp;
 import concept.SWSessionHelper;
 import concept.data.SWTransaction;
 import concept.data.SWUser;
+import concept.util.HumanReadable;
 import er.extensions.components.ERXComponent;
 
 public class SWTransactionLogViewer extends ERXComponent {

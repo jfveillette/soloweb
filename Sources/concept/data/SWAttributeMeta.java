@@ -1,8 +1,8 @@
 package concept.data;
 
-import is.rebbi.wo.interfaces.HumanReadable;
 import is.rebbi.wo.util.USUtilities;
 import concept.definitions.AttributeViewDefinition;
+import concept.util.HumanReadable;
 
 /**
  * Further definition of an EOAttribute.

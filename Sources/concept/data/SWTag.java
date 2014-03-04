@@ -1,6 +1,6 @@
 package concept.data;
 
-import is.rebbi.wo.interfaces.HumanReadable;
+import concept.util.HumanReadable;
 import is.rebbi.wo.interfaces.TimeStamped;
 
 public class SWTag extends concept.data.auto._SWTag implements TimeStamped, HumanReadable {

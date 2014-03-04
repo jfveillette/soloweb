@@ -1,6 +1,5 @@
 package concept.components;
 
-import is.rebbi.wo.interfaces.HumanReadable;
 import is.rebbi.wo.util.USEOUtilities;
 import is.rebbi.wo.util.USHTTPUtilities;
 
@@ -13,6 +12,7 @@ import com.webobjects.foundation.NSData;
 
 import concept.ViewPage;
 import concept.definitions.AttributeViewDefinition;
+import concept.util.HumanReadable;
 import er.extensions.eof.ERXGenericRecord;
 
 /**

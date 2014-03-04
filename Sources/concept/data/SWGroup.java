@@ -1,6 +1,5 @@
 package concept.data;
 
-import is.rebbi.wo.interfaces.HumanReadable;
 import is.rebbi.wo.util.SWSettings;
 
 import com.webobjects.eocontrol.EOEditingContext;
@@ -8,6 +7,7 @@ import com.webobjects.foundation.NSArray;
 import com.webobjects.foundation.NSMutableArray;
 
 import concept.data.auto._SWGroup;
+import concept.util.HumanReadable;
 import er.extensions.eof.ERXEOControlUtilities;
 
 /**

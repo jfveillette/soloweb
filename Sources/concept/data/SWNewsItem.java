@@ -2,7 +2,6 @@ package concept.data;
 
 import is.rebbi.core.util.StringUtilities;
 import is.rebbi.wo.interfaces.HasFakeRelationship;
-import is.rebbi.wo.interfaces.HumanReadable;
 import is.rebbi.wo.interfaces.SWAsset;
 import is.rebbi.wo.interfaces.SWCopyable;
 import is.rebbi.wo.interfaces.SWHasCustomInfo;
@@ -32,6 +31,7 @@ import concept.components.client.SWPictureInsert;
 import concept.data.auto._SWNewsItem;
 import concept.search.SWSearchItem;
 import concept.util.Documents;
+import concept.util.HumanReadable;
 import er.extensions.appserver.ERXWOContext;
 
 public class SWNewsItem extends _SWNewsItem implements SWTimedContent, SWAsset<SWNewsItem, SWNewsCategory>, SWSearchItem, SWHasCustomInfo, SWCopyable<SWNewsItem>, TimeStamped, UserStamped, HumanReadable  {

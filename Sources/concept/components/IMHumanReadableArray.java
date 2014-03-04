@@ -1,11 +1,12 @@
 package concept.components;
 
-import is.rebbi.wo.interfaces.HumanReadable;
 
 import com.webobjects.appserver.WOContext;
 import com.webobjects.foundation.NSArray;
 import com.webobjects.foundation.NSKeyValueCoding;
 import com.webobjects.foundation.NSKeyValueCodingAdditions;
+
+import concept.util.HumanReadable;
 
 import er.extensions.components.ERXStatelessComponent;
 import er.extensions.eof.ERXGenericRecord;

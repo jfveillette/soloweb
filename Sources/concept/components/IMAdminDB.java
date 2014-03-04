@@ -1,6 +1,5 @@
 package concept.components;
 
-import is.rebbi.wo.interfaces.HumanReadable;
 import is.rebbi.wo.util.USEOUtilities;
 
 import com.webobjects.appserver.WOActionResults;
@@ -14,6 +13,7 @@ import com.webobjects.foundation.NSMutableArray;
 import concept.Inspection;
 import concept.definitions.AttributeViewDefinition;
 import concept.definitions.EntityViewDefinition;
+import concept.util.HumanReadable;
 import er.extensions.appserver.ERXDisplayGroup;
 import er.extensions.components.ERXComponent;
 import er.extensions.eof.ERXGenericRecord;

@@ -1,6 +1,5 @@
 package concept.data;
 
-import is.rebbi.wo.interfaces.HumanReadable;
 import is.rebbi.wo.util.USUtilities;
 
 import com.webobjects.eocontrol.EOSortOrdering;
@@ -10,6 +9,7 @@ import com.webobjects.foundation.NSBundle;
 import concept.ViewPage;
 import concept.definitions.AttributeViewDefinition;
 import concept.definitions.EntityViewDefinition;
+import concept.util.HumanReadable;
 
 /**
  * Further definition of an EOEntity.

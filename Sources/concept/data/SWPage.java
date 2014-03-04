@@ -1,7 +1,6 @@
 package concept.data;
 
 import is.rebbi.core.util.StringUtilities;
-import is.rebbi.wo.interfaces.HumanReadable;
 import is.rebbi.wo.interfaces.SWHasCustomInfo;
 import is.rebbi.wo.interfaces.SWInheritsPrivileges;
 import is.rebbi.wo.interfaces.SWTimedContent;
@@ -26,6 +25,7 @@ import com.webobjects.foundation.NSMutableDictionary;
 import concept.components.client.SWPageSearchResult;
 import concept.data.auto._SWPage;
 import concept.search.SWSearchItem;
+import concept.util.HumanReadable;
 
 /**
  * An SWPage represents a single page of content in SoloWeb

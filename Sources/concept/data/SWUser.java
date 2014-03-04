@@ -1,7 +1,6 @@
 package concept.data;
 
 import is.rebbi.core.util.StringUtilities;
-import is.rebbi.wo.interfaces.HumanReadable;
 import is.rebbi.wo.interfaces.SWUserInterface;
 import is.rebbi.wo.interfaces.TimeStamped;
 import is.rebbi.wo.util.SoftUser;
@@ -19,6 +18,7 @@ import com.webobjects.foundation.NSTimestamp;
 import concept.SWSessionHelper;
 import concept.data.auto._SWUser;
 import concept.util.CPAccessPrivilegeUtilities;
+import concept.util.HumanReadable;
 import er.extensions.crypting.ERXCrypto;
 import er.extensions.eof.ERXEOControlUtilities;
 

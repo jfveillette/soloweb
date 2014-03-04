@@ -4,7 +4,6 @@ import is.rebbi.core.util.DataUtilities;
 import is.rebbi.core.util.ImageUtilities;
 import is.rebbi.core.util.StringUtilities;
 import is.rebbi.wo.formatters.FileSizeFormatter;
-import is.rebbi.wo.interfaces.HumanReadable;
 import is.rebbi.wo.interfaces.SWDataAsset;
 import is.rebbi.wo.interfaces.TimeStamped;
 import is.rebbi.wo.interfaces.UUIDStamped;
@@ -37,6 +36,7 @@ import concept.SWThumbnailRequestHandler;
 import concept.data.auto._SWDocument;
 import concept.documents.FileStorage;
 import concept.documents.Storage;
+import concept.util.HumanReadable;
 import er.extensions.appserver.ERXApplication;
 import er.extensions.appserver.ERXWOContext;
 

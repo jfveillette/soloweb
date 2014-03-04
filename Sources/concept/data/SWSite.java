@@ -1,7 +1,6 @@
 package concept.data;
 
 import is.rebbi.core.util.StringUtilities;
-import is.rebbi.wo.interfaces.HumanReadable;
 import is.rebbi.wo.interfaces.SWHasCustomInfo;
 import is.rebbi.wo.util.SWCustomInfo;
 
@@ -15,6 +14,7 @@ import com.webobjects.foundation.NSArray;
 import com.webobjects.foundation.NSMutableArray;
 
 import concept.data.auto._SWSite;
+import concept.util.HumanReadable;
 
 /**
  * An SWSite represents a site, and contains a tree of pages
