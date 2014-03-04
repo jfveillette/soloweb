@@ -6,6 +6,7 @@ import com.webobjects.eoaccess.EOAttribute;
 import com.webobjects.foundation.NSArray;
 import com.webobjects.foundation.NSKeyValueCoding;
 
+import concept.search.Indexable;
 import er.extensions.eof.ERXGenericRecord;
 
 /**
@@ -30,11 +31,9 @@ public interface HumanReadable {
 			if( object instanceof HumanReadable ) {
 				return ((HumanReadable)object).toStringHuman();
 			}
-			/*
 			else if( object instanceof Indexable ) {
 				return ((Indexable)object).indexRecord().name();
 			}
-			*/
 			else if( object instanceof ERXGenericRecord ) {
 				return eoToStringHuman( (ERXGenericRecord)object );
 			}
