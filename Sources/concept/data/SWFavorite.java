@@ -7,6 +7,7 @@ import org.slf4j.LoggerFactory;
 
 import com.webobjects.eocontrol.EOEditingContext;
 
+import concept.definitions.EntityViewDefinition;
 import concept.util.HumanReadable;
 import er.extensions.eof.ERXGenericRecord;
 import er.extensions.qualifiers.ERXAndQualifier;
@@ -79,7 +80,7 @@ public class SWFavorite extends concept.data.auto._SWFavorite implements HasFake
 		return "Þessi hlutur er ekki lengur til í gagnagrunninum: " + targetEntityName() + ":" + targetID();
 	}
 
-//	public EntityViewDefinition type() {
-//		return EntityViewDefinition.get( targetEntityName() );
-//	}
+	public EntityViewDefinition viewDefinition() {
+		return EntityViewDefinition.get( targetEntityName() );
+	}
 }
