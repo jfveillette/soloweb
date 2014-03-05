@@ -27,6 +27,7 @@ import com.webobjects.foundation.NSArray;
 import com.webobjects.foundation.NSMutableArray;
 import com.webobjects.foundation.NSTimestamp;
 
+import concept.components.client.SWNewsItemSearchResult;
 import concept.components.client.SWPictureInsert;
 import concept.data.auto._SWNewsItem;
 import concept.search.SWSearchItem;
@@ -337,7 +338,7 @@ public class SWNewsItem extends _SWNewsItem implements SWTimedContent, SWAsset<S
 
 	@Override
 	public String searchResultComponentName() {
-		return "SWNewsItemSearchResult";
+		return SWNewsItemSearchResult.class.getSimpleName();
 	}
 
 	@Override

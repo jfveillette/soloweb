@@ -11,7 +11,6 @@ import org.slf4j.LoggerFactory;
 
 import com.webobjects.foundation.NSArray;
 
-
 /**
  * Intelligently constructs a Lucene search from Icelandic input.
  */

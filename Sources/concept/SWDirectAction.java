@@ -48,6 +48,7 @@ import concept.data.SWSite;
 import concept.data.SWUser;
 import concept.deprecated.SWMailSender;
 import concept.deprecated.SWUtilities;
+import concept.search.SWContentSearch;
 import concept.search.SWLuceneSearch;
 import er.extensions.appserver.ERXDirectAction;
 

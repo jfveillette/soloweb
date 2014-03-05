@@ -6,7 +6,6 @@ import java.util.HashMap;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-
 import com.webobjects.appserver.WOContext;
 
 import concept.SWGenericComponent;
@@ -17,7 +16,7 @@ import concept.util.SWStringUtilities;
 public class SWNewsItemSearchResult extends SWGenericComponent {
 
 	public SWNewsItem item;
-	public HashMap<String,Object> itemSettings;
+	public HashMap<String, Object> itemSettings;
 	public String itemText;
 
 	public SWNewsItemSearchResult( WOContext context ) {
@@ -104,12 +103,14 @@ public class SWNewsItemSearchResult extends SWGenericComponent {
 
 	public String newsItemDetailLink() {
 		String pageSymbol = "lucene_search_news_item";
+
 		if( itemSettings != null ) {
 			String itemSymbol = (String)itemSettings.get( "newsDisplayPageSymbol" );
 			if( StringUtilities.hasValue( itemSymbol ) ) {
 				pageSymbol = itemSymbol;
 			}
 		}
+
 		pageSymbol += "&detail=" + item.primaryKey();
 		return "/page/" + pageSymbol;
 	}
