@@ -44,32 +44,26 @@ public class SWNewsUtilities extends Object {
 	}
 
 	public static NSArray<SWNewsItem> recentNewsFromCategoryWithID( EOEditingContext ec, int numberOfItems, int categoryID, boolean ascendingOrder ) {
+		String limitString = (numberOfItems != 0) ? " LIMIT " + numberOfItems : "";
+		String categoryCondition = "news_Category_ID=" + categoryID;
+		String publishedCondition = "published=1";
+		String timeInOutCondition = "(time_in IS NULL OR time_in <= NOW()) AND (time_out IS NULL OR time_out > NOW())";
+		String whereString = categoryCondition + " AND " + publishedCondition + " AND " + timeInOutCondition;
+		String queryString = "SELECT id, date FROM Sw_News_Item WHERE " + whereString + " ORDER BY " + (ascendingOrder == true ? NEWS_DATE_ASC_SORT_ORDER : NEWS_DATE_DESC_SORT_ORDER) + limitString;
 
-		try {
-			String limitString = (numberOfItems != 0) ? " LIMIT " + numberOfItems : "";
-			String categoryCondition = "news_Category_ID=" + categoryID;
-			String publishedCondition = "published=1";
-			String timeInOutCondition = "(time_in IS NULL OR time_in <= NOW()) AND (time_out IS NULL OR time_out > NOW())";
-			String whereString = categoryCondition + " AND " + publishedCondition + " AND " + timeInOutCondition;
-			String queryString = "SELECT id, date FROM Sw_News_Item WHERE " + whereString + " ORDER BY " + (ascendingOrder == true ? NEWS_DATE_ASC_SORT_ORDER : NEWS_DATE_DESC_SORT_ORDER) + limitString;
+		NSArray<NSDictionary> idDicts = EOUtilities.rawRowsForSQL( ec, "SoloWeb", queryString, new NSArray( new Object[] { "id" } ) );
 
-			NSArray<NSDictionary> idDicts = EOUtilities.rawRowsForSQL( ec, "SoloWeb", queryString, new NSArray( new Object[] { "id" } ) );
+		NSMutableArray ids = new NSMutableArray();
 
-			NSMutableArray ids = new NSMutableArray();
-
-			for( int i = 0; i < idDicts.count(); i++ ) {
-				NSDictionary dict = idDicts.objectAtIndex( i );
-				ids.addObject( dict.valueForKey( "id" ) );
-			}
-
-			ERXInQualifier q = new ERXInQualifier( SWNewsItem.ID_KEY, ids );
-			EOFetchSpecification fs = new EOFetchSpecification( SWNewsItem.ENTITY_NAME, q, (ascendingOrder ? NEWS_DATE_ASC_SORT_ORDERINGS : NEWS_DATE_DESC_SORT_ORDERINGS) );
-			NSArray<SWNewsItem> fetchedNews = ec.objectsWithFetchSpecification( fs );
-			return SWTimedContentUtilities.validateDisplayTimeForArray( fetchedNews );
+		for( int i = 0; i < idDicts.count(); i++ ) {
+			NSDictionary dict = idDicts.objectAtIndex( i );
+			ids.addObject( dict.valueForKey( "id" ) );
 		}
-		catch( Exception e ) {
-			return NSArray.EmptyArray;
-		}
+
+		ERXInQualifier q = new ERXInQualifier( SWNewsItem.ID_KEY, ids );
+		EOFetchSpecification fs = new EOFetchSpecification( SWNewsItem.ENTITY_NAME, q, (ascendingOrder ? NEWS_DATE_ASC_SORT_ORDERINGS : NEWS_DATE_DESC_SORT_ORDERINGS) );
+		NSArray<SWNewsItem> fetchedNews = ec.objectsWithFetchSpecification( fs );
+		return SWTimedContentUtilities.validateDisplayTimeForArray( fetchedNews );
 	}
 
 	/**
@@ -81,34 +75,27 @@ public class SWNewsUtilities extends Object {
 	 * @param categoryID The primary key of the category to fetch from
 	 */
 	public static NSArray<SWNewsItem> nextEventsFromCategoryWithID( EOEditingContext ec, int numberOfItems, int categoryID ) {
+		String limitString = (numberOfItems != 0) ? " LIMIT " + numberOfItems : "";
+		String categoryCondition = "news_Category_ID=" + categoryID;
+		String publishedCondition = "published=1";
+		GregorianCalendar cal = new GregorianCalendar();
+		String todayStr = "" + cal.get( Calendar.YEAR ) + "-" + (cal.get( Calendar.MONTH ) < 9 ? "0" : "") + (cal.get( Calendar.MONTH ) + 1) + "-" + (cal.get( Calendar.DAY_OF_MONTH ) < 10 ? "0" : "") + cal.get( Calendar.DAY_OF_MONTH ) + " 00:00:00.0";
+		String dateCondition = "(date is null or date>=TIMESTAMP '" + todayStr + "')";
+		String whereString = categoryCondition + " AND " + publishedCondition + " AND " + dateCondition;
+		String queryString = "SELECT id, date FROM Sw_News_Item WHERE " + whereString + " ORDER BY " + " date ASC" + limitString;
 
-		try {
-			String limitString = (numberOfItems != 0) ? " LIMIT " + numberOfItems : "";
-			String categoryCondition = "news_Category_ID=" + categoryID;
-			String publishedCondition = "published=1";
-			GregorianCalendar cal = new GregorianCalendar();
-			String todayStr = "" + cal.get( Calendar.YEAR ) + "-" + (cal.get( Calendar.MONTH ) < 9 ? "0" : "") + (cal.get( Calendar.MONTH ) + 1) + "-" + (cal.get( Calendar.DAY_OF_MONTH ) < 10 ? "0" : "") + cal.get( Calendar.DAY_OF_MONTH ) + " 00:00:00.0";
-			String dateCondition = "(date is null or date>=TIMESTAMP '" + todayStr + "')";
-			String whereString = categoryCondition + " AND " + publishedCondition + " AND " + dateCondition;
-			String queryString = "SELECT id, date FROM Sw_News_Item WHERE " + whereString + " ORDER BY " + " date ASC" + limitString;
+		NSArray<NSDictionary> idDicts = EOUtilities.rawRowsForSQL( ec, "SoloWeb", queryString, new NSArray<>( new String[] { "id" } ) );
 
-			NSArray<NSDictionary> idDicts = EOUtilities.rawRowsForSQL( ec, "SoloWeb", queryString, new NSArray<>( new String[] { "id" } ) );
+		NSMutableArray ids = new NSMutableArray();
 
-			NSMutableArray ids = new NSMutableArray();
-
-			for( int i = 0; i < idDicts.count(); i++ ) {
-				NSDictionary dict = (idDicts.objectAtIndex( i ));
-				ids.addObject( dict.valueForKey( "id" ) );
-			}
-
-			ERXInQualifier q = new ERXInQualifier( SWNewsItem.ID_KEY, ids );
-			EOFetchSpecification fs = new EOFetchSpecification( SWNewsItem.ENTITY_NAME, q, NEWS_DATE_ASC_SORT_ORDERINGS );
-			NSArray<SWNewsItem> fetchedNews = ec.objectsWithFetchSpecification( fs );
-			return SWTimedContentUtilities.validateDisplayTimeForArray( fetchedNews );
+		for( int i = 0; i < idDicts.count(); i++ ) {
+			NSDictionary dict = (idDicts.objectAtIndex( i ));
+			ids.addObject( dict.valueForKey( "id" ) );
 		}
-		catch( Exception e ) {
-			logger.error( "Error in nextEventsFromCategoryWithID", e );
-			return NSArray.emptyArray();
-		}
+
+		ERXInQualifier q = new ERXInQualifier( SWNewsItem.ID_KEY, ids );
+		EOFetchSpecification fs = new EOFetchSpecification( SWNewsItem.ENTITY_NAME, q, NEWS_DATE_ASC_SORT_ORDERINGS );
+		NSArray<SWNewsItem> fetchedNews = ec.objectsWithFetchSpecification( fs );
+		return SWTimedContentUtilities.validateDisplayTimeForArray( fetchedNews );
 	}
 }
