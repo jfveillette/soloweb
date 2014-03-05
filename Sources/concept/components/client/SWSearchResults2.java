@@ -12,11 +12,11 @@ import com.webobjects.appserver.WOContext;
 import com.webobjects.foundation.NSArray;
 import com.webobjects.foundation.NSMutableArray;
 
+import concept.SWContentSearch;
 import concept.SWGenericComponent;
 import concept.data.SWNewsItem;
 import concept.data.SWPage;
 import concept.deprecated.SWUtilities;
-import concept.search.SWContentSearch;
 import concept.search.SWLuceneSearch;
 import concept.search.SWSearchItem;
 

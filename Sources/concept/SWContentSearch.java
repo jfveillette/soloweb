@@ -1,4 +1,4 @@
-package concept.search;
+package concept;
 
 import is.rebbi.core.util.StringUtilities;
 import is.rebbi.wo.util.USEOUtilities;

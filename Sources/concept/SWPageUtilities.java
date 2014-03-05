@@ -211,7 +211,7 @@ public class SWPageUtilities {
 		String url = null;
 
 		if( StringUtilities.hasValue( look ) ) {
-			NSMutableDictionary<String,Object> d = new NSMutableDictionary<>();
+			NSMutableDictionary<String, Object> d = new NSMutableDictionary<>();
 			d.setObjectForKey( look, "look" );
 			d.setObjectForKey( Integer.valueOf( page.primaryKey() ), "id" );
 			url = context.directActionURLForActionNamed( "dp", d );
