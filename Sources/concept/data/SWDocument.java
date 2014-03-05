@@ -40,7 +40,7 @@ import concept.util.HumanReadable;
 import er.extensions.appserver.ERXApplication;
 import er.extensions.appserver.ERXWOContext;
 
-public class SWDocument extends _SWDocument implements SWDataAsset<SWDocument,SWDocumentFolder>, HumanReadable, TimeStamped, UUIDStamped {
+public class SWDocument extends _SWDocument implements SWDataAsset<SWDocument, SWDocumentFolder>, HumanReadable, TimeStamped, UUIDStamped {
 
 	private static final Logger logger = LoggerFactory.getLogger( SWDocument.class );
 
@@ -236,7 +236,7 @@ public class SWDocument extends _SWDocument implements SWDataAsset<SWDocument,SW
 
 	@Override
 	public void expandZip() {
-//		SWZipUtilities.expandZipFileAndInsertIntoFolder( editingContext(), file(), containingFolder(), SWDocument.ENTITY_NAME, SWDocumentFolder.ENTITY_NAME );
+		//		SWZipUtilities.expandZipFileAndInsertIntoFolder( editingContext(), file(), containingFolder(), SWDocument.ENTITY_NAME, SWDocumentFolder.ENTITY_NAME );
 		// FIXME!
 	}
 

@@ -135,6 +135,7 @@
         defaultSite, 
         defaultSiteID, 
         emailAddress, 
+        favorites, 
         groups, 
         id, 
         lastLoginAgent, 
@@ -171,6 +172,13 @@
             joinSemantic = EOInnerJoin; 
             joins = ({destinationAttribute = id; sourceAttribute = defaultSiteID; }); 
             name = defaultSite; 
+        }, 
+        {
+            destination = SWFavorite; 
+            isToMany = Y; 
+            joinSemantic = EOInnerJoin; 
+            joins = ({destinationAttribute = userID; sourceAttribute = id; }); 
+            name = favorites; 
         }, 
         {
             definition = "sWGroupSWUsers.sWGroup"; 

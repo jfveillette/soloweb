@@ -13,6 +13,14 @@ public class SWComment extends _SWComment implements HasFakeRelationship {
 
 	private ERXGenericRecord _targetObject;
 
+	public ERXGenericRecord targetObject() {
+		if( _targetObject == null ) {
+			_targetObject = HasFakeRelationship.Util.targetObject( this );
+		}
+
+		return _targetObject;
+	}
+
 	/**
 	 * @return a usable version of the URL entered.
 	 */
@@ -57,13 +65,5 @@ public class SWComment extends _SWComment implements HasFakeRelationship {
 	 */
 	public String anchor() {
 		return "swcomment_" + primaryKey();
-	}
-
-	public ERXGenericRecord targetObject() {
-		if( _targetObject == null) {
-			_targetObject = HasFakeRelationship.Util.targetObject( this );
-		}
-
-		return _targetObject;
 	}
 }

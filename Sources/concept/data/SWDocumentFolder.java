@@ -23,7 +23,7 @@ import concept.data.auto._SWDocumentFolder;
  * An SWDocumentFolder represents a folder containing SWDocument objects
  */
 
-public class SWDocumentFolder extends _SWDocumentFolder implements SWFolderInterface<SWDocumentFolder,SWDocument> {
+public class SWDocumentFolder extends _SWDocumentFolder implements SWFolderInterface<SWDocumentFolder, SWDocument> {
 
 	private static final NSArray DEFAULT_SORT_ORDERINGS = new NSArray( new EOSortOrdering( "name", EOSortOrdering.CompareAscending ) );
 	private static final EOQualifier ROOT_FOLDER_QUALIFIER = new EOKeyValueQualifier( "parentFolderID", EOQualifier.QualifierOperatorEqual, null );
@@ -35,7 +35,7 @@ public class SWDocumentFolder extends _SWDocumentFolder implements SWFolderInter
 	 * @param ec The EOEditingContext to fetch into
 	 * @return all folder objects
 	 */
-	public static NSArray allFolders( EOEditingContext ec ) {
+	public static NSArray<SWDocumentFolder> allFolders( EOEditingContext ec ) {
 		return EOUtilities.objectsForEntityNamed( ec, "SWDocumentFolder" );
 	}
 
@@ -46,17 +46,15 @@ public class SWDocumentFolder extends _SWDocumentFolder implements SWFolderInter
 	 * @return folder objects without a parent folder
 	 */
 	@Override
-	public NSArray sortedRootFolders( EOEditingContext ec ) {
+	public NSArray<SWDocumentFolder> sortedRootFolders( EOEditingContext ec ) {
 		return ec.objectsWithFetchSpecification( ROOT_FOLDER_FS );
 	}
 
 	/**
 	 * Returns all subfolders sorted alphabetically
-	 *
-	 * @return An NSArray with subfolders
 	 */
 	@Override
-	public NSArray sortedSubFolders() {
+	public NSArray<SWDocumentFolder> sortedSubFolders() {
 		return EOSortOrdering.sortedArrayUsingKeyOrderArray( subFolders(), DEFAULT_SORT_ORDERINGS );
 	}
 
@@ -66,14 +64,12 @@ public class SWDocumentFolder extends _SWDocumentFolder implements SWFolderInter
 	 * @return An NSArray of SWDocument objects
 	 */
 	@Override
-	public NSArray sortedDocuments() {
+	public NSArray<SWDocument> sortedDocuments() {
 		return USEOUtilities.objectsForKeyWithValueSortedByKey( editingContext(), SWDocument.ENTITY_NAME, SWDocument.DOCUMENT_FOLDER_ID_KEY, folderID(), SWDocument.NAME_KEY );
 	}
 
 	/**
-	 * returns a document in this folder containing the linkKey
-	 * @param key
-	 * @return SWDocument or null
+	 * @return A document in this folder containing the linkKey
 	 */
 	public SWDocument documentWithLinkKey( String key ) {
 		EOQualifier q1 = new EOKeyValueQualifier( SWDocument.DOCUMENT_FOLDER_ID_KEY, EOQualifier.QualifierOperatorEqual, this.folderID() );
@@ -98,7 +94,6 @@ public class SWDocumentFolder extends _SWDocumentFolder implements SWFolderInter
 	 * @param aFolder the parent folder. If this is null, the resulting object is a root folder
 	 * @return An NSArray of SWPicture objects
 	 */
-
 	public static SWDocumentFolder newFolderWithNameAndParentFolder( EOEditingContext ec, String aName, SWDocumentFolder aFolder ) {
 		SWDocumentFolder a = new SWDocumentFolder();
 		ec.insertObject( a );
@@ -117,11 +112,12 @@ public class SWDocumentFolder extends _SWDocumentFolder implements SWFolderInter
 	 * Calculates the total size of documents in this folder. Does not include subfolders.
 	 */
 	public long size() {
-		Enumeration e = documents().objectEnumerator();
+		Enumeration<SWDocument> e = documents().objectEnumerator();
+
 		int totalSize = 0;
 
 		while( e.hasMoreElements() ) {
-			totalSize += ((SWDocument)e.nextElement()).size();
+			totalSize += e.nextElement().size();
 		}
 
 		return totalSize;
@@ -132,7 +128,7 @@ public class SWDocumentFolder extends _SWDocumentFolder implements SWFolderInter
 	 *
 	 * @param includingSelf Indicates if the calling object should be included in the resulting array
 	 */
-	public NSArray everyParentFolder( boolean includingSelf ) {
+	public NSArray<SWDocumentFolder> everyParentFolder( boolean includingSelf ) {
 		return USHierarchyUtilities.everyParentNode( this, includingSelf );
 	}
 
@@ -150,14 +146,11 @@ public class SWDocumentFolder extends _SWDocumentFolder implements SWFolderInter
 	 * Deletes this folder and all documents contained in it
 	 */
 	public void deleteFolder() {
-		try {
-			Enumeration e = this.documents().objectEnumerator();
+		Enumeration<SWDocument> e = documents().objectEnumerator();
 
-			while( e.hasMoreElements() ) {
-				((SWDocument)e.nextElement()).deleteAsset();
-			}
+		while( e.hasMoreElements() ) {
+			e.nextElement().deleteAsset();
 		}
-		catch( Exception e ) {}
 
 		if( parentFolder() != null ) {
 			this.removeObjectFromBothSidesOfRelationshipWithKey( parentFolder(), "parentFolder" );
@@ -227,10 +220,10 @@ public class SWDocumentFolder extends _SWDocumentFolder implements SWFolderInter
 			return null;
 		}
 
-		Enumeration e = this.documents().objectEnumerator();
+		Enumeration<SWDocument> e = documents().objectEnumerator();
 
 		while( e.hasMoreElements() ) {
-			SWDocument nextDocument = (SWDocument)e.nextElement();
+			SWDocument nextDocument = e.nextElement();
 
 			if( aName.equals( nextDocument.name() ) ) {
 				return nextDocument;

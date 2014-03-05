@@ -56,7 +56,7 @@ public class SWAssetFolder extends _SWAssetFolder implements SWFolderInterface<S
 	 * @return An NSArray with subfolders, sorted alphabetically
 	 */
 	@Override
-	public NSArray sortedSubFolders() {
+	public NSArray<SWAssetFolder> sortedSubFolders() {
 		return EOSortOrdering.sortedArrayUsingKeyOrderArray( subFolders(), DEFAULT_SORT_ORDERINGS );
 	}
 
@@ -127,11 +127,12 @@ public class SWAssetFolder extends _SWAssetFolder implements SWFolderInterface<S
 	 * @return An int representing the size in Kilobytes.
 	 */
 	public long size() {
-		Enumeration e = pictures().objectEnumerator();
+		Enumeration<SWPicture> e = pictures().objectEnumerator();
+
 		int totalSize = 0;
 
 		while( e.hasMoreElements() ) {
-			totalSize += ((SWPicture)e.nextElement()).size();
+			totalSize += e.nextElement().size();
 		}
 
 		return totalSize;
@@ -142,7 +143,6 @@ public class SWAssetFolder extends _SWAssetFolder implements SWFolderInterface<S
 	 *
 	 * @param newOwner The destination parent folder
 	 */
-
 	@Override
 	public void transferOwnership( EOEnterpriseObject newOwner ) {
 		this.removeObjectFromBothSidesOfRelationshipWithKey( parentFolder(), "parentFolder" );
@@ -155,8 +155,7 @@ public class SWAssetFolder extends _SWAssetFolder implements SWFolderInterface<S
 	 * @param includingSelf Tells if the calling folder should be included in the resulting array
 	 * @returns An array containing all parent folders
 	 */
-
-	public NSArray everyParentFolder( boolean includingSelf ) {
+	public NSArray<SWAssetFolder> everyParentFolder( boolean includingSelf ) {
 		return USHierarchyUtilities.everyParentNode( this, includingSelf );
 	}
 
@@ -179,7 +178,6 @@ public class SWAssetFolder extends _SWAssetFolder implements SWFolderInterface<S
 	 * @param includingSelf Tells if the calling folder should be included in the check
 	 * @returns An array containing all parent folders
 	 */
-
 	public boolean isParentFolderOfFolder( SWAssetFolder subFolder, boolean includingSelf ) {
 		return USHierarchyUtilities.isParentNodeOfNode( this, subFolder, includingSelf );
 	}
@@ -228,7 +226,6 @@ public class SWAssetFolder extends _SWAssetFolder implements SWFolderInterface<S
 	/**
 	 * Implementation of SWInheritsPrivileges, indicates what object this object inherits privileges from
 	 */
-
 	@Override
 	public SWInheritsPrivileges inheritsPrivilegesFrom() {
 		return parentFolder();

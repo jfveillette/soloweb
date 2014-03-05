@@ -4,9 +4,6 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 import com.webobjects.foundation.NSData;
 
 import er.extensions.eof.ERXGenericRecord;
@@ -16,8 +13,6 @@ import er.extensions.eof.ERXGenericRecord;
  */
 
 public abstract class Storage {
-
-	private static final Logger logger = LoggerFactory.getLogger( Storage.class );
 
 	public abstract InputStream in( ERXGenericRecord document );
 	public abstract OutputStream out( ERXGenericRecord document );

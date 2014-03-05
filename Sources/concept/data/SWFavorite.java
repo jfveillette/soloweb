@@ -8,7 +8,6 @@ import org.slf4j.LoggerFactory;
 import com.webobjects.eocontrol.EOEditingContext;
 
 import concept.util.HumanReadable;
-
 import er.extensions.eof.ERXGenericRecord;
 import er.extensions.qualifiers.ERXAndQualifier;
 
