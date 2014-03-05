@@ -1,4 +1,4 @@
-package concept.components.admin;
+package concept.components.settings;
 
 import is.rebbi.wo.interfaces.SWInheritsPrivileges;
 
@@ -10,7 +10,7 @@ import com.webobjects.appserver.WOContext;
 import com.webobjects.eoaccess.EOUtilities;
 import com.webobjects.foundation.NSArray;
 
-import concept.components.settings.SWManageSettings;
+import concept.components.admin.SWUsersAndGroups;
 import concept.data.SWGroup;
 import concept.data.SWUser;
 import concept.search.SWLuceneUtilities;
