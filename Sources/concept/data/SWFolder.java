@@ -19,7 +19,7 @@ import er.extensions.eof.ERXGenericRecord;
  * A folder.
  */
 
-public class SWFolder extends _SWFolder implements USHierarchy<SWFolder>, SWInheritsPrivileges  {
+public class SWFolder extends _SWFolder implements USHierarchy<SWFolder>, SWInheritsPrivileges {
 
 	/**
 	 * @return Folders without a parent folder
@@ -112,7 +112,7 @@ public class SWFolder extends _SWFolder implements USHierarchy<SWFolder>, SWInhe
 	/**
 	 * @return All items in this folder and it's subfolders, sorted by name.
 	 */
-	public  NSArray<ERXGenericRecord> items() {
+	public NSArray<ERXGenericRecord> items() {
 		NSMutableArray<ERXGenericRecord> items = new NSMutableArray<>();
 
 		for( SWFolderLink link : links() ) {

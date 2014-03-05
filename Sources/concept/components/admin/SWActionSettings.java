@@ -10,6 +10,7 @@ import com.webobjects.appserver.WOContext;
 import com.webobjects.eoaccess.EOUtilities;
 import com.webobjects.foundation.NSArray;
 
+import concept.components.settings.SWManageSettings;
 import concept.data.SWGroup;
 import concept.data.SWUser;
 import concept.search.SWLuceneUtilities;

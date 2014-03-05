@@ -8,6 +8,7 @@ import com.webobjects.appserver.WOComponent;
 import com.webobjects.appserver.WOContext;
 import com.webobjects.foundation.NSMutableArray;
 
+import concept.components.settings.SWManageSettings;
 import concept.data.SWComponent;
 import concept.data.SWPage;
 

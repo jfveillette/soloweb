@@ -1,4 +1,4 @@
-package concept.components.admin;
+package concept.components.settings;
 
 
 import com.webobjects.appserver.WOApplication;

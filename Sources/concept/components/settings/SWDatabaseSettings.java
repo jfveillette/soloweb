@@ -1,4 +1,4 @@
-package concept.components.admin;
+package concept.components.settings;
 
 import is.rebbi.wo.util.SWSQLUtilities;
 import is.rebbi.wo.util.SWSettings;

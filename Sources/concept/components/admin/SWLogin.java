@@ -14,6 +14,7 @@ import com.webobjects.foundation.NSArray;
 import concept.Concept;
 import concept.SWSession;
 import concept.SWSessionHelper;
+import concept.components.settings.SWManageSettings;
 import concept.data.SWSite;
 import concept.data.SWUser;
 import er.ajax.AjaxUtils;
