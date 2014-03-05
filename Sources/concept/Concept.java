@@ -85,7 +85,6 @@ public class Concept {
 
 		ERXApplication app = ERXApplication.erxApplication();
 		app.setDefaultRequestHandler( app.requestHandlerForKey( app.directActionRequestHandlerKey() ) );
-		app.registerRequestHandler( new CPDocumentRequestHandler(), CPDocumentRequestHandler.KEY );
 		app.registerRequestHandler( new SWDocumentRequestHandler(), SWDocumentRequestHandler.KEY );
 		app.registerRequestHandler( new SWThumbnailRequestHandler(), SWThumbnailRequestHandler.KEY );
 		app.registerRequestHandler( new SWPictureRequestHandler(), SWPictureRequestHandler.KEY );

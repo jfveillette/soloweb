@@ -63,8 +63,7 @@ public abstract class ButurTemplateBase extends SWGenericComponent {
 		WOContext context = ERXWOContext.newContext();
 		context._setSession( session() );
 
-		for( Enumeration<SWPictureLink> e = currentComponent().swPictureLinks().objectEnumerator(); e.hasMoreElements(); ) {
-			SWPictureLink link = e.nextElement();
+		for( SWPictureLink link : currentComponent().swPictureLinks() ) {
 			SWPictureInsert insert = new SWPictureInsert( context );
 			insert.link = link;
 			String html = insert.generateResponse().contentString();

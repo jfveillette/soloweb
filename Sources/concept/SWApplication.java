@@ -3,9 +3,6 @@ package concept;
 import is.rebbi.wo.util.SWDictionary;
 import is.rebbi.wo.util.USUtilities;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 import com.webobjects.appserver.WOApplication;
 import com.webobjects.appserver.WOContext;
 import com.webobjects.appserver.WOResponse;
@@ -25,8 +22,6 @@ import concept.components.client.SWDefaultLook6;
 import er.extensions.appserver.ERXApplication;
 
 public class SWApplication extends ERXApplication {
-
-	private static final Logger logger = LoggerFactory.getLogger( SWApplication.class );
 
 	private NSMutableArray<String> _pluginModels = new NSMutableArray<>( "SoloWeb" );
 	private NSMutableDictionary<String, String> _activeSettingsTabs;

@@ -35,10 +35,6 @@ import concept.util.SWPictureUtilities;
 import concept.util.SWStringUtilities;
 import er.extensions.appserver.ERXWOContext;
 
-/**
- * An SWPicture represents a picture in SoloWeb
- */
-
 public class SWPicture extends _SWPicture implements SWDataAsset<SWPicture, SWAssetFolder>, SWHasCustomInfo {
 
 	private static final Logger logger = LoggerFactory.getLogger( SWPicture.class );

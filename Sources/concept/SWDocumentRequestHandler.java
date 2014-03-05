@@ -1,12 +1,9 @@
 package concept;
 
 import is.rebbi.core.util.StringUtilities;
-import is.rebbi.wo.util.FileType;
 import is.rebbi.wo.util.USArrayUtilities;
+import is.rebbi.wo.util.USHTTPUtilities;
 import is.rebbi.wo.util.USUtilities;
-
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import com.webobjects.appserver.WOApplication;
 import com.webobjects.appserver.WOContext;
@@ -15,7 +12,6 @@ import com.webobjects.appserver.WORequestHandler;
 import com.webobjects.appserver.WOResponse;
 import com.webobjects.eocontrol.EOEditingContext;
 import com.webobjects.foundation.NSArray;
-import com.webobjects.foundation.NSData;
 
 import concept.components.SWErrorMessage;
 import concept.data.SWDocument;
@@ -24,14 +20,10 @@ import er.extensions.foundation.ERXStringUtilities;
 
 public class SWDocumentRequestHandler extends WORequestHandler {
 
-	private static final Logger logger = LoggerFactory.getLogger( SWDocumentRequestHandler.class );
-
 	public static final String KEY = "swdocument";
 
 	@Override
 	public WOResponse handleRequest( WORequest request ) {
-
-		EOEditingContext ec = ERXEC.newEditingContext();
 
 		String path = request.requestHandlerPath();
 
@@ -51,7 +43,7 @@ public class SWDocumentRequestHandler extends WORequestHandler {
 			return error( request, "Illegal documentID. Document numbers may only contain numeric characters", 404 );
 		}
 
-		SWDocument document = SWDocument.documentWithID( ec, Integer.valueOf( id ) );
+		SWDocument document = SWDocument.documentWithID( ERXEC.newEditingContext(), Integer.valueOf( id ) );
 
 		if( document == null ) {
 			return error( request, "The requested document does not exist", 404 );
@@ -62,7 +54,8 @@ public class SWDocumentRequestHandler extends WORequestHandler {
 		}
 
 		boolean forceDownload = "true".equals( request.stringFormValueForKey( "download" ) );
-		return createResponse( document, forceDownload );
+
+		return USHTTPUtilities.responseWithStreamAndMimeType( document.nameForDownload(), document.inputStream(), document.size(), document.mimeType(), forceDownload );
 	}
 
 	private static final WOResponse error( WORequest request, String message, int status ) {
@@ -83,45 +76,5 @@ public class SWDocumentRequestHandler extends WORequestHandler {
 		}
 
 		return url;
-	}
-
-	/**
-	 * Returns the data for this document, wrapped in a WOResponse object
-	 */
-	public static WOResponse createResponse( SWDocument document, boolean forceDownload ) {
-
-		if( document.hasData() ) {
-			String fileName = document.nameForDownload();
-			NSData data = document.data();
-			FileType documentType = document.documentType();
-			String contentType = "octet/stream";
-
-			if( documentType != null && documentType.mimeType() != null ) {
-				contentType = documentType.mimeType();
-			}
-
-			WOResponse aResponse = new WOResponse();
-
-			aResponse.setContent( data );
-
-			aResponse.appendHeader( contentType, "Content-Type" );
-			aResponse.appendHeader( data.length() + "", "Content-Length" );
-
-			if( forceDownload ) {
-				aResponse.appendHeader( "attachment; filename=\"" + fileName + "\"", "Content-Disposition" );
-			}
-			else {
-				aResponse.appendHeader( "inline;filename=\"" + fileName + "\"", "Content-Disposition" );
-			}
-
-			aResponse.disableClientCaching();
-
-			aResponse.removeHeadersForKey( "Cache-Control" );
-			aResponse.removeHeadersForKey( "pragma" );
-
-			return aResponse;
-		}
-
-		return null;
 	}
 }

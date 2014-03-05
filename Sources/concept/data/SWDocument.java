@@ -30,8 +30,8 @@ import com.webobjects.eocontrol.EOEnterpriseObject;
 import com.webobjects.foundation.NSArray;
 import com.webobjects.foundation.NSData;
 
-import concept.CPDocumentRequestHandler;
 import concept.Concept;
+import concept.SWDocumentRequestHandler;
 import concept.SWThumbnailRequestHandler;
 import concept.data.auto._SWDocument;
 import concept.documents.FileStorage;
@@ -298,7 +298,7 @@ public class SWDocument extends _SWDocument implements SWDataAsset<SWDocument,SW
 	 * @return Public URL of this document.
 	 */
 	public String url() {
-		return ERXWOContext.currentContext().urlWithRequestHandlerKey( CPDocumentRequestHandler.KEY, primaryKey() + "/" + nameForDownloadURLEncoded(), null );
+		return ERXWOContext.currentContext().urlWithRequestHandlerKey( SWDocumentRequestHandler.KEY, primaryKey() + "/" + nameForDownloadURLEncoded(), null );
 	}
 
 	@Override
