@@ -57,7 +57,7 @@ public class SWLogin extends ERXComponent {
 
 		SWSession session = (SWSession)session();
 
-		if( SWSettings.adminUsername().equals( username() ) && SWSettings.adminUsername().equals( password() ) ) {
+		if( SWSettings.adminUsername().equals( username() ) && SWSettings.adminPassword().equals( password() ) ) {
 			session.setIsLoggedIn( true );
 			return pageWithName( SWManageSettings.class );
 		}
