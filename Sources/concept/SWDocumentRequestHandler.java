@@ -49,7 +49,7 @@ public class SWDocumentRequestHandler extends WORequestHandler {
 			return error( request, "The requested document does not exist", 404 );
 		}
 
-		if( document.data() == null || document.data().length() == 0 ) {
+		if( !document.hasData() ) {
 			return error( request, "The requested document contains no data", 500 );
 		}
 
