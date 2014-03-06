@@ -9,41 +9,31 @@ import com.webobjects.foundation.NSArray;
 import com.webobjects.foundation.NSDictionary;
 import com.webobjects.foundation.NSMutableDictionary;
 
+import concept.Concept;
 import concept.SWAdminComponent;
-import concept.SWApplication;
+import concept.components.admin.SWEditCustomInfo;
 import concept.util.CPLoc;
-
-/**
- * The Settings management component.
- */
 
 public class SWManageSettings extends SWAdminComponent {
 
-	/**
-	 * The currently selected tab
-	 */
 	public String tabPanelSelection = CPLoc.string( "settingsTabGeneral", session() );
 
-	/**
-	 * The tabs to display in the settings component
-	 */
-	public NSArray tabs = tabDictionary().allKeys();
+	public NSArray<String> tabs = tabDictionary().allKeys();
 
 	public SWManageSettings( WOContext context ) {
 		super( context );
 	}
 
-	public NSDictionary tabDictionary() {
-		NSMutableDictionary activeSettingsTabs = new NSMutableDictionary( SWApplication.swapplication().activeSettingsTabs() );
-		activeSettingsTabs.setObjectForKey( "SWGeneralSettings", CPLoc.string( "settingsTabGeneral", session() ) );
-		activeSettingsTabs.setObjectForKey( "SWDatabaseSettings", CPLoc.string( "settingsTabDatabase", session() ) );
-		activeSettingsTabs.setObjectForKey( "SWNewsSettings", CPLoc.string( "settingsTabNews", session() ) );
-		activeSettingsTabs.setObjectForKey( "SWActionSettings", CPLoc.string( "settingsTabAdministration", session() ) );
-		activeSettingsTabs.setObjectForKey( "SWAccessControlSettings", CPLoc.string( "settingsTabAccessControls", session() ) );
-		activeSettingsTabs.setObjectForKey( "SWLocalizationSettings", CPLoc.string( "settingsTabLocalization", session() ) );
-		activeSettingsTabs.setObjectForKey( "SWStatisticsSettings", CPLoc.string( "settingsTabStatistics", session() ) );
-		activeSettingsTabs.setObjectForKey( "SWEditCustomInfo", "Custom info ofl" );
-
+	public NSDictionary<String,String> tabDictionary() {
+		NSMutableDictionary<String,String> activeSettingsTabs = new NSMutableDictionary<>( Concept.sw().activeSettingsTabs() );
+		activeSettingsTabs.setObjectForKey( SWGeneralSettings.class.getSimpleName(), CPLoc.string( "settingsTabGeneral", session() ) );
+		activeSettingsTabs.setObjectForKey( SWDatabaseSettings.class.getSimpleName(), CPLoc.string( "settingsTabDatabase", session() ) );
+		activeSettingsTabs.setObjectForKey( SWNewsSettings.class.getSimpleName(), CPLoc.string( "settingsTabNews", session() ) );
+		activeSettingsTabs.setObjectForKey( SWActionSettings.class.getSimpleName(), CPLoc.string( "settingsTabAdministration", session() ) );
+		activeSettingsTabs.setObjectForKey( SWAccessControlSettings.class.getSimpleName(), CPLoc.string( "settingsTabAccessControls", session() ) );
+		activeSettingsTabs.setObjectForKey( SWLocalizationSettings.class.getSimpleName(), CPLoc.string( "settingsTabLocalization", session() ) );
+		activeSettingsTabs.setObjectForKey( SWStatisticsSettings.class.getSimpleName(), CPLoc.string( "settingsTabStatistics", session() ) );
+		activeSettingsTabs.setObjectForKey( SWEditCustomInfo.class.getSimpleName(), "Custom info ofl" );
 		return activeSettingsTabs;
 	}
 
@@ -51,26 +41,12 @@ public class SWManageSettings extends SWAdminComponent {
 		return true;
 	}
 
-	/**
-	 * Returns all settings in the SWSettings file, as in SWSettings.allSettings()
-	 */
 	public SWDictionary selectedDictionary() {
 		return SWSettings.localDictionary();
 	}
 
-	/**
-	 * Saves changes made to settings
-	 */
 	public WOComponent save() {
 		selectedDictionary().write();
-		return null;
-	}
-
-	/**
-	 * This method just returns null, is invoked when clicking the save button in the
-	 * initial "Set storage location" screen.
-	 */
-	public WOComponent changeSettingsStorage() {
 		return null;
 	}
 

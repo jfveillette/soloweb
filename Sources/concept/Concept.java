@@ -6,11 +6,15 @@ import is.rebbi.wo.util.SoftUser;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.webobjects.appserver.WOApplication;
+import com.webobjects.foundation.NSMutableArray;
+import com.webobjects.foundation.NSMutableDictionary;
 import com.webobjects.foundation.NSNotification;
 import com.webobjects.foundation.NSNotificationCenter;
 import com.webobjects.foundation.NSSelector;
 import com.webobjects.foundation.NSTimestamp;
 
+import concept.components.admin.SWAdminCustomComponent;
 import concept.managers.CacheManager;
 import concept.managers.DBConnectionManager;
 import concept.managers.DBDefinitionManager;
@@ -35,6 +39,14 @@ public class Concept {
 	private static final Logger logger = LoggerFactory.getLogger( Concept.class );
 
 	private static Concept _sw;
+
+	private NSMutableArray<SWSession> _activeUserSessions = new NSMutableArray<>();
+	private NSMutableDictionary<String, String> _activeSettingsTabs;
+	private NSMutableDictionary<String, String> _activePageEditingComponents;
+	private NSMutableDictionary<String, String> _activeSiteEditingComponents;
+	private NSMutableDictionary<String, String> _activeSystems;
+	private NSMutableDictionary<String, String> _activeComponents;
+	private NSMutableDictionary<String, String> _activeSystemsAndComponents;
 
 	/**
 	 * This is the framework's principal class.When it's loaded, it registers the framework for initialization after the application launches.
@@ -71,6 +83,25 @@ public class Concept {
 			logger.error( "The property concept.home must be set" );
 			System.exit(1);
 		}
+
+		if( WOApplication.application() instanceof SWApplication ) {
+			_activeSystems = new NSMutableDictionary<>( SWApplication.swapplication().additionalSystems() );
+			_activeComponents = new NSMutableDictionary<>( SWApplication.swapplication().additionalComponents() );
+			_activePageEditingComponents = new NSMutableDictionary<>( SWApplication.swapplication().additionalPageEditingComponents() );
+			_activeSiteEditingComponents = new NSMutableDictionary<>( SWApplication.swapplication().additionalSiteEditingComponents() );
+			_activeSystemsAndComponents = new NSMutableDictionary<>( SWApplication.swapplication().additionalSystemsAndComponents() );
+			_activeSettingsTabs = new NSMutableDictionary<>( SWApplication.swapplication().additionalSettingsTabs() );
+		}
+		else {
+			_activeSystems = new NSMutableDictionary<>();
+			_activeComponents = new NSMutableDictionary<>();
+			_activePageEditingComponents = new NSMutableDictionary<>();
+			_activeSiteEditingComponents = new NSMutableDictionary<>();
+			_activeSystemsAndComponents = new NSMutableDictionary<>();
+			_activeSettingsTabs = new NSMutableDictionary<>();
+		}
+
+		_activeComponents.setObjectForKey( SWAdminCustomComponent.class.getSimpleName(), "Custom" );
 
 		SWSettings.register();
 		SoftUser.Manager.register();
@@ -135,5 +166,33 @@ public class Concept {
 	 */
 	public String productNameAndVersion() {
 		return productName() + " " + productVersion();
+	}
+
+	public NSMutableArray<SWSession> activeUserSessions() {
+		return _activeUserSessions;
+	}
+
+	public NSMutableDictionary<String, String> activeSettingsTabs() {
+		return _activeSettingsTabs;
+	}
+
+	public NSMutableDictionary<String, String> activePageEditingComponents() {
+		return _activePageEditingComponents;
+	}
+
+	public NSMutableDictionary<String, String> activeSiteEditingComponents() {
+		return _activeSiteEditingComponents;
+	}
+
+	public NSMutableDictionary<String, String> activeSystems() {
+		return _activeSystems;
+	}
+
+	public NSMutableDictionary<String, String> activeComponents() {
+		return _activeComponents;
+	}
+
+	public NSMutableDictionary<String, String> activeSystemsAndComponents() {
+		return _activeSystemsAndComponents;
 	}
 }

@@ -1,18 +1,13 @@
 package concept;
 
-import is.rebbi.wo.util.SWDictionary;
-import is.rebbi.wo.util.USUtilities;
-
 import com.webobjects.appserver.WOApplication;
 import com.webobjects.appserver.WOContext;
 import com.webobjects.appserver.WOResponse;
 import com.webobjects.foundation.NSArray;
 import com.webobjects.foundation.NSDictionary;
 import com.webobjects.foundation.NSMutableArray;
-import com.webobjects.foundation.NSMutableDictionary;
 
 import concept.components.SWErrorMessage;
-import concept.components.admin.SWAdminCustomComponent;
 import concept.components.client.SWDefaultLook1;
 import concept.components.client.SWDefaultLook2;
 import concept.components.client.SWDefaultLook3;
@@ -24,26 +19,10 @@ import er.extensions.appserver.ERXApplication;
 public class SWApplication extends ERXApplication {
 
 	private NSMutableArray<String> _pluginModels = new NSMutableArray<>( "SoloWeb" );
-	private NSMutableDictionary<String, String> _activeSettingsTabs;
-	private NSMutableDictionary<String, String> _activePageEditingComponents;
-	private NSMutableDictionary<String, String> _activeSiteEditingComponents;
-	private NSMutableDictionary<String, String> _activeSystems;
-	private NSMutableDictionary<String, String> _activeComponents;
-	private NSMutableDictionary<String, String> _activeSystemsAndComponents;
-	private NSMutableArray<SWSession> _activeUserSessions = new NSMutableArray<>();
-	private NSMutableDictionary<String, SWDictionary<String,String>> _localizedStrings = new NSMutableDictionary<>();
 	private static NSMutableArray<String> _looks = new NSMutableArray<>();
 
 	public SWApplication() {
 		setIncludeCommentsInResponses( true );
-
-		_activeSystems = new NSMutableDictionary<>( additionalSystems() );
-		_activeComponents = new NSMutableDictionary<>( additionalComponents() );
-		_activeComponents.setObjectForKey( SWAdminCustomComponent.class.getSimpleName(), "Custom" );
-		_activePageEditingComponents = new NSMutableDictionary<>( additionalPageEditingComponents() );
-		_activeSiteEditingComponents = new NSMutableDictionary<>( additionalSiteEditingComponents() );
-		_activeSystemsAndComponents = new NSMutableDictionary<>( additionalSystemsAndComponents() );
-		_activeSettingsTabs = new NSMutableDictionary<>( additionalSettingsTabs() );
 
 		addLook( SWDefaultLook1.class.getSimpleName() );
 		addLook( SWDefaultLook2.class.getSimpleName() );
@@ -51,11 +30,6 @@ public class SWApplication extends ERXApplication {
 		addLook( SWDefaultLook4.class.getSimpleName() );
 		addLook( SWDefaultLook5.class.getSimpleName() );
 		addLook( SWDefaultLook6.class.getSimpleName() );
-
-		String englishString = USUtilities.stringFromResource( "sw32/lang/English.rsrc", Concept.sw().frameworkBundleName() );
-		String icelandicString = USUtilities.stringFromResource( "sw32/lang/Icelandic.rsrc", Concept.sw().frameworkBundleName() );
-		_localizedStrings.setObjectForKey( new SWDictionary( englishString ), "English" );
-		_localizedStrings.setObjectForKey( new SWDictionary( icelandicString ), "Icelandic" );
 	}
 
 	public static SWApplication swapplication() {
@@ -73,30 +47,6 @@ public class SWApplication extends ERXApplication {
 	@Override
 	public WOResponse handleSessionRestorationErrorInContext( WOContext aContext ) {
 		return SWErrorMessage.handleSessionRestorationErrorInContext( aContext );
-	}
-
-	public NSMutableDictionary<String, String> activeSettingsTabs() {
-		return _activeSettingsTabs;
-	}
-
-	public NSMutableDictionary<String, String> activePageEditingComponents() {
-		return _activePageEditingComponents;
-	}
-
-	public NSMutableDictionary<String, String> activeSiteEditingComponents() {
-		return _activeSiteEditingComponents;
-	}
-
-	public NSMutableDictionary<String, String> activeSystems() {
-		return _activeSystems;
-	}
-
-	public NSMutableDictionary<String, String> activeComponents() {
-		return _activeComponents;
-	}
-
-	public NSMutableDictionary<String, String> activeSystemsAndComponents() {
-		return _activeSystemsAndComponents;
 	}
 
 	public NSDictionary<String, String> additionalSystems() {
@@ -141,14 +91,6 @@ public class SWApplication extends ERXApplication {
 		m.addObjectsFromArray( pluginModels() );
 		m.addObjectsFromArray( additionalModels() );
 		return m;
-	}
-
-	public NSMutableArray<SWSession> activeUserSessions() {
-		return _activeUserSessions;
-	}
-
-	public SWDictionary<String, String> getLocalizedStringsForLanguage( String language ) {
-		return _localizedStrings.objectForKey( language );
 	}
 
 	public String frameworkBundleName() {

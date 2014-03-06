@@ -8,8 +8,8 @@ import com.webobjects.foundation.NSArray;
 import com.webobjects.foundation.NSDictionary;
 import com.webobjects.foundation.NSMutableDictionary;
 
+import concept.Concept;
 import concept.SWAdminComponent;
-import concept.SWApplication;
 import concept.SWSession;
 import concept.data.SWSite;
 import concept.util.CPLoc;
@@ -28,7 +28,7 @@ public class SWEditSite extends SWAdminComponent {
 	}
 
 	public NSDictionary tabDictionary() {
-		NSMutableDictionary activeSiteEditingComponents = new NSMutableDictionary( SWApplication.swapplication().activeSiteEditingComponents() );
+		NSMutableDictionary activeSiteEditingComponents = new NSMutableDictionary( Concept.sw().activeSiteEditingComponents() );
 		activeSiteEditingComponents.setObjectForKey( "SWEditSiteGeneralInfo", CPLoc.string( "eSiteTabGeneral", session() ) );
 
 		if( SWSettings.booleanForKey( "enablePrivileges" ) ) {

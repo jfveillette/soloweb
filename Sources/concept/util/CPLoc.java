@@ -1,14 +1,18 @@
 package concept.util;
 
+import is.rebbi.wo.util.SWDictionary;
+import is.rebbi.wo.util.USUtilities;
+
 import java.util.Locale;
 
 import com.webobjects.appserver.WOApplication;
 import com.webobjects.appserver.WOContext;
 import com.webobjects.appserver.WORequest;
+import com.webobjects.appserver.WOSession;
 import com.webobjects.foundation.NSArray;
+import com.webobjects.foundation.NSMutableDictionary;
 
 import concept.Concept;
-import concept.SWSession;
 
 /**
  * A shorthand for simplifying localization of strings (see documentation for the "string"-method).
@@ -24,6 +28,14 @@ public class CPLoc {
 	public static final String LS_KEYPATH = "@ls";
 	public static final String CS_KEYPATH = "@cs";
 
+	private static NSMutableDictionary<String, SWDictionary<String,String>> _localizedStrings = new NSMutableDictionary<>();
+
+	static {
+		String englishString = USUtilities.stringFromResource( "sw32/lang/English.rsrc", Concept.sw().frameworkBundleName() );
+		String icelandicString = USUtilities.stringFromResource( "sw32/lang/Icelandic.rsrc", Concept.sw().frameworkBundleName() );
+		_localizedStrings.setObjectForKey( new SWDictionary( englishString ), "English" );
+		_localizedStrings.setObjectForKey( new SWDictionary( icelandicString ), "Icelandic" );
+	}
 	/**
 	 * We don't want any instances of this class.
 	 */
@@ -96,7 +108,12 @@ public class CPLoc {
 		return "Localized string not found [" + key + "]";
 	}
 
-	public static String string( String key, com.webobjects.appserver.WOSession session ) {
-		return ((SWSession)session).localizedStringForKey( key );
+	private static SWDictionary<String, String> getLocalizedStringsForLanguage( String language ) {
+		return _localizedStrings.objectForKey( language );
+	}
+
+	public static String string( String key, WOSession session ) {
+		SWDictionary dict = getLocalizedStringsForLanguage( session.languages().objectAtIndex( 0 ) );
+		return (String)dict.valueForKey( key );
 	}
 }

@@ -9,10 +9,10 @@ import com.webobjects.appserver.WOComponent;
 import com.webobjects.appserver.WOContext;
 import com.webobjects.appserver.WOCookie;
 import com.webobjects.appserver.WOResponse;
+import com.webobjects.appserver.WOSession;
 import com.webobjects.foundation.NSArray;
 
 import concept.Concept;
-import concept.SWSession;
 import concept.SWSessionHelper;
 import concept.components.settings.SWManageSettings;
 import concept.data.SWSite;
@@ -56,10 +56,10 @@ public class SWLogin extends ERXComponent {
 	 */
 	public WOActionResults doLogin() {
 
-		SWSession session = (SWSession)session();
+		WOSession session = session();
 
 		if( SWSettings.adminUsername().equals( username() ) && SWSettings.adminPassword().equals( password() ) ) {
-			session.setIsLoggedIn( true );
+			SWSessionHelper.setIsLoggedIn( session, true );
 			return pageWithName( SWManageSettings.class );
 		}
 
@@ -70,7 +70,7 @@ public class SWLogin extends ERXComponent {
 		}
 
 		SWUser user = SWSessionHelper.userInSession( session );
-		session.setIsLoggedIn( true );
+		SWSessionHelper.setIsLoggedIn( session, true );
 		session.setTimeOut( 28800 );
 
 		if( user.defaultSite() != null ) {
@@ -162,5 +162,9 @@ public class SWLogin extends ERXComponent {
 
 	public String message() {
 		return _message;
+	}
+
+	public String frameworkBundleName() {
+		return Concept.sw().frameworkBundleName();
 	}
 }

@@ -8,8 +8,8 @@ import com.webobjects.foundation.NSDictionary;
 import com.webobjects.foundation.NSMutableArray;
 import com.webobjects.foundation.NSMutableDictionary;
 
+import concept.Concept;
 import concept.SWAdminComponent;
-import concept.SWApplication;
 import concept.SWSession;
 import concept.components.client.ButurTemplate001;
 import concept.components.client.ButurTemplate002;
@@ -73,7 +73,7 @@ public class SWEditComponent extends SWAdminComponent {
 	 * All possible types of components and their corresponding editing components
 	 */
 	public NSDictionary<String,String> projectTypes() {
-		NSMutableDictionary<String,String> activeComponents = new NSMutableDictionary<>( SWApplication.swapplication().activeComponents() );
+		NSMutableDictionary<String,String> activeComponents = new NSMutableDictionary<>( Concept.sw().activeComponents() );
 		activeComponents.setObjectForKey( SWEditStandardComponent.class.getSimpleName(), CPLoc.string( "cpteContent", session() ) );
 		activeComponents.setObjectForKey( SWNewsAdminComponent.class.getSimpleName(), CPLoc.string( "cpteNews", session() ) );
 		activeComponents.setObjectForKey( SWSFAdminComponent.class.getSimpleName(), CPLoc.string( "cpteDocuments", session() ) );
@@ -92,7 +92,7 @@ public class SWEditComponent extends SWAdminComponent {
 	}
 
 	public NSDictionary<String,String> activeSystemsAndComponents() {
-		NSMutableDictionary<String,String> activeSystemsAndComponents = new NSMutableDictionary<>( SWApplication.swapplication().activeSystemsAndComponents() );
+		NSMutableDictionary<String,String> activeSystemsAndComponents = new NSMutableDictionary<>( Concept.sw().activeSystemsAndComponents() );
 		activeSystemsAndComponents.setObjectForKey( CPLoc.string( "cpteContent", session() ), ButurTemplate001.class.getSimpleName() );
 		activeSystemsAndComponents.setObjectForKey( CPLoc.string( "cpteContent", session() ), ButurTemplate002.class.getSimpleName() );
 		activeSystemsAndComponents.setObjectForKey( CPLoc.string( "cpteContent", session() ), ButurTemplate003.class.getSimpleName() );

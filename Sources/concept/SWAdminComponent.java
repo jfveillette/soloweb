@@ -14,7 +14,7 @@ public abstract class SWAdminComponent extends ERXComponent {
 
 	@Override
 	public void appendToResponse( WOResponse response, WOContext context ) {
-		if( ((SWSession)session()).isLoggedIn() ) {
+		if( hasSession() && SWSessionHelper.isLoggedIn( session() ) ) {
 			super.appendToResponse( response, context );
 		}
 		else {

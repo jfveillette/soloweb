@@ -10,8 +10,8 @@ import com.webobjects.foundation.NSDictionary;
 import com.webobjects.foundation.NSMutableArray;
 import com.webobjects.foundation.NSMutableDictionary;
 
+import concept.Concept;
 import concept.SWAdminComponent;
-import concept.SWApplication;
 import concept.SWSession;
 import concept.data.SWPage;
 import concept.data.SWSite;
@@ -35,7 +35,7 @@ public class SWEditPage extends SWAdminComponent {
 	}
 
 	public NSDictionary tabDictionary() {
-		NSMutableDictionary apec = new NSMutableDictionary( SWApplication.swapplication().activePageEditingComponents() );
+		NSMutableDictionary apec = new NSMutableDictionary( Concept.sw().activePageEditingComponents() );
 
 		if( user().hasPrivilegeFor( selectedPage, "canManagePage" ) ) {
 			apec.setObjectForKey( "SWEditPageGeneralInfo", CPLoc.string( "eptGeneral", session() ) );

@@ -32,7 +32,7 @@ String3: WOString {
 
 SubmitButton3: WOSubmitButton {
 	value = session.@ls.systemSettingsSetLocationButtonTitle;
-	action = changeSettingsStorage;
+	action = context.page;
 }
 
 SwitchComponent1: WOSwitchComponent {

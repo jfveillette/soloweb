@@ -6,6 +6,7 @@ import com.webobjects.appserver.WOContext;
 import com.webobjects.foundation.NSArray;
 import com.webobjects.foundation.NSDictionary;
 
+import concept.Concept;
 import concept.SWAdminComponent;
 import concept.SWApplication;
 import concept.data.SWAssetFolder;
@@ -31,7 +32,7 @@ public class SWMainMenu extends SWAdminComponent {
 	}
 
 	public NSDictionary systemDictionary() {
-		return SWApplication.swapplication().activeSystems();
+		return Concept.sw().activeSystems();
 	}
 
 	/**

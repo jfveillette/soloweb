@@ -57,6 +57,20 @@ public abstract class SWSessionHelper {
 		}
 	}
 
+	public static boolean isLoggedIn( WOSession s ) {
+		Object o = ((ERXSession)s).objectStore().valueForKey( "isLoggedIn" );
+
+		if( o != null ) {
+			return (Boolean)o;
+		}
+
+		return false;
+	}
+
+	public static void setIsLoggedIn( WOSession s, Boolean value ) {
+		((ERXSession)s).objectStore().takeValueForKey( value, "isLoggedIn" );
+	}
+
 	public static void addObjectToArrayWithKey( WOSession s, Object anObject, String key ) {
 		ERXSession session = (ERXSession)s;
 		arrayWithKey( session, key ).addObject( anObject );

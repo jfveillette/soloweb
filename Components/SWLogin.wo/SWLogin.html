@@ -15,15 +15,14 @@
 			<table width="100%" border="0" cellspacing="0" cellpadding="0" height="100%">
 				<tr>
 					<td align="center" valign="middle">
-						<webobject name="Image1" /><br /><br />
 						<table width="453" border="0" cellspacing="0" cellpadding="0">
 							<tr>
-								<td colspan="3" height="30"><webobject name="Image2" /></td>
+								<td colspan="3" height="30" bgcolor="#4A6B8C" style="color: white; font-size: 20px; text-align: center">Login</td>
 							</tr>
 							<tr>
-								<td width="1" bgcolor="#4A6B8C"><webobject name="Image3" /></td>
+								<td width="1" bgcolor="#4A6B8C"></td>
 								<td width="451" align="center" valign="top">
-									<font size="4"><font color="#ff0000"><webobject name="String1" /></font></font><BR>
+									<font size="4"><font color="#ff0000"><wo:str value="$message" /></font></font><BR>
 									<table border="0" cellspacing="0" cellpadding="6">
 										<tr>
 											<td width="50"></td>
@@ -42,19 +41,19 @@
 										<tr>
 											<td width="50"></td>
 											<td width="80" class="loginFieldTitle">Username:</td>
-											<td width="290"><webobject name="TextField1" /></td>
+											<td width="290"><wo:textfield value="$username" name="q" size="20" /></td>
 										</tr>
 									</table>
 									<table border="0" cellspacing="0" cellpadding="6">
 										<tr>
 											<td width="50"></td>
 											<td width="80" class="loginFieldTitle">Password:</td>
-											<td width="290"><webobject name="PasswordField1" /></td>
+											<td width="290"><wo:password value="$password" name="p" size="20" /></td>
 										</tr>
 									</table>
-									<webobject name="SubmitButton1" /><br /><br />
+									<wo:submit action="$doLogin" value="Login" /><br /><br />
 								</td>
-								<td width="1" bgcolor="#4A6B8C"><webobject name="Image4" /></td>
+								<td width="1" bgcolor="#4A6B8C"></td>
 							</tr>
 							<tr align="left" valign="top" bgcolor="#4A6B8C">
 								<td colspan="3" height="6"></td>

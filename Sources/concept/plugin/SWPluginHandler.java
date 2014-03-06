@@ -5,6 +5,7 @@ import java.util.Enumeration;
 import com.webobjects.foundation.NSMutableArray;
 import com.webobjects.foundation.NSMutableDictionary;
 
+import concept.Concept;
 import concept.SWApplication;
 
 /**
@@ -43,15 +44,15 @@ public class SWPluginHandler extends Object {
 	public void loadPlugin( SWPlugin aPlugin ) {
 
 		if( aPlugin.componentAdminComponent() != null ) {
-			SWApplication.swapplication().activeComponents().setObjectForKey( aPlugin.componentAdminComponent(), aPlugin.name() );
+			Concept.sw().activeComponents().setObjectForKey( aPlugin.componentAdminComponent(), aPlugin.name() );
 		}
 
 		if( aPlugin.mainAdminComponent() != null ) {
-			SWApplication.swapplication().activeSystems().setObjectForKey( aPlugin.mainAdminComponent(), aPlugin.name() );
+			Concept.sw().activeSystems().setObjectForKey( aPlugin.mainAdminComponent(), aPlugin.name() );
 		}
 
 		if( aPlugin.settingsComponent() != null ) {
-			SWApplication.swapplication().activeSettingsTabs().setObjectForKey( aPlugin.settingsComponent(), aPlugin.name() );
+			Concept.sw().activeSettingsTabs().setObjectForKey( aPlugin.settingsComponent(), aPlugin.name() );
 		}
 
 		if( aPlugin.components() != null ) {
@@ -63,7 +64,7 @@ public class SWPluginHandler extends Object {
 				d.setObjectForKey( aPlugin.name(), currentComponent );
 			}
 
-			SWApplication.swapplication().activeSystemsAndComponents().addEntriesFromDictionary( d );
+			Concept.sw().activeSystemsAndComponents().addEntriesFromDictionary( d );
 		}
 
 		if( aPlugin.models() != null ) {
