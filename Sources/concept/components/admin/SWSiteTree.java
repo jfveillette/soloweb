@@ -8,6 +8,7 @@ import com.webobjects.appserver.WOContext;
 import concept.SWAdminComponent;
 import concept.data.SWPage;
 import concept.data.SWSite;
+import er.extensions.appserver.ERXSession;
 
 /**
  * The site tree displayed to the left when you log into a SoloWeb system.
@@ -35,7 +36,7 @@ public class SWSiteTree extends SWAdminComponent {
 	public WOComponent newSite() {
 		SWSite site = SWSite.create( session().defaultEditingContext() );
 		session().defaultEditingContext().saveChanges();
-		session().takeValueForKey( site, "selectedSite" );
+		((ERXSession)session()).objectStore().takeValueForKey( site, "selectedSite" );
 		return null;
 	}
 

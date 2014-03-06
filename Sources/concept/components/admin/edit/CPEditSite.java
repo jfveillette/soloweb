@@ -25,7 +25,7 @@ public class CPEditSite extends ViewPage<SWSite> {
 	}
 
 	public NSArray<String> availableLocaleNames() {
-		NSMutableArray<String> localeNames = new NSMutableArray<String>();
+		NSMutableArray<String> localeNames = new NSMutableArray<>();
 
 		for( Locale l : Locale.getAvailableLocales() ) {
 			localeNames.addObject( l.getLanguage() );

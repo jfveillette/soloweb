@@ -99,6 +99,7 @@ public class IMAdminDB extends ERXComponent {
 		try {
 			Class clazz = Class.forName( selectedObject().entity().className() );
 			WOActionResults nextPage = Inspection.createAndEditObject( ec(), clazz, context() );
+			ec().saveChanges();
 			return nextPage;
 		}
 		catch( ClassNotFoundException e ) {

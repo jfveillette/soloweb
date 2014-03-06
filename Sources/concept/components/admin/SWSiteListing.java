@@ -18,6 +18,7 @@ import concept.SWApplication;
 import concept.SWSession;
 import concept.data.SWPage;
 import concept.data.SWSite;
+import er.extensions.appserver.ERXSession;
 import er.extensions.foundation.ERXStringUtilities;
 
 /**
@@ -137,12 +138,12 @@ public class SWSiteListing extends SWAdminComponent {
 
 	public void setSelectedSite( SWSite aSite ) {
 		if( aSite != null ) {
-			session().takeValueForKey( aSite, "selectedSite" );
+			((ERXSession)session()).objectStore().takeValueForKey( aSite, "selectedSite" );
 		}
 	}
 
 	public SWSite selectedSite() {
-		Object o = session().valueForKey( "selectedSite" );
+		Object o = ((ERXSession)session()).objectStore().valueForKey( "selectedSite" );
 
 		if( o != null ) {
 			return (SWSite)o;

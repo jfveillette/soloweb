@@ -7,10 +7,10 @@ import com.webobjects.appserver.WOContext;
 import com.webobjects.foundation.NSDictionary;
 import com.webobjects.foundation.NSMutableDictionary;
 
+import concept.SWAccessPrivilegeUtilities;
 import concept.ViewPage;
 import concept.components.admin.SWReorderSubpages;
 import concept.data.SWPage;
-import concept.util.CPAccessPrivilegeUtilities;
 import concept.util.CPLoc;
 import er.extensions.appserver.ERXSession;
 
@@ -34,16 +34,16 @@ public class CPEditPage extends ViewPage<SWPage> {
 	public NSDictionary<String, String> stringTabs() {
 		NSMutableDictionary<String, String> d = new NSMutableDictionary<>();
 
-		if( conceptUser().hasPrivilegeFor( selectedObject(), CPAccessPrivilegeUtilities.PRIVILEGE_CAN_MANAGE_PAGE ) ) {
+		if( conceptUser().hasPrivilegeFor( selectedObject(), SWAccessPrivilegeUtilities.PRIVILEGE_CAN_MANAGE_PAGE ) ) {
 			d.setObjectForKey( CPEditPageGeneralInfo.class.getSimpleName(), CPLoc.string( EPT_GENERAL, context() ) );
 		}
 
-		if( conceptUser().hasPrivilegeFor( selectedObject(), CPAccessPrivilegeUtilities.PRIVILEGE_CAN_MANAGE_CONTENT ) ) {
+		if( conceptUser().hasPrivilegeFor( selectedObject(), SWAccessPrivilegeUtilities.PRIVILEGE_CAN_MANAGE_CONTENT ) ) {
 			d.setObjectForKey( CPEditPageContent.class.getSimpleName(), CPLoc.string( EPT_CONTENT, context() ) );
 		}
 
 		if( SWSettings.privilegesEnabled() ) {
-			if( conceptUser().hasPrivilegeFor( selectedObject(), CPAccessPrivilegeUtilities.PRIVILEGE_CAN_MANAGE_USERS ) ) {
+			if( conceptUser().hasPrivilegeFor( selectedObject(), SWAccessPrivilegeUtilities.PRIVILEGE_CAN_MANAGE_USERS ) ) {
 				d.setObjectForKey( CPEditPagePrivileges.class.getSimpleName(), CPLoc.string( EPT_ACCESS_PRIVILEGES, context() ) );
 			}
 		}

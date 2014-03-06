@@ -13,6 +13,7 @@ import concept.SWAdminComponent;
 import concept.SWSession;
 import concept.data.SWSite;
 import concept.util.CPLoc;
+import er.extensions.appserver.ERXSession;
 
 /**
  * SWEditSite is used to edit information for an SWSite
@@ -52,14 +53,14 @@ public class SWEditSite extends SWAdminComponent {
 	 * The selected site.
 	 */
 	public SWSite selectedSite() {
-		return (SWSite)session().valueForKey( "selectedSite" );
+		return (SWSite)((ERXSession)session()).objectStore().valueForKey( "selectedSite" );
 	}
 
 	/**
 	 * Sets the selected site.
 	 */
-	public void setSelectedSite( SWSite newSelectedSite ) {
-		session().takeValueForKey( newSelectedSite, "selectedSite" );
+	public void setSelectedSite( SWSite value ) {
+		((ERXSession)session()).objectStore().takeValueForKey( value, "selectedSite" );
 	}
 
 	/**

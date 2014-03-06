@@ -15,9 +15,9 @@ import com.webobjects.foundation.NSArray;
 import com.webobjects.foundation.NSMutableArray;
 import com.webobjects.foundation.NSTimestamp;
 
+import concept.SWAccessPrivilegeUtilities;
 import concept.SWSessionHelper;
 import concept.data.auto._SWUser;
-import concept.util.CPAccessPrivilegeUtilities;
 import concept.util.HumanReadable;
 import er.extensions.crypting.ERXCrypto;
 import er.extensions.eof.ERXEOControlUtilities;
@@ -76,14 +76,14 @@ public class SWUser extends _SWUser implements HumanReadable, TimeStamped, SWUse
 	 * @return If the current user is granted the specified privilege.
 	 */
 	public boolean hasPrivilegeFor( EOEnterpriseObject record, String privilegeName ) {
-		return CPAccessPrivilegeUtilities.hasPrivilegeFor( this, record, privilegeName );
+		return SWAccessPrivilegeUtilities.hasPrivilegeFor( this, record, privilegeName );
 	}
 
 	/**
 	 * @return sites this user has access to.
 	 */
 	public NSArray<SWSite> sites() {
-		NSArray<SWSite> sites = CPAccessPrivilegeUtilities.filteredArrayWithUserAndPrivilege( SWSite.allSites( editingContext() ), this, CPAccessPrivilegeUtilities.PRIVILEGE_ALLOW_TO_SEE );
+		NSArray<SWSite> sites = SWAccessPrivilegeUtilities.filteredArrayWithUserAndPrivilege( SWSite.allSites( editingContext() ), this, SWAccessPrivilegeUtilities.PRIVILEGE_ALLOW_TO_SEE );
 		return EOSortOrdering.sortedArrayUsingKeyOrderArray( sites, SWSite.NAME.ascInsensitives() );
 	}
 

@@ -13,7 +13,6 @@ import com.webobjects.foundation.NSMutableArray;
 
 import concept.components.tabs.IMTab;
 import concept.definitions.EntityViewDefinition;
-import concept.util.CPAccessPrivilegeUtilities;
 import er.extensions.eof.ERXGenericRecord;
 
 /**
@@ -140,6 +139,6 @@ public abstract class ViewPage<E extends ERXGenericRecord> extends CPBaseCompone
 	 * @return Privileges for the selected Object.
 	 */
 	public NSDictionary<String, String> privilegePairs() {
-		return CPAccessPrivilegeUtilities.privilegePairsForObject( selectedObject(), context() );
+		return SWAccessPrivilegeUtilities.privilegePairsForObject( selectedObject(), context() );
 	}
 }

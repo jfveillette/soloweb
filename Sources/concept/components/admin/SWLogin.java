@@ -18,6 +18,7 @@ import concept.components.settings.SWManageSettings;
 import concept.data.SWSite;
 import concept.data.SWUser;
 import er.ajax.AjaxUtils;
+import er.extensions.appserver.ERXSession;
 import er.extensions.components.ERXComponent;
 
 /**
@@ -75,14 +76,14 @@ public class SWLogin extends ERXComponent {
 
 		if( user.defaultSite() != null ) {
 			if( user.hasPrivilegeFor( user.defaultSite(), "allowToSee" ) ) {
-				session().takeValueForKey( user.defaultSite(), "selectedSite" );
+				((ERXSession)session()).objectStore().takeValueForKey( user.defaultSite(), "selectedSite" );
 			}
 		}
 		else {
 			NSArray<SWSite> a = user.sites();
 
 			if( USArrayUtilities.hasObjects( a ) ) {
-				session().takeValueForKey( a.objectAtIndex( 0 ), "selectedSite" );
+				((ERXSession)session()).objectStore().takeValueForKey( a.objectAtIndex( 0 ), "selectedSite" );
 			}
 		}
 

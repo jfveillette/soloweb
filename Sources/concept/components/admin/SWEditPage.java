@@ -17,6 +17,7 @@ import concept.data.SWPage;
 import concept.data.SWSite;
 import concept.search.SWLuceneUtilities;
 import concept.util.CPLoc;
+import er.extensions.appserver.ERXSession;
 
 /**
  * SWEditPage is displayed when editing pages, and contains among other things
@@ -62,7 +63,7 @@ public class SWEditPage extends SWAdminComponent {
 	 * The currently selected tab
 	 */
 	public String selectedTab() {
-		String selected = (String)session().valueForKey( "solowebSelectedPageTab" );
+		String selected = (String)((ERXSession)session()).objectStore().valueForKey( "solowebSelectedPageTab" );
 
 		if( selected == null ) {
 			selected = CPLoc.string( "eptContent", session() );
@@ -90,18 +91,16 @@ public class SWEditPage extends SWAdminComponent {
 	/**
 	 * Sets the selected tab
 	 *
-	 * @param newSelectedTab
-	 *           the tab to select
+	 * @param newSelectedTab the tab to select
 	 */
 	public void setSelectedTab( String newSelectedTab ) {
-		session().takeValueForKey( newSelectedTab, "solowebSelectedPageTab" );
+		((ERXSession)session()).objectStore().takeValueForKey( newSelectedTab, "solowebSelectedPageTab" );
 	}
 
 	/**
 	 * Sets the selected page
 	 *
-	 * @param newSelectedPage
-	 *           the page to select
+	 * @param newSelectedPage the page to select
 	 */
 	public WOComponent setSelectedPage( SWPage newSelectedPage ) {
 		selectedPage = newSelectedPage;

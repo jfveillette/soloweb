@@ -8,11 +8,11 @@ import com.webobjects.appserver.WOApplication;
 import com.webobjects.appserver.WOContext;
 import com.webobjects.foundation.NSArray;
 
-import concept.Concept;
 import concept.CPAdminComponent;
+import concept.Concept;
+import concept.SWAccessPrivilegeUtilities;
 import concept.SWSessionHelper;
 import concept.data.SWFolder;
-import concept.util.CPAccessPrivilegeUtilities;
 
 /**
  * Hierarchical list of folders.
@@ -39,7 +39,7 @@ public class CPFolderList extends CPAdminComponent {
 
 	public NSArray<SWFolder> rootFolders() {
 		NSArray<SWFolder> a = SWFolder.rootFolders( ec() );
-		a = CPAccessPrivilegeUtilities.filteredArrayWithUserAndPrivilege( a, conceptUser(), CPAccessPrivilegeUtilities.PRIVILEGE_ALLOW_TO_SEE );
+		a = SWAccessPrivilegeUtilities.filteredArrayWithUserAndPrivilege( a, conceptUser(), SWAccessPrivilegeUtilities.PRIVILEGE_ALLOW_TO_SEE );
 		return a;
 	}
 
@@ -93,7 +93,7 @@ public class CPFolderList extends CPAdminComponent {
 
 	public NSArray<SWFolder> subFolders() {
 		if( isExpanded( currentFolder ) ) {
-			return CPAccessPrivilegeUtilities.filteredArrayWithUserAndPrivilege( currentFolder.sortedChildren(), conceptUser(), CPAccessPrivilegeUtilities.PRIVILEGE_ALLOW_TO_SEE );
+			return SWAccessPrivilegeUtilities.filteredArrayWithUserAndPrivilege( currentFolder.sortedChildren(), conceptUser(), SWAccessPrivilegeUtilities.PRIVILEGE_ALLOW_TO_SEE );
 		}
 
 		return NSArray.emptyArray();
