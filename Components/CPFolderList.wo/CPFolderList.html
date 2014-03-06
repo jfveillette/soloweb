@@ -1,8 +1,0 @@
-<div id="sw-siteTree">
-	<wo:AjaxUpdateContainer id="sw-assetFolderTree">
-	  <wo:USNestedList sublist="$subFolders" list="$rootFolders" item="$currentFolder" index="$currentIndex">
-	    <wo:AjaxUpdateLink action="$toggleDisplay" disabled="$hasNoSubFolders" updateContainerID="sw-assetFolderTree"><wo:img src="$toggleString" width="9" /></wo:AjaxUpdateLink>
-	    <wo:link action="$selectFolder" disabled="$isDisabled"><wo:img filename="mappa.gif" /> <wo:str value="$currentFolder.name" valueWhenEmpty="$@ls.untitledObjectString" /></wo:link>
-	  </wo:USNestedList>
-	</wo:AjaxUpdateContainer>
-</div>

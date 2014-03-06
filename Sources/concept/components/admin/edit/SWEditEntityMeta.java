@@ -40,7 +40,7 @@ public class SWEditEntityMeta extends ViewPage<SWEntityMeta> {
 			return NSArray.emptyArray();
 		}
 
-		NSMutableArray<String> attributeNames = new NSMutableArray<String>();
+		NSMutableArray<String> attributeNames = new NSMutableArray<>();
 		attributeNames.addObjectsFromArray( (NSArray<? extends String>)USEOUtilities.relationships( EOModelGroup.defaultGroup().entityNamed( selectedObject().name() ) ).valueForKeyPath( "name" ) );
 		attributeNames.addObjectsFromArray( (NSArray<? extends String>)USEOUtilities.attributes( EOModelGroup.defaultGroup().entityNamed( selectedObject().name() ) ).valueForKeyPath( "name" ) );
 		attributeNames.removeObjectsInArray( mappedAttributeNames() );

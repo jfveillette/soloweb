@@ -15,30 +15,24 @@ import concept.data.SWSite;
 import concept.util.CPLoc;
 import er.extensions.appserver.ERXSession;
 
-/**
- * SWEditSite is used to edit information for an SWSite
- */
-
 public class SWEditSite extends SWAdminComponent {
 
 	public String selectedTab = CPLoc.string( "eSiteTabGeneral", session() );
-	public NSArray tabs = tabDictionary().allKeys();
+	public NSArray<String> tabs = tabDictionary().allKeys();
 
 	public SWEditSite( WOContext context ) {
 		super( context );
 	}
 
-	public NSDictionary tabDictionary() {
-		NSMutableDictionary activeSiteEditingComponents = new NSMutableDictionary( Concept.sw().activeSiteEditingComponents() );
-		activeSiteEditingComponents.setObjectForKey( "SWEditSiteGeneralInfo", CPLoc.string( "eSiteTabGeneral", session() ) );
+	public NSDictionary<String,String> tabDictionary() {
+		NSMutableDictionary<String,String> activeSiteEditingComponents = new NSMutableDictionary<>( Concept.sw().activeSiteEditingComponents() );
+		activeSiteEditingComponents.setObjectForKey( SWEditSiteGeneralInfo.class.getSimpleName(), CPLoc.string( "eSiteTabGeneral", session() ) );
 
 		if( SWSettings.booleanForKey( "enablePrivileges" ) ) {
-			activeSiteEditingComponents.setObjectForKey( "SWEditSitePrivileges", CPLoc.string( "eSiteTabAccessPrivileges", session() ) );
+			activeSiteEditingComponents.setObjectForKey( SWEditSitePrivileges.class.getSimpleName(), CPLoc.string( "eSiteTabAccessPrivileges", session() ) );
 		}
 
-		boolean isAdmin = SWSessionHelper.userInSession( session() ).isAdministrator();
-
-		if( isAdmin /* && "SWDefaultLook6".equals(selectedSite().look()) */) {
+		if( SWSessionHelper.userInSession( session() ).isAdministrator() ) {
 			activeSiteEditingComponents.setObjectForKey( SWDefaultLook6Admin.class.getSimpleName(), "SWDefaultLook6" );
 		}
 
@@ -49,25 +43,32 @@ public class SWEditSite extends SWAdminComponent {
 		return (String)tabDictionary().valueForKey( selectedTab );
 	}
 
-	/**
-	 * The selected site.
-	 */
 	public SWSite selectedSite() {
 		return (SWSite)((ERXSession)session()).objectStore().valueForKey( "selectedSite" );
 	}
 
-	/**
-	 * Sets the selected site.
-	 */
 	public void setSelectedSite( SWSite value ) {
 		((ERXSession)session()).objectStore().takeValueForKey( value, "selectedSite" );
 	}
 
-	/**
-	 * Saves changes made in this session to the DB
-	 */
 	public WOComponent saveChanges() {
 		session().defaultEditingContext().saveChanges();
 		return null;
 	}
+
+//	public NSArray<String> availableLocaleNames() {
+//		NSMutableArray<String> localeNames = new NSMutableArray<>();
+//
+//		for( Locale l : Locale.getAvailableLocales() ) {
+//			localeNames.addObject( l.getLanguage() );
+//		}
+//
+//		NSArray<String> a = ERXArrayUtilities.arrayWithoutDuplicates( localeNames );
+//		return ERXArrayUtilities.sortedArrayUsingComparator( a, NSComparator.AscendingCaseInsensitiveStringComparator );
+//	}
+//
+//	public String currentLocaleDisplayName() {
+//		return currentLocaleName + " (" + new Locale( currentLocaleName ).getDisplayName() + ")";
+//	}
+
 }
