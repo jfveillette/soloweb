@@ -1,6 +1,5 @@
 package concept.components.client;
 
-
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
