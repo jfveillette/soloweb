@@ -8,6 +8,7 @@ import com.webobjects.eocontrol.EOGenericRecord;
 import com.webobjects.foundation.NSDictionary;
 import com.webobjects.foundation.NSMutableDictionary;
 
+import concept.InspectAction;
 import er.extensions.foundation.ERXStringUtilities;
 
 /**
@@ -50,7 +51,7 @@ public abstract class SWURLProvider {
 	public static String makeURLDeveloperFriendly( String url, WOContext context ) {
 		NSMutableDictionary<String, Object> d = new NSMutableDictionary<>();
 		d.setObjectForKey( url, "url" );
-		url = context.directActionURLForActionNamed( "InspectAction/handler", d );
+		url = context.directActionURLForActionNamed( InspectAction.class.getSimpleName() + "/handler", d );
 		url = ERXStringUtilities.replaceStringByStringInString( "&", "&amp;", url );
 		return url;
 	}

@@ -7,19 +7,11 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.webobjects.appserver.WOContext;
-import com.webobjects.eoaccess.EOAttribute;
-import com.webobjects.eoaccess.EOEntity;
 import com.webobjects.eoaccess.EOModelGroup;
-import com.webobjects.eocontrol.EOAndQualifier;
 import com.webobjects.eocontrol.EOEditingContext;
-import com.webobjects.eocontrol.EOKeyValueQualifier;
-import com.webobjects.eocontrol.EOQualifier;
-import com.webobjects.foundation.NSArray;
-import com.webobjects.foundation.NSMutableArray;
-import com.webobjects.foundation.NSPropertyListSerialization;
+import com.webobjects.eocontrol.EOGlobalID;
 
 import concept.definitions.EntityViewDefinition;
-import er.extensions.eof.ERXEOControlUtilities;
 import er.extensions.eof.ERXGenericRecord;
 import er.extensions.foundation.ERXStringUtilities;
 
@@ -40,8 +32,7 @@ public class SWEOURLProvider extends SWURLProvider {
 	@Override
 	public String urlForObject( Object object, WOContext context ) {
 		ERXGenericRecord eo = (ERXGenericRecord)object;
-//		String serializedID = PKSerialization.encode( object );
-		String serializedID = eo.primaryKey();
+		String serializedID = SWPKSerialization.serialize( eo );
 		return urlForObjectInContext( eo.entityName(), serializedID, context );
 	}
 
@@ -49,8 +40,6 @@ public class SWEOURLProvider extends SWURLProvider {
 	 * @return A URL for the given object.
 	 */
 	public static String urlForObjectInContext( String entityName, Object serializedID, WOContext context ) {
-//		serializedID = PKSerialization.encode( serializedID );
-
 		String typeIdentifier = typeIdentifier( entityName );
 		String objectIdentifier = objectIdentifier( serializedID );
 
@@ -144,7 +133,9 @@ public class SWEOURLProvider extends SWURLProvider {
 				object = USEOUtilities.objectWithPK( ec, entityName, new Integer( identifier ) );
 			}
 			else {
-				object = (ERXGenericRecord)ERXEOControlUtilities.objectWithQualifier( ec, entityName, primaryKeyQualifier( entityName, identifier ) );
+//				object = (ERXGenericRecord)ERXEOControlUtilities.objectWithQualifier( ec, entityName, primaryKeyQualifier( entityName, identifier ) );
+				EOGlobalID gid = SWPKSerialization.deSerialize( entityName, identifier );
+				object = (ERXGenericRecord)ec.faultForGlobalID( gid, ec );
 			}
 		}
 		else {
@@ -152,44 +143,6 @@ public class SWEOURLProvider extends SWURLProvider {
 		}
 
 		return object;
-	}
-
-	/**
-	 * @return A qualifier for fetching an object, from the string containing a serialized PK.
-	 */
-	private static EOQualifier primaryKeyQualifier( String entityName, String identifierString ) {
-
-		if( entityName == null || identifierString == null ) {
-			throw new IllegalArgumentException( "You must provide both an entityName and and identifierString" );
-		}
-
-		NSMutableArray<EOQualifier> results = new NSMutableArray<>();
-
-		NSArray values;
-
-		if( identifierString.indexOf( "(" ) == -1 ) {
-			values = new NSArray<>( identifierString );
-		}
-		else {
-			String decoded = SWPKSerialization.decode( identifierString );
-			values = NSPropertyListSerialization.arrayForString( decoded );
-		}
-
-		EOEntity entity = EOModelGroup.defaultGroup().entityNamed( entityName );
-
-		for( int i = 0 ; i < entity.primaryKeyAttributes().count() ; i++ ) {
-			EOAttribute attribute = entity.primaryKeyAttributes().objectAtIndex( i );
-			Object value = values.get( i );
-
-			if( "java.lang.Number".equals( attribute.className() ) || "i".equals( attribute.valueType() ) ) {
-				value = new Integer( (String)value );
-			}
-
-			results.addObject( new EOKeyValueQualifier( attribute.name(), EOQualifier.QualifierOperatorEqual, value ) );
-		}
-
-		EOAndQualifier q = new EOAndQualifier( results );
-		return q;
 	}
 
 	private static String entityNameFromTypeIdentifier( String typeIdentifier ) {
