@@ -1,5 +1,5 @@
 Conditional1: WOConditional {
-	condition = hasReachedMaxNumberOfSites;
+	condition = "1";
 	negate = true;
 }
 

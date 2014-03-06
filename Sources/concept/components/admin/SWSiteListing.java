@@ -321,11 +321,13 @@ public class SWSiteListing extends SWAdminComponent {
 	public WOActionResults search() {
 		action = "selectObject";
 
-		if( ERXStringUtilities.isDigitsOnly( searchString ) ) {
-			searchResultPages = USEOUtilities.objectsMatchingKeyAndValue( session().defaultEditingContext(), SWPage.ENTITY_NAME, "pageID", new Integer( searchString ) );
-		}
-		else {
-			searchResultPages = USEOUtilities.objectsMatchingKeyAndValue( session().defaultEditingContext(), SWPage.ENTITY_NAME, "symbol", searchString );
+		if( StringUtilities.hasValue( searchString ) ) {
+			if( ERXStringUtilities.isDigitsOnly( searchString ) ) {
+				searchResultPages = USEOUtilities.objectsMatchingKeyAndValue( session().defaultEditingContext(), SWPage.ENTITY_NAME, "pageID", new Integer( searchString ) );
+			}
+			else {
+				searchResultPages = USEOUtilities.objectsMatchingKeyAndValue( session().defaultEditingContext(), SWPage.ENTITY_NAME, "symbol", searchString );
+			}
 		}
 
 		return context().page();

@@ -44,7 +44,7 @@ public class SWSession extends ERXSession {
 	}
 
 	public void removeObjectFromArrayWithKey( Object anObject, String key ) {
-		SWSessionHelper.addObjectToArrayWithKey( this, anObject, key );
+		SWSessionHelper.removeObjectFromArrayWithKey( this, anObject, key );
 	}
 
 	public boolean arrayWithKeyContainsObject( String key, Object anObject ) {

@@ -8,7 +8,7 @@
 		</webobject>
 		<webobject name="notShowSitePopUp"><webobject name="SetTheSelectedSite"/></webobject>
 		<webobject name="Conditional6">
-			<webobject name="Image2"/>&nbsp;
+			<div style="margin-left: 10px">
 			<webobject name="Hyperlink1"><webobject name="String2"/></webobject>
 			<webobject name="NestedList2">
 				<table cellspacing="0">
@@ -42,20 +42,23 @@
 					</webobject>
 				</table>
 			</webobject>
+			</div>
 		</webobject>
-
 	<webobject name = "IsAdmin">
-		<webobject name = "SearchTextStr"/>
-		<webobject name = "SearchForm">
-			<webobject name = "InpSearchText"/>
-		</webobject>
-		
-		<ul><webobject name = "SearchResultSitesList">
-			<li><webobject name = "CurrentSiteNameStr"/></li>
-			<ul><webobject name = "SearchResultPagesList">
-				<webobject name = "LinkSearchPage"><webobject name = "CurrentSearchPageName"/></webobject>
+		<div style="margin-top: 20px">
+			<wo:form action="$search">
+				<webobject name = "InpSearchText"/>
+			</wo:form>
+
+			<wo:if condition="$searchResultSites.count">
+			<ul><webobject name = "SearchResultSitesList">
+				<li><webobject name = "CurrentSiteNameStr"/></li>
+				<ul><webobject name = "SearchResultPagesList">
+					<webobject name = "LinkSearchPage"><webobject name = "CurrentSearchPageName"/></webobject>
+				</webobject></ul>
 			</webobject></ul>
-		</webobject></ul>
+			</wo:if>
+		</div>
 	</webobject>
 
 <!-- end SWSiteListing -->

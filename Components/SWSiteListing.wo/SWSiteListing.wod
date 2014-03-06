@@ -151,6 +151,7 @@ PopUpButton1: WOPopUpButton {
 	onChange = "this.form.submit()";
 	selection = selectedSite;
 	noSelectionString = session.@ls.siteListSitesString;
+	style="width: 200px; margin-bottom: 5px";
 }
 
 String2: WOString {
@@ -158,14 +159,10 @@ String2: WOString {
 	valueWhenEmpty = session.@ls.untitledObjectString;
 }
 
-SearchForm: WOForm {
-	action = search;
-}
-
 InpSearchText: WOTextField {
-	title = "Search";
 	value = searchString;
-	style = "width: 160px;";
+	style = "width: 196px; padding: 2px";
+	placeholder = "Leita...";
 }
 
 IsAdmin: WOConditional {
