@@ -17,7 +17,6 @@ import com.webobjects.foundation.NSTimestampFormatter;
  * reading and writing strings to and from disks etc.
  */
 
-@Deprecated
 public class SWStringUtilities extends Object {
 
 	private static final Logger logger = LoggerFactory.getLogger( SWStringUtilities.class );

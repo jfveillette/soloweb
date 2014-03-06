@@ -8,7 +8,6 @@ import org.slf4j.LoggerFactory;
 import com.webobjects.appserver.WOContext;
 import com.webobjects.eoaccess.EOModelGroup;
 import com.webobjects.eocontrol.EOEditingContext;
-import com.webobjects.eocontrol.EOGlobalID;
 
 import concept.definitions.EntityViewDefinition;
 import er.extensions.eof.ERXGenericRecord;
@@ -121,30 +120,14 @@ public class SWEOURLProvider extends SWURLProvider {
 	 */
 	private static ERXGenericRecord objectFromIdentifiers( EOEditingContext ec, String typeIdentifier, String objectIdentifier ) {
 
-		ERXGenericRecord object = null;
-		String entityName = entityNameFromTypeIdentifier( typeIdentifier );
-
 		if( objectIdentiferIsGeneric( objectIdentifier ) ) {
+			String entityName = entityNameFromTypeIdentifier( typeIdentifier );
 			String identifier = objectIdentifier.substring( PK_IDENTIFIER_PREFIX.length(), objectIdentifier.length() );
-
-			EOGlobalID gid = SWPKSerialization.deSerialize( entityName, identifier );
-			object = (ERXGenericRecord)ec.faultForGlobalID( gid, ec );
-
-			/*
-			if( ERXStringUtilities.isDigitsOnly( identifier ) ) {
-				object = USEOUtilities.objectWithPK( ec, entityName, new Integer( identifier ) );
-			}
-			else {
-				EOGlobalID gid = SWPKSerialization.deSerialize( entityName, identifier );
-				object = (ERXGenericRecord)ec.faultForGlobalID( gid, ec );
-			}
-			*/
+			return SWPKSerialization.eo( ec, entityName, identifier );
 		}
 		else {
 			throw new RuntimeException( "Unsupported URL format" );
 		}
-
-		return object;
 	}
 
 	private static String entityNameFromTypeIdentifier( String typeIdentifier ) {

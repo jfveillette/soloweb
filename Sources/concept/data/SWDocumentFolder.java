@@ -25,7 +25,7 @@ import concept.data.auto._SWDocumentFolder;
 
 public class SWDocumentFolder extends _SWDocumentFolder implements SWFolderInterface<SWDocumentFolder, SWDocument> {
 
-	private static final NSArray DEFAULT_SORT_ORDERINGS = new NSArray( new EOSortOrdering( "name", EOSortOrdering.CompareAscending ) );
+	private static final NSArray<EOSortOrdering> DEFAULT_SORT_ORDERINGS = new NSArray<>( new EOSortOrdering( "name", EOSortOrdering.CompareAscending ) );
 	private static final EOQualifier ROOT_FOLDER_QUALIFIER = new EOKeyValueQualifier( "parentFolderID", EOQualifier.QualifierOperatorEqual, null );
 	private static final EOFetchSpecification ROOT_FOLDER_FS = new EOFetchSpecification( "SWDocumentFolder", ROOT_FOLDER_QUALIFIER, DEFAULT_SORT_ORDERINGS );
 

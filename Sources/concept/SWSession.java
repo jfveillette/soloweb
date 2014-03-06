@@ -59,7 +59,7 @@ public class SWSession extends ERXSession {
 	public Object valueForKeyPath( String keypath ) {
 
 		if( keypath.startsWith( "@ls" ) ) {
-			return localizedStringForKey( keypath.substring( 4, keypath.length() ) );
+			return SWLoc.string( keypath.substring( 4, keypath.length() ), this );
 		}
 
 		if( keypath.startsWith( "@cs" ) ) {
@@ -73,7 +73,7 @@ public class SWSession extends ERXSession {
 	public Object valueForKey( String keypath ) {
 
 		if( keypath.startsWith( "@ls" ) ) {
-			return localizedStringForKey( keypath.substring( 4, keypath.length() ) );
+			return SWLoc.string( keypath.substring( 4, keypath.length() ), this );
 		}
 
 		if( keypath.startsWith( "@cs" ) ) {
@@ -83,17 +83,11 @@ public class SWSession extends ERXSession {
 		return super.valueForKey( keypath );
 	}
 
-	public String localizedStringForKey( String key ) {
-		return SWLoc.string( key, this );
-	}
-
 	public String confirmStringForKey( String key ) {
-		StringBuffer b = new StringBuffer();
-
+		StringBuilder b = new StringBuilder();
 		b.append( "return confirm('" );
-		b.append( localizedStringForKey( key ) );
+		b.append( SWLoc.string( key, this ) );
 		b.append( "');" );
-
 		return b.toString();
 	}
 

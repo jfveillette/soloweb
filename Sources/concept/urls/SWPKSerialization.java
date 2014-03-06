@@ -3,12 +3,14 @@ package concept.urls;
 import com.webobjects.eoaccess.EOAttribute;
 import com.webobjects.eoaccess.EOEntity;
 import com.webobjects.eoaccess.EOModelGroup;
+import com.webobjects.eocontrol.EOEditingContext;
 import com.webobjects.eocontrol.EOEnterpriseObject;
 import com.webobjects.eocontrol.EOGlobalID;
 import com.webobjects.eocontrol.EOKeyGlobalID;
 import com.webobjects.foundation.NSArray;
 import com.webobjects.foundation.NSMutableArray;
 
+import er.extensions.eof.ERXGenericRecord;
 import er.extensions.eof.ERXKeyGlobalID;
 
 public class SWPKSerialization {
@@ -28,6 +30,12 @@ public class SWPKSerialization {
 
 		ERXKeyGlobalID keyGID = ERXKeyGlobalID.globalIDForGID( (EOKeyGlobalID)gid );
 		return keyGID.keyValuesArray().componentsJoinedByString( PK_ELEMENT_SEPARATOR );
+	}
+
+	public static ERXGenericRecord eo( EOEditingContext ec, String entityName, String string ) {
+		EOGlobalID gid = SWPKSerialization.deSerialize( entityName, string );
+		ERXGenericRecord eo = (ERXGenericRecord)ec.faultForGlobalID( gid, ec );
+		return eo;
 	}
 
 	public static EOGlobalID deSerialize( String entityName, String string ) {

@@ -30,7 +30,6 @@ import concept.data.SWPicture;
  * SWPictureUtilities allows the programmer to work with SWPicture objects
  */
 
-@Deprecated
 public class SWPictureUtilities {
 
 	private static final Logger logger = LoggerFactory.getLogger( SWPictureUtilities.class );

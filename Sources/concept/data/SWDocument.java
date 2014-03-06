@@ -236,8 +236,7 @@ public class SWDocument extends _SWDocument implements SWDataAsset<SWDocument, S
 
 	@Override
 	public void expandZip() {
-		//		SWZipUtilities.expandZipFileAndInsertIntoFolder( editingContext(), file(), containingFolder(), SWDocument.ENTITY_NAME, SWDocumentFolder.ENTITY_NAME );
-		// FIXME!
+//		SWZipUtilities.expandZipFileAndInsertIntoFolder( editingContext(), file(), containingFolder(), SWDocument.ENTITY_NAME, SWDocumentFolder.ENTITY_NAME );
 	}
 
 	@Override

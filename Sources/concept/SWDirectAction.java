@@ -64,17 +64,10 @@ public class SWDirectAction extends ERXDirectAction {
 		super( aRequest );
 	}
 
-	/**
-	 * @return The login page.
-	 */
 	public WOActionResults loginAction() {
 		return pageWithName( SWLogin.class );
 	}
 
-	/**
-	 * The default action is executed when the SoloWeb Application is entered.
-	 * Checks the request for what site was requested, and returns that page.
-	 */
 	@Override
 	public WOActionResults defaultAction() {
 		SWSite requestedSite = requestedSite();
@@ -89,7 +82,7 @@ public class SWDirectAction extends ERXDirectAction {
 			thePage = requestedSite.frontpage();
 		}
 
-		return displayPageWithTemplate( thePage, SWStandardTemplate.class.getSimpleName() );
+		return displayPageWithTemplate( thePage, SWStandardTemplate.class );
 	}
 
 	/**
@@ -151,35 +144,32 @@ public class SWDirectAction extends ERXDirectAction {
 		String branchIDString;
 		String newsFolderIDsString;
 		String newsDisplayPageSymbol = "";
-		HashMap<String, Object> searchItemSettingsMap = null;
-		SWPage thePage = null;
-
-		searchItemSettingsMap = new HashMap<>();
+		HashMap<String, Object> searchItemSettingsMap = new HashMap<>();
 		searchItemSettingsMap.put( "searchString", searchString );
+
+		SWPage thePage = null;
 
 		if( StringUtilities.hasValue( cidString ) ) {
 			SWComponent comp = (SWComponent)USEOUtilities.objectWithPK( session().defaultEditingContext(), SWComponent.ENTITY_NAME, Integer.valueOf( cidString ) );
 			thePage = SWPageUtilities.pageWithID( session().defaultEditingContext(), Integer.valueOf( pidString ) );
 			branchIDString = comp.customInfo().stringValueForKey( "searchBranchID" );
 			newsFolderIDsString = comp.customInfo().stringValueForKey( "searchNewsFolderIDs" );
-
 			newsDisplayPageSymbol = comp.customInfo().stringValueForKey( "searchNewsDisplayPageSymbol" );
 			searchItemSettingsMap.put( "newsDisplayPageSymbol", newsDisplayPageSymbol );
 		}
 		else {
-			// Support this way of getting search settings because of links in
-			// search engines (as of Aug/Sep 2012)
 			branchIDString = request().stringFormValueForKey( "branchID" );
 			newsFolderIDsString = request().stringFormValueForKey( "newsFolderIDs" );
 			thePage = SWPageUtilities.pageFromRequest( session().defaultEditingContext(), request() );
 		}
 
 		Integer branchID = null;
+
 		if( branchIDString != null ) {
 			branchID = new Integer( branchIDString );
 		}
 
-		SWSearchResults nextPage = (SWSearchResults)displayPageWithTemplate( thePage, SWSearchResults.class.getSimpleName() );
+		SWSearchResults nextPage = displayPageWithTemplate( thePage, SWSearchResults.class );
 		nextPage.language = langString;
 
 		if( StringUtilities.hasValue( indexLocationOndisk ) ) {
@@ -211,7 +201,7 @@ public class SWDirectAction extends ERXDirectAction {
 
 		if( errorPageLinkingName != null ) {
 			SWPage thePage = SWPageUtilities.pageWithName( session().defaultEditingContext(), errorPageLinkingName );
-			errorResponse = displayPageWithTemplate( thePage, "SWStandardTemplate" ).generateResponse();
+			errorResponse = displayPageWithTemplate( thePage, SWStandardTemplate.class ).generateResponse();
 		}
 		else {
 			String errorComponentName = SWNoPageFoundErrorComponent.class.getSimpleName();
@@ -234,7 +224,7 @@ public class SWDirectAction extends ERXDirectAction {
 	 */
 	public WOActionResults printAction() {
 		SWPage thePage = SWPageUtilities.pageFromRequest( session().defaultEditingContext(), request() );
-		return displayPageWithTemplate( thePage, SWPrinterTemplate.class.getSimpleName() );
+		return displayPageWithTemplate( thePage, SWPrinterTemplate.class );
 	}
 
 	/**
@@ -356,7 +346,7 @@ public class SWDirectAction extends ERXDirectAction {
 
 		// Get the result page
 		resultPage = SWPageUtilities.pageWithName( session().defaultEditingContext(), pg );
-		theResult = displayPageWithTemplate( resultPage, "SWStandardTemplate" );
+		theResult = displayPageWithTemplate( resultPage, SWStandardTemplate.class );
 
 		return theResult;
 	}
@@ -382,7 +372,11 @@ public class SWDirectAction extends ERXDirectAction {
 	 */
 	public WOActionResults dpAction() {
 		SWPage page = SWPageUtilities.pageFromRequest( session().defaultEditingContext(), request() );
-		return displayPageWithTemplate( page, SWStandardTemplate.class.getSimpleName() );
+		return displayPageWithTemplate( page, SWStandardTemplate.class );
+	}
+
+	public <E extends WOActionResults> E displayPageWithTemplate( SWPage page, Class<E> templateClass ) {
+		return (E)displayPageWithTemplate( page, templateClass.getSimpleName() );
 	}
 
 	/**
