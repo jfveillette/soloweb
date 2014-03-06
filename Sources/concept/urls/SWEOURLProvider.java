@@ -171,7 +171,7 @@ public class SWEOURLProvider extends SWURLProvider {
 			values = new NSArray<>( identifierString );
 		}
 		else {
-			String decoded = PKSerialization.decode( identifierString );
+			String decoded = SWPKSerialization.decode( identifierString );
 			values = NSPropertyListSerialization.arrayForString( decoded );
 		}
 

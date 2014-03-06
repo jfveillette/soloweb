@@ -4,7 +4,7 @@ import org.apache.commons.lang.StringUtils;
 
 import com.webobjects.eocontrol.EOKeyGlobalID;
 
-public class PKSerialization {
+public class SWPKSerialization {
 
 	public static String decode( String keyString ) {
 		String s = keyString.toString();
