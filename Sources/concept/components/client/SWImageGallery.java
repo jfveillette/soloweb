@@ -18,9 +18,9 @@ import com.webobjects.foundation.NSNumberFormatter;
 
 import concept.SWDirectAction;
 import concept.SWGenericComponent;
-import concept.SWSession;
 import concept.data.SWAssetFolder;
 import concept.data.SWPicture;
+import er.extensions.appserver.ERXSession;
 import er.extensions.foundation.ERXStringUtilities;
 
 public class SWImageGallery extends SWGenericComponent {
@@ -387,7 +387,7 @@ public class SWImageGallery extends SWGenericComponent {
 	}
 
 	public String ecardResult() {
-		return (String)((SWSession)session()).objectStore().valueForKey( "ecard" );
+		return (String)((ERXSession)session()).objectStore().valueForKey( "ecard" );
 	}
 
 	/**

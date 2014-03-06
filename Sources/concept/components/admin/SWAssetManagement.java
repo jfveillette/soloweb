@@ -34,7 +34,7 @@ import com.webobjects.foundation.NSMutableDictionary;
 
 import concept.SWAdminComponent;
 import concept.SWDocumentRequestHandler;
-import concept.SWSession;
+import concept.SWSessionHelper;
 import concept.data.SWDocument;
 import concept.data.SWNewsCategory;
 import concept.data.SWNewsItem;
@@ -382,7 +382,7 @@ public class SWAssetManagement extends SWAdminComponent {
 
 		while( e.hasMoreElements() ) {
 			SWFolderInterface nextFolder = (SWFolderInterface)e.nextElement();
-			((SWSession)session()).addObjectToArrayWithKey( nextFolder, folderEntityName() );
+			SWSessionHelper.addObjectToArrayWithKey( session(), nextFolder, folderEntityName() );
 		}
 	}
 

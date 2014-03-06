@@ -15,7 +15,7 @@ import com.webobjects.foundation.NSMutableSet;
 
 import concept.SWAdminComponent;
 import concept.SWApplication;
-import concept.SWSession;
+import concept.SWSessionHelper;
 import concept.data.SWPage;
 import concept.data.SWSite;
 import er.extensions.appserver.ERXSession;
@@ -271,21 +271,21 @@ public class SWSiteListing extends SWAdminComponent {
 	 * Determines if the current branch should be expanded (if subpages should be displayed)
 	 */
 	public boolean isExpanded( SWPage aPage ) {
-		return ((SWSession)session()).arrayWithKeyContainsObject( "SWPage", aPage );
+		return SWSessionHelper.arrayWithKeyContainsObject( session(), "SWPage", aPage );
 	}
 
 	/**
 	 * Expands the current branch.
 	 */
 	public void expandBranch( SWPage aPage ) {
-		((SWSession)session()).addObjectToArrayWithKey( aPage, "SWPage" );
+		SWSessionHelper.addObjectToArrayWithKey( session(), aPage, "SWPage" );
 	}
 
 	/**
 	 * Collapses the current branch.
 	 */
 	public void collapseBranch( SWPage aPage ) {
-		((SWSession)session()).removeObjectFromArrayWithKey( aPage, "SWPage" );
+		SWSessionHelper.removeObjectFromArrayWithKey( session(), aPage, "SWPage" );
 	}
 
 	public boolean showSitePopUp() {

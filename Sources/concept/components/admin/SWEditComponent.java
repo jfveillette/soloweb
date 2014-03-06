@@ -10,7 +10,7 @@ import com.webobjects.foundation.NSMutableDictionary;
 
 import concept.Concept;
 import concept.SWAdminComponent;
-import concept.SWSession;
+import concept.SWSessionHelper;
 import concept.components.client.ButurTemplate001;
 import concept.components.client.ButurTemplate002;
 import concept.components.client.ButurTemplate003;
@@ -30,6 +30,7 @@ import concept.components.client.SWYouTubePlayer;
 import concept.components.client.SoloNewsNewsList;
 import concept.data.SWComponent;
 import concept.util.CPLoc;
+import er.extensions.appserver.ERXSession;
 
 /**
  * SWEditComponent is displayed when editing components, and contains among other things
@@ -126,7 +127,7 @@ public class SWEditComponent extends SWAdminComponent {
 	 * Checks if the current component should be displayed in editing mode
 	 */
 	public boolean editingMode() {
-		return ((SWSession)session()).arrayWithKeyContainsObject( COMPONENT_ARRAY_KEY, currentComponent );
+		return SWSessionHelper.arrayWithKeyContainsObject( session(), COMPONENT_ARRAY_KEY, currentComponent );
 	}
 
 	/**
@@ -142,12 +143,12 @@ public class SWEditComponent extends SWAdminComponent {
 	 */
 	public WOComponent toggleMode() {
 
-		if( ((SWSession)session()).arrayWithKeyContainsObject( COMPONENT_ARRAY_KEY, currentComponent ) ) {
-			((SWSession)session()).removeObjectFromArrayWithKey( currentComponent, COMPONENT_ARRAY_KEY );
+		if( SWSessionHelper.arrayWithKeyContainsObject( session(), COMPONENT_ARRAY_KEY, currentComponent ) ) {
+			SWSessionHelper.removeObjectFromArrayWithKey( session(), currentComponent, COMPONENT_ARRAY_KEY );
 		}
 		else {
 			selectTabForTemplateName( currentComponent.templateName() );
-			((SWSession)session()).takeValueForKey( new NSMutableArray<>( currentComponent ), COMPONENT_ARRAY_KEY );
+			((ERXSession)session()).objectStore().takeValueForKey( new NSMutableArray<>( currentComponent ), COMPONENT_ARRAY_KEY );
 		}
 
 		session().defaultEditingContext().saveChanges();

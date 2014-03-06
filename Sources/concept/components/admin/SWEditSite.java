@@ -10,7 +10,7 @@ import com.webobjects.foundation.NSMutableDictionary;
 
 import concept.Concept;
 import concept.SWAdminComponent;
-import concept.SWSession;
+import concept.SWSessionHelper;
 import concept.data.SWSite;
 import concept.util.CPLoc;
 import er.extensions.appserver.ERXSession;
@@ -36,8 +36,8 @@ public class SWEditSite extends SWAdminComponent {
 			activeSiteEditingComponents.setObjectForKey( "SWEditSitePrivileges", CPLoc.string( "eSiteTabAccessPrivileges", session() ) );
 		}
 
-		Integer intAdmin = ((SWSession)session()).activeUser().administrator();
-		boolean isAdmin = (intAdmin != null && intAdmin.intValue() == 1 ? true : false);
+		boolean isAdmin = SWSessionHelper.userInSession( session() ).isAdministrator();
+
 		if( isAdmin /* && "SWDefaultLook6".equals(selectedSite().look()) */) {
 			activeSiteEditingComponents.setObjectForKey( SWDefaultLook6Admin.class.getSimpleName(), "SWDefaultLook6" );
 		}

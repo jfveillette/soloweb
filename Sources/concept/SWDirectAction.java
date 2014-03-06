@@ -19,6 +19,7 @@ import com.webobjects.appserver.WOCookie;
 import com.webobjects.appserver.WORedirect;
 import com.webobjects.appserver.WORequest;
 import com.webobjects.appserver.WOResponse;
+import com.webobjects.appserver.WOSession;
 import com.webobjects.eoaccess.EOUtilities;
 import com.webobjects.eocontrol.EOFetchSpecification;
 import com.webobjects.eocontrol.EOKeyValueQualifier;
@@ -50,6 +51,7 @@ import concept.deprecated.SWMailSender;
 import concept.deprecated.SWUtilities;
 import concept.search.SWLuceneSearch;
 import er.extensions.appserver.ERXDirectAction;
+import er.extensions.appserver.ERXSession;
 
 public class SWDirectAction extends ERXDirectAction {
 
@@ -442,8 +444,8 @@ public class SWDirectAction extends ERXDirectAction {
 	 * Indicates if the given user is logged in to SoloWeb.
 	 */
 	private boolean isLoggedIn() {
-		SWSession s = (SWSession)existingSession();
-		return (s != null) && s.isLoggedIn();
+		WOSession s = existingSession();
+		return SWSessionHelper.isLoggedIn( s );
 	}
 
 	/**
@@ -1140,7 +1142,7 @@ public class SWDirectAction extends ERXDirectAction {
 		else {
 			result = "error";
 		}
-		((SWSession)session()).objectStore().takeValueForKey( result, "ecard" );
+		((ERXSession)session()).objectStore().takeValueForKey( result, "ecard" );
 		return dpAction();
 	}
 

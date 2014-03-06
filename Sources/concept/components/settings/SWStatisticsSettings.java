@@ -1,16 +1,15 @@
 package concept.components.settings;
 
-
 import com.webobjects.appserver.WOApplication;
 import com.webobjects.appserver.WOContext;
 import com.webobjects.foundation.NSNumberFormatter;
 import com.webobjects.foundation.NSTimestamp;
 
-import concept.SWSession;
+import er.extensions.appserver.ERXSession;
 
 public class SWStatisticsSettings extends SWManageSettings {
 
-	public SWSession currentSession;
+	public ERXSession currentSession;
 
 	public SWStatisticsSettings( WOContext context ) {
 		super( context );

@@ -28,6 +28,7 @@ import concept.search.SWLuceneUtilities;
 import concept.search.SWNewsItemLuceneUtilities;
 import concept.search.SWPageLuceneUtilities;
 import er.extensions.appserver.ERXApplication;
+import er.extensions.appserver.ERXSession;
 import er.extensions.eof.ERXConstant;
 
 /**
@@ -40,7 +41,7 @@ public class Concept {
 
 	private static Concept _sw;
 
-	private NSMutableArray<SWSession> _activeUserSessions = new NSMutableArray<>();
+	private NSMutableArray<ERXSession> _activeUserSessions = new NSMutableArray<>();
 	private NSMutableDictionary<String, String> _activeSettingsTabs;
 	private NSMutableDictionary<String, String> _activePageEditingComponents;
 	private NSMutableDictionary<String, String> _activeSiteEditingComponents;
@@ -168,7 +169,7 @@ public class Concept {
 		return productName() + " " + productVersion();
 	}
 
-	public NSMutableArray<SWSession> activeUserSessions() {
+	public NSMutableArray<ERXSession> activeUserSessions() {
 		return _activeUserSessions;
 	}
 

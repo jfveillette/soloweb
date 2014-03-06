@@ -12,7 +12,7 @@ import com.webobjects.foundation.NSMutableDictionary;
 
 import concept.Concept;
 import concept.SWAdminComponent;
-import concept.SWSession;
+import concept.SWSessionHelper;
 import concept.data.SWPage;
 import concept.data.SWSite;
 import concept.search.SWLuceneUtilities;
@@ -126,8 +126,8 @@ public class SWEditPage extends SWAdminComponent {
 	public WOComponent createSubPage() {
 		String newPageName = CPLoc.string( "newPageName", session() );
 
-		if( !((SWSession)session()).arrayWithKeyContainsObject( "SWPage", selectedPage ) ) {
-			((SWSession)session()).addObjectToArrayWithKey( selectedPage, "SWPage" );
+		if( !SWSessionHelper.arrayWithKeyContainsObject( session(), "SWPage", selectedPage ) ) {
+			SWSessionHelper.addObjectToArrayWithKey( session(), selectedPage, "SWPage" );
 		}
 
 		SWPage newPage = new SWPage();

@@ -17,7 +17,7 @@ import com.webobjects.foundation.NSArray;
 import concept.SWAccessPrivilegeUtilities;
 import concept.SWAdminComponent;
 import concept.SWApplication;
-import concept.SWSession;
+import concept.SWSessionHelper;
 
 public class SWFolderList extends SWAdminComponent {
 
@@ -120,21 +120,21 @@ public class SWFolderList extends SWAdminComponent {
 	    * Determines if the current branch should be expanded (if subpages should be displayed)
 	    */
 	public boolean isExpanded( SWFolderInterface anObject ) {
-		return ((SWSession)session()).arrayWithKeyContainsObject( entityName(), anObject );
+		return SWSessionHelper.arrayWithKeyContainsObject( session(), entityName(), anObject );
 	}
 
 	/**
 	    * Expands the current branch.
 	    */
 	public void expandBranch( SWFolderInterface anObject ) {
-		((SWSession)session()).addObjectToArrayWithKey( anObject, entityName() );
+		SWSessionHelper.addObjectToArrayWithKey( session(), anObject, entityName() );
 	}
 
 	/**
 	    * Collapses the current branch.
 	    */
 	public void collapseBranch( SWFolderInterface anObject ) {
-		((SWSession)session()).removeObjectFromArrayWithKey( anObject, entityName() );
+		SWSessionHelper.removeObjectFromArrayWithKey( session(), anObject, entityName() );
 	}
 
 	/**

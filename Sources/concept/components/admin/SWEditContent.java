@@ -2,17 +2,16 @@ package concept.components.admin;
 
 import java.util.Enumeration;
 
-
 import com.webobjects.appserver.WOComponent;
 import com.webobjects.appserver.WOContext;
 import com.webobjects.eocontrol.EOEditingContext;
 import com.webobjects.foundation.NSMutableArray;
 
 import concept.SWAdminComponent;
-import concept.SWSession;
 import concept.data.SWComponent;
 import concept.data.SWPage;
 import concept.data.SWPictureLink;
+import er.extensions.appserver.ERXSession;
 
 public class SWEditContent extends SWAdminComponent {
 
@@ -78,7 +77,7 @@ public class SWEditContent extends SWAdminComponent {
 		selectedPage.insertComponentAtIndex( c, anInt );
 		session().defaultEditingContext().saveChanges();
 
-		((SWSession)session()).takeValueForKey( new NSMutableArray( c ), "SWComponent" );
+		((ERXSession)session()).objectStore().takeValueForKey( new NSMutableArray( c ), "SWComponent" );
 
 		return null;
 	}
