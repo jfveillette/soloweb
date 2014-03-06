@@ -1,7 +1,6 @@
 package concept.urls;
 
 import is.rebbi.wo.util.SWSettings;
-import is.rebbi.wo.util.USEOUtilities;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -13,7 +12,6 @@ import com.webobjects.eocontrol.EOGlobalID;
 
 import concept.definitions.EntityViewDefinition;
 import er.extensions.eof.ERXGenericRecord;
-import er.extensions.foundation.ERXStringUtilities;
 
 public class SWEOURLProvider extends SWURLProvider {
 
@@ -129,14 +127,18 @@ public class SWEOURLProvider extends SWURLProvider {
 		if( objectIdentiferIsGeneric( objectIdentifier ) ) {
 			String identifier = objectIdentifier.substring( PK_IDENTIFIER_PREFIX.length(), objectIdentifier.length() );
 
+			EOGlobalID gid = SWPKSerialization.deSerialize( entityName, identifier );
+			object = (ERXGenericRecord)ec.faultForGlobalID( gid, ec );
+
+			/*
 			if( ERXStringUtilities.isDigitsOnly( identifier ) ) {
 				object = USEOUtilities.objectWithPK( ec, entityName, new Integer( identifier ) );
 			}
 			else {
-//				object = (ERXGenericRecord)ERXEOControlUtilities.objectWithQualifier( ec, entityName, primaryKeyQualifier( entityName, identifier ) );
 				EOGlobalID gid = SWPKSerialization.deSerialize( entityName, identifier );
 				object = (ERXGenericRecord)ec.faultForGlobalID( gid, ec );
 			}
+			*/
 		}
 		else {
 			throw new RuntimeException( "Unsupported URL format" );
