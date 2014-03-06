@@ -21,7 +21,7 @@ import concept.data.SWComment;
 import concept.data.SWDocument;
 import concept.data.SWNewsItem;
 import concept.urls.SWURLProvider;
-import concept.util.CPLoc;
+import concept.util.SWLoc;
 import concept.util.Documents;
 import er.ajax.AjaxHighlight;
 
@@ -42,7 +42,7 @@ public class CPNewsDetail extends ViewPage<SWNewsItem> {
 	public Integer userNotifyOnNewComments;
 	public String text;
 	public String hatesSpamString;
-	public String expectedSpamAnswer = CPLoc.string( "commentsExpectedSpamAnswer", context() );
+	public String expectedSpamAnswer = SWLoc.string( "commentsExpectedSpamAnswer", context() );
 	public String errorMessage;
 
 	/**
@@ -126,7 +126,7 @@ public class CPNewsDetail extends ViewPage<SWNewsItem> {
 	 * This action is invoked if an error occurs during the publishing process.
 	 */
 	public WOActionResults error( String errorKey, Object... vars ) {
-		errorMessage = StringUtilities.stringWithFormat( CPLoc.string( errorKey, context() ), vars );
+		errorMessage = StringUtilities.stringWithFormat( SWLoc.string( errorKey, context() ), vars );
 		return null;
 	}
 

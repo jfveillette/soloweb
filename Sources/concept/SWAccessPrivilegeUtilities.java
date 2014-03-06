@@ -26,7 +26,7 @@ import concept.data.SWFolder;
 import concept.data.SWPage;
 import concept.data.SWSite;
 import concept.data.SWUser;
-import concept.util.CPLoc;
+import concept.util.SWLoc;
 
 /**
  * A utility class for working with access privileges
@@ -168,23 +168,23 @@ public class SWAccessPrivilegeUtilities extends Object {
 	public static NSMutableDictionary<String, String> privilegePairsForObject( Object object, WOContext context ) {
 		if( object instanceof SWFolder ) {
 			NSMutableDictionary<String, String> d = new NSMutableDictionary<>();
-			d.setObjectForKey( PRIVILEGE_ALLOW_TO_SEE, CPLoc.string( "docpSeeFolders", context ) );
-			d.setObjectForKey( PRIVILEGE_CAN_MANAGE_USERS, CPLoc.string( "docpManagePrivileges", context ) );
+			d.setObjectForKey( PRIVILEGE_ALLOW_TO_SEE, SWLoc.string( "docpSeeFolders", context ) );
+			d.setObjectForKey( PRIVILEGE_CAN_MANAGE_USERS, SWLoc.string( "docpManagePrivileges", context ) );
 			return d;
 		}
 
 		if( object instanceof SWPage ) {
 			NSMutableDictionary<String, String> d = new NSMutableDictionary<>();
-			d.setObjectForKey( PRIVILEGE_CAN_DELETE_PAGE, CPLoc.string( "ppDeletePages", context ) );
-			d.setObjectForKey( PRIVILEGE_CAN_MANAGE_PAGE, CPLoc.string( "ppModifyPage", context ) );
-			d.setObjectForKey( PRIVILEGE_CAN_MANAGE_CONTENT, CPLoc.string( "ppModifyContent", context ) );
-			d.setObjectForKey( PRIVILEGE_CAN_MANAGE_USERS, CPLoc.string( "ppControlPrivileges", context ) );
+			d.setObjectForKey( PRIVILEGE_CAN_DELETE_PAGE, SWLoc.string( "ppDeletePages", context ) );
+			d.setObjectForKey( PRIVILEGE_CAN_MANAGE_PAGE, SWLoc.string( "ppModifyPage", context ) );
+			d.setObjectForKey( PRIVILEGE_CAN_MANAGE_CONTENT, SWLoc.string( "ppModifyContent", context ) );
+			d.setObjectForKey( PRIVILEGE_CAN_MANAGE_USERS, SWLoc.string( "ppControlPrivileges", context ) );
 			return d;
 		}
 
 		if( object instanceof SWSite ) {
 			NSMutableDictionary<String, String> d = new NSMutableDictionary<>();
-			d.setObjectForKey( PRIVILEGE_ALLOW_TO_SEE, CPLoc.string( "spHasAccess", context ) );
+			d.setObjectForKey( PRIVILEGE_ALLOW_TO_SEE, SWLoc.string( "spHasAccess", context ) );
 			return d;
 		}
 

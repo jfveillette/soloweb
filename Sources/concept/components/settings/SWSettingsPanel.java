@@ -10,7 +10,7 @@ import com.webobjects.foundation.NSMutableDictionary;
 
 import concept.CPAdminComponent;
 import concept.components.admin.SWApplicationInfo;
-import concept.util.CPLoc;
+import concept.util.SWLoc;
 
 /**
  * The settings management component.
@@ -26,7 +26,7 @@ public class SWSettingsPanel extends CPAdminComponent {
 	/**
 	 * The currently selected tab.
 	 */
-	public String selectedTab = CPLoc.string( "settingsTabGeneral", context() );
+	public String selectedTab = SWLoc.string( "settingsTabGeneral", context() );
 
 	public SWSettingsPanel( WOContext context ) {
 		super( context );
@@ -37,11 +37,11 @@ public class SWSettingsPanel extends CPAdminComponent {
 	 */
 	public NSDictionary<String, String> tabs() {
 		NSMutableDictionary<String, String> d = new NSMutableDictionary<>();
-		d.setObjectForKey( SWSettingsGeneral.class.getSimpleName(), CPLoc.string( "settingsTabGeneral", context() ) );
-		d.setObjectForKey( SWSettingsDatabase.class.getSimpleName(), CPLoc.string( "settingsTabDatabase", context() ) );
-		d.setObjectForKey( SWSettingsAction.class.getSimpleName(), CPLoc.string( "settingsTabAdministration", context() ) );
-		d.setObjectForKey( SWSettingsAccessControl.class.getSimpleName(), CPLoc.string( "settingsTabAccessControls", context() ) );
-		d.setObjectForKey( SWSettingsStatistics.class.getSimpleName(), CPLoc.string( "settingsTabStatistics", context() ) );
+		d.setObjectForKey( SWSettingsGeneral.class.getSimpleName(), SWLoc.string( "settingsTabGeneral", context() ) );
+		d.setObjectForKey( SWSettingsDatabase.class.getSimpleName(), SWLoc.string( "settingsTabDatabase", context() ) );
+		d.setObjectForKey( SWSettingsAction.class.getSimpleName(), SWLoc.string( "settingsTabAdministration", context() ) );
+		d.setObjectForKey( SWSettingsAccessControl.class.getSimpleName(), SWLoc.string( "settingsTabAccessControls", context() ) );
+		d.setObjectForKey( SWSettingsStatistics.class.getSimpleName(), SWLoc.string( "settingsTabStatistics", context() ) );
 		d.setObjectForKey( SWApplicationInfo.class.getSimpleName(), "Upplýsingar" );
 		d.setObjectForKey( SWSettingsSites.class.getSimpleName(), "Vefir" );
 		return d;

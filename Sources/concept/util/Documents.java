@@ -80,7 +80,7 @@ public class Documents {
 		}
 
 		if( results.count() > 1 ) {
-			throw new IllegalStateException( "Expected to find exactly one related document but found " + results.count() + ". Record: " + record.entityName() + ":" + record.primaryKey()  );
+			throw new IllegalStateException( "Expected to find exactly one related document but found " + results.count() + ". Record: " + record.entityName() + ":" + record.primaryKey() );
 		}
 
 		return results.lastObject();

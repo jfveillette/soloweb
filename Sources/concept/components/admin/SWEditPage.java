@@ -16,7 +16,7 @@ import concept.SWSessionHelper;
 import concept.data.SWPage;
 import concept.data.SWSite;
 import concept.search.SWLuceneUtilities;
-import concept.util.CPLoc;
+import concept.util.SWLoc;
 import er.extensions.appserver.ERXSession;
 
 /**
@@ -39,17 +39,17 @@ public class SWEditPage extends SWAdminComponent {
 		NSMutableDictionary apec = new NSMutableDictionary( Concept.sw().activePageEditingComponents() );
 
 		if( user().hasPrivilegeFor( selectedPage, "canManagePage" ) ) {
-			apec.setObjectForKey( "SWEditPageGeneralInfo", CPLoc.string( "eptGeneral", session() ) );
+			apec.setObjectForKey( "SWEditPageGeneralInfo", SWLoc.string( "eptGeneral", session() ) );
 
 			if( "SWDefaultLook6".equals( selectedPage.siteForThisPage().look() ) ) {
 				apec.setObjectForKey( "SWDefaultLook6Admin", "SWDefaultLook6" );
 			}
 		}
 
-		apec.setObjectForKey( "SWEditContent", CPLoc.string( "eptContent", session() ) );
+		apec.setObjectForKey( "SWEditContent", SWLoc.string( "eptContent", session() ) );
 
 		if( SWSettings.booleanForKey( "enablePrivileges" ) && user().hasPrivilegeFor( selectedPage, "canManageUsers" ) ) {
-			apec.setObjectForKey( "SWEditPagePrivileges", CPLoc.string( "eptAccessPrivileges", session() ) );
+			apec.setObjectForKey( "SWEditPagePrivileges", SWLoc.string( "eptAccessPrivileges", session() ) );
 		}
 
 		return apec;
@@ -66,7 +66,7 @@ public class SWEditPage extends SWAdminComponent {
 		String selected = (String)((ERXSession)session()).objectStore().valueForKey( "solowebSelectedPageTab" );
 
 		if( selected == null ) {
-			selected = CPLoc.string( "eptContent", session() );
+			selected = SWLoc.string( "eptContent", session() );
 		}
 
 		return selected;
@@ -124,7 +124,7 @@ public class SWEditPage extends SWAdminComponent {
 	 * page.
 	 */
 	public WOComponent createSubPage() {
-		String newPageName = CPLoc.string( "newPageName", session() );
+		String newPageName = SWLoc.string( "newPageName", session() );
 
 		if( !SWSessionHelper.arrayWithKeyContainsObject( session(), "SWPage", selectedPage ) ) {
 			SWSessionHelper.addObjectToArrayWithKey( session(), selectedPage, "SWPage" );
@@ -143,7 +143,7 @@ public class SWEditPage extends SWAdminComponent {
 		session().defaultEditingContext().saveChanges();
 
 		setSelectedPage( newPage );
-		setSelectedTab( CPLoc.string( "eptGeneral", session() ) );
+		setSelectedTab( SWLoc.string( "eptGeneral", session() ) );
 
 		return null;
 	}

@@ -12,12 +12,12 @@ import concept.Concept;
 import concept.SWAdminComponent;
 import concept.SWSessionHelper;
 import concept.data.SWSite;
-import concept.util.CPLoc;
+import concept.util.SWLoc;
 import er.extensions.appserver.ERXSession;
 
 public class SWEditSite extends SWAdminComponent {
 
-	public String selectedTab = CPLoc.string( "eSiteTabGeneral", session() );
+	public String selectedTab = SWLoc.string( "eSiteTabGeneral", session() );
 	public NSArray<String> tabs = tabDictionary().allKeys();
 
 	public SWEditSite( WOContext context ) {
@@ -26,10 +26,10 @@ public class SWEditSite extends SWAdminComponent {
 
 	public NSDictionary<String,String> tabDictionary() {
 		NSMutableDictionary<String,String> activeSiteEditingComponents = new NSMutableDictionary<>( Concept.sw().activeSiteEditingComponents() );
-		activeSiteEditingComponents.setObjectForKey( SWEditSiteGeneralInfo.class.getSimpleName(), CPLoc.string( "eSiteTabGeneral", session() ) );
+		activeSiteEditingComponents.setObjectForKey( SWEditSiteGeneralInfo.class.getSimpleName(), SWLoc.string( "eSiteTabGeneral", session() ) );
 
 		if( SWSettings.booleanForKey( "enablePrivileges" ) ) {
-			activeSiteEditingComponents.setObjectForKey( SWEditSitePrivileges.class.getSimpleName(), CPLoc.string( "eSiteTabAccessPrivileges", session() ) );
+			activeSiteEditingComponents.setObjectForKey( SWEditSitePrivileges.class.getSimpleName(), SWLoc.string( "eSiteTabAccessPrivileges", session() ) );
 		}
 
 		if( SWSessionHelper.userInSession( session() ).isAdministrator() ) {

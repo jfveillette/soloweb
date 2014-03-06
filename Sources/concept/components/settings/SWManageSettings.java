@@ -12,11 +12,11 @@ import com.webobjects.foundation.NSMutableDictionary;
 import concept.Concept;
 import concept.SWAdminComponent;
 import concept.components.admin.SWEditCustomInfo;
-import concept.util.CPLoc;
+import concept.util.SWLoc;
 
 public class SWManageSettings extends SWAdminComponent {
 
-	public String tabPanelSelection = CPLoc.string( "settingsTabGeneral", session() );
+	public String tabPanelSelection = SWLoc.string( "settingsTabGeneral", session() );
 
 	public NSArray<String> tabs = tabDictionary().allKeys();
 
@@ -26,13 +26,13 @@ public class SWManageSettings extends SWAdminComponent {
 
 	public NSDictionary<String,String> tabDictionary() {
 		NSMutableDictionary<String,String> activeSettingsTabs = new NSMutableDictionary<>( Concept.sw().activeSettingsTabs() );
-		activeSettingsTabs.setObjectForKey( SWGeneralSettings.class.getSimpleName(), CPLoc.string( "settingsTabGeneral", session() ) );
-		activeSettingsTabs.setObjectForKey( SWDatabaseSettings.class.getSimpleName(), CPLoc.string( "settingsTabDatabase", session() ) );
-		activeSettingsTabs.setObjectForKey( SWNewsSettings.class.getSimpleName(), CPLoc.string( "settingsTabNews", session() ) );
-		activeSettingsTabs.setObjectForKey( SWActionSettings.class.getSimpleName(), CPLoc.string( "settingsTabAdministration", session() ) );
-		activeSettingsTabs.setObjectForKey( SWAccessControlSettings.class.getSimpleName(), CPLoc.string( "settingsTabAccessControls", session() ) );
-		activeSettingsTabs.setObjectForKey( SWLocalizationSettings.class.getSimpleName(), CPLoc.string( "settingsTabLocalization", session() ) );
-		activeSettingsTabs.setObjectForKey( SWStatisticsSettings.class.getSimpleName(), CPLoc.string( "settingsTabStatistics", session() ) );
+		activeSettingsTabs.setObjectForKey( SWGeneralSettings.class.getSimpleName(), SWLoc.string( "settingsTabGeneral", session() ) );
+		activeSettingsTabs.setObjectForKey( SWDatabaseSettings.class.getSimpleName(), SWLoc.string( "settingsTabDatabase", session() ) );
+		activeSettingsTabs.setObjectForKey( SWNewsSettings.class.getSimpleName(), SWLoc.string( "settingsTabNews", session() ) );
+		activeSettingsTabs.setObjectForKey( SWActionSettings.class.getSimpleName(), SWLoc.string( "settingsTabAdministration", session() ) );
+		activeSettingsTabs.setObjectForKey( SWAccessControlSettings.class.getSimpleName(), SWLoc.string( "settingsTabAccessControls", session() ) );
+		activeSettingsTabs.setObjectForKey( SWLocalizationSettings.class.getSimpleName(), SWLoc.string( "settingsTabLocalization", session() ) );
+		activeSettingsTabs.setObjectForKey( SWStatisticsSettings.class.getSimpleName(), SWLoc.string( "settingsTabStatistics", session() ) );
 		activeSettingsTabs.setObjectForKey( SWEditCustomInfo.class.getSimpleName(), "Custom info ofl" );
 		return activeSettingsTabs;
 	}

@@ -12,7 +12,7 @@ import concept.components.SWStandardLook;
 import concept.data.SWPage;
 import concept.data.SWSite;
 import concept.data.SWUser;
-import concept.util.CPLoc;
+import concept.util.SWLoc;
 import concept.util.CPPageUtilities;
 import er.extensions.components.ERXComponent;
 import er.extensions.eof.ERXGenericRecord;
@@ -67,7 +67,7 @@ public abstract class CPBaseComponent extends ERXComponent {
 	 * @return The currently active Locale.
 	 */
 	public Locale locale() {
-		return CPLoc.localeInRequest( context().request() );
+		return SWLoc.localeInRequest( context().request() );
 	}
 
 	/**
@@ -76,12 +76,12 @@ public abstract class CPBaseComponent extends ERXComponent {
 	@Override
 	public Object valueForKeyPath( String keypath ) {
 
-		if( keypath.startsWith( CPLoc.LS_KEYPATH ) ) {
-			return CPLoc.string( keypath.substring( 4, keypath.length() ), context() );
+		if( keypath.startsWith( SWLoc.LS_KEYPATH ) ) {
+			return SWLoc.string( keypath.substring( 4, keypath.length() ), context() );
 		}
 
-		if( keypath.startsWith( CPLoc.CS_KEYPATH ) ) {
-			return CPLoc.confirmString( keypath.substring( 4, keypath.length() ), context() );
+		if( keypath.startsWith( SWLoc.CS_KEYPATH ) ) {
+			return SWLoc.confirmString( keypath.substring( 4, keypath.length() ), context() );
 		}
 
 		return super.valueForKeyPath( keypath );

@@ -4,7 +4,7 @@ import com.webobjects.foundation.NSArray;
 import com.webobjects.foundation.NSMutableArray;
 
 import concept.data.SWUser;
-import concept.util.CPLoc;
+import concept.util.SWLoc;
 import er.extensions.appserver.ERXSession;
 
 public class SWSession extends ERXSession {
@@ -84,7 +84,7 @@ public class SWSession extends ERXSession {
 	}
 
 	public String localizedStringForKey( String key ) {
-		return CPLoc.string( key, this );
+		return SWLoc.string( key, this );
 	}
 
 	public String confirmStringForKey( String key ) {

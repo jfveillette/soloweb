@@ -18,7 +18,7 @@ import concept.Concept;
  * A shorthand for simplifying localization of strings (see documentation for the "string"-method).
  */
 
-public class CPLoc {
+public class SWLoc {
 
 	private static final String LANGUAGE_ICELANDIC = "Icelandic";
 	private static final String LANGUAGE_ENGLISH = "English";
@@ -36,10 +36,11 @@ public class CPLoc {
 		_localizedStrings.setObjectForKey( new SWDictionary( englishString ), "English" );
 		_localizedStrings.setObjectForKey( new SWDictionary( icelandicString ), "Icelandic" );
 	}
+
 	/**
 	 * We don't want any instances of this class.
 	 */
-	private CPLoc() {}
+	private SWLoc() {}
 
 	/**
 	 * @return The named localized string. If the string exists in the application package, it will be fetched from there, otherwise it will be fetched from the framework.

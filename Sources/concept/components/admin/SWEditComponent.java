@@ -29,7 +29,7 @@ import concept.components.client.SWYouTubeList;
 import concept.components.client.SWYouTubePlayer;
 import concept.components.client.SoloNewsNewsList;
 import concept.data.SWComponent;
-import concept.util.CPLoc;
+import concept.util.SWLoc;
 import er.extensions.appserver.ERXSession;
 
 /**
@@ -39,7 +39,7 @@ import er.extensions.appserver.ERXSession;
 
 public class SWEditComponent extends SWAdminComponent {
 
-	public String DEFAULT_TAB_NAME = CPLoc.string( "cpteContent", session() );
+	public String DEFAULT_TAB_NAME = SWLoc.string( "cpteContent", session() );
 	public static final String COMPONENT_ARRAY_KEY = "SWComponent";
 
 	/**
@@ -75,9 +75,9 @@ public class SWEditComponent extends SWAdminComponent {
 	 */
 	public NSDictionary<String,String> projectTypes() {
 		NSMutableDictionary<String,String> activeComponents = new NSMutableDictionary<>( Concept.sw().activeComponents() );
-		activeComponents.setObjectForKey( SWEditStandardComponent.class.getSimpleName(), CPLoc.string( "cpteContent", session() ) );
-		activeComponents.setObjectForKey( SWNewsAdminComponent.class.getSimpleName(), CPLoc.string( "cpteNews", session() ) );
-		activeComponents.setObjectForKey( SWSFAdminComponent.class.getSimpleName(), CPLoc.string( "cpteDocuments", session() ) );
+		activeComponents.setObjectForKey( SWEditStandardComponent.class.getSimpleName(), SWLoc.string( "cpteContent", session() ) );
+		activeComponents.setObjectForKey( SWNewsAdminComponent.class.getSimpleName(), SWLoc.string( "cpteNews", session() ) );
+		activeComponents.setObjectForKey( SWSFAdminComponent.class.getSimpleName(), SWLoc.string( "cpteDocuments", session() ) );
 //		activeComponents.setObjectForKey( SWSAdminComponent.class.getSimpleName(), "SoloStaff" );
 		activeComponents.setObjectForKey( SWImageGalleryAdmin.class.getSimpleName(), "Myndir" );
 		activeComponents.setObjectForKey( SWSideBySideAdmin.class.getSimpleName(), "Multi" );
@@ -94,14 +94,14 @@ public class SWEditComponent extends SWAdminComponent {
 
 	public NSDictionary<String,String> activeSystemsAndComponents() {
 		NSMutableDictionary<String,String> activeSystemsAndComponents = new NSMutableDictionary<>( Concept.sw().activeSystemsAndComponents() );
-		activeSystemsAndComponents.setObjectForKey( CPLoc.string( "cpteContent", session() ), ButurTemplate001.class.getSimpleName() );
-		activeSystemsAndComponents.setObjectForKey( CPLoc.string( "cpteContent", session() ), ButurTemplate002.class.getSimpleName() );
-		activeSystemsAndComponents.setObjectForKey( CPLoc.string( "cpteContent", session() ), ButurTemplate003.class.getSimpleName() );
-		activeSystemsAndComponents.setObjectForKey( CPLoc.string( "cpteContent", session() ), ButurTemplate004.class.getSimpleName() );
-		activeSystemsAndComponents.setObjectForKey( CPLoc.string( "cpteNews", session() ), SoloNewsNewsList.class.getSimpleName() );
-		activeSystemsAndComponents.setObjectForKey( CPLoc.string( "cpteNews", session() ), SWNewsSubmit.class.getSimpleName() );
-		activeSystemsAndComponents.setObjectForKey( CPLoc.string( "cpteDocuments", session() ), SWSFComponent.class.getSimpleName() );
-		activeSystemsAndComponents.setObjectForKey( CPLoc.string( "cpteDocuments", session() ), SWSFFileList.class.getSimpleName() );
+		activeSystemsAndComponents.setObjectForKey( SWLoc.string( "cpteContent", session() ), ButurTemplate001.class.getSimpleName() );
+		activeSystemsAndComponents.setObjectForKey( SWLoc.string( "cpteContent", session() ), ButurTemplate002.class.getSimpleName() );
+		activeSystemsAndComponents.setObjectForKey( SWLoc.string( "cpteContent", session() ), ButurTemplate003.class.getSimpleName() );
+		activeSystemsAndComponents.setObjectForKey( SWLoc.string( "cpteContent", session() ), ButurTemplate004.class.getSimpleName() );
+		activeSystemsAndComponents.setObjectForKey( SWLoc.string( "cpteNews", session() ), SoloNewsNewsList.class.getSimpleName() );
+		activeSystemsAndComponents.setObjectForKey( SWLoc.string( "cpteNews", session() ), SWNewsSubmit.class.getSimpleName() );
+		activeSystemsAndComponents.setObjectForKey( SWLoc.string( "cpteDocuments", session() ), SWSFComponent.class.getSimpleName() );
+		activeSystemsAndComponents.setObjectForKey( SWLoc.string( "cpteDocuments", session() ), SWSFFileList.class.getSimpleName() );
 //		FIXME: Removed when combining Soloweb frmeworks & co activeSystemsAndComponents.setObjectForKey( "SoloStaff", SWSStaffListComponent.class.getSimpleName() );
 		activeSystemsAndComponents.setObjectForKey( "Myndir", SWImageGallery.class.getSimpleName() );
 		activeSystemsAndComponents.setObjectForKey( "Multi", SWSideBySide.class.getSimpleName() );

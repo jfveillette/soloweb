@@ -27,14 +27,14 @@ import concept.SWApplication;
 import concept.plugin.SWPlugin;
 import concept.plugin.SWPluginHandler;
 import concept.plugin.SWPluginItem;
-import concept.util.CPLoc;
+import concept.util.SWLoc;
 
 import er.extensions.eof.ERXEC;
 
 public class SWDatabaseSettings extends SWManageSettings {
 
-	public String connectionsTabName = CPLoc.string( "dbsTabConnections", session() );
-	public String switchTabName = CPLoc.string( "dbsTabSwitchAndConstruct", session() );
+	public String connectionsTabName = SWLoc.string( "dbsTabConnections", session() );
+	public String switchTabName = SWLoc.string( "dbsTabSwitchAndConstruct", session() );
 	public NSArray tabs = new NSArray( new Object[] {
 	connectionsTabName, switchTabName
 	} );

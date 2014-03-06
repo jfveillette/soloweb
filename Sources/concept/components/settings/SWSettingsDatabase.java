@@ -15,7 +15,7 @@ import com.webobjects.eoaccess.EOUtilities;
 import com.webobjects.eocontrol.EOEditingContext;
 import com.webobjects.foundation.NSArray;
 
-import concept.util.CPLoc;
+import concept.util.SWLoc;
 
 /**
  * Settings for the DB connection.
@@ -23,8 +23,8 @@ import concept.util.CPLoc;
 
 public class SWSettingsDatabase extends SWSettingsPanel {
 
-	public String connectionsTabName = CPLoc.string( "dbsTabConnections", context() );
-	public String switchTabName = CPLoc.string( "dbsTabSwitchAndConstruct", context() );
+	public String connectionsTabName = SWLoc.string( "dbsTabConnections", context() );
+	public String switchTabName = SWLoc.string( "dbsTabSwitchAndConstruct", context() );
 	public NSArray<String> dbTabs = new NSArray<String>( connectionsTabName, switchTabName );
 	public String dbSelectedTab = connectionsTabName;
 
