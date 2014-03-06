@@ -60,14 +60,6 @@ LookField: WOTextField {
 	value = selectedPage.look; 	
 }
 
-LookPopup: WOPopUpButton {
-	displayString = lookPopupItem;
-	item = lookPopupItem;
-	list = lookPopupItems;
-	noSelectionString = "Ekkert útlit valið";
-	selectedValue = selectedPage.look;
-}
-
 LanguageField: WOTextField {
 	size = 5;
 	value = selectedPage.language; 	

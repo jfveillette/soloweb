@@ -11,7 +11,6 @@ import com.webobjects.eocontrol.EOSortOrdering;
 import com.webobjects.foundation.NSArray;
 
 import concept.SWAdminComponent;
-import concept.SWApplication;
 import concept.data.SWGroup;
 import concept.data.SWPage;
 
@@ -23,8 +22,6 @@ public class SWEditPageGeneralInfo extends SWAdminComponent {
 	 * The current user or group being iterated over in the user/group pop-up-menu
 	 */
 	public EOEnterpriseObject currentObject;
-
-	public String lookPopupItem;
 
 	public SWEditPageGeneralInfo( WOContext context ) {
 		super( context );
@@ -86,9 +83,5 @@ public class SWEditPageGeneralInfo extends SWAdminComponent {
 		EOSortOrdering s = new EOSortOrdering( "name", EOSortOrdering.CompareAscending );
 		EOFetchSpecification fs = new EOFetchSpecification( "SWGroup", null, new NSArray( s ) );
 		return session().defaultEditingContext().objectsWithFetchSpecification( fs );
-	}
-
-	public NSArray lookPopupItems() {
-		return SWApplication.looks();
 	}
 }

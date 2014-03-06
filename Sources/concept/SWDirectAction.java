@@ -260,7 +260,7 @@ public class SWDirectAction extends ERXDirectAction {
 		String crm = request().stringFormValueForKey( "crm" );
 
 		// Look up username and password in users table
-		NSMutableDictionary<String,String> lookup = new NSMutableDictionary<>();
+		NSMutableDictionary<String, String> lookup = new NSMutableDictionary<>();
 		lookup.setObjectForKey( username, SWUser.USERNAME_KEY );
 		lookup.setObjectForKey( password, SWUser.PASSWORD_KEY );
 
@@ -687,62 +687,63 @@ public class SWDirectAction extends ERXDirectAction {
 		is.rebbi.wo.util.USMailSender.composeEmail( fromAddress, toAddresses, null, null, subject, emailContent, null );
 
 		// Check mailing lists
-//		this.checkMailingLists();
+		//		this.checkMailingLists();
 
 		// Redirect to thank you page
 		WORedirect redirect = new WORedirect( context() );
 		redirect.setUrl( thankYouPage );
 		return redirect;
 	}
-/*
-	private void checkMailingLists() {
-		String mailingListParams;
-		boolean mailingListSet;
-		StringTokenizer mailingListParamsSplitter;
-		String mailingListCheckboxName;
-		boolean mailingListChecked;
-		int mailinglistId;
-		String email;
-		SWMMailinglist mailinglist;
-		int count = 1;
 
-		do {
-			mailingListParams = this.request().stringFormValueForKey( "mailinglist" + count );
-			mailingListSet = (mailingListParams != null && mailingListParams.length() > 0);
+	/*
+		private void checkMailingLists() {
+			String mailingListParams;
+			boolean mailingListSet;
+			StringTokenizer mailingListParamsSplitter;
+			String mailingListCheckboxName;
+			boolean mailingListChecked;
+			int mailinglistId;
+			String email;
+			SWMMailinglist mailinglist;
+			int count = 1;
 
-			if( mailingListSet ) {
-				// Parse mailing list params
-				mailingListParamsSplitter = new StringTokenizer( mailingListParams, ";" );
+			do {
+				mailingListParams = this.request().stringFormValueForKey( "mailinglist" + count );
+				mailingListSet = (mailingListParams != null && mailingListParams.length() > 0);
 
-				if( mailingListParamsSplitter.hasMoreTokens() ) {
-					mailingListCheckboxName = mailingListParamsSplitter.nextToken();
+				if( mailingListSet ) {
+					// Parse mailing list params
+					mailingListParamsSplitter = new StringTokenizer( mailingListParams, ";" );
 
-					if( mailingListCheckboxName != null && mailingListCheckboxName.length() > 0 ) {
-						mailingListChecked = (this.request().formValueForKey( mailingListCheckboxName ) != null);
+					if( mailingListParamsSplitter.hasMoreTokens() ) {
+						mailingListCheckboxName = mailingListParamsSplitter.nextToken();
 
-						if( mailingListChecked ) {
-							// Mailing list checkbox checked; proceed
+						if( mailingListCheckboxName != null && mailingListCheckboxName.length() > 0 ) {
+							mailingListChecked = (this.request().formValueForKey( mailingListCheckboxName ) != null);
 
-							if( mailingListParamsSplitter.hasMoreTokens() ) {
-								mailinglistId = Integer.parseInt( mailingListParamsSplitter.nextToken() );
-								mailinglist = SWMMailinglist.listWithID( session().defaultEditingContext(), new Integer( mailinglistId ) );
+							if( mailingListChecked ) {
+								// Mailing list checkbox checked; proceed
 
-								if( mailinglist != null ) {
-									// Add registration with given email address
-									email = this.request().stringFormValueForKey( "email" );
-									SWMUtil.registerEmailToMailinglist( session().defaultEditingContext(), context(), mailinglistId, email );
+								if( mailingListParamsSplitter.hasMoreTokens() ) {
+									mailinglistId = Integer.parseInt( mailingListParamsSplitter.nextToken() );
+									mailinglist = SWMMailinglist.listWithID( session().defaultEditingContext(), new Integer( mailinglistId ) );
+
+									if( mailinglist != null ) {
+										// Add registration with given email address
+										email = this.request().stringFormValueForKey( "email" );
+										SWMUtil.registerEmailToMailinglist( session().defaultEditingContext(), context(), mailinglistId, email );
+									}
 								}
 							}
 						}
 					}
-				}
 
-				count++;
+					count++;
+				}
 			}
+			while( mailingListSet );
 		}
-		while( mailingListSet );
-	}
-*/
+	*/
 	/**
 	 * send email in more generic form than sendFormAction it is wise to include
 	 * fromName and toName to decrease the change of this message being sorted as
@@ -918,7 +919,7 @@ public class SWDirectAction extends ERXDirectAction {
 			NSArray<SWPage> thePages = topPage.everySubPage( true );
 
 			if( thePages != null ) {
-				String s ="Pages under and including page id " + topPageId + ": ";
+				String s = "Pages under and including page id " + topPageId + ": ";
 				s += thePages.count();
 				resp.setContent( s );
 			}
@@ -1069,7 +1070,7 @@ public class SWDirectAction extends ERXDirectAction {
 
 		SWNewsItem item = (SWNewsItem)USEOUtilities.objectWithPK( session().defaultEditingContext(), SWNewsItem.ENTITY_NAME, itemId );
 
-		NSMutableDictionary<String,Object> d = new NSMutableDictionary<>();
+		NSMutableDictionary<String, Object> d = new NSMutableDictionary<>();
 		d.setObjectForKey( pageId, "id" );
 		d.setObjectForKey( Integer.valueOf( item.primaryKey() ), "detail" );
 		String url = context().directActionURLForActionNamed( "dp", d );

@@ -2,6 +2,8 @@ package concept;
 
 import is.rebbi.core.util.StringUtilities;
 import is.rebbi.wo.util.SWSettings;
+import is.rebbi.wo.util.USArrayUtilities;
+import is.rebbi.wo.util.USHTTPUtilities;
 
 import java.util.Enumeration;
 
@@ -31,7 +33,7 @@ public class SWPageUtilities {
 
 	private static final Logger logger = LoggerFactory.getLogger( SWPageUtilities.class );
 
-	private static NSArray<String> PREFETCH_PATHS = new NSArray<>( new String[] { SWPage.SITE_KEY, SWPage.COMPONENTS_KEY } );
+	private static NSArray<String> PAGE_PREFETCH_PATHS = new NSArray<>( new String[] { SWPage.COMPONENTS_KEY, SWPage.SITE_KEY } );
 
 	/**
 	 * @return The specified page from the DB. If no page is found, null is returned.
@@ -72,7 +74,7 @@ public class SWPageUtilities {
 		try {
 			EOQualifier q = SWPage.SYMBOL.eq( name );
 			EOFetchSpecification fs = new EOFetchSpecification( SWPage.ENTITY_NAME, q, null );
-			fs.setPrefetchingRelationshipKeyPaths( PREFETCH_PATHS );
+			fs.setPrefetchingRelationshipKeyPaths( PAGE_PREFETCH_PATHS );
 			NSArray<SWPage> fetchedPages = ec.objectsWithFetchSpecification( fs );
 
 			// Account for multiple linking names in the DB by matching with the domain name.
@@ -115,7 +117,7 @@ public class SWPageUtilities {
 		try {
 			EOQualifier q = new EOKeyValueQualifier( key, EOQualifier.QualifierOperatorEqual, value );
 			EOFetchSpecification fs = new EOFetchSpecification( SWPage.ENTITY_NAME, q, null );
-			fs.setPrefetchingRelationshipKeyPaths( PREFETCH_PATHS );
+			fs.setPrefetchingRelationshipKeyPaths( PAGE_PREFETCH_PATHS );
 			thePage = (SWPage)ec.objectsWithFetchSpecification( fs ).lastObject();
 		}
 		catch( Exception e ) {
@@ -227,5 +229,47 @@ public class SWPageUtilities {
 		}
 
 		return url;
+	}
+
+	/**
+	 * Returns the site matching the host name specified.
+	 */
+	public static SWSite siteMatchingHostName( EOEditingContext ec, String hostName ) {
+		EOQualifier q = SWSite.QUAL.like( "*-" + hostName + "-*" );
+	
+		NSArray<SWSite> sites = SWSite.fetchSWSites( ec, q, null );
+	
+		if( !USArrayUtilities.hasObjects( sites ) ) {
+			return null;
+		}
+	
+		return sites.objectAtIndex( 0 );
+	}
+
+	/**
+	 * If no site is found matching the host name, this method is used.
+	 */
+	public static SWSite randomSite( EOEditingContext ec ) {
+		NSArray<SWSite> a = SWSite.fetchAllSWSites( ec );
+	
+		if( USArrayUtilities.hasObjects( a ) ) {
+			return a.objectAtIndex( 0 );
+		}
+	
+		return null;
+	}
+
+	public static SWSite siteFromRequest( EOEditingContext ec, WORequest request ) {
+		String hostName = request.stringFormValueForKey( "host" );
+	
+		if( hostName == null ) {
+			hostName = USHTTPUtilities.host( request );
+		}
+	
+		if( hostName != null ) {
+			return siteMatchingHostName( ec, hostName );
+		}
+	
+		return null;
 	}
 }

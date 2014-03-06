@@ -13,7 +13,6 @@ import concept.data.SWPage;
 import concept.data.SWSite;
 import concept.data.SWUser;
 import concept.util.SWLoc;
-import concept.util.CPPageUtilities;
 import er.extensions.components.ERXComponent;
 import er.extensions.eof.ERXGenericRecord;
 import er.extensions.foundation.ERXStringUtilities;
@@ -133,7 +132,7 @@ public abstract class CPBaseComponent extends ERXComponent {
 	 */
 	public SWSite site() {
 		if( _site == null ) {
-			_site = CPPageUtilities.siteFromRequest( ec(), context().request() );
+			_site = SWPageUtilities.siteFromRequest( ec(), context().request() );
 		}
 
 		return _site;
@@ -164,7 +163,7 @@ public abstract class CPBaseComponent extends ERXComponent {
 			}
 		}
 
-		SWSite s = CPPageUtilities.siteFromRequest( ec(), context().request() );
+		SWSite s = SWPageUtilities.siteFromRequest( ec(), context().request() );
 
 		if( s != null ) {
 			lookName = s.look();

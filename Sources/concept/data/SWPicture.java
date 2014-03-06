@@ -29,11 +29,9 @@ import com.webobjects.foundation.NSNotification;
 import com.webobjects.foundation.NSNotificationCenter;
 import com.webobjects.foundation.NSSelector;
 
-import concept.SWPictureRequestHandler;
 import concept.data.auto._SWPicture;
 import concept.util.SWPictureUtilities;
 import concept.util.SWStringUtilities;
-import er.extensions.appserver.ERXWOContext;
 
 public class SWPicture extends _SWPicture implements SWDataAsset<SWPicture, SWAssetFolder>, SWHasCustomInfo {
 
@@ -305,12 +303,7 @@ public class SWPicture extends _SWPicture implements SWDataAsset<SWPicture, SWAs
 			url = pictureURL();
 		}
 		else if( file( size ).exists() ) {
-			if( LOCATION_ON_SERVER != null ) {
-				url = LOCATION_ON_SERVER + id() + "/" + nameOnly( name() ) + "_" + size + extension( name(), true );
-			}
-			else {
-				url = ERXWOContext.currentContext().urlWithRequestHandlerKey( SWPictureRequestHandler.KEY, primaryKey() + "/" + "smu", null );
-			}
+			url = LOCATION_ON_SERVER + id() + "/" + nameOnly( name() ) + "_" + size + extension( name(), true );
 		}
 		else {
 			url = pictureURL();

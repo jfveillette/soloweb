@@ -19,7 +19,6 @@ import concept.data.SWSite;
 import concept.definitions.EntityViewDefinition;
 import concept.urls.SWEOURLProvider;
 import concept.urls.SWStaticURLs;
-import concept.util.CPPageUtilities;
 import er.extensions.appserver.ERXDirectAction;
 import er.extensions.eof.ERXGenericRecord;
 
@@ -45,7 +44,7 @@ public class InspectAction extends ERXDirectAction {
 	 */
 	@Override
 	public WOActionResults defaultAction() {
-		SWSite site = CPPageUtilities.siteFromRequest( ec(), request() );
+		SWSite site = SWPageUtilities.siteFromRequest( ec(), request() );
 
 		if( site == null ) {
 			String message = "No site was found matching the host: " + USHTTPUtilities.host( request() );

@@ -31,7 +31,7 @@ public class SWSearchAction extends ERXDirectAction {
 		boolean useInflection = true;
 
 		if( isQuoted( searchString ) ) {
-			searchString = QueryParserUtil.escape( searchString.substring( 1, searchString.length()-1 ) );
+			searchString = QueryParserUtil.escape( searchString.substring( 1, searchString.length() - 1 ) );
 			searchString = "\"" + searchString + "\"";
 		}
 		else {
@@ -51,7 +51,7 @@ public class SWSearchAction extends ERXDirectAction {
 	}
 
 	public boolean isQuoted( String s ) {
-		return s != null && s.length() > 1 && s.startsWith("\"" ) && s.endsWith( "\"" );
+		return s != null && s.length() > 1 && s.startsWith( "\"" ) && s.endsWith( "\"" );
 	}
 
 	public WOActionResults searchRedirectionAction() {
