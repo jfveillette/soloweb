@@ -35,12 +35,11 @@ public class CPMainMenu extends CPAdminComponent {
 	 */
 	public WOActionResults logout() {
 		session().terminate();
-//		return pageWithName( SWLoggedOut.class );
 		return USHTTPUtilities.responseWithDataAndMimeType( "Logged out.html", "Logged out", "text/html" );
 	}
 
 	public NSArray<String> categoryNames() throws ComparisonException {
-		NSMutableSet<String> results = new NSMutableSet<String>();
+		NSMutableSet<String> results = new NSMutableSet<>();
 
 		for( EntityViewDefinition d : allViewDefinitions() ) {
 			String categoryName = d.categoryName();
@@ -67,7 +66,7 @@ public class CPMainMenu extends CPAdminComponent {
 
 		NSArray<EntityViewDefinition> a = EOQualifier.filteredArrayWithQualifier( allViewDefinitions(), q );
 		EOSortOrdering s = new EOSortOrdering( "icelandicName", EOSortOrdering.CompareCaseInsensitiveAscending );
-		a = EOSortOrdering.sortedArrayUsingKeyOrderArray( a, new NSArray<EOSortOrdering>( s ) );
+		a = EOSortOrdering.sortedArrayUsingKeyOrderArray( a, new NSArray<>( s ) );
 		return a;
 	}
 

@@ -1,3 +1,14 @@
-<!-- SWMySettings -->
-<WEBOBJECT NAME=SWAdminComponentWrapper1><BR><BR><WEBOBJECT NAME=Form1><TABLE CELLSPACING=0 ALIGN=CENTER CELLPADDING=2 CLASS=genericTable BORDER=0><TR><TH COLSPAN=2><B><WEBOBJECT NAME=String1></WEBOBJECT></B></TH></TR><TR><TH ALIGN=RIGHT><WEBOBJECT NAME=String2></WEBOBJECT>:</TH><TD><WEBOBJECT NAME=PasswordField1></WEBOBJECT></TD></TR><TR><TH><WEBOBJECT NAME=String3></WEBOBJECT>:</TH><TD><WEBOBJECT NAME=PopUpButton1></WEBOBJECT></TD></TR><TR><TH ALIGN=RIGHT VALIGN=TOP><WEBOBJECT NAME=String4></WEBOBJECT>:</TH><TD><WEBOBJECT NAME=SWImageHyperlink1></WEBOBJECT></TD></TR><TR><TD>&nbsp;</TD><TD ALIGN=RIGHT><WEBOBJECT NAME=SubmitButton1></WEBOBJECT></TD></TR></TABLE></WEBOBJECT></WEBOBJECT>
-<!-- end SWMySettings -->
+<wo:SWAdminComponentWrapper>
+		<div style="width: 200px; margin: 0px auto">
+		<wo:if condition="$message.length"><div class="alert alert-danger"><wo:str value="$message" /></div></wo:if>
+		<wo:form>
+			<fieldset>
+				<legend><wo:str value="$@ls.mySettingsHeader" /></legend>
+			    <label>Nýtt aðgangsorð: </label><wo:password value="$password" /><br />
+			    <label>Nýtt aðgangsorð aftur: </label><wo:password value="$passwordAgain" /><br />
+		    	<label><wo:str value="$@ls.msDefaultSite" />: </label><wo:popUpButton list="$sites" item="$currentSite" displayString="$currentSite.name" selection="$user.defaultSite" noSelectionString="No site selected..." /><br />
+		    	<label>&nbsp;</label><wo:submit action="$saveChanges" value="$@ls.msSaveButtonTitle" />
+		    </fieldset>
+		</wo:form>
+		</div>
+</wo:SWAdminComponentWrapper>

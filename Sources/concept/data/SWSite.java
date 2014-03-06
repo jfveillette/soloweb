@@ -45,7 +45,7 @@ public class SWSite extends _SWSite implements HumanReadable, SWHasCustomInfo {
 	 * @return All sites in the database.
 	 */
 	public static NSArray<SWSite> allSites( EOEditingContext ec ) {
-		return SWSite.fetchAllSWSites( ec );
+		return SWSite.fetchAllSWSites( ec, SWSite.NAME.ascInsensitives() );
 	}
 
 	/**

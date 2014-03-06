@@ -12,18 +12,19 @@ import concept.SWGenericComponent;
 import concept.data.SWPage;
 
 /**
- * A heavily CSS-tagged navigation menu for use in SoloWeb.
+ * A heavily CSS classed navigation menu for use with the CMS.
+ * Can also be used as a breadcrumbtrail.
  */
 
 public class SWNavigation extends SWGenericComponent {
 
-	public final static String LEVEL_NORMAL = "swLevelNormal";
-	public final static String LEVEL_OPEN = "swLevelOpen";
-	public final static String LEVEL_CLOSED = "swLevelClosed";
-	public final static String LEVEL_SELECTED = "swLevelSelected";
-	public final static String LEVEL_FIRST_IN_LIST = "swLevelFirstInList";
-	public final static String LEVEL_LAST_IN_LIST = "swLevelLastInList";
-	public final static String LEVEL_NUMBER = "swLevel";
+	private final static String LEVEL_NORMAL = "swLevelNormal";
+	private final static String LEVEL_OPEN = "swLevelOpen";
+	private final static String LEVEL_CLOSED = "swLevelClosed";
+	private final static String LEVEL_SELECTED = "swLevelSelected";
+	private final static String LEVEL_FIRST_IN_LIST = "swLevelFirstInList";
+	private final static String LEVEL_LAST_IN_LIST = "swLevelLastInList";
+	private final static String LEVEL_NUMBER = "swLevel";
 
 	public SWPage currentPage;
 	public int currentIndex;

@@ -1,34 +1,33 @@
 package concept;
 
+import is.rebbi.wo.util.USHTTPUtilities;
+
 import com.webobjects.appserver.WOContext;
 import com.webobjects.appserver.WOResponse;
 
 import concept.data.SWUser;
-import er.extensions.components.ERXComponent;
 
-public abstract class SWAdminComponent extends ERXComponent {
+public abstract class SWAdminComponent extends CPBaseComponent {
 
 	public SWAdminComponent( WOContext context ) {
 		super( context );
 	}
 
 	@Override
-	public void appendToResponse( WOResponse response, WOContext context ) {
+	public void appendToResponse( WOResponse r, WOContext c ) {
 		if( hasSession() && SWSessionHelper.isLoggedIn( session() ) ) {
-			super.appendToResponse( response, context );
+			super.appendToResponse( r, c );
 		}
 		else {
-			super.appendToResponse( notLoggedInResponse(), context );
+			super.appendToResponse( notLoggedInResponse(), c );
 		}
 	}
 
 	private WOResponse notLoggedInResponse() {
-		WOResponse r = new WOResponse();
-		r.setContent( "You must log in to view this component." );
-		return r;
+		return USHTTPUtilities.statusResponse( 403, "You must log in to view this component." );
 	}
 
 	public SWUser user() {
-		return ((SWSession)session()).activeUser();
+		return conceptUser();
 	}
 }

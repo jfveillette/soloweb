@@ -4,10 +4,6 @@ import com.webobjects.appserver.WOContext;
 
 import concept.CPAdminComponent;
 
-/**
- * Most back end components are wrapped in this component.
- */
-
 public class CPAdminComponentWrapper extends CPAdminComponent {
 
 	public CPAdminComponentWrapper( WOContext context ) {
@@ -16,11 +12,6 @@ public class CPAdminComponentWrapper extends CPAdminComponent {
 
 	@Override
 	public boolean synchronizesVariablesWithBindings() {
-		return false;
-	}
-
-	@Override
-	public boolean requiresLogin() {
 		return false;
 	}
 }
