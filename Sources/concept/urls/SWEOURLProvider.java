@@ -1,5 +1,6 @@
 package concept.urls;
 
+import is.rebbi.wo.util.SWPKSerialization;
 import is.rebbi.wo.util.SWSettings;
 
 import org.slf4j.Logger;
