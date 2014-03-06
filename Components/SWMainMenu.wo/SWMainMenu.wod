@@ -8,7 +8,6 @@ BG_URL_STRING_2: WOResourceURL {
 	framework = application.frameworkBundleName;
 }
 
-
 Conditional1: WOConditional {
 	condition = session.activeUser.isAdministrator;
 }

@@ -16,10 +16,6 @@ import concept.data.SWNewsCategory;
 import concept.data.SWNewsItem;
 import concept.data.SWPicture;
 
-/**
- * The "System menu" component, displayed at the top of the SoloWeb system.
- */
-
 public class SWMainMenu extends SWAdminComponent {
 
 	/**

@@ -2,6 +2,7 @@ package concept.components.admin;
 
 import is.rebbi.core.util.StringUtilities;
 
+import com.google.gdata.util.common.base.Objects;
 import com.webobjects.appserver.WOActionResults;
 import com.webobjects.appserver.WOContext;
 import com.webobjects.appserver.WOResponse;
@@ -32,17 +33,22 @@ public class SWMySettings extends CPAdminComponent {
 		super.appendToResponse( response, context );
 	}
 
+	@Override
 	public WOActionResults saveChanges() {
-		if( StringUtilities.hasValue( password ) ) {
-			if( !StringUtilities.hasValue( passwordAgain ) ) {
-				return message( "Þú verður að slá aðgangsorðið inn í báða reitina." );
+		message = null;
+
+		if( StringUtilities.hasValue( password ) || StringUtilities.hasValue( passwordAgain ) ) {
+			if( !StringUtilities.hasValue( password ) || !StringUtilities.hasValue( passwordAgain ) ) {
+				return message( "Þú verður að slá aðgangsorðið eins inn í báða reitina til að breyta því." );
 			}
 
-			if( !password.equals( passwordAgain ) ) {
+			if( !Objects.equal( password, passwordAgain ) ) {
 				return message( "Aðgangsorðið er ekki eins í báðum reitum. Reyndu aftur" );
 			}
 
 			user().setPasswordHash( password );
+			password = null;
+			passwordAgain = null;
 		}
 
 		user().editingContext().saveChanges();
