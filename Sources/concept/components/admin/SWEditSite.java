@@ -1,4 +1,5 @@
 package concept.components.admin;
+
 import is.rebbi.wo.util.SWSettings;
 
 import com.webobjects.appserver.WOComponent;
@@ -19,54 +20,53 @@ import concept.util.CPLoc;
 
 public class SWEditSite extends SWAdminComponent {
 
-    public String selectedTab = CPLoc.string( "eSiteTabGeneral", session() );
-    public NSArray tabs = tabDictionary().allKeys();
+	public String selectedTab = CPLoc.string( "eSiteTabGeneral", session() );
+	public NSArray tabs = tabDictionary().allKeys();
 
-    public SWEditSite(WOContext context) {
-        super(context);
-    }
+	public SWEditSite( WOContext context ) {
+		super( context );
+	}
 
-    public NSDictionary tabDictionary() {
-        NSMutableDictionary activeSiteEditingComponents = new NSMutableDictionary( SWApplication.swapplication().activeSiteEditingComponents() );
-        activeSiteEditingComponents.setObjectForKey( "SWEditSiteGeneralInfo", 	CPLoc.string( "eSiteTabGeneral", session() ) );
+	public NSDictionary tabDictionary() {
+		NSMutableDictionary activeSiteEditingComponents = new NSMutableDictionary( SWApplication.swapplication().activeSiteEditingComponents() );
+		activeSiteEditingComponents.setObjectForKey( "SWEditSiteGeneralInfo", CPLoc.string( "eSiteTabGeneral", session() ) );
 
-        if( SWSettings.booleanForKey( "enablePrivileges" ) ) {
+		if( SWSettings.booleanForKey( "enablePrivileges" ) ) {
 			activeSiteEditingComponents.setObjectForKey( "SWEditSitePrivileges", CPLoc.string( "eSiteTabAccessPrivileges", session() ) );
 		}
 
-        Integer intAdmin = ((SWSession)session()).activeUser().administrator();
-        boolean isAdmin = (intAdmin != null && intAdmin.intValue() == 1 ? true : false);
-        if (isAdmin /* && "SWDefaultLook6".equals(selectedSite().look()) */) {
+		Integer intAdmin = ((SWSession)session()).activeUser().administrator();
+		boolean isAdmin = (intAdmin != null && intAdmin.intValue() == 1 ? true : false);
+		if( isAdmin /* && "SWDefaultLook6".equals(selectedSite().look()) */) {
 			activeSiteEditingComponents.setObjectForKey( SWDefaultLook6Admin.class.getSimpleName(), "SWDefaultLook6" );
 		}
 
-        return activeSiteEditingComponents;
-    }
+		return activeSiteEditingComponents;
+	}
 
-    public String selectedEditingComponentName() {
-        return (String)tabDictionary().valueForKey( selectedTab );
-    }
+	public String selectedEditingComponentName() {
+		return (String)tabDictionary().valueForKey( selectedTab );
+	}
 
-    /**
-     * The selected site.
-     */
-    public SWSite selectedSite() {
-        return (SWSite)session().valueForKey( "selectedSite" );
-    }
+	/**
+	 * The selected site.
+	 */
+	public SWSite selectedSite() {
+		return (SWSite)session().valueForKey( "selectedSite" );
+	}
 
-    /**
-     * Sets the selected site.
-     */
-    public void setSelectedSite( SWSite newSelectedSite ) {
-        session().takeValueForKey( newSelectedSite, "selectedSite" );
-    }
+	/**
+	 * Sets the selected site.
+	 */
+	public void setSelectedSite( SWSite newSelectedSite ) {
+		session().takeValueForKey( newSelectedSite, "selectedSite" );
+	}
 
-
-    /**
+	/**
 	 * Saves changes made in this session to the DB
-     */
-    public WOComponent saveChanges() {
-    	session().defaultEditingContext().saveChanges();
-        return null;
-    }
+	 */
+	public WOComponent saveChanges() {
+		session().defaultEditingContext().saveChanges();
+		return null;
+	}
 }

@@ -5,7 +5,6 @@ import is.rebbi.wo.util.SWCustomInfo;
 
 import java.util.Enumeration;
 
-
 import com.webobjects.appserver.WOActionResults;
 import com.webobjects.appserver.WOComponent;
 import com.webobjects.appserver.WOContext;
@@ -18,7 +17,6 @@ import concept.data.SWComponent;
 import concept.data.SWNewsItem;
 import concept.data.SWPicture;
 import concept.data.SWPictureLink;
-
 import er.extensions.components.ERXComponent;
 
 public class SWLinkPictureList extends ERXComponent {

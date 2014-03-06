@@ -99,7 +99,6 @@ public class SWLogin extends ERXComponent {
 		return nextPage;
 	}
 
-
 	/**
 	 * For returning an error message to the user.
 	 */
@@ -128,7 +127,6 @@ public class SWLogin extends ERXComponent {
 	public void setSelectedLanguage( String newSelectedLanguage ) {
 		session().setLanguages( new NSArray<>( new String[] { newSelectedLanguage, DEFAULT_LANGUAGE } ) );
 	}
-
 
 	/**
 	 * Check for a cookie with the username

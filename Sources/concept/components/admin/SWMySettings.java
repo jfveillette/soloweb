@@ -1,6 +1,5 @@
 package concept.components.admin;
 
-
 import com.webobjects.appserver.WOComponent;
 import com.webobjects.appserver.WOContext;
 import com.webobjects.foundation.NSArray;
@@ -21,7 +20,7 @@ public class SWMySettings extends SWAdminComponent {
 		return context().page();
 	}
 
-	public NSArray allSites() {
+	public NSArray<SWSite> allSites() {
 		return SWSite.allSites( session().defaultEditingContext() );
 	}
 }

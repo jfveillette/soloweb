@@ -9,10 +9,6 @@ import com.webobjects.foundation.NSArray;
 import concept.CPAdminComponent;
 import concept.data.SWSite;
 
-/**
- * User settings.
- */
-
 public class CPMySettings extends CPAdminComponent {
 
 	public String password;

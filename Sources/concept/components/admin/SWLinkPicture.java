@@ -1,13 +1,11 @@
 package concept.components.admin;
 
-
 import com.webobjects.appserver.WOComponent;
 import com.webobjects.appserver.WOContext;
 
 import concept.data.SWAssetFolder;
 import concept.data.SWPicture;
 import concept.data.SWPictureLink;
-
 import er.extensions.components.ERXComponent;
 
 public class SWLinkPicture extends ERXComponent {

@@ -2,7 +2,6 @@ package concept.components.admin;
 
 import java.util.Enumeration;
 
-
 import com.webobjects.appserver.WOComponent;
 import com.webobjects.appserver.WOContext;
 import com.webobjects.foundation.NSArray;
