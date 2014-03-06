@@ -2,7 +2,6 @@ package concept.components.admin;
 
 import is.rebbi.core.util.StringUtilities;
 
-import com.google.gdata.util.common.base.Objects;
 import com.webobjects.appserver.WOActionResults;
 import com.webobjects.appserver.WOContext;
 import com.webobjects.appserver.WOResponse;
@@ -42,7 +41,7 @@ public class SWMySettings extends CPAdminComponent {
 				return message( "Þú verður að slá aðgangsorðið eins inn í báða reitina til að breyta því." );
 			}
 
-			if( !Objects.equal( password, passwordAgain ) ) {
+			if( !java.util.Objects.equals( password, passwordAgain ) ) {
 				return message( "Aðgangsorðið er ekki eins í báðum reitum. Reyndu aftur" );
 			}
 
