@@ -25,7 +25,7 @@ public class SWPlugin extends Object {
 
 	public void registerWithApplication() {
 		SWPluginHandler.defaultInstance().registerPlugin( this );
-		logger.info( "Registered plugin: " + this.name() );
+		logger.info( "Registered plugin: " + name() );
 	}
 
 	public void setName( String newName ) {

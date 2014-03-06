@@ -7,7 +7,7 @@ import com.webobjects.foundation.NSArray;
  * or constructed for the current plugin. Just used in SWManageSettings.
  */
 
-public class SWPluginItem extends Object {
+public class SWPluginItem {
 
 	/**
 	* The plugin's name
@@ -17,7 +17,7 @@ public class SWPluginItem extends Object {
 	/**
 	* The plugin's EOModels
 	 */
-	public NSArray models;
+	public NSArray<String> models;
 
 	/**
 	    * Specifies if schema should be dropped for this model
@@ -34,7 +34,7 @@ public class SWPluginItem extends Object {
 		name = newName;
 	}
 
-	public void setModels( NSArray newModels ) {
+	public void setModels( NSArray<String> newModels ) {
 		models = newModels;
 	}
 
