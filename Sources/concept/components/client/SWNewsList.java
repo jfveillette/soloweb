@@ -14,7 +14,6 @@ import com.webobjects.foundation.NSTimestampFormatter;
 
 import concept.CPGenericComponent;
 import concept.data.SWNewsItem;
-import concept.util.CPNewsUtilities;
 
 /**
  * The default news list
@@ -60,7 +59,8 @@ public class SWNewsList extends CPGenericComponent {
 			return newsItems();
 		}
 
-		return CPNewsUtilities.news( ec(), folderID(), daysToInclude(), daysToExclude(), sortOrdering(), itemsToShow(), itemsToSkip(), randomSort() );
+		// FIXME: Implement with SWNewsUtilities.
+		return NSArray.emptyArray();
 	}
 
 	private Integer integerValueForKeyWithDefaultValue( String key, Integer defaultValue ) {

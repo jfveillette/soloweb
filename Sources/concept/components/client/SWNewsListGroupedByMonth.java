@@ -10,8 +10,8 @@ import com.webobjects.foundation.NSArray;
 import com.webobjects.foundation.NSMutableArray;
 import com.webobjects.foundation.NSTimestamp;
 
+import concept.SWNewsUtilities;
 import concept.data.SWNewsItem;
-import concept.util.CPNewsUtilities;
 import er.extensions.foundation.ERXStringUtilities;
 
 /**
@@ -31,7 +31,8 @@ public class SWNewsListGroupedByMonth extends SWNewsList {
 	private NSArray<SWNewsItem> allItems() {
 		if( _allItems == null ) {
 			EOEditingContext ec = session().defaultEditingContext();
-			_allItems = CPNewsUtilities.news( ec, folderID(), null, null, SWNewsItem.DATE.descs(), null, null, false );
+			_allItems = SWNewsUtilities.recentNewsFromCategoryWithID( ec, null, folderID() );
+			_allItems = SWNewsItem.DATE.descs().sorted( _allItems );
 		}
 
 		return _allItems;

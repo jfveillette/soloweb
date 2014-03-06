@@ -39,16 +39,23 @@ public class SWNewsUtilities extends Object {
 	 * @param numberOfItems The number of newsitem to fetch
 	 * @param categoryID The primary key of the category to fetch from
 	 */
-	public static NSArray<SWNewsItem> recentNewsFromCategoryWithID( EOEditingContext ec, int numberOfItems, int categoryID ) {
+	public static NSArray<SWNewsItem> recentNewsFromCategoryWithID( EOEditingContext ec, Integer numberOfItems, Integer categoryID ) {
 		return recentNewsFromCategoryWithID( ec, numberOfItems, categoryID, false );
 	}
 
-	public static NSArray<SWNewsItem> recentNewsFromCategoryWithID( EOEditingContext ec, int numberOfItems, int categoryID, boolean ascendingOrder ) {
-		String limitString = (numberOfItems != 0) ? " LIMIT " + numberOfItems : "";
+	public static NSArray<SWNewsItem> recentNewsFromCategoryWithID( EOEditingContext ec, Integer numberOfItems, Integer categoryID, boolean ascendingOrder ) {
+		String limitString = (numberOfItems != null && numberOfItems > 0) ? " LIMIT " + numberOfItems : "";
 		String categoryCondition = "news_Category_ID=" + categoryID;
 		String publishedCondition = "published=1";
 		String timeInOutCondition = "(time_in IS NULL OR time_in <= NOW()) AND (time_out IS NULL OR time_out > NOW())";
-		String whereString = categoryCondition + " AND " + publishedCondition + " AND " + timeInOutCondition;
+		String whereString = "";
+
+		if( categoryID != null ) {
+			whereString = categoryCondition + " AND ";
+		}
+
+		whereString = whereString + publishedCondition + " AND " + timeInOutCondition;
+
 		String queryString = "SELECT id, date FROM Sw_News_Item WHERE " + whereString + " ORDER BY " + (ascendingOrder == true ? NEWS_DATE_ASC_SORT_ORDER : NEWS_DATE_DESC_SORT_ORDER) + limitString;
 
 		NSArray<NSDictionary> idDicts = EOUtilities.rawRowsForSQL( ec, "SoloWeb", queryString, new NSArray( new Object[] { "id" } ) );
