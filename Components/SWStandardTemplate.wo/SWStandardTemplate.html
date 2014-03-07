@@ -1,5 +1,5 @@
-<webobject name = "SwitchComponent1">
-	<webobject name = "Repetition2">
-		<webobject name = "SwitchComponent2" />
-	</webobject>
-</webobject>
+<wo:switch WOComponentName="$lookName" selectedPage="$selectedPage">
+	<wo:repetition list ="$selectedPage.sortedAndApprovedComponents" item="$currentComponent">
+		<wo:switch WOComponentName="$currentComponent.templateName" selectedContentPage="$selectedPage" currentComponent="$currentComponent" />
+	</wo:repetition>
+</wo:switch>

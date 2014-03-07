@@ -21,6 +21,7 @@ import com.webobjects.appserver.WORequest;
 import com.webobjects.appserver.WOResponse;
 import com.webobjects.appserver.WOSession;
 import com.webobjects.eoaccess.EOUtilities;
+import com.webobjects.eocontrol.EOEditingContext;
 import com.webobjects.eocontrol.EOFetchSpecification;
 import com.webobjects.eocontrol.EOKeyValueQualifier;
 import com.webobjects.eocontrol.EOQualifier;
@@ -36,7 +37,6 @@ import concept.components.admin.SWLogin;
 import concept.components.admin.SWNewsCategoriesSelectComponent;
 import concept.components.client.SWNoPageFoundErrorComponent;
 import concept.components.client.SWPasswordFieldComponent;
-import concept.components.client.SWPrinterTemplate;
 import concept.components.client.SWSearchResults;
 import concept.components.client.SWStandardTemplate;
 import concept.data.SWAssetFolder;
@@ -64,31 +64,32 @@ public class SWDirectAction extends ERXDirectAction {
 		super( aRequest );
 	}
 
+	private EOEditingContext ec() {
+		return session().defaultEditingContext();
+	}
+
 	public WOActionResults loginAction() {
 		return pageWithName( SWLogin.class );
 	}
 
 	@Override
 	public WOActionResults defaultAction() {
-		SWSite requestedSite = requestedSite();
+		SWSite site = site();
 
-		if( requestedSite == null ) {
+		if( site == null ) {
 			return handleError();
 		}
 
-		SWPage thePage = requestedSite.alternateDefaultPage();
+		SWPage page = site.alternateDefaultPage();
 
-		if( thePage == null ) {
-			thePage = requestedSite.frontpage();
+		if( page == null ) {
+			page = site.frontpage();
 		}
 
-		return displayPageWithTemplate( thePage, SWStandardTemplate.class );
+		return displayPageWithTemplate( page, SWStandardTemplate.class );
 	}
 
-	/**
-	 * Checks the request for what site was requested, and returns it.
-	 */
-	private SWSite requestedSite() {
+	private SWSite site() {
 		return siteMatchingHostName( hostForRequest( request() ) );
 	}
 
@@ -96,45 +97,31 @@ public class SWDirectAction extends ERXDirectAction {
 	 * Returns the site matching the host name specified.
 	 */
 	private SWSite siteMatchingHostName( String hostName ) {
+		hostName = hostName.toLowerCase();
 		EOQualifier q = new EOKeyValueQualifier( SWSite.QUAL_KEY, EOQualifier.QualifierOperatorLike, "*" + hostName + SWSite.SITENAME_DELIMITER + "*" );
 		EOFetchSpecification fs = new EOFetchSpecification( SWSite.ENTITY_NAME, q, null );
 
-		NSArray<SWSite> sites = session().defaultEditingContext().objectsWithFetchSpecification( fs );
+		NSArray<SWSite> sites = ec().objectsWithFetchSpecification( fs );
 
 		if( !USArrayUtilities.hasObjects( sites ) ) {
 			return null;
 		}
 
-		SWSite site = null;
-
 		if( sites.count() == 1 ) {
-			site = sites.objectAtIndex( 0 );
+			return sites.objectAtIndex( 0 );
 		}
-		else {
-			for( int i = 0; (i < sites.count()) && (site == null); i++ ) {
-				site = sites.objectAtIndex( i );
 
-				if( !site.hasHost( hostName.toLowerCase() ) ) {
-					site = null;
-				}
+		logger.warn( "There are more than one sites matching the host name: " + hostName );
+
+		for( SWSite current : sites ) {
+			if( current.hasHost( hostName ) ) {
+				return current;
 			}
 		}
 
-		return site;
+		return null;
 	}
 
-	/**
-	 * The search action performs a search of the SoloWeb site, and returns an
-	 * SWSearchResults-page, displaying the results. You can pass in a branchID
-	 * to narrow the search. Arguments:
-	 * <ul>
-	 * <li><b>searchString</b><br>
-	 * The String to search for
-	 * <li><b>branchID</b><br>
-	 * The branch to search (see docs for SWContentSearch for further
-	 * information)
-	 * </ul>
-	 */
 	public WOActionResults searchAction() {
 		String indexLocationOndisk = SWSettings.stringForKey( "indexLocationOndisk" );
 		String searchString = request().stringFormValueForKey( "searchString" );
@@ -150,8 +137,8 @@ public class SWDirectAction extends ERXDirectAction {
 		SWPage thePage = null;
 
 		if( StringUtilities.hasValue( cidString ) ) {
-			SWComponent comp = (SWComponent)USEOUtilities.objectWithPK( session().defaultEditingContext(), SWComponent.ENTITY_NAME, Integer.valueOf( cidString ) );
-			thePage = SWPageUtilities.pageWithID( session().defaultEditingContext(), Integer.valueOf( pidString ) );
+			SWComponent comp = (SWComponent)USEOUtilities.objectWithPK( ec(), SWComponent.ENTITY_NAME, Integer.valueOf( cidString ) );
+			thePage = SWPageUtilities.pageWithID( ec(), Integer.valueOf( pidString ) );
 			branchIDString = comp.customInfo().stringValueForKey( "searchBranchID" );
 			newsFolderIDsString = comp.customInfo().stringValueForKey( "searchNewsFolderIDs" );
 			newsDisplayPageSymbol = comp.customInfo().stringValueForKey( "searchNewsDisplayPageSymbol" );
@@ -160,7 +147,7 @@ public class SWDirectAction extends ERXDirectAction {
 		else {
 			branchIDString = request().stringFormValueForKey( "branchID" );
 			newsFolderIDsString = request().stringFormValueForKey( "newsFolderIDs" );
-			thePage = SWPageUtilities.pageFromRequest( session().defaultEditingContext(), request() );
+			thePage = SWPageUtilities.pageFromRequest( ec(), request() );
 		}
 
 		Integer branchID = null;
@@ -173,11 +160,11 @@ public class SWDirectAction extends ERXDirectAction {
 		nextPage.language = langString;
 
 		if( StringUtilities.hasValue( indexLocationOndisk ) ) {
-			nextPage.results = new SWLuceneSearch( session().defaultEditingContext(), searchString, branchID, newsFolderIDsString ).search();
+			nextPage.results = new SWLuceneSearch( ec(), searchString, branchID, newsFolderIDsString ).search();
 			nextPage.resultItemSettings = searchItemSettingsMap;
 		}
 		else {
-			nextPage.results = new SWContentSearch( session().defaultEditingContext(), searchString, branchID ).search();
+			nextPage.results = new SWContentSearch( ec(), searchString, branchID ).search();
 		}
 
 		return nextPage;
@@ -189,7 +176,7 @@ public class SWDirectAction extends ERXDirectAction {
 	public WOActionResults handleError() {
 		String errorPageLinkingName = null;
 		WOResponse errorResponse = null;
-		SWSite requestedSite = requestedSite();
+		SWSite requestedSite = site();
 
 		if( requestedSite != null ) {
 			errorPageLinkingName = requestedSite.noPageFoundErrorPageLinkingName();
@@ -200,7 +187,7 @@ public class SWDirectAction extends ERXDirectAction {
 		}
 
 		if( errorPageLinkingName != null ) {
-			SWPage thePage = SWPageUtilities.pageWithName( session().defaultEditingContext(), errorPageLinkingName );
+			SWPage thePage = SWPageUtilities.pageWithName( ec(), errorPageLinkingName );
 			errorResponse = displayPageWithTemplate( thePage, SWStandardTemplate.class ).generateResponse();
 		}
 		else {
@@ -211,20 +198,6 @@ public class SWDirectAction extends ERXDirectAction {
 		errorResponse.setStatus( 404 );
 
 		return errorResponse;
-	}
-
-	/**
-	 * Retrieves the page specified by the arguments and displays it in the
-	 * alternate (printing) template.
-	 *
-	 * Arguments:
-	 * <ul>
-	 * <li>Takes the same arguments as the action "dp" to determine the page to display
-	 * </ul>
-	 */
-	public WOActionResults printAction() {
-		SWPage thePage = SWPageUtilities.pageFromRequest( session().defaultEditingContext(), request() );
-		return displayPageWithTemplate( thePage, SWPrinterTemplate.class );
 	}
 
 	/**
@@ -256,30 +229,25 @@ public class SWDirectAction extends ERXDirectAction {
 
 		SWUser user = null;
 
-		try {
-			NSArray<SWUser> users = EOUtilities.objectsMatchingValues( session().defaultEditingContext(), SWUser.ENTITY_NAME, lookup );
+		NSArray<SWUser> users = EOUtilities.objectsMatchingValues( ec(), SWUser.ENTITY_NAME, lookup );
 
-			if( users != null && users.count() > 0 ) {
-				// One or more users found
-				int userNo = 0;
-				Number crmNafnId;
-				while( user == null && userNo < users.count() ) {
-					crmNafnId = users.objectAtIndex( userNo ).crmNafnId();
-					if( crmNafnId != null && crm != null && crm.equalsIgnoreCase( "true" ) ) {
-						// Want and found a crm user
-						user = users.objectAtIndex( userNo );
-					}
-					else if( crmNafnId == null && (crm == null || !crm.equalsIgnoreCase( "true" )) ) {
-						// Want and found a regular SW user
-						user = users.objectAtIndex( userNo );
-					}
+		if( users != null && users.count() > 0 ) {
+			// One or more users found
+			int userNo = 0;
+			while( user == null && userNo < users.count() ) {
+				Number crmNafnId = users.objectAtIndex( userNo ).crmNafnId();
 
-					userNo++;
+				if( crmNafnId != null && crm != null && crm.equalsIgnoreCase( "true" ) ) {
+					// Want and found a crm user
+					user = users.objectAtIndex( userNo );
 				}
+				else if( crmNafnId == null && (crm == null || !crm.equalsIgnoreCase( "true" )) ) {
+					// Want and found a regular SW user
+					user = users.objectAtIndex( userNo );
+				}
+
+				userNo++;
 			}
-		}
-		catch( Exception ex ) {
-			logger.error( "Exception in SWDirectAction.passwordAction. username=" + username + ", password=", ex );
 		}
 
 		if( user != null ) {
@@ -287,7 +255,7 @@ public class SWDirectAction extends ERXDirectAction {
 
 			// User found, check crm status if needed
 			if( crm != null && crm.equals( "true" ) ) {
-				SWPage thePage = SWPageUtilities.pageFromRequest( session().defaultEditingContext(), request() );
+				SWPage thePage = SWPageUtilities.pageFromRequest( ec(), request() );
 				int groupid = thePage.getUserGroupID();
 				Enumeration iter = null;
 
@@ -295,7 +263,9 @@ public class SWDirectAction extends ERXDirectAction {
 				// requested
 				// page is public by
 				SWGroup group = null;
+
 				boolean found = false;
+
 				if( user.groups() != null ) {
 					iter = user.groups().objectEnumerator();
 				}
@@ -345,7 +315,7 @@ public class SWDirectAction extends ERXDirectAction {
 		request().addCookie( theCookie );
 
 		// Get the result page
-		resultPage = SWPageUtilities.pageWithName( session().defaultEditingContext(), pg );
+		resultPage = SWPageUtilities.pageWithName( ec(), pg );
 		theResult = displayPageWithTemplate( resultPage, SWStandardTemplate.class );
 
 		return theResult;
@@ -371,7 +341,7 @@ public class SWDirectAction extends ERXDirectAction {
 	 * Retrieves the page specified by the arguments and displays it to the user.
 	 */
 	public WOActionResults dpAction() {
-		SWPage page = SWPageUtilities.pageFromRequest( session().defaultEditingContext(), request() );
+		SWPage page = SWPageUtilities.pageFromRequest( ec(), request() );
 		return displayPageWithTemplate( page, SWStandardTemplate.class );
 	}
 
@@ -499,7 +469,7 @@ public class SWDirectAction extends ERXDirectAction {
 				for( int idNo = 0; idNo < userIds.length; idNo++ ) {
 					userId = userIds[idNo];
 					logger.debug( "7: userId: " + userId );
-					SWUser user = SWUtilities.userFromCookieUserID( session().defaultEditingContext(), userId );
+					SWUser user = SWUtilities.userFromCookieUserID( ec(), userId );
 
 					if( user != null ) {
 						NSArray<SWGroup> userGroups = user.groups();
@@ -549,12 +519,12 @@ public class SWDirectAction extends ERXDirectAction {
 		buffer.append( "<?xml version=\"1.0\" encoding=\"UTF-8\" ?>\n" );
 		buffer.append( "<swFolder id=\"" + folderID + "\"> \n" );
 
-		SWAssetFolder folder = (SWAssetFolder)USEOUtilities.objectWithPK( session().defaultEditingContext(), SWAssetFolder.ENTITY_NAME, folderID );
+		SWAssetFolder folder = (SWAssetFolder)USEOUtilities.objectWithPK( ec(), SWAssetFolder.ENTITY_NAME, folderID );
 		NSArray pics = null;
 
 		if( folder != null ) {
 			if( "true".equals( request().formValueForKey( "sort" ) ) ) {
-				pics = USEOUtilities.objectsForKeyWithValueSortedByKey( session().defaultEditingContext(), SWPicture.ENTITY_NAME, SWPicture.ASSET_FOLDER_ID_KEY, folderID, "name" );
+				pics = USEOUtilities.objectsForKeyWithValueSortedByKey( ec(), SWPicture.ENTITY_NAME, SWPicture.ASSET_FOLDER_ID_KEY, folderID, "name" );
 			}
 			else {
 				pics = folder.pictures();
@@ -909,7 +879,7 @@ public class SWDirectAction extends ERXDirectAction {
 		Integer topPageId = new Integer( request().stringFormValueForKey( "parentPageID" ) );
 
 		if( topPageId != null && topPageId.intValue() > 0 ) {
-			SWPage topPage = SWPageUtilities.pageWithID( session().defaultEditingContext(), topPageId );
+			SWPage topPage = SWPageUtilities.pageWithID( ec(), topPageId );
 			NSArray<SWPage> thePages = topPage.everySubPage( true );
 
 			if( thePages != null ) {
@@ -932,7 +902,7 @@ public class SWDirectAction extends ERXDirectAction {
 	 * The action does not take any input parameters.
 	 */
 	public WOActionResults getCrmUserGroupsAction() {
-		NSArray groupList = USEOUtilities.objectsForKeyWithValueSortedByKey( session().defaultEditingContext(), "SWGroup", "crmGroup", new Integer( 1 ), "name" );
+		NSArray groupList = USEOUtilities.objectsForKeyWithValueSortedByKey( ec(), "SWGroup", "crmGroup", new Integer( 1 ), "name" );
 
 		// Build the group list string
 		String groupStr = "";
@@ -971,7 +941,7 @@ public class SWDirectAction extends ERXDirectAction {
 		String groupStr = "";
 		Integer crmNafnId = USUtilities.integerFromObject( context().request().formValueForKey( "crmuserid" ) );
 		if( crmNafnId != null && crmNafnId.intValue() > 0 ) {
-			SWUser user = (SWUser)USEOUtilities.objectMatchingKeyAndValue( session().defaultEditingContext(), SWUser.ENTITY_NAME, SWUser.CRM_NAFN_ID_KEY, crmNafnId );
+			SWUser user = (SWUser)USEOUtilities.objectMatchingKeyAndValue( ec(), SWUser.ENTITY_NAME, SWUser.CRM_NAFN_ID_KEY, crmNafnId );
 			if( user != null ) {
 				// Build the group list string
 				Enumeration iter = user.groups().objectEnumerator();
@@ -1062,7 +1032,7 @@ public class SWDirectAction extends ERXDirectAction {
 		String skilabod = context().request().stringFormValueForKey( "skilabod" );
 		String fromAddress = SWSettings.stringForKey( "rkiSenderEmail" );
 
-		SWNewsItem item = (SWNewsItem)USEOUtilities.objectWithPK( session().defaultEditingContext(), SWNewsItem.ENTITY_NAME, itemId );
+		SWNewsItem item = (SWNewsItem)USEOUtilities.objectWithPK( ec(), SWNewsItem.ENTITY_NAME, itemId );
 
 		NSMutableDictionary<String, Object> d = new NSMutableDictionary<>();
 		d.setObjectForKey( pageId, "id" );
@@ -1142,7 +1112,7 @@ public class SWDirectAction extends ERXDirectAction {
 	}
 
 	private void addPic( NSMutableArray images, int id ) {
-		SWPicture pic = SWPicture.pictureWithID( session().defaultEditingContext(), id );
+		SWPicture pic = SWPicture.pictureWithID( ec(), id );
 		if( pic != null ) {
 			images.addObject( pic );
 		}
