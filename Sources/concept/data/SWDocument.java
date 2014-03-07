@@ -37,7 +37,7 @@ import concept.SWThumbnailRequestHandler;
 import concept.data.auto._SWDocument;
 import concept.documents.FileStorage;
 import concept.documents.Storage;
-import concept.util.CPZipUtilities;
+import concept.util.SWZipUtilities;
 import concept.util.HumanReadable;
 import er.extensions.appserver.ERXApplication;
 import er.extensions.appserver.ERXWOContext;
@@ -242,7 +242,7 @@ public class SWDocument extends _SWDocument implements SWDataAsset<SWDocument, S
 		try {
 			File tempFile = File.createTempFile( "zip-" + java.util.UUID.randomUUID().toString(), "zip" );
 			org.apache.commons.io.IOUtils.copy( inputStream(), new FileOutputStream( tempFile ) );
-			CPZipUtilities.expandZipFileAndInsertIntoFolder( editingContext(), tempFile, containingFolder(), SWDocument.ENTITY_NAME );
+			SWZipUtilities.expandZipFileAndInsertIntoFolder( editingContext(), tempFile, containingFolder(), SWDocument.ENTITY_NAME );
 			tempFile.delete();
 		}
 		catch( IOException e ) {

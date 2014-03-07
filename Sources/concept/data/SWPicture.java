@@ -33,7 +33,7 @@ import com.webobjects.foundation.NSNotificationCenter;
 import com.webobjects.foundation.NSSelector;
 
 import concept.data.auto._SWPicture;
-import concept.util.CPZipUtilities;
+import concept.util.SWZipUtilities;
 import concept.util.SWPictureUtilities;
 import concept.util.SWStringUtilities;
 
@@ -453,7 +453,7 @@ public class SWPicture extends _SWPicture implements SWDataAsset<SWPicture, SWAs
 
 	@Override
 	public void expandZip() {
-		CPZipUtilities.expandZipFileAndInsertIntoFolder( editingContext(), file(), folder(), entityName() );
+		SWZipUtilities.expandZipFileAndInsertIntoFolder( editingContext(), file(), folder(), entityName() );
 		// FIXME: implement
 		/*
 		SWZipUtilities.expandZipFileAndInsertIntoFolder( editingContext(), file(), containingFolder(), SWPicture.ENTITY_NAME, SWAssetFolder.ENTITY_NAME );

@@ -25,14 +25,14 @@ import com.webobjects.foundation.NSMutableArray;
  * This class combines functionality for extracting data from Zip-archives
  */
 
-public class CPZipUtilities {
+public class SWZipUtilities {
 
-	private static final Logger logger = LoggerFactory.getLogger( CPZipUtilities.class );
+	private static final Logger logger = LoggerFactory.getLogger( SWZipUtilities.class );
 
 	public static void expandZipFileAndInsertIntoFolder( EOEditingContext ec, File file, SWFolderInterface folder, String entityName ) {
 		logger.info( "Starting expansion of zipFile: " + file );
 
-		try( ZipFile zipFile = new ZipFile( file ); ) {
+		try (ZipFile zipFile = new ZipFile( file );) {
 			Enumeration<ZipEntry> e = (Enumeration<ZipEntry>)zipFile.entries();
 			Enumeration<ZipEntry> e2 = (Enumeration<ZipEntry>)zipFile.entries();
 
@@ -83,7 +83,7 @@ public class CPZipUtilities {
 		}
 	}
 
-	private static void insertDocument( EOEditingContext ec, String path, InputStream stream, SWFolderInterface parent, String entityName) {
+	private static void insertDocument( EOEditingContext ec, String path, InputStream stream, SWFolderInterface parent, String entityName ) {
 
 		String filename = StringUtilities.fileNameFromPath( path );
 
