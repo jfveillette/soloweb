@@ -7,10 +7,10 @@ import com.webobjects.appserver.WOResponse;
 import com.webobjects.foundation.NSArray;
 
 import concept.Concept;
-import concept.CPBaseComponent;
+import concept.SWBaseComponent;
 import er.ajax.AjaxUtils;
 
-public class JPlayerVideo extends CPBaseComponent {
+public class JPlayerVideo extends SWBaseComponent {
 
 	private static final String FAKE_RESOURCE = "empty.css";
 

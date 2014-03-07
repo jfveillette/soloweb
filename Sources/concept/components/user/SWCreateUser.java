@@ -7,13 +7,13 @@ import com.webobjects.appserver.WOActionResults;
 import com.webobjects.appserver.WOContext;
 import com.webobjects.eocontrol.EOEditingContext;
 
-import concept.CPBaseComponent;
+import concept.SWBaseComponent;
 import concept.SWSessionHelper;
 import concept.data.SWUser;
 import concept.urls.SWURLProvider;
 import er.extensions.eof.ERXEC;
 
-public class SWCreateUser extends CPBaseComponent {
+public class SWCreateUser extends SWBaseComponent {
 
 	private SWUser _newUser;
 	public String errorMessage;

@@ -8,7 +8,7 @@ import com.webobjects.foundation.NSArray;
 import com.webobjects.foundation.NSMutableArray;
 import com.webobjects.foundation.NSMutableSet;
 
-import concept.CPBaseComponent;
+import concept.SWBaseComponent;
 import concept.SWSearchAction;
 import concept.definitions.EntityViewDefinition;
 import concept.search.IndexRecord;
@@ -16,7 +16,7 @@ import concept.search.Indexer;
 import er.extensions.appserver.ERXApplication;
 import er.extensions.appserver.ERXDisplayGroup;
 
-public class SWSearchPage extends CPBaseComponent {
+public class SWSearchPage extends SWBaseComponent {
 
 	public ERXDisplayGroup<IndexRecord> dg;
 

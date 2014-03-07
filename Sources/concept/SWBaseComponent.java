@@ -21,7 +21,7 @@ import er.extensions.foundation.ERXStringUtilities;
  * Common functionality for client and admin side components.
  */
 
-public abstract class CPBaseComponent extends ERXComponent {
+public abstract class SWBaseComponent extends ERXComponent {
 
 	/**
 	 * Currently selected object.
@@ -32,7 +32,7 @@ public abstract class CPBaseComponent extends ERXComponent {
 	private String _uniqueID;
 	private SWSite _site;
 
-	public CPBaseComponent( WOContext context ) {
+	public SWBaseComponent( WOContext context ) {
 		super( context );
 	}
 

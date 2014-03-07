@@ -2,9 +2,9 @@ package concept.components.user;
 
 import com.webobjects.appserver.WOContext;
 
-import concept.CPBaseComponent;
+import concept.SWBaseComponent;
 
-public class SWUserBar extends CPBaseComponent {
+public class SWUserBar extends SWBaseComponent {
 
 	public SWUserBar( WOContext context ) {
 		super( context );

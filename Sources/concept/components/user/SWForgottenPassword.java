@@ -5,11 +5,11 @@ import is.rebbi.core.util.StringUtilities;
 import com.webobjects.appserver.WOActionResults;
 import com.webobjects.appserver.WOContext;
 
-import concept.CPBaseComponent;
+import concept.SWBaseComponent;
 import concept.data.SWUser;
 import concept.util.SWPasswordResetRequest;
 
-public class SWForgottenPassword extends CPBaseComponent {
+public class SWForgottenPassword extends SWBaseComponent {
 
 	public boolean hasSubmitted;
 	public String emailAddress;

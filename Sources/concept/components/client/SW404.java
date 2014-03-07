@@ -2,13 +2,13 @@ package concept.components.client;
 
 import com.webobjects.appserver.WOContext;
 
-import concept.CPBaseComponent;
+import concept.SWBaseComponent;
 
 /**
  * 404!
  */
 
-public class SW404 extends CPBaseComponent {
+public class SW404 extends SWBaseComponent {
 
 	public SW404( WOContext context ) {
 		super( context );

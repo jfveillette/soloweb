@@ -4,13 +4,13 @@ import com.webobjects.appserver.WOApplication;
 import com.webobjects.appserver.WOContext;
 import com.webobjects.appserver.WOResponse;
 
-import concept.CPBaseComponent;
+import concept.SWBaseComponent;
 
 /**
  * Used for displaying error messages in the admin system.
  */
 
-public class SWErrorPage extends CPBaseComponent {
+public class SWErrorPage extends SWBaseComponent {
 
 	public String errorDetails;
 	public String errorMessage;

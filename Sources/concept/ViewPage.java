@@ -19,7 +19,7 @@ import er.extensions.eof.ERXGenericRecord;
  * All detail pages inherit from this class.
  */
 
-public abstract class ViewPage<E extends ERXGenericRecord> extends CPBaseComponent {
+public abstract class ViewPage<E extends ERXGenericRecord> extends SWBaseComponent {
 
 	/**
 	 * The component to return to in case of action cancellation.

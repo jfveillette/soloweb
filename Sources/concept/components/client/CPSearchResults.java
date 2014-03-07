@@ -5,10 +5,10 @@ import is.rebbi.wo.util.USArrayUtilities;
 import com.webobjects.appserver.WOContext;
 import com.webobjects.foundation.NSArray;
 
-import concept.CPBaseComponent;
+import concept.SWBaseComponent;
 import concept.data.SWPage;
 
-public class CPSearchResults extends CPBaseComponent {
+public class CPSearchResults extends SWBaseComponent {
 
 	/**
 	* All results returned by the search

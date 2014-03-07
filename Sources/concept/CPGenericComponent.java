@@ -9,7 +9,7 @@ import concept.data.SWComponent;
  * an SWPage. Subclass this to create your own custom components.
  */
 
-public abstract class CPGenericComponent extends CPBaseComponent {
+public abstract class CPGenericComponent extends SWBaseComponent {
 
 	public CPGenericComponent( WOContext context ) {
 		super( context );

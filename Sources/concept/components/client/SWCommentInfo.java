@@ -4,7 +4,7 @@ import is.rebbi.wo.util.USArrayUtilities;
 
 import com.webobjects.appserver.WOContext;
 
-import concept.CPBaseComponent;
+import concept.SWBaseComponent;
 import concept.data.SWComment;
 import concept.data.SWNewsItem;
 
@@ -12,7 +12,7 @@ import concept.data.SWNewsItem;
  * The component displayed in the news list.
  */
 
-public class SWCommentInfo extends CPBaseComponent {
+public class SWCommentInfo extends SWBaseComponent {
 
 	public SWCommentInfo( WOContext context ) {
 		super( context );

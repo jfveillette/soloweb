@@ -7,12 +7,12 @@ import com.webobjects.appserver.WOActionResults;
 import com.webobjects.appserver.WOContext;
 import com.webobjects.appserver.WOResponse;
 
-import concept.CPBaseComponent;
+import concept.SWBaseComponent;
 import concept.SWSessionHelper;
 import concept.components.admin.CPStartPage;
 import concept.components.admin.SWMySettings;
 
-public class SWUserMenu extends CPBaseComponent {
+public class SWUserMenu extends SWBaseComponent {
 
 	public SWUserMenu( WOContext context ) {
 		super( context );

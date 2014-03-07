@@ -7,7 +7,7 @@ import com.webobjects.appserver.WOResponse;
 
 import concept.data.SWUser;
 
-public abstract class SWAdminComponent extends CPBaseComponent {
+public abstract class SWAdminComponent extends SWBaseComponent {
 
 	public SWAdminComponent( WOContext context ) {
 		super( context );

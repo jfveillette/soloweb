@@ -5,7 +5,7 @@ import is.rebbi.wo.util.USArrayUtilities;
 import com.webobjects.appserver.WOContext;
 import com.webobjects.foundation.NSArray;
 
-import concept.CPBaseComponent;
+import concept.SWBaseComponent;
 import concept.data.SWPage;
 
 /**
@@ -13,7 +13,7 @@ import concept.data.SWPage;
  * Can also be used as a breadcrumbtrail.
  */
 
-public class CPNavigation extends CPBaseComponent {
+public class CPNavigation extends SWBaseComponent {
 
 	private static final String LIST_BINDING = "list";
 	private static final String LEVEL_NORMAL = "swLevelNormal";

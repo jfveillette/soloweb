@@ -5,11 +5,11 @@ import is.rebbi.core.util.StringUtilities;
 import com.webobjects.appserver.WOActionResults;
 import com.webobjects.appserver.WOContext;
 
-import concept.CPBaseComponent;
+import concept.SWBaseComponent;
 import concept.data.SWUser;
 import concept.util.SWPasswordResetRequest;
 
-public class SWPasswordResetPage extends CPBaseComponent {
+public class SWPasswordResetPage extends SWBaseComponent {
 
 	private SWUser _userToResetPasswordFor;
 	public String _key;

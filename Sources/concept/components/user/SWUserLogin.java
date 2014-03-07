@@ -8,10 +8,10 @@ import com.webobjects.appserver.WOContext;
 import com.webobjects.appserver.WOResponse;
 import com.webobjects.eocontrol.EOEditingContext;
 
-import concept.CPBaseComponent;
+import concept.SWBaseComponent;
 import concept.data.SWUser;
 
-public class SWUserLogin extends CPBaseComponent {
+public class SWUserLogin extends SWBaseComponent {
 
 	public String emailAddress;
 	public String password;
