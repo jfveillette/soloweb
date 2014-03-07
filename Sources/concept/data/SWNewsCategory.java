@@ -206,4 +206,14 @@ public class SWNewsCategory extends _SWNewsCategory implements SWFolderInterface
 	public String key() {
 		return "frettir";
 	}
+
+	@Override
+	public void setParent( SWNewsCategory parentFolder ) {
+		setParentFolder( parentFolder );
+	}
+
+	@Override
+	public void addItem( SWNewsItem item ) {
+		addToNews( item );
+	}
 }

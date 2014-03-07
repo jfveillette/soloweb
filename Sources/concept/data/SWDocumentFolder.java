@@ -265,4 +265,14 @@ public class SWDocumentFolder extends _SWDocumentFolder implements SWFolderInter
 	public String key() {
 		return "skjol";
 	}
+
+	@Override
+	public void setParent( SWDocumentFolder parentFolder ) {
+		setParentFolder( parentFolder );
+	}
+
+	@Override
+	public void addItem( SWDocument item ) {
+		addToDocuments( item );
+	}
 }

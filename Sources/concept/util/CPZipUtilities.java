@@ -1,6 +1,7 @@
 package concept.util;
 
 import is.rebbi.core.util.StringUtilities;
+import is.rebbi.wo.interfaces.SWFolderInterface;
 
 import java.io.File;
 import java.io.IOException;
@@ -12,12 +13,12 @@ import java.util.zip.ZipFile;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.webobjects.eoaccess.EOUtilities;
 import com.webobjects.eocontrol.EOEditingContext;
 import com.webobjects.foundation.NSArray;
 import com.webobjects.foundation.NSMutableArray;
 
 import concept.data.SWDocument;
-import concept.data.SWFolder;
 
 /**
  * This class combines functionality for extracting data from Zip-archives
@@ -27,7 +28,7 @@ public class CPZipUtilities {
 
 	private static final Logger logger = LoggerFactory.getLogger( CPZipUtilities.class );
 
-	public static void expandZipFileAndInsertIntoFolder( EOEditingContext ec, File file, SWFolder folder ) {
+	public static void expandZipFileAndInsertIntoFolder( EOEditingContext ec, File file, SWFolderInterface folder ) {
 		logger.info( "Starting expansion of zipFile: " + file );
 
 		try( ZipFile zipFile = new ZipFile( file ); ) {
@@ -58,13 +59,13 @@ public class CPZipUtilities {
 		logger.info( "Finished expansion of zipFile: " + file );
 	}
 
-	private static void generateFolderStructure( EOEditingContext ec, String path, SWFolder parent ) {
-		SWFolder workingDirectory = parent;
+	private static void generateFolderStructure( EOEditingContext ec, String path, SWFolderInterface parent ) {
+		SWFolderInterface workingDirectory = parent;
 		NSMutableArray<String> pathArray = NSArray.componentsSeparatedByString( path, "/" ).mutableClone();
 		pathArray.removeObjectAtIndex( pathArray.count() - 1 );
 
 		for( String folderName : pathArray ) {
-			SWFolder currentFolder = workingDirectory.subFolderNamed( folderName );
+			SWFolderInterface currentFolder = workingDirectory.subFolderNamed( folderName );
 
 			if( currentFolder == null ) {
 				if( ignoreEntry( folderName ) ) {
@@ -81,7 +82,7 @@ public class CPZipUtilities {
 		}
 	}
 
-	private static void insertDocument( EOEditingContext ec, String path, InputStream stream, SWFolder parent ) {
+	private static void insertDocument( EOEditingContext ec, String path, InputStream stream, SWFolderInterface parent ) {
 
 		String filename = StringUtilities.fileNameFromPath( path );
 
@@ -90,7 +91,7 @@ public class CPZipUtilities {
 		}
 		else {
 			logger.info( "Extracting file: " + path );
-			SWFolder folder = subFolderFromPath( parent, path );
+			SWFolderInterface folder = subFolderFromPath( parent, path );
 			SWDocument document = Documents.create( ec, filename, stream );
 			ec.saveChanges();
 			folder.addItem( document );
@@ -122,13 +123,13 @@ public class CPZipUtilities {
 		return false;
 	}
 
-	private static SWFolder subFolderFromPath( SWFolder folder, String path ) {
+	private static SWFolderInterface subFolderFromPath( SWFolderInterface folder, String path ) {
 
 		if( path == null ) {
 			return null;
 		}
 
-		SWFolder workingDirectory = folder;
+		SWFolderInterface workingDirectory = folder;
 		NSMutableArray<String> pathArray = NSArray.componentsSeparatedByString( path, "/" ).mutableClone();
 		pathArray.removeObjectAtIndex( pathArray.count() - 1 );
 
@@ -141,8 +142,8 @@ public class CPZipUtilities {
 		return workingDirectory;
 	}
 
-	private static SWFolder createFolder( EOEditingContext ec, String name, SWFolder parent ) {
-		SWFolder folder = SWFolder.createSWFolder( ec );
+	private static SWFolderInterface createFolder( EOEditingContext ec, String name, SWFolderInterface parent ) {
+		SWFolderInterface folder = (SWFolderInterface)EOUtilities.createAndInsertInstance( ec, parent.entityName() );
 		folder.setName( name );
 		folder.setInheritsPrivileges( 1 );
 		folder.setParent( parent );

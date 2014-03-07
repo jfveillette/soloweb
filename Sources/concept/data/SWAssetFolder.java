@@ -282,4 +282,14 @@ public class SWAssetFolder extends _SWAssetFolder implements SWFolderInterface<S
 	public String key() {
 		return "myndir";
 	}
+
+	@Override
+	public void setParent( SWAssetFolder parentFolder ) {
+		setParentFolder( parentFolder );
+	}
+
+	@Override
+	public void addItem( SWPicture item ) {
+		addToPictures( item );
+	}
 }

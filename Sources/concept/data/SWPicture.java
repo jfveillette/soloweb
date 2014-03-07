@@ -55,16 +55,18 @@ public class SWPicture extends _SWPicture implements SWDataAsset<SWPicture, SWAs
 		NSNotificationCenter.defaultCenter().addObserver( this, saveSelector, EOEditingContext.EditingContextDidSaveChangesNotification, null );
 	}
 
-	/**
-	 * Set the picture's name
-	 */
+	public SWCustomInfo customInfo() {
+		if( _customInfo == null ) {
+			_customInfo = new SWCustomInfo( this );
+		}
+
+		return _customInfo;
+	}
+
 	@Override
 	public void setName( String value ) {
-		if( !value.equals( name() ) ) { // file has (possibly) been renamed - try renaming preview files
-			String[] list = file().getParentFile().list();
-
-			for( int i = 0; list != null && i < list.length; i++ ) {
-				String name = list[i];
+		if( !value.equals( name() ) ) {
+			for( String name : file().getParentFile().list() ) {
 				if( !name.startsWith( "." ) ) { // skip system files
 
 					// rename name part
@@ -113,21 +115,22 @@ public class SWPicture extends _SWPicture implements SWDataAsset<SWPicture, SWAs
 	 */
 	private String extension( String value, boolean withDot ) {
 		NSArray<String> parts = NSArray.componentsSeparatedByString( value, "." );
-		String ext = parts.lastObject();
+		String extension = parts.lastObject();
 
-		if( !IMAGE_EXTENSIONS.containsObject( ext ) ) {
+		if( !IMAGE_EXTENSIONS.containsObject( extension ) ) {
 			if( documentType() != null ) {
-				ext = documentType().extension();
+				extension = documentType().extension();
 			}
 			else {
-				ext = "";
+				extension = "";
 			}
 		}
-		if( withDot && StringUtilities.hasValue( ext ) ) {
-			ext = "." + ext;
+
+		if( withDot && StringUtilities.hasValue( extension ) ) {
+			extension = "." + extension;
 		}
 
-		return ext;
+		return extension;
 	}
 
 	@Override
@@ -155,14 +158,6 @@ public class SWPicture extends _SWPicture implements SWDataAsset<SWPicture, SWAs
 		}
 
 		setName( newName );
-	}
-
-	public SWCustomInfo customInfo() {
-		if( _customInfo == null ) {
-			_customInfo = new SWCustomInfo( this );
-		}
-
-		return _customInfo;
 	}
 
 	public String altTextOrName() {
@@ -193,9 +188,6 @@ public class SWPicture extends _SWPicture implements SWDataAsset<SWPicture, SWAs
 		return folderOnDisk() + name();
 	}
 
-	/**
-	 * @return path on disk to preview size or original
-	 */
 	private String path( String size ) {
 
 		if( size == null || "original".equals( size ) || "0".equals( size ) || "".equals( size ) ) {
@@ -351,11 +343,11 @@ public class SWPicture extends _SWPicture implements SWDataAsset<SWPicture, SWAs
 	/**
 	 * An ImageInfo object for retrieving information about the picture.
 	 */
-	private ImageInfo imageInfo() {
+	private ImageInfo imageInfo( String size ) {
 
 		try {
 			ImageInfo ii = new ImageInfo();
-			ii.setInput( new FileInputStream( file() ) );
+			ii.setInput( new FileInputStream( file( size ) ) );
 
 			if( !ii.check() ) {
 				return null;
@@ -370,64 +362,24 @@ public class SWPicture extends _SWPicture implements SWDataAsset<SWPicture, SWAs
 		return null;
 	}
 
-	/**
-	 * The picture's width
-	 */
 	public int width() {
-		try {
-			return imageInfo().getWidth();
-		}
-		catch( Exception e ) {
-			return 0;
-		}
+		ImageInfo ii = imageInfo( null );
+		return ( ii != null ) ? ii.getWidth() : 0;
 	}
 
-	/**
-	 * The picture's height
-	 */
 	public int height() {
-		try {
-			return imageInfo().getHeight();
-		}
-		catch( Exception e ) {
-			return 0;
-		}
-	}
-
-	public int heightForPictureSize( String size ) {
-		int height = 0;
-
-		try {
-			ImageInfo ii = new ImageInfo();
-			ii.setInput( new FileInputStream( file( size ) ) );
-
-			if( ii.check() ) {
-				height = ii.getHeight();
-			}
-		}
-		catch( Exception ex ) {
-			logger.error( "Unable to get picture height: ", ex );
-		}
-
-		return height;
+		ImageInfo ii = imageInfo( null );
+		return ( ii != null ) ? ii.getHeight() : 0;
 	}
 
 	public int widthForPictureSize( String size ) {
-		int width = 0;
+		ImageInfo ii = imageInfo( size );
+		return ( ii != null ) ? ii.getWidth() : 0;
+	}
 
-		try {
-			ImageInfo ii = new ImageInfo();
-			ii.setInput( new FileInputStream( file( size ) ) );
-
-			if( ii.check() ) {
-				width = ii.getWidth();
-			}
-		}
-		catch( Exception ex ) {
-			logger.error( "Unable to get picture height: ", ex );
-		}
-
-		return width;
+	public int heightForPictureSize( String size ) {
+		ImageInfo ii = imageInfo( size );
+		return ( ii != null ) ? ii.getHeight() : 0;
 	}
 
 	public static SWPicture pictureWithID( EOEditingContext anEC, Integer anID ) {
@@ -558,6 +510,7 @@ public class SWPicture extends _SWPicture implements SWDataAsset<SWPicture, SWAs
 				}
 			}
 		}
+
 		logger.debug( "Setting sizes for pictureId: " + madeSizes );
 		customInfo().takeValueForKey( madeSizes, "sizes" ); // store actual sizes made
 	}
