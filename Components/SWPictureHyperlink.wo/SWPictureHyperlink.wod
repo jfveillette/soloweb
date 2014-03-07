@@ -14,9 +14,11 @@ ShowSizes: WOConditional {
 LinkRemoveImage: WOHyperlink {
 	action = removeImage;
 }
+
 LinkAddImage: WOHyperlink {
 	action = selectPicture;
 }
+
 ImageButton2: WOImageButton {
 	action = selectPicture;
 	title = session.@ls.pictureHyperlinkMessage;
@@ -42,6 +44,7 @@ SizeList: WOPopUpButton {
 RemovePictureString: WOString {
 	value = session.@ls.pictureHyperlinkRemove;
 }
+
 AddPictureString: WOString {
 	value = session.@ls.pictureHyperlinkAdd;
 }

@@ -14,7 +14,6 @@ import concept.components.admin.edit.CPEditUser;
 import concept.components.admin.edit.SWEditDocument;
 import concept.components.admin.edit.SWEditEntityMeta;
 import concept.components.client.CPNewsDetail;
-import concept.components.client.SWPageDetailPage;
 import concept.components.client.SWUserDetailPage;
 import concept.components.tagging.SWTagDetailPage;
 import concept.data.SWAccessPrivilege;
@@ -58,7 +57,7 @@ public class SystemDefinitions implements ProvidesEntityViewDefinitions{
 		a.add( EntityViewDefinition.create( SWMeta.ENTITY_NAME, "Eigindi", "Eigindi", "Kerfi", null, null, null, false, null, null ) );
 		a.add( EntityViewDefinition.create( SWNewsItem.ENTITY_NAME, "Frétt", "Fréttir", "Kerfi", null, "newsitem", null, false, CPNewsDetail.class, CPEditNewsItem.class ) );
 		a.add( EntityViewDefinition.create( SWUser.ENTITY_NAME, "Notandi", "Notendur", "Kerfi", null, null, null, false, SWUserDetailPage.class, CPEditUser.class ) );
-		a.add( EntityViewDefinition.create( SWPage.ENTITY_NAME, "Vefsíða", "Vefsíður", "Kerfi", null, "page", null, false, SWPageDetailPage.class, SWEditPage.class ) );
+		a.add( EntityViewDefinition.create( SWPage.ENTITY_NAME, "Vefsíða", "Vefsíður", "Kerfi", null, "page", null, false, null, SWEditPage.class ) );
 		a.add( EntityViewDefinition.create( SWSite.ENTITY_NAME, "Vefur", "Vefir", "Kerfi", null, null, null, false, null, SWEditSite.class ) );
 		a.add( EntityViewDefinition.create( SWSystemEvent.ENTITY_NAME, "Kerfisviðburður", "Kerfisviðburðir", "Kerfi", null, null, null, false, null, null ) );
 		a.add( EntityViewDefinition.create( SWTag.ENTITY_NAME, "Merki", "Merki", "Kerfi", null, "tag", null, false, SWTagDetailPage.class, null ) );

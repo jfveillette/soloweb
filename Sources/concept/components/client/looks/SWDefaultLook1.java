@@ -1,4 +1,4 @@
-package concept.components.client;
+package concept.components.client.looks;
 
 
 import com.webobjects.appserver.WOContext;

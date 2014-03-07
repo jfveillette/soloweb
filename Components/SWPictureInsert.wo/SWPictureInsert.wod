@@ -2,21 +2,26 @@ ImageHolderDiv: WOGenericContainer {
 	elementName = tag;
 	class = imageHolderClass;
 }
+
 ImageDiv: WOGenericContainer {
 	elementName = tag;
 	class = "sw-image";
 }
+
 LinkToNone: WOConditional {
 	condition = linkToNone;
 }
+
 LinkToLarge: WOKeyValueConditional {
 	key = "link.linkToLarge";
 	value = 1;
 }
+
 LinkToUrl: WOKeyValueConditional {
 	key = "link.linkToLarge";
 	value = 2;
 }
+
 ImgTag: WOGenericElement {
 	elementName = "img";
 	src = imgSrc;
@@ -25,21 +30,26 @@ ImgTag: WOGenericElement {
 	alt = link.picture.altText;
 	title = link.picture.altText;
 }
+
 ImgLink: WOHyperlink {
 	href = link.url;
 }
+
 ImgLinkLarge: WOHyperlink {
 	class = "lightwindow";
 	href = imgSrcLarge;
 }
+
 ShowCaption: WOConditional {
 	condition = link.showCaption;
 }
+
 CaptionDiv: WOGenericContainer {
 	elementName = tag;
 	class = "sw-image-caption";
 	style = captionStyle;
 }
+
 CaptionStr: WOString {
 	value = link.picture.description;
 }
