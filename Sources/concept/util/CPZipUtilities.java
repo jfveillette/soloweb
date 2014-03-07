@@ -1,7 +1,9 @@
 package concept.util;
 
 import is.rebbi.core.util.StringUtilities;
+import is.rebbi.wo.interfaces.SWDataAsset;
 import is.rebbi.wo.interfaces.SWFolderInterface;
+import is.rebbi.wo.util.FileTypes;
 
 import java.io.File;
 import java.io.IOException;
@@ -10,6 +12,7 @@ import java.util.Enumeration;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipFile;
 
+import org.apache.commons.io.IOUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -17,8 +20,6 @@ import com.webobjects.eoaccess.EOUtilities;
 import com.webobjects.eocontrol.EOEditingContext;
 import com.webobjects.foundation.NSArray;
 import com.webobjects.foundation.NSMutableArray;
-
-import concept.data.SWDocument;
 
 /**
  * This class combines functionality for extracting data from Zip-archives
@@ -28,7 +29,7 @@ public class CPZipUtilities {
 
 	private static final Logger logger = LoggerFactory.getLogger( CPZipUtilities.class );
 
-	public static void expandZipFileAndInsertIntoFolder( EOEditingContext ec, File file, SWFolderInterface folder ) {
+	public static void expandZipFileAndInsertIntoFolder( EOEditingContext ec, File file, SWFolderInterface folder, String entityName ) {
 		logger.info( "Starting expansion of zipFile: " + file );
 
 		try( ZipFile zipFile = new ZipFile( file ); ) {
@@ -47,7 +48,7 @@ public class CPZipUtilities {
 				ZipEntry z = e2.nextElement();
 
 				if( !z.isDirectory() ) {
-					insertDocument( ec, z.getName(), zipFile.getInputStream( z ), folder );
+					insertDocument( ec, z.getName(), zipFile.getInputStream( z ), folder, entityName );
 				}
 			}
 		}
@@ -82,7 +83,7 @@ public class CPZipUtilities {
 		}
 	}
 
-	private static void insertDocument( EOEditingContext ec, String path, InputStream stream, SWFolderInterface parent ) {
+	private static void insertDocument( EOEditingContext ec, String path, InputStream stream, SWFolderInterface parent, String entityName) {
 
 		String filename = StringUtilities.fileNameFromPath( path );
 
@@ -92,7 +93,7 @@ public class CPZipUtilities {
 		else {
 			logger.info( "Extracting file: " + path );
 			SWFolderInterface folder = subFolderFromPath( parent, path );
-			SWDocument document = Documents.create( ec, filename, stream );
+			SWDataAsset document = create( ec, entityName, filename, stream );
 			ec.saveChanges();
 			folder.addItem( document );
 		}
@@ -149,5 +150,27 @@ public class CPZipUtilities {
 		folder.setParent( parent );
 		ec.saveChanges();
 		return folder;
+	}
+
+	public static SWDataAsset create( EOEditingContext ec, String entityName, String filename, InputStream stream ) {
+		String name = FileTypes.extractFilename( filename );
+		String extension = FileTypes.extensionFromFileName( filename );
+		return create( ec, entityName, name, extension, stream );
+	}
+
+	public static SWDataAsset create( EOEditingContext ec, String entityName, String name, String extension, InputStream stream ) {
+		SWDataAsset document = (SWDataAsset)EOUtilities.createAndInsertInstance( ec, entityName );
+		document.setName( name );
+		document.setExtension( extension );
+
+		try {
+			IOUtils.copy( stream, document.outputStream() );
+		}
+		catch( IOException e ) {
+			throw new RuntimeException( "Failed to copy stream!", e );
+		}
+
+		document.updateThumbnails();
+		return document;
 	}
 }

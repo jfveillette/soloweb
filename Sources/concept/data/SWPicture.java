@@ -14,6 +14,9 @@ import is.rebbi.wo.util.USEOUtilities;
 
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.OutputStream;
 import java.util.Enumeration;
 
 import org.slf4j.Logger;
@@ -30,6 +33,7 @@ import com.webobjects.foundation.NSNotificationCenter;
 import com.webobjects.foundation.NSSelector;
 
 import concept.data.auto._SWPicture;
+import concept.util.CPZipUtilities;
 import concept.util.SWPictureUtilities;
 import concept.util.SWStringUtilities;
 
@@ -386,6 +390,11 @@ public class SWPicture extends _SWPicture implements SWDataAsset<SWPicture, SWAs
 		return (SWPicture)USEOUtilities.objectWithPK( anEC, SWPicture.ENTITY_NAME, anID );
 	}
 
+	@Override
+	public void updateThumbnails() {
+		updatePreviews();
+	}
+
 	public void updatePreviews() {
 		createPreviews();
 	}
@@ -444,6 +453,7 @@ public class SWPicture extends _SWPicture implements SWDataAsset<SWPicture, SWAs
 
 	@Override
 	public void expandZip() {
+		CPZipUtilities.expandZipFileAndInsertIntoFolder( editingContext(), file(), folder(), entityName() );
 		// FIXME: implement
 		/*
 		SWZipUtilities.expandZipFileAndInsertIntoFolder( editingContext(), file(), containingFolder(), SWPicture.ENTITY_NAME, SWAssetFolder.ENTITY_NAME );
@@ -548,5 +558,15 @@ public class SWPicture extends _SWPicture implements SWDataAsset<SWPicture, SWAs
 		}
 
 		return components;
+	}
+
+	@Override
+	public OutputStream outputStream() {
+		try {
+			return new FileOutputStream( file() );
+		}
+		catch( FileNotFoundException e ) {
+			throw new RuntimeException( "Failed to construct a FileOutputStream for file: " + file() );
+		}
 	}
 }

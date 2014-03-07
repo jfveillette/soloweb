@@ -18,6 +18,7 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
+import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 
@@ -36,6 +37,7 @@ import concept.SWThumbnailRequestHandler;
 import concept.data.auto._SWDocument;
 import concept.documents.FileStorage;
 import concept.documents.Storage;
+import concept.util.CPZipUtilities;
 import concept.util.HumanReadable;
 import er.extensions.appserver.ERXApplication;
 import er.extensions.appserver.ERXWOContext;
@@ -109,6 +111,7 @@ public class SWDocument extends _SWDocument implements SWDataAsset<SWDocument, S
 	/**
 	 * @return An OutputStream that can be used to write to this document.
 	 */
+	@Override
 	public OutputStream outputStream() {
 		return storage().out( this );
 	}
@@ -236,7 +239,15 @@ public class SWDocument extends _SWDocument implements SWDataAsset<SWDocument, S
 
 	@Override
 	public void expandZip() {
-//		SWZipUtilities.expandZipFileAndInsertIntoFolder( editingContext(), file(), containingFolder(), SWDocument.ENTITY_NAME, SWDocumentFolder.ENTITY_NAME );
+		try {
+			File tempFile = File.createTempFile( "zip-" + java.util.UUID.randomUUID().toString(), "zip" );
+			org.apache.commons.io.IOUtils.copy( inputStream(), new FileOutputStream( tempFile ) );
+			CPZipUtilities.expandZipFileAndInsertIntoFolder( editingContext(), tempFile, containingFolder(), SWDocument.ENTITY_NAME );
+			tempFile.delete();
+		}
+		catch( IOException e ) {
+			throw new RuntimeException( "An error occurred while extracting a zip file", e );
+		}
 	}
 
 	@Override
@@ -399,6 +410,7 @@ public class SWDocument extends _SWDocument implements SWDataAsset<SWDocument, S
 		}
 	}
 
+	@Override
 	public void updateThumbnails() {
 		if( isImage() ) {
 			logger.info( "Updating thumbnail" );
