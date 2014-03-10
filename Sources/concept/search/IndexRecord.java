@@ -2,8 +2,8 @@ package concept.search;
 
 import is.rebbi.wo.definitions.EntityViewDefinition;
 import is.rebbi.wo.interfaces.PointsToEO;
+import is.rebbi.wo.util.SWPKSerialization;
 import er.extensions.eof.ERXGenericRecord;
-import er.extensions.eof.ERXKeyGlobalID;
 
 /**
  * A document in the Lucene index.
@@ -41,9 +41,9 @@ public class IndexRecord implements PointsToEO {
 	public IndexRecord() {}
 
 	public static IndexRecord create( ERXGenericRecord eo ) {
-		ERXKeyGlobalID gid = ERXKeyGlobalID.globalIDForGID( eo.permanentGlobalID() );
-		String targetID = gid.keyValuesArray().componentsJoinedByString( "|" );
-		return create( eo.entityName(), targetID );
+		String entityName = eo.entityName();
+		String targetID = SWPKSerialization.serialize( eo );
+		return create( entityName, targetID );
 	}
 
 	public static IndexRecord create( String entityName, String targetID ) {
