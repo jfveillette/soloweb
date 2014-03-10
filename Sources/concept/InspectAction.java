@@ -12,11 +12,6 @@ import com.webobjects.eocontrol.EOEditingContext;
 import com.webobjects.foundation.NSDictionary;
 
 import concept.components.ListPageGeneric;
-import concept.components.admin.SWLogin;
-import concept.components.user.SWCreateUser;
-import concept.components.user.SWForgottenPassword;
-import concept.data.SWPage;
-import concept.data.SWSite;
 import concept.urls.SWEOURLProvider;
 import concept.urls.SWStaticURLs;
 import er.extensions.appserver.ERXDirectAction;
@@ -40,53 +35,10 @@ public class InspectAction extends ERXDirectAction {
 	}
 
 	/**
-	 * Checks the request for what site was requested, and returns its frontpage.
-	 */
-	@Override
-	public WOActionResults defaultAction() {
-		SWSite site = SWPageUtilities.siteFromRequest( ec(), request() );
-
-		if( site == null ) {
-			String message = "No site was found matching the host: " + USHTTPUtilities.host( request() );
-			return USHTTPUtilities.statusResponse( 404, message );
-		}
-
-		SWPage page = site.frontpage();
-
-		if( page == null ) {
-			String message = "A site was found, but it has no frontpage. The site's id is: " + site.primaryKey();
-			return USHTTPUtilities.statusResponse( 404, message );
-		}
-
-		return Inspection.inspectObjectInContext( page, context() );
-	}
-
-	/**
 	 * @return The default editingContext.
 	 */
 	private EOEditingContext ec() {
 		return session().defaultEditingContext();
-	}
-
-	/**
-	 * @return The login page.
-	 */
-	public WOActionResults loginAction() {
-		return pageWithName( SWLogin.class );
-	}
-
-	/**
-	 * @return A page for resetting a user's password.
-	 */
-	public WOActionResults forgottenPasswordAction() {
-		return pageWithName( SWForgottenPassword.class );
-	}
-
-	/**
-	 * @return A page for creating a user.
-	 */
-	public WOActionResults createUserAction() {
-		return pageWithName( SWCreateUser.class );
 	}
 
 	/**

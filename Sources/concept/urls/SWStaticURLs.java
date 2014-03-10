@@ -17,8 +17,8 @@ public class SWStaticURLs {
 		if( _urlMakers == null ) {
 			_urlMakers = new NSMutableDictionary<>();
 			register( "/staging", new DirectActionURLMaker( "InspectAction" ) );
-			register( "/login", new DirectActionURLMaker( "InspectAction/login" ) );
-			register( "/kerfi", new DirectActionURLMaker( "InspectAction/login" ) );
+			register( "/login", new DirectActionURLMaker( "SWDirectAction/login" ) );
+			register( "/kerfi", new DirectActionURLMaker( "SWDirectAction/login" ) );
 			register( "/apidoc", new DirectActionURLMaker( "USController/apidoc" ) );
 		}
 

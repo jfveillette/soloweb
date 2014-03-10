@@ -2,8 +2,8 @@
 	<wo:textfield value="$emailAddress" id="emailAddress" class="input-sm" placeholder="Netfang" style="color: black" />
 	<wo:password value="$password" id="password" class="input-sm" placeholder="Aðgangsorð" style="color: black" />
 	<wo:submit id="loginButton" action="$login" class="btn btn-success btn-sm" value="Innskráning" />
-	<wo:if condition="$allowUserRegistration"><wo:link directActionName="InspectAction/createUser" class="btn btn-default btn-sm" string="Nýskráning" /></wo:if>
-	<wo:link directActionName="InspectAction/forgottenPassword" class="btn btn-default btn-sm" string="Gleymt aðgangsorð" />
+	<wo:if condition="$allowUserRegistration"><wo:link actionClass="SWDirectAction" directActionName="createUser" class="btn btn-default btn-sm" string="Nýskráning" /></wo:if>
+	<wo:link actionClass="SWDirectAction" directActionName="forgottenPassword" class="btn btn-default btn-sm" string="Gleymt aðgangsorð" />
 </wo:form>
 <!-- 
 <wo:AjaxModalDialog id="modal" slideDownDuration="0.2" slideUpDuration="0.2"><wo:str value="$errorMessage" /> </wo:AjaxModalDialog>

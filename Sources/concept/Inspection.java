@@ -1,6 +1,5 @@
 package concept;
 
-
 import is.rebbi.wo.definitions.EntityViewDefinition;
 
 import com.webobjects.appserver.WOActionResults;

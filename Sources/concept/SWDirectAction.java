@@ -39,6 +39,8 @@ import concept.components.client.SWNoPageFoundErrorComponent;
 import concept.components.client.SWPasswordFieldComponent;
 import concept.components.client.SWSearchResults;
 import concept.components.client.SWStandardTemplate;
+import concept.components.user.SWCreateUser;
+import concept.components.user.SWForgottenPassword;
 import concept.data.SWAssetFolder;
 import concept.data.SWComponent;
 import concept.data.SWGroup;
@@ -66,6 +68,20 @@ public class SWDirectAction extends ERXDirectAction {
 
 	private EOEditingContext ec() {
 		return session().defaultEditingContext();
+	}
+
+	/**
+	 * @return A page for resetting a user's password.
+	 */
+	public WOActionResults forgottenPasswordAction() {
+		return pageWithName( SWForgottenPassword.class );
+	}
+
+	/**
+	 * @return A page for creating a user.
+	 */
+	public WOActionResults createUserAction() {
+		return pageWithName( SWCreateUser.class );
 	}
 
 	public WOActionResults loginAction() {
