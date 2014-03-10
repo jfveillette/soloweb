@@ -103,7 +103,7 @@ public abstract class ViewPage<E extends ERXGenericRecord> extends SWBaseCompone
     	ec.saveChanges();
 
     	if( USEOUtilities.isNested( ec ) ) {
-    		EOEditingContext parent = ((EOEditingContext)ec.parentObjectStore());
+    		EOEditingContext parent = (EOEditingContext)ec.parentObjectStore();
     		parent.saveChanges();
     	}
     }

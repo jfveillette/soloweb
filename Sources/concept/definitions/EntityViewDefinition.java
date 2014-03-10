@@ -16,8 +16,6 @@ import com.webobjects.foundation.NSMutableArray;
 import com.webobjects.foundation.NSMutableDictionary;
 
 import concept.ViewPage;
-import concept.components.EditPageGeneric;
-import concept.components.ViewPageGeneric;
 import er.extensions.appserver.ERXApplication;
 import er.extensions.eof.ERXGenericRecord;
 import er.extensions.eof.ERXKey;
@@ -488,7 +486,7 @@ public class EntityViewDefinition<E extends ERXGenericRecord, T extends ViewPage
 			}
 		}
 
-		return ViewPageGeneric.class;
+		return null;
 	}
 
 	/**
@@ -505,7 +503,7 @@ public class EntityViewDefinition<E extends ERXGenericRecord, T extends ViewPage
 			}
 		}
 
-		return EditPageGeneric.class;
+		return null;
 	}
 
 	/**

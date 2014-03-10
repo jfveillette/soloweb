@@ -4,7 +4,9 @@ import com.webobjects.appserver.WOActionResults;
 import com.webobjects.appserver.WOContext;
 import com.webobjects.eocontrol.EOEditingContext;
 
+import concept.components.EditPageGeneric;
 import concept.components.EditWrapper;
+import concept.components.ViewPageGeneric;
 import concept.components.ViewWrapper;
 import concept.definitions.EntityViewDefinition;
 import er.extensions.appserver.ERXApplication;
@@ -22,6 +24,11 @@ public class Inspection {
 	 */
 	public static WOActionResults inspectObjectInContext( ERXGenericRecord object, WOContext context ) {
 		Class<? extends ViewPage> componentClass = EntityViewDefinition.viewComponentClass( object.getClass() );
+
+		if( componentClass == null ) {
+			componentClass = ViewPageGeneric.class;
+		}
+
 		return inspectObjectInContextUsingComponent( object, context, componentClass );
 	}
 
@@ -30,6 +37,11 @@ public class Inspection {
 	 */
 	public static WOActionResults editObjectInContext( ERXGenericRecord object, WOContext context ) {
 		Class<? extends ViewPage> componentClass = EntityViewDefinition.editComponentClass( object.getClass() );
+
+		if( componentClass == null ) {
+			componentClass = EditPageGeneric.class;
+		}
+
 		WOActionResults editObjectInContextUsingComponent = editObjectInContextUsingComponent( object, context, componentClass );
 		return editObjectInContextUsingComponent;
 	}
