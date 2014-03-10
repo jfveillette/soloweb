@@ -30,7 +30,8 @@ public class Inspection {
 	 */
 	public static WOActionResults editObjectInContext( ERXGenericRecord object, WOContext context ) {
 		Class<? extends ViewPage> componentClass = EntityViewDefinition.editComponentClass( object.getClass() );
-		return editObjectInContextUsingComponent( object, context, componentClass );
+		WOActionResults editObjectInContextUsingComponent = editObjectInContextUsingComponent( object, context, componentClass );
+		return editObjectInContextUsingComponent;
 	}
 
 	/**

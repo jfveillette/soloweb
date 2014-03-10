@@ -58,6 +58,13 @@ public abstract class SWSessionHelper {
 	}
 
 	public static boolean isLoggedIn( WOSession s ) {
+
+		SWUser user = userInSession( s );
+
+		if( user != null ) {
+			return true;
+		}
+
 		Object o = ((ERXSession)s).objectStore().valueForKey( "isLoggedIn" );
 
 		if( o != null ) {
