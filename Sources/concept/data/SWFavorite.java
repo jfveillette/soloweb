@@ -1,5 +1,6 @@
 package concept.data;
 
+import is.rebbi.wo.definitions.EntityViewDefinition;
 import is.rebbi.wo.interfaces.HasFakeRelationship;
 
 import org.slf4j.Logger;
@@ -7,7 +8,6 @@ import org.slf4j.LoggerFactory;
 
 import com.webobjects.eocontrol.EOEditingContext;
 
-import concept.definitions.EntityViewDefinition;
 import concept.util.HumanReadable;
 import er.extensions.eof.ERXGenericRecord;
 import er.extensions.qualifiers.ERXAndQualifier;

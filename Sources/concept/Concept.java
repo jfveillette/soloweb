@@ -1,5 +1,6 @@
 package concept;
 
+import is.rebbi.wo.definitions.EntityViewDefinition;
 import is.rebbi.wo.util.SWSettings;
 import is.rebbi.wo.util.SoftUser;
 
@@ -15,6 +16,8 @@ import com.webobjects.foundation.NSSelector;
 import com.webobjects.foundation.NSTimestamp;
 
 import concept.components.admin.SWAdminCustomComponent;
+import concept.definitions.DatabaseDefinitions;
+import concept.definitions.SystemDefinitions;
 import concept.managers.CacheManager;
 import concept.managers.DBConnectionManager;
 import concept.managers.DBDefinitionManager;
@@ -137,6 +140,9 @@ public class Concept {
 		if( defaultMailServer != null ) {
 			app.setSMTPHost( defaultMailServer );
 		}
+
+		EntityViewDefinition.entityViewDefinitionProviders.addObject( new SystemDefinitions() );
+		EntityViewDefinition.entityViewDefinitionProviders.addObject( new DatabaseDefinitions() );
 
 		logger.info( "*** " + productNameAndVersion() + " ready at " + new NSTimestamp() );
 	}

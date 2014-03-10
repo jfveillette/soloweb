@@ -1,5 +1,7 @@
 package concept.components.admin;
 
+import is.rebbi.wo.definitions.EntityViewDefinition;
+
 import com.webobjects.appserver.WOActionResults;
 import com.webobjects.appserver.WOContext;
 import com.webobjects.eocontrol.EOEditingContext;
@@ -10,7 +12,6 @@ import com.webobjects.foundation.NSDictionary;
 import com.webobjects.foundation.NSMutableArray;
 
 import concept.data.SWDocumentLink;
-import concept.definitions.EntityViewDefinition;
 import er.extensions.components.ERXComponent;
 import er.extensions.foundation.ERXArrayUtilities;
 

@@ -1,6 +1,8 @@
 package concept;
 
 import is.rebbi.core.util.StringUtilities;
+import is.rebbi.wo.definitions.EntityViewDefinition;
+import is.rebbi.wo.interfaces.IViewPage;
 import is.rebbi.wo.util.IMTab;
 import is.rebbi.wo.util.USEOUtilities;
 
@@ -12,14 +14,13 @@ import com.webobjects.foundation.NSArray;
 import com.webobjects.foundation.NSDictionary;
 import com.webobjects.foundation.NSMutableArray;
 
-import concept.definitions.EntityViewDefinition;
 import er.extensions.eof.ERXGenericRecord;
 
 /**
  * All detail pages inherit from this class.
  */
 
-public abstract class ViewPage<E extends ERXGenericRecord> extends SWBaseComponent {
+public abstract class ViewPage<E extends ERXGenericRecord> extends SWBaseComponent implements IViewPage<E> {
 
 	/**
 	 * The component to return to in case of action cancellation.

@@ -1,5 +1,8 @@
 package concept.definitions;
 
+import is.rebbi.wo.definitions.EntityViewDefinition;
+import is.rebbi.wo.definitions.ProvidesEntityViewDefinitions;
+
 import com.webobjects.foundation.NSArray;
 import com.webobjects.foundation.NSMutableArray;
 

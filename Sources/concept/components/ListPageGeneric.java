@@ -1,13 +1,13 @@
 package concept.components;
 
+import is.rebbi.wo.definitions.AttributeViewDefinition;
+import is.rebbi.wo.definitions.EntityViewDefinition;
 import is.rebbi.wo.util.USEOUtilities;
 
 import com.webobjects.appserver.WOContext;
 import com.webobjects.eoaccess.EODatabaseDataSource;
 import com.webobjects.eocontrol.EOEditingContext;
 
-import concept.definitions.AttributeViewDefinition;
-import concept.definitions.EntityViewDefinition;
 import er.extensions.appserver.ERXDisplayGroup;
 import er.extensions.batching.ERXBatchingDisplayGroup;
 import er.extensions.components.ERXComponent;

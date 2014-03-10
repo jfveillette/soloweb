@@ -1,12 +1,13 @@
 package concept.components;
 
+import is.rebbi.wo.definitions.AttributeViewDefinition;
+import is.rebbi.wo.definitions.EntityViewDefinition;
+
 import com.webobjects.appserver.WOActionResults;
 import com.webobjects.appserver.WOContext;
 import com.webobjects.eoaccess.ERXEntity;
 
 import concept.components.admin.SWTransactionsForKeyPath;
-import concept.definitions.AttributeViewDefinition;
-import concept.definitions.EntityViewDefinition;
 import er.extensions.components.ERXNonSynchronizingComponent;
 import er.extensions.eof.ERXGenericRecord;
 

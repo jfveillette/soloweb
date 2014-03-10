@@ -1,7 +1,7 @@
 package concept.search;
 
+import is.rebbi.wo.definitions.EntityViewDefinition;
 import is.rebbi.wo.interfaces.PointsToEO;
-import concept.definitions.EntityViewDefinition;
 import er.extensions.eof.ERXGenericRecord;
 import er.extensions.eof.ERXKeyGlobalID;
 

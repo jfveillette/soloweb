@@ -1,6 +1,8 @@
 package concept;
 
 
+import is.rebbi.wo.definitions.EntityViewDefinition;
+
 import com.webobjects.appserver.WOActionResults;
 import com.webobjects.appserver.WOContext;
 import com.webobjects.eocontrol.EOEditingContext;
@@ -9,7 +11,6 @@ import concept.components.EditPageGeneric;
 import concept.components.EditWrapper;
 import concept.components.ViewPageGeneric;
 import concept.components.ViewWrapper;
-import concept.definitions.EntityViewDefinition;
 import er.extensions.appserver.ERXApplication;
 import er.extensions.eof.ERXEOControlUtilities;
 import er.extensions.eof.ERXGenericRecord;

@@ -1,5 +1,6 @@
 package concept;
 
+import is.rebbi.wo.definitions.EntityViewDefinition;
 import is.rebbi.wo.util.USHTTPUtilities;
 
 import org.slf4j.Logger;
@@ -16,7 +17,6 @@ import concept.components.user.SWCreateUser;
 import concept.components.user.SWForgottenPassword;
 import concept.data.SWPage;
 import concept.data.SWSite;
-import concept.definitions.EntityViewDefinition;
 import concept.urls.SWEOURLProvider;
 import concept.urls.SWStaticURLs;
 import er.extensions.appserver.ERXDirectAction;

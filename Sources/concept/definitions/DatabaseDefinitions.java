@@ -1,5 +1,8 @@
 package concept.definitions;
 
+import is.rebbi.wo.definitions.EntityViewDefinition;
+import is.rebbi.wo.definitions.ProvidesEntityViewDefinitions;
+
 import com.webobjects.eocontrol.EOEditingContext;
 import com.webobjects.eocontrol.EOFetchSpecification;
 import com.webobjects.foundation.NSArray;

@@ -1,7 +1,7 @@
 package concept.data;
 
+import is.rebbi.wo.definitions.AttributeViewDefinition;
 import is.rebbi.wo.util.USUtilities;
-import concept.definitions.AttributeViewDefinition;
 import concept.util.HumanReadable;
 
 /**

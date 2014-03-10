@@ -2,6 +2,7 @@ package concept.components;
 
 import is.rebbi.core.util.ListUtilities;
 import is.rebbi.core.util.StringUtilities;
+import is.rebbi.wo.definitions.EntityViewDefinition;
 import is.rebbi.wo.util.USArrayUtilities;
 
 import com.webobjects.appserver.WOContext;
@@ -9,7 +10,6 @@ import com.webobjects.foundation.NSArray;
 
 import concept.ViewPage;
 import concept.data.SWDocument;
-import concept.definitions.EntityViewDefinition;
 import concept.util.Documents;
 import concept.util.HumanReadable;
 import er.extensions.eof.ERXEnterpriseObject;

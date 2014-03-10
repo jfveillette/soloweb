@@ -1,5 +1,6 @@
 package concept.components;
 
+import is.rebbi.wo.definitions.EntityViewDefinition;
 import is.rebbi.wo.util.USUtilities;
 
 import com.webobjects.appserver.WOActionResults;
@@ -10,7 +11,6 @@ import com.webobjects.foundation.NSMutableSet;
 
 import concept.SWBaseComponent;
 import concept.SWSearchAction;
-import concept.definitions.EntityViewDefinition;
 import concept.search.IndexRecord;
 import concept.search.Indexer;
 import er.extensions.appserver.ERXApplication;

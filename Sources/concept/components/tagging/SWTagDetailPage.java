@@ -1,12 +1,13 @@
 package concept.components.tagging;
 
 
+import is.rebbi.wo.definitions.EntityViewDefinition;
+
 import com.webobjects.appserver.WOContext;
 import com.webobjects.foundation.NSArray;
 
 import concept.ViewPage;
 import concept.data.SWTag;
-import concept.definitions.EntityViewDefinition;
 import concept.util.Tagging;
 import er.extensions.eof.ERXGenericRecord;
 

@@ -1,5 +1,7 @@
 package concept.managers;
 
+import is.rebbi.wo.definitions.EntityViewDefinition;
+
 import com.webobjects.eocontrol.EOEditingContext;
 import com.webobjects.eocontrol.EOEnterpriseObject;
 import com.webobjects.foundation.NSNotification;
@@ -8,7 +10,6 @@ import com.webobjects.foundation.NSSelector;
 
 import concept.data.SWAttributeMeta;
 import concept.data.SWEntityMeta;
-import concept.definitions.EntityViewDefinition;
 import er.extensions.eof.ERXEC;
 
 public class DBDefinitionManager {

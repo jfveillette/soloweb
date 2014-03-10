@@ -1,5 +1,6 @@
 package concept.urls;
 
+import is.rebbi.wo.definitions.EntityViewDefinition;
 import is.rebbi.wo.util.SWPKSerialization;
 import is.rebbi.wo.util.SWSettings;
 
@@ -10,7 +11,6 @@ import com.webobjects.appserver.WOContext;
 import com.webobjects.eoaccess.EOModelGroup;
 import com.webobjects.eocontrol.EOEditingContext;
 
-import concept.definitions.EntityViewDefinition;
 import er.extensions.eof.ERXGenericRecord;
 
 public class SWEOURLProvider extends SWURLProvider {
