@@ -1,4 +1,4 @@
-package concept.urls;
+package is.rebbi.wo.util;
 
 import static org.junit.Assert.assertEquals;
 import is.rebbi.wo.util.SWPKSerialization;
