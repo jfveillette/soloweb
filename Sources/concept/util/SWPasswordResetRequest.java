@@ -1,5 +1,6 @@
 package concept.util;
 
+import is.rebbi.wo.urls.SWURLProvider;
 import is.rebbi.wo.util.SWSettings;
 import is.rebbi.wo.util.USEOUtilities;
 import is.rebbi.wo.util.USMailSender;
@@ -16,7 +17,6 @@ import com.webobjects.foundation.NSTimestamp;
 
 import concept.InspectAction;
 import concept.data.SWUser;
-import concept.urls.SWURLProvider;
 
 public class SWPasswordResetRequest {
 

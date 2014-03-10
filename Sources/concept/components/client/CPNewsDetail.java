@@ -2,6 +2,7 @@ package concept.components.client;
 
 import is.rebbi.core.util.StringUtilities;
 import is.rebbi.wo.interfaces.HasFakeRelationship;
+import is.rebbi.wo.urls.SWURLProvider;
 import is.rebbi.wo.util.SWSettings;
 import is.rebbi.wo.util.USHTTPUtilities;
 import is.rebbi.wo.util.USMailSender;
@@ -20,7 +21,6 @@ import concept.ViewPage;
 import concept.data.SWComment;
 import concept.data.SWDocument;
 import concept.data.SWNewsItem;
-import concept.urls.SWURLProvider;
 import concept.util.SWLoc;
 import concept.util.Documents;
 import er.ajax.AjaxHighlight;

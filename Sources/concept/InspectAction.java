@@ -1,6 +1,8 @@
 package concept;
 
 import is.rebbi.wo.definitions.EntityViewDefinition;
+import is.rebbi.wo.urls.SWEOURLProvider;
+import is.rebbi.wo.urls.SWStaticURLs;
 import is.rebbi.wo.util.USHTTPUtilities;
 
 import org.slf4j.Logger;
@@ -12,8 +14,6 @@ import com.webobjects.eocontrol.EOEditingContext;
 import com.webobjects.foundation.NSDictionary;
 
 import concept.components.ListPageGeneric;
-import concept.urls.SWEOURLProvider;
-import concept.urls.SWStaticURLs;
 import er.extensions.appserver.ERXDirectAction;
 import er.extensions.eof.ERXGenericRecord;
 

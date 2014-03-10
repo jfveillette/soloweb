@@ -1,5 +1,6 @@
 package concept.components;
 
+import is.rebbi.wo.urls.SWURLProvider;
 import is.rebbi.wo.util.SWSettings;
 import is.rebbi.wo.util.USHTTPUtilities;
 
@@ -9,7 +10,6 @@ import com.webobjects.appserver.WOContext;
 import concept.ViewPage;
 import concept.data.SWFavorite;
 import concept.data.SWUser;
-import concept.urls.SWURLProvider;
 import er.extensions.eof.ERXGenericRecord;
 
 public class ViewWrapperTools extends ViewPage<ERXGenericRecord> {

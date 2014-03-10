@@ -1,10 +1,10 @@
 package concept.components;
 
 import is.rebbi.wo.interfaces.PointsToEO;
+import is.rebbi.wo.urls.SWEOURLProvider;
 
 import com.webobjects.appserver.WOContext;
 
-import concept.urls.SWEOURLProvider;
 import er.extensions.components.ERXStatelessComponent;
 
 public class PointsToEOLink extends ERXStatelessComponent {

@@ -1,8 +1,9 @@
 package concept.components;
 
+import is.rebbi.wo.urls.SWURLProvider;
+
 import com.webobjects.appserver.WOContext;
 
-import concept.urls.SWURLProvider;
 import er.extensions.components.ERXStatelessComponent;
 import er.extensions.eof.ERXGenericRecord;
 

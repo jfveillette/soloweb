@@ -1,6 +1,7 @@
 package concept.components.user;
 
 import is.rebbi.core.util.StringUtilities;
+import is.rebbi.wo.urls.SWURLProvider;
 import is.rebbi.wo.util.USHTTPUtilities;
 
 import com.webobjects.appserver.WOActionResults;
@@ -10,7 +11,6 @@ import com.webobjects.eocontrol.EOEditingContext;
 import concept.SWBaseComponent;
 import concept.SWSessionHelper;
 import concept.data.SWUser;
-import concept.urls.SWURLProvider;
 import er.extensions.eof.ERXEC;
 
 public class SWCreateUser extends SWBaseComponent {

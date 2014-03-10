@@ -1,11 +1,11 @@
 package concept.components;
 
 import is.rebbi.wo.definitions.EntityViewDefinition;
+import is.rebbi.wo.urls.SWURLProvider;
 
 import com.webobjects.appserver.WOActionResults;
 import com.webobjects.appserver.WOContext;
 
-import concept.urls.SWURLProvider;
 import er.extensions.appserver.ERXApplication;
 import er.extensions.components.ERXStatelessComponent;
 
