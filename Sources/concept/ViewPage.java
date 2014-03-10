@@ -1,6 +1,7 @@
 package concept;
 
 import is.rebbi.core.util.StringUtilities;
+import is.rebbi.wo.util.IMTab;
 import is.rebbi.wo.util.USEOUtilities;
 
 import com.webobjects.appserver.WOActionResults;
@@ -11,7 +12,6 @@ import com.webobjects.foundation.NSArray;
 import com.webobjects.foundation.NSDictionary;
 import com.webobjects.foundation.NSMutableArray;
 
-import concept.components.tabs.IMTab;
 import concept.definitions.EntityViewDefinition;
 import er.extensions.eof.ERXGenericRecord;
 

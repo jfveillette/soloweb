@@ -1,5 +1,7 @@
 package concept.components.tabs;
 
+import is.rebbi.wo.util.IMTab;
+
 import com.webobjects.appserver.WOActionResults;
 import com.webobjects.appserver.WOContext;
 import com.webobjects.foundation.NSArray;

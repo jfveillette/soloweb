@@ -1,5 +1,6 @@
 package concept.components.admin.edit;
 
+import is.rebbi.wo.util.IMTab;
 import is.rebbi.wo.util.USEOUtilities;
 
 import com.webobjects.appserver.WOActionResults;
@@ -9,7 +10,6 @@ import com.webobjects.foundation.NSArray;
 import com.webobjects.foundation.NSMutableArray;
 
 import concept.ViewPage;
-import concept.components.tabs.IMTab;
 import concept.data.SWAttributeMeta;
 import concept.data.SWEntityMeta;
 
