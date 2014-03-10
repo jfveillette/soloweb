@@ -9,7 +9,7 @@ import concept.Concept;
 import concept.SWApplication;
 
 /**
- * SWPluginHandler handles the loading of plugins, management of EOModel connections etc. Documentation forthcoming.
+ * SWPluginHandler handles the loading of plug-ins, management of EOModel connections etc. Documentation forthcoming.
  */
 
 public class SWPluginHandler extends Object {

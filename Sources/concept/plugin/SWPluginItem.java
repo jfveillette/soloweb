@@ -3,8 +3,8 @@ package concept.plugin;
 import com.webobjects.foundation.NSArray;
 
 /**
- * A simple class that stores the name of a plugin, it's EOModels, and if schema should be dropped
- * or constructed for the current plugin. Just used in SWManageSettings.
+ * A simple class that stores the name of a plug-in, its EOModels, and if schema should be dropped
+ * or constructed for the current plug-in. Just used in SWManageSettings.
  */
 
 public class SWPluginItem {

@@ -6,7 +6,7 @@ import org.slf4j.LoggerFactory;
 import com.webobjects.foundation.NSArray;
 
 /**
- * SWPlugin specifies meta information for a plugin in SoloWeb,
+ * SWPlugin specifies meta information for a plug-in in SoloWeb,
  * such as the names of EOModels, components it adds to the
  * component pool etc. Documentation forthcoming.
  */
