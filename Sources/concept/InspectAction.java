@@ -1,5 +1,6 @@
 package concept;
 
+import is.rebbi.wo.components.ListPageGeneric;
 import is.rebbi.wo.definitions.EntityViewDefinition;
 import is.rebbi.wo.urls.SWEOURLProvider;
 import is.rebbi.wo.urls.SWStaticURLs;
@@ -13,7 +14,6 @@ import com.webobjects.appserver.WORequest;
 import com.webobjects.eocontrol.EOEditingContext;
 import com.webobjects.foundation.NSDictionary;
 
-import concept.components.ListPageGeneric;
 import er.extensions.appserver.ERXDirectAction;
 import er.extensions.eof.ERXGenericRecord;
 

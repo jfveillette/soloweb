@@ -1,5 +1,6 @@
 package concept.components;
 
+import is.rebbi.wo.components.ListPageGeneric;
 import is.rebbi.wo.definitions.EntityViewDefinition;
 import is.rebbi.wo.urls.SWURLProvider;
 
