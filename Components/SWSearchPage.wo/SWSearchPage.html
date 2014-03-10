@@ -39,7 +39,7 @@
 									<wo:repetition list="$resultsFiltered" item="$currentRecord">
 										<tr>
 											<td width="20px"><wo:if condition="$currentRecord.iconFileName.length"><wo:img src="$currentRecord.iconFileName" /></wo:if></td>
-											<td><wo:IMIndexRecordLink object="$currentRecord"><wo:str value="$currentRecord.name" /></wo:IMIndexRecordLink></td>
+											<td><wo:PointsToEOLink object="$currentRecord"><wo:str value="$currentRecord.name" /></wo:PointsToEOLink></td>
 											<td style="color: gray"><wo:str value="$currentRecord.icelandicName" /></td>
 											<td><wo:str value="$currentRecord.text" escapeHTML="$false" /></td>
 										</tr>

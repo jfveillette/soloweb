@@ -7,9 +7,9 @@ import com.webobjects.appserver.WOContext;
 import concept.urls.SWEOURLProvider;
 import er.extensions.components.ERXStatelessComponent;
 
-public class IMIndexRecordLink extends ERXStatelessComponent {
+public class PointsToEOLink extends ERXStatelessComponent {
 
-	public IMIndexRecordLink( WOContext context ) {
+	public PointsToEOLink( WOContext context ) {
 		super( context );
 	}
 
