@@ -1,10 +1,10 @@
 package concept.components;
 
+import is.rebbi.wo.components.BaseComponent;
+
 import com.webobjects.appserver.WOContext;
 
-import concept.ViewPage;
-
-public class ViewWrapper extends ViewPage {
+public class ViewWrapper extends BaseComponent {
 
 	/**
 	 * Name of the component currently being displayed.

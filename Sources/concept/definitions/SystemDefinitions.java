@@ -40,7 +40,7 @@ import concept.data.SWTag;
 import concept.data.SWTransaction;
 import concept.data.SWUser;
 
-public class SystemDefinitions implements ProvidesEntityViewDefinitions{
+public class SystemDefinitions implements ProvidesEntityViewDefinitions {
 
 	@Override
 	public NSArray<EntityViewDefinition> entityViewDefinitions() {

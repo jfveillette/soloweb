@@ -19,7 +19,7 @@ public class DatabaseDefinitions implements ProvidesEntityViewDefinitions {
 
 		EOEditingContext ec = ERXEC.newEditingContext();
 		EOFetchSpecification fs = new EOFetchSpecification( SWEntityMeta.ENTITY_NAME, null, SWEntityMeta.NAME.ascInsensitives() );
-		fs.setPrefetchingRelationshipKeyPaths( new NSArray<String>( SWEntityMeta.COLUMNS_KEY ) );
+		fs.setPrefetchingRelationshipKeyPaths( new NSArray<>( SWEntityMeta.COLUMNS_KEY ) );
 		NSArray<SWEntityMeta> a = ec.objectsWithFetchSpecification( fs );
 
 		for( SWEntityMeta m : a ) {
