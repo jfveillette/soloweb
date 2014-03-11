@@ -8,16 +8,13 @@ import com.webobjects.eocontrol.EOEditingContext;
 import com.webobjects.foundation.NSArray;
 
 import concept.Inspection;
-import concept.CPAdminComponent;
+import concept.ViewPage;
 import concept.data.SWComponent;
 import concept.data.SWTransaction;
-import er.extensions.appserver.ERXApplication;
 import er.extensions.eof.ERXEC;
 import er.extensions.eof.ERXGenericRecord;
 
-public class SWTransactionsForObject extends CPAdminComponent {
-
-	private ERXGenericRecord object;
+public class SWTransactionsForObject extends ViewPage {
 
 	public SWTransaction currentTransaction;
 
@@ -25,14 +22,8 @@ public class SWTransactionsForObject extends CPAdminComponent {
 		super( context );
 	}
 
-	public static WOActionResults open( WOContext context, ERXGenericRecord object ) {
-		SWTransactionsForObject nextPage = ERXApplication.erxApplication().pageWithName( SWTransactionsForObject.class );
-		nextPage.object = object;
-		return nextPage;
-	}
-
 	public NSArray<SWTransaction> transactions() {
-		return HasFakeRelationship.Util.relatedObjects( SWTransaction.class, object, SWTransaction.DATE.descs() );
+		return HasFakeRelationship.Util.relatedObjects( SWTransaction.class, selectedObject(), SWTransaction.DATE.descs() );
 	}
 
 	/**
@@ -42,17 +33,17 @@ public class SWTransactionsForObject extends CPAdminComponent {
 
 		for( String keyPath : currentTransaction.afterDictionary().allKeys() ) {
 			Object value = currentTransaction.afterDictionary().objectForKey( keyPath );
-			object.takeValueForKeyPath( value, keyPath );
+			selectedObject().takeValueForKeyPath( value, keyPath );
 		}
 
-		object.editingContext().saveChanges();
+		selectedObject().editingContext().saveChanges();
 
 		return null;
 	}
 
 	public WOActionResults preview() {
 		EOEditingContext peerEC = ERXEC.newEditingContext();
-		ERXGenericRecord localObject = (ERXGenericRecord)object.localInstanceIn( peerEC );
+		ERXGenericRecord localObject = (ERXGenericRecord)selectedObject().localInstanceIn( peerEC );
 
 		for( String keyPath : currentTransaction.afterDictionary().allKeys() ) {
 			try {
@@ -64,7 +55,7 @@ public class SWTransactionsForObject extends CPAdminComponent {
 			}
 		}
 
-		if( object instanceof SWComponent ) {
+		if( selectedObject() instanceof SWComponent ) {
 			return Inspection.inspectObjectInContext( ((SWComponent)localObject).page(), context() );
 		}
 		else {
