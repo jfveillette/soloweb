@@ -1,47 +1,28 @@
 package concept;
 
-import is.rebbi.core.util.StringUtilities;
+import is.rebbi.wo.components.BaseComponent;
 import is.rebbi.wo.util.SWSettings;
 
 import java.util.Locale;
 
 import com.webobjects.appserver.WOContext;
-import com.webobjects.eocontrol.EOEditingContext;
 
 import concept.components.SWStandardLook;
 import concept.data.SWPage;
 import concept.data.SWSite;
 import concept.data.SWUser;
 import concept.util.SWLoc;
-import er.extensions.components.ERXComponent;
-import er.extensions.eof.ERXGenericRecord;
-import er.extensions.foundation.ERXStringUtilities;
 
 /**
  * Common functionality for client and admin side components.
  */
 
-public abstract class SWBaseComponent extends ERXComponent {
+public abstract class SWBaseComponent extends BaseComponent {
 
-	/**
-	 * Currently selected object.
-	 */
-	private ERXGenericRecord _selectedObject;
-
-	private EOEditingContext _ec;
-	private String _uniqueID;
 	private SWSite _site;
 
 	public SWBaseComponent( WOContext context ) {
 		super( context );
-	}
-
-	protected EOEditingContext ec() {
-		if( _ec == null ) {
-			_ec = session().defaultEditingContext();
-		}
-
-		return _ec;
 	}
 
 	/**
@@ -87,47 +68,6 @@ public abstract class SWBaseComponent extends ERXComponent {
 	}
 
 	/**
-	 * @return value of the optional "id" binding for components that generate a uniqueID.
-	 */
-	private String id() {
-		return stringValueForBinding( "id" );
-	}
-
-	/**
-	 * @return A unique ID that can be used for creating unique IDs for elements on a page.
-	 */
-	public String uniqueID() {
-
-		if( _uniqueID == null ) {
-			if( StringUtilities.hasValue( id() ) ) {
-				_uniqueID = id();
-			}
-			else {
-				_uniqueID = context().elementID();
-			}
-
-			_uniqueID = ERXStringUtilities.safeIdentifierName( _uniqueID, "u_" );
-		}
-
-		return _uniqueID;
-	}
-
-	public ERXGenericRecord selectedObject() {
-
-		ERXGenericRecord newSelectedObject = (ERXGenericRecord)valueForBinding( "selectedObject" );
-
-		if( newSelectedObject != null && !newSelectedObject.equals( _selectedObject ) ) {
-			_selectedObject = newSelectedObject;
-		}
-
-		return _selectedObject;
-	}
-
-	public void setSelectedObject( ERXGenericRecord value ) {
-		_selectedObject = value;
-	}
-
-	/**
 	 * @return Currently active site.
 	 */
 	public SWSite site() {
@@ -141,6 +81,7 @@ public abstract class SWBaseComponent extends ERXComponent {
 	/**
 	 * @return Name of WOComponent to wrap around site content.
 	 */
+	@Override
 	public String lookName() {
 
 		String lookName = context().request().stringFormValueForKey( "look" );

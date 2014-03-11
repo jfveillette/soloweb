@@ -15,7 +15,6 @@ public class SWUserLogin extends SWBaseComponent {
 
 	public String emailAddress;
 	public String password;
-	public String errorMessage;
 
 	public SWUserLogin( WOContext context ) {
 		super( context );
@@ -44,11 +43,6 @@ public class SWUserLogin extends SWBaseComponent {
 			conceptUser().softUser().assign( context().request(), context().response() );
 			return null;
 		}
-	}
-
-	private WOActionResults error( String message ) {
-		errorMessage = message;
-		return null;
 	}
 
 	public boolean allowUserRegistration() {

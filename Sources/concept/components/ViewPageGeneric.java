@@ -1,6 +1,8 @@
 package concept.components;
 
+import is.rebbi.wo.components.BaseComponent;
 import is.rebbi.wo.definitions.AttributeViewDefinition;
+import is.rebbi.wo.definitions.EntityViewDefinition;
 import is.rebbi.wo.util.HumanReadable;
 import is.rebbi.wo.util.USEOUtilities;
 import is.rebbi.wo.util.USHTTPUtilities;
@@ -12,14 +14,13 @@ import com.webobjects.eoaccess.EORelationship;
 import com.webobjects.foundation.NSArray;
 import com.webobjects.foundation.NSData;
 
-import concept.ViewPage;
 import er.extensions.eof.ERXGenericRecord;
 
 /**
  * Generic object editing interface.
  */
 
-public class ViewPageGeneric extends ViewPage {
+public class ViewPageGeneric extends BaseComponent {
 
 	public EOAttribute currentAttribute;
 	public EORelationship currentRelationship;
@@ -82,7 +83,7 @@ public class ViewPageGeneric extends ViewPage {
 	}
 
 	public String currentAttributeName() {
-		AttributeViewDefinition meta = viewDefinition().attributeNamed( currentAttribute.name() );
+		AttributeViewDefinition meta = EntityViewDefinition.get( selectedObject() ).attributeNamed( currentAttribute.name() );
 
 		if( meta != null ) {
 			return meta.icelandicName();
@@ -92,7 +93,7 @@ public class ViewPageGeneric extends ViewPage {
 	}
 
 	public String currentRelationshipName() {
-		AttributeViewDefinition meta = viewDefinition().attributeNamed( currentRelationship.name() );
+		AttributeViewDefinition meta = EntityViewDefinition.get( selectedObject() ).attributeNamed( currentRelationship.name() );
 
 		if( meta != null ) {
 			return meta.icelandicName();

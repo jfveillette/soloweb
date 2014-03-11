@@ -1,5 +1,6 @@
 package concept;
 
+import is.rebbi.wo.components.BaseComponent;
 import is.rebbi.wo.definitions.EntityViewDefinition;
 
 import com.webobjects.appserver.WOActionResults;
@@ -24,7 +25,7 @@ public class Inspection {
 	 * @return The given object opened in the default view page.
 	 */
 	public static WOActionResults inspectObjectInContext( ERXGenericRecord object, WOContext context ) {
-		Class<? extends ViewPage> componentClass = EntityViewDefinition.viewComponentClass( object.getClass() );
+		Class<? extends BaseComponent> componentClass = EntityViewDefinition.viewComponentClass( object.getClass() );
 
 		if( componentClass == null ) {
 			componentClass = ViewPageGeneric.class;
@@ -37,7 +38,7 @@ public class Inspection {
 	 * @return The given object opened in the default edit page.
 	 */
 	public static WOActionResults editObjectInContext( ERXGenericRecord object, WOContext context ) {
-		Class<? extends ViewPage> componentClass = EntityViewDefinition.editComponentClass( object.getClass() );
+		Class<? extends BaseComponent> componentClass = EntityViewDefinition.editComponentClass( object.getClass() );
 
 		if( componentClass == null ) {
 			componentClass = EditPageGeneric.class;
@@ -49,15 +50,15 @@ public class Inspection {
 	/**
 	 * Takes an object of a supported type and returns an inspection page for it.
 	 */
-	public static WOActionResults inspectObjectInContextUsingComponent( ERXGenericRecord object, WOContext context, Class<? extends ViewPage> componentClass ) {
+	public static WOActionResults inspectObjectInContextUsingComponent( ERXGenericRecord object, WOContext context, Class<? extends BaseComponent> componentClass ) {
 		return openObjectInContextUsingWrapperAndComponent( object, context, ViewWrapper.class, componentClass );
 	}
 
-	public static WOActionResults editObjectInContextUsingComponent( ERXGenericRecord object, WOContext context, Class<? extends ViewPage> componentClass ) {
+	public static WOActionResults editObjectInContextUsingComponent( ERXGenericRecord object, WOContext context, Class<? extends BaseComponent> componentClass ) {
 		return openObjectInContextUsingWrapperAndComponent( object, context, EditWrapper.class, componentClass );
 	}
 
-	private static WOActionResults openObjectInContextUsingWrapperAndComponent( ERXGenericRecord object, WOContext context, Class<? extends ViewWrapper> wrapperClass, Class<? extends ViewPage> componentClass ) {
+	private static WOActionResults openObjectInContextUsingWrapperAndComponent( ERXGenericRecord object, WOContext context, Class<? extends ViewWrapper> wrapperClass, Class<? extends BaseComponent> componentClass ) {
 		ViewWrapper nextPage = ERXApplication.erxApplication().pageWithName( wrapperClass );
 		nextPage.setDisplayComponentName( componentClass.getSimpleName() );
 		nextPage.setSelectedObject( object );

@@ -1,5 +1,6 @@
 package concept.components;
 
+import is.rebbi.wo.components.BaseComponent;
 import is.rebbi.wo.util.USEOUtilities;
 import is.rebbi.wo.util.USHTTPUtilities;
 
@@ -15,14 +16,11 @@ import com.webobjects.eoaccess.EORelationship;
 import com.webobjects.foundation.NSArray;
 import com.webobjects.foundation.NSData;
 
-import concept.ViewPage;
-
-
 /**
  * Generic object editing page.
  */
 
-public class EditPageGeneric extends ViewPage {
+public class EditPageGeneric extends BaseComponent {
 
 	public EOAttribute currentAttribute;
 	public EORelationship currentRelationship;
@@ -34,11 +32,12 @@ public class EditPageGeneric extends ViewPage {
 
 	// FIXME: We're always using an Icelandic numerical format here.
 	public Format decimalFormat() {
-		DecimalFormatSymbols symbols = new DecimalFormatSymbols( new Locale("is") );
+		DecimalFormatSymbols symbols = new DecimalFormatSymbols( new Locale( "is" ) );
 		symbols.setMonetaryGroupingSeparator( '.' );
 		symbols.setMonetaryDecimalSeparator( ',' );
 		return new DecimalFormat( "##.####", symbols );
 	}
+
 	/**
 	 * @return All attributes.
 	 */
@@ -91,7 +90,7 @@ public class EditPageGeneric extends ViewPage {
 
 	// FIXME: We're assuming long strings for certain field names here
 	public boolean attributeIsLongString() {
-		return attributeIsString() && ("text".equals( currentAttribute.name() ) || "history".equals( currentAttribute.name() ) );
+		return attributeIsString() && ("text".equals( currentAttribute.name() ) || "history".equals( currentAttribute.name() ));
 	}
 
 	public boolean attributeIsTimestamp() {
