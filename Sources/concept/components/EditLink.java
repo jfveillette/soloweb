@@ -25,7 +25,6 @@ public class EditLink extends ERXStatelessComponent {
 	 * @return The value of the "object"-binding.
 	 */
 	public ERXGenericRecord object() {
-		ERXGenericRecord object = (ERXGenericRecord)valueForBinding( "object" );
-		return object;
+		return (ERXGenericRecord)valueForBinding( "object" );
 	}
 }

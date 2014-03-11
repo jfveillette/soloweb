@@ -3,11 +3,9 @@ package concept.components;
 import is.rebbi.wo.definitions.AttributeViewDefinition;
 import is.rebbi.wo.definitions.EntityViewDefinition;
 
-import com.webobjects.appserver.WOActionResults;
 import com.webobjects.appserver.WOContext;
 import com.webobjects.eoaccess.ERXEntity;
 
-import concept.components.admin.SWTransactionsForKeyPath;
 import er.extensions.components.ERXNonSynchronizingComponent;
 import er.extensions.eof.ERXGenericRecord;
 
@@ -74,9 +72,5 @@ public class IMLabel extends ERXNonSynchronizingComponent {
 		}
 
 		return null;
-	}
-
-	public WOActionResults history() {
-		return SWTransactionsForKeyPath.look( context(), object(), key() );
 	}
 }
