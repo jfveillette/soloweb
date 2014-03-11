@@ -9,6 +9,7 @@ import is.rebbi.wo.interfaces.SWTimedContent;
 import is.rebbi.wo.interfaces.SWUserInterface;
 import is.rebbi.wo.interfaces.TimeStamped;
 import is.rebbi.wo.interfaces.UserStamped;
+import is.rebbi.wo.util.HumanReadable;
 import is.rebbi.wo.util.SWCustomInfo;
 import is.rebbi.wo.util.SWTimedContentUtilities;
 import is.rebbi.wo.util.USEOUtilities;
@@ -32,7 +33,6 @@ import concept.components.client.SWPictureInsert;
 import concept.data.auto._SWNewsItem;
 import concept.search.SWSearchItem;
 import concept.util.Documents;
-import concept.util.HumanReadable;
 import er.extensions.appserver.ERXWOContext;
 
 public class SWNewsItem extends _SWNewsItem implements SWTimedContent, SWAsset<SWNewsItem, SWNewsCategory>, SWSearchItem, SWHasCustomInfo, SWCopyable<SWNewsItem>, TimeStamped, UserStamped, HumanReadable  {

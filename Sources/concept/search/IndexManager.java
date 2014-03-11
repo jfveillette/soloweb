@@ -1,5 +1,7 @@
 package concept.search;
 
+import is.rebbi.wo.util.Indexable;
+
 import com.webobjects.eocontrol.EOEditingContext;
 import com.webobjects.eocontrol.EOEnterpriseObject;
 import com.webobjects.eocontrol.EOObjectStoreCoordinator;

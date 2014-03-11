@@ -2,13 +2,13 @@ package concept.data;
 
 import is.rebbi.wo.definitions.EntityViewDefinition;
 import is.rebbi.wo.interfaces.HasFakeRelationship;
+import is.rebbi.wo.util.HumanReadable;
 
 import com.webobjects.foundation.NSDictionary;
 import com.webobjects.foundation.NSMutableDictionary;
 import com.webobjects.foundation.NSPropertyListSerialization;
 
 import concept.data.auto._SWTransaction;
-import concept.util.HumanReadable;
 import er.extensions.eof.ERXGenericRecord;
 
 /**

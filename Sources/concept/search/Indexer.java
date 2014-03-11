@@ -1,5 +1,7 @@
 package concept.search;
 
+import is.rebbi.wo.util.IndexRecord;
+import is.rebbi.wo.util.Indexable;
 import is.rebbi.wo.util.SWSettings;
 import is.rebbi.wo.util.USEOUtilities;
 import is.rebbi.wo.util.USMassiveOperation;

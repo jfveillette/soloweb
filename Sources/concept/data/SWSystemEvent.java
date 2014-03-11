@@ -1,13 +1,13 @@
 package concept.data;
 
 import is.rebbi.wo.interfaces.TimeStamped;
+import is.rebbi.wo.util.HumanReadable;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.webobjects.eocontrol.EOEditingContext;
 
-import concept.util.HumanReadable;
 
 import er.extensions.eof.ERXEC;
 

@@ -9,6 +9,7 @@ import is.rebbi.wo.interfaces.TimeStamped;
 import is.rebbi.wo.interfaces.UUIDStamped;
 import is.rebbi.wo.util.FileType;
 import is.rebbi.wo.util.FileTypes;
+import is.rebbi.wo.util.HumanReadable;
 import is.rebbi.wo.util.SWSettings;
 import is.rebbi.wo.util.USDataUtilities;
 import is.rebbi.wo.util.USEOUtilities;
@@ -38,7 +39,6 @@ import concept.data.auto._SWDocument;
 import concept.documents.FileStorage;
 import concept.documents.Storage;
 import concept.util.SWZipUtilities;
-import concept.util.HumanReadable;
 import er.extensions.appserver.ERXApplication;
 import er.extensions.appserver.ERXWOContext;
 

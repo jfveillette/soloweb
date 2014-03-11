@@ -4,6 +4,7 @@ import is.rebbi.core.util.StringUtilities;
 import is.rebbi.wo.interfaces.SWHasCustomInfo;
 import is.rebbi.wo.interfaces.SWTimedContent;
 import is.rebbi.wo.interfaces.SWTransferable;
+import is.rebbi.wo.util.HumanReadable;
 import is.rebbi.wo.util.SWCustomInfo;
 import is.rebbi.wo.util.SWTimedContentUtilities;
 import is.rebbi.wo.util.USSortable;
@@ -18,7 +19,6 @@ import com.webobjects.foundation.NSArray;
 import com.webobjects.foundation.NSMutableArray;
 
 import concept.data.auto._SWComponent;
-import concept.util.HumanReadable;
 
 /**
  * An SWComponent represents a part of a page
