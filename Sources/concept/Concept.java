@@ -56,6 +56,8 @@ public class Concept {
 	 * This is the framework's principal class.When it's loaded, it registers the framework for initialization after the application launches.
 	 */
 	static {
+		SWSettings._setIsConcept();
+
 		NSSelector<Void> sel = new NSSelector<>( "init", ERXConstant.NotificationClassArray );
 		NSNotificationCenter.defaultCenter().addObserver( Concept.sw(), sel, ERXApplication.ApplicationDidFinishInitializationNotification, null );
 	}
