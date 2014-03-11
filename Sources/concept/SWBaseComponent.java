@@ -26,7 +26,7 @@ public abstract class SWBaseComponent extends BaseComponent {
 	}
 
 	/**
-	 * Quick access to the system.
+	 * @return Quick access to the system.
 	 */
 	public Concept sw() {
 		return Concept.sw();
