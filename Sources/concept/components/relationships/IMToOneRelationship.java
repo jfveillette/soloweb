@@ -2,6 +2,7 @@ package concept.components.relationships;
 
 import is.rebbi.wo.components.UniqueIDComponent;
 import is.rebbi.wo.util.HumanReadable;
+import is.rebbi.wo.util.Inspection;
 
 import com.webobjects.appserver.WOActionResults;
 import com.webobjects.appserver.WOContext;
@@ -9,7 +10,6 @@ import com.webobjects.eoaccess.EOEntity;
 import com.webobjects.eoaccess.EORelationship;
 import com.webobjects.eocontrol.EOEditingContext;
 
-import concept.Inspection;
 import er.extensions.components.ERXComponent;
 import er.extensions.eof.ERXEOControlUtilities;
 import er.extensions.eof.ERXGenericRecord;

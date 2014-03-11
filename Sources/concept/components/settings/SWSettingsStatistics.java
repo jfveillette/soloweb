@@ -1,12 +1,13 @@
 package concept.components.settings;
 
+import is.rebbi.wo.util.StatsManager;
+
 import com.webobjects.appserver.WOContext;
 import com.webobjects.appserver.WOSession;
 import com.webobjects.foundation.NSTimestamp;
 
 import concept.SWSessionHelper;
 import concept.data.SWUser;
-import concept.managers.StatsManager;
 
 /**
  * Display various statistics to the admin user.

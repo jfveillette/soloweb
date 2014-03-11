@@ -1,13 +1,13 @@
 package concept.components.admin;
 
 import is.rebbi.wo.interfaces.HasFakeRelationship;
+import is.rebbi.wo.util.Inspection;
 
 import com.webobjects.appserver.WOActionResults;
 import com.webobjects.appserver.WOContext;
 import com.webobjects.eocontrol.EOEditingContext;
 import com.webobjects.foundation.NSArray;
 
-import concept.Inspection;
 import concept.ViewPage;
 import concept.data.SWComponent;
 import concept.data.SWTransaction;

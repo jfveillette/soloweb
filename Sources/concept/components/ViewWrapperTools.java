@@ -1,13 +1,14 @@
 package concept.components;
 
+import is.rebbi.wo.components.ViewPageGeneric;
 import is.rebbi.wo.urls.SWURLProvider;
+import is.rebbi.wo.util.Inspection;
 import is.rebbi.wo.util.SWSettings;
 import is.rebbi.wo.util.USHTTPUtilities;
 
 import com.webobjects.appserver.WOActionResults;
 import com.webobjects.appserver.WOContext;
 
-import concept.Inspection;
 import concept.ViewPage;
 import concept.components.admin.SWDocumentComponent;
 import concept.components.admin.SWMetaEdit;

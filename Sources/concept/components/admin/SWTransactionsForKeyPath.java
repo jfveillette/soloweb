@@ -1,6 +1,7 @@
 package concept.components.admin;
 
 import is.rebbi.wo.interfaces.HasFakeRelationship;
+import is.rebbi.wo.util.Inspection;
 
 import com.webobjects.appserver.WOActionResults;
 import com.webobjects.appserver.WOContext;
@@ -8,7 +9,6 @@ import com.webobjects.eocontrol.EOEditingContext;
 import com.webobjects.foundation.NSArray;
 import com.webobjects.foundation.NSMutableArray;
 
-import concept.Inspection;
 import concept.CPAdminComponent;
 import concept.data.SWComponent;
 import concept.data.SWTransaction;

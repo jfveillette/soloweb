@@ -1,10 +1,11 @@
 package concept.components.settings;
 
+import is.rebbi.wo.util.Inspection;
+
 import com.webobjects.appserver.WOActionResults;
 import com.webobjects.appserver.WOContext;
 import com.webobjects.foundation.NSArray;
 
-import concept.Inspection;
 import concept.data.SWSite;
 
 /**

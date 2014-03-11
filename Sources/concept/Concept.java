@@ -3,6 +3,7 @@ package concept;
 import is.rebbi.wo.definitions.EntityViewDefinition;
 import is.rebbi.wo.util.SWSettings;
 import is.rebbi.wo.util.SoftUser;
+import is.rebbi.wo.util.StatsManager;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -22,7 +23,6 @@ import concept.managers.CacheManager;
 import concept.managers.DBConnectionManager;
 import concept.managers.DBDefinitionManager;
 import concept.managers.RequestManager;
-import concept.managers.StatsManager;
 import concept.managers.TransactionLogger;
 import concept.managers.TransactionStamper;
 import concept.plugin.SWPluginHandler;
