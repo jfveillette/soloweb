@@ -92,9 +92,6 @@ public class SWSiteListing extends SWAdminComponent {
 	 */
 	public String searchString;
 
-	public String tabNameTree = "Veftré";
-	public String tabNameSearch = "Leit";
-	public String selectedTab = tabNameTree;
 	public SWSite currentSearchSite;
 	public SWPage currentSearchPage;
 
@@ -312,10 +309,6 @@ public class SWSiteListing extends SWAdminComponent {
 		}
 
 		return null;
-	}
-
-	public NSArray<String> tabs() {
-		return new NSArray<>( new String[] { tabNameTree, tabNameSearch } );
 	}
 
 	public WOActionResults search() {

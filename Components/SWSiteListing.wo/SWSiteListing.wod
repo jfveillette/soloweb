@@ -1,18 +1,3 @@
-TabPanel: SWTabPanel {
-	tabs = tabs;
-	selectedTab = selectedTab;
-}
-
-TabWebTreeSelected: WOKeyValueConditional {
-	key = "selectedTab";
-	value = tabNameTree;
-}
-
-TabSearchSelected: WOKeyValueConditional {
-	key = "selectedTab";
-	value = tabNameSearch;
-}
-
 SearchTextStr: WOString {
 	value = "Type page id or link-name";
 }
