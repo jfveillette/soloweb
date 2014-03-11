@@ -113,18 +113,9 @@ public abstract class ViewPage<E extends ERXGenericRecord> extends SWBaseCompone
     	return null;
     }
 
-	/**
-	 * Deletes the currently selected object.
-	 */
 	public WOActionResults deleteObject() {
-//		boolean willReturnToSameObject = selectedObject().equals( ((CPBaseComponent)callingComponent()).selectedObject() );
 		ec().deleteObject( selectedObject() );
 		saveChangesToObjectStore();
-
-//		if( willReturnToSameObject ) {
-//			return USHTTPUtilities.redirectTemporary( "http://www.ismus.is" );
-//		}
-
 		return returnToCallingComponent();
 	}
 

@@ -43,8 +43,7 @@ public class Inspection {
 			componentClass = EditPageGeneric.class;
 		}
 
-		WOActionResults editObjectInContextUsingComponent = editObjectInContextUsingComponent( object, context, componentClass );
-		return editObjectInContextUsingComponent;
+		return editObjectInContextUsingComponent( object, context, componentClass );
 	}
 
 	/**
