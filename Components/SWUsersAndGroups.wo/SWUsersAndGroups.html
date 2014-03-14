@@ -1,5 +1,4 @@
 <webobject name="SWAdminComponentWrapper1">
-<!-- SWUsersAndGroups -->
 	<br><br>
 	<table border="0" cellpadding="2" cellspacing="0" class="genericTable" align="CENTER">
 		<tr>
@@ -25,16 +24,13 @@
 	</table>
 	<br>
 	<center>
-		<webobject name="HasSelectedObject">
-			<webobject name="TheForm">
-				<webobject name="SelectedObjectIsUser">
-					<webobject name="SWUserManagement"/>
-				</webobject>
-				<webobject name="SelectedObjectIsNotUser">
-					<webobject name="SWGroupManagement"/>
-				</webobject>
-			</webobject>
-		</webobject>
+		<wo:form>
+			<wo:if condition="$selectedUser">
+				<webobject name="SWUserManagement"/>
+			</wo:if>
+			<wo:if condition="$selectedGroup">
+				<webobject name="SWGroupManagement"/>
+			</wo:if>
+		</wo:form>
 	</center>
-<!-- end SWUsersAndGroups -->
 </webobject>

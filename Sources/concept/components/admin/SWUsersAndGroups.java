@@ -1,11 +1,7 @@
 package concept.components.admin;
 
-
 import com.webobjects.appserver.WOComponent;
 import com.webobjects.appserver.WOContext;
-import com.webobjects.eocontrol.EOFetchSpecification;
-import com.webobjects.eocontrol.EOGenericRecord;
-import com.webobjects.eocontrol.EOSortOrdering;
 import com.webobjects.foundation.NSArray;
 
 import concept.SWAdminComponent;
@@ -18,10 +14,8 @@ import concept.data.SWUser;
 
 public class SWUsersAndGroups extends SWAdminComponent {
 
-	/**
-	 * The currently selecte user or group
-	 */
-	public EOGenericRecord selectedObject;
+	public SWUser selectedUser;
+	public SWGroup selectedGroup;
 
 	/**
 	 * The current user being iterated over in the user pop-up menu.
@@ -42,68 +36,45 @@ public class SWUsersAndGroups extends SWAdminComponent {
 		super( context );
 	}
 
-	/**
-	 * Fetches a list of all grous in the SoloWeb system.
-	 */
-	public NSArray allGroups() {
-		EOSortOrdering s = new EOSortOrdering( "name", EOSortOrdering.CompareAscending );
-		EOFetchSpecification fs = new EOFetchSpecification( "SWGroup", null, new NSArray( s ) );
-		return session().defaultEditingContext().objectsWithFetchSpecification( fs );
+	public NSArray<SWGroup> allGroups() {
+		return SWGroup.fetchAllSWGroups( ec(), SWGroup.NAME.ascInsensitives() );
 	}
 
-	/**
-	 * Fetches a list of all users in the SoloWeb system.
-	 */
-	public NSArray allUsers() {
-		EOSortOrdering s = new EOSortOrdering( "name", EOSortOrdering.CompareAscending );
-		EOFetchSpecification fs = new EOFetchSpecification( "SWUser", null, new NSArray( s ) );
-		return session().defaultEditingContext().objectsWithFetchSpecification( fs );
+	public NSArray<SWUser> allUsers() {
+		return SWUser.fetchAllSWUsers( ec(), SWUser.NAME.ascInsensitives() );
 	}
 
-	/**
-	 * Creates a new user object and saves it to the database.
-	 */
 	public WOComponent createUser() {
-		SWUser u = new SWUser();
-		session().defaultEditingContext().insertObject( u );
+		SWUser user = new SWUser();
+		ec().insertObject( user );
 
 		SWGroup g = SWGroup.allUsersGroup( session().defaultEditingContext() );
 
 		if( g != null ) {
-			u.addObjectToBothSidesOfRelationshipWithKey( g, "groups" );
+			user.addObjectToBothSidesOfRelationshipWithKey( g, "groups" );
 		}
 
 		session().defaultEditingContext().saveChanges();
-		selectedObject = u;
+		setSelectedUser( user );
 
 		return null;
 	}
 
-	/**
-	 * Creates a new group object and saves it to the database.
-	 */
 	public WOComponent createGroup() {
-		SWGroup g = new SWGroup();
-		session().defaultEditingContext().insertObject( g );
-
-		session().defaultEditingContext().saveChanges();
-		selectedObject = g;
-
+		SWGroup group = new SWGroup();
+		ec().insertObject( group );
+		ec().saveChanges();
+		setSelectedGroup( group );
 		return null;
 	}
 
-	/**
-	 * Determines if the selected record is a user - if not, it is a group
-	 */
-	public boolean selectedObjectIsUser() {
-		if( selectedObject == null ) {
-			return false;
-		}
+	public void setSelectedUser( SWUser value ) {
+		selectedUser = value;
+		selectedGroup = null;
+	}
 
-		if( selectedObject.getClass().getName().equals( SWGroup.class.getName() ) ) {
-			return false;
-		}
-
-		return true;
+	public void setSelectedGroup( SWGroup value ) {
+		selectedGroup = value;
+		selectedUser = null;
 	}
 }

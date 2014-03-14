@@ -80,6 +80,7 @@ public class SWUserManagement extends SWAdminComponent {
 	/**
 	 * Saves changes in the current session
 	 */
+	@Override
 	public WOComponent saveChanges() {
 		session().defaultEditingContext().saveChanges();
 		return null;
@@ -132,12 +133,12 @@ public class SWUserManagement extends SWAdminComponent {
 	 * Selects the current group and displays it in a "SWGroupManagement page"
 	 */
 	public WOComponent selectGroup() {
-		SWUsersAndGroups nextPage = (SWUsersAndGroups)pageWithName( "SWUsersAndGroups" );
-		nextPage.selectedObject = currentUserGroup;
+		SWUsersAndGroups nextPage = pageWithName( SWUsersAndGroups.class );
+		nextPage.setSelectedGroup( currentUserGroup );
 		return nextPage;
 	}
 
-	public NSArray allSites() {
+	public NSArray<SWSite> allSites() {
 		return SWSite.allSites( session().defaultEditingContext() );
 	}
 }

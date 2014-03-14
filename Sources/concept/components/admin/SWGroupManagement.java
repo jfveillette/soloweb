@@ -54,7 +54,7 @@ public class SWGroupManagement extends SWAdminComponent {
 	/**
 	 * All users registered in the SoloWeb system
 	 */
-	public NSArray allUsers() {
+	public NSArray<SWUser> allUsers() {
 		EOSortOrdering s = new EOSortOrdering( "name", EOSortOrdering.CompareAscending );
 		EOFetchSpecification fs = new EOFetchSpecification( "SWUser", null, new NSArray( s ) );
 		return session().defaultEditingContext().objectsWithFetchSpecification( fs );
@@ -73,6 +73,7 @@ public class SWGroupManagement extends SWAdminComponent {
 	/**
 	 * Saves changes made in the user's session
 	 */
+	@Override
 	public WOComponent saveChanges() {
 		session().defaultEditingContext().saveChanges();
 		return null;
@@ -124,7 +125,7 @@ public class SWGroupManagement extends SWAdminComponent {
 	 */
 	public WOComponent selectUser() {
 		SWUsersAndGroups nextPage = (SWUsersAndGroups)pageWithName( "SWUsersAndGroups" );
-		nextPage.selectedObject = currentGroupUser;
+		nextPage.setSelectedUser( currentGroupUser );
 		return nextPage;
 	}
 }

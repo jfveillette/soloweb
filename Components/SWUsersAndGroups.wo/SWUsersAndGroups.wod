@@ -3,7 +3,7 @@ Browser2: WOPopUpButton {
 	item = currentUser;
 	list = allUsers;
 	noSelectionString = session.@ls.ugNoSelection;
-	selection = selectedObject;
+	selection = selectedUser;
 	onChange = "this.form.submit()";
 }
 
@@ -13,15 +13,11 @@ Browser3: WOPopUpButton {
 	list = allGroups;
 	noSelectionString = session.@ls.ugNoSelection;
 	onChange = "this.form.submit()";
-	selection = selectedObject;
-}
-
-HasSelectedObject: WOConditional {
-	condition = selectedObject;
+	selection = selectedGroup;
 }
 
 SWUserManagement: SWUserManagement {
-	selectedUser = selectedObject;
+	selectedUser = selectedUser;
 }
 
 GroupForm: WOForm {
@@ -35,21 +31,7 @@ UserForm: WOForm {
 }
 
 SWGroupManagement: SWGroupManagement {
-	selectedGroup = selectedObject;
-}
-
-SelectedObjectIsNotUser: WOConditional {
-	condition = selectedObjectIsUser;
-	negate = true;
-}
-
-SelectedObjectIsUser: WOConditional {
-	condition = selectedObjectIsUser;
-}
-
-TheForm: WOForm {
-	multipleSubmit = true;
-	style = "margin-bottom:0px";
+	selectedGroup = selectedGroup;
 }
 
 SWAdminComponentWrapper1: SWAdminComponentWrapper {
@@ -75,4 +57,3 @@ SubmitButton2: WOSubmitButton {
 	class = "accessbutton";
 	action = createUser;
 }
-
