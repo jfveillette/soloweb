@@ -63,7 +63,7 @@ public class ModernusButur extends WOComponent {
 	}
 
 	public String getWebDomain() {
-		String domain = site.primaryDomain();
+		String domain = site.primaryHostName();
 		if( domain != null && domain.length() >= 3 && !domain.substring( 0, 3 ).equals( "www" ) ) {
 			domain = "www." + domain;
 		}

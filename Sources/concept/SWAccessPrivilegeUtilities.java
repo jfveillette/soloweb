@@ -134,6 +134,7 @@ public class SWAccessPrivilegeUtilities extends Object {
 	public static final String PRIVILEGE_CAN_MANAGE_PAGE = "canManagePage";
 	public static final String PRIVILEGE_CAN_DELETE_PAGE = "canDeletePage";
 	public static final String PRIVILEGE_ALLOW_TO_SEE = "allowToSee";
+
 	/**
 	 * Indicates if the current user is granted the specified privilege
 	 *

@@ -167,7 +167,7 @@ public class SWEditPage extends SWAdminComponent {
 		}
 		else {
 			SWSite site = selectedPage.siteForThisPage();
-			url = site.primaryDomain();
+			url = site.primaryHostName();
 
 			if( !StringUtilities.hasValue( url ) ) {
 				url = host;

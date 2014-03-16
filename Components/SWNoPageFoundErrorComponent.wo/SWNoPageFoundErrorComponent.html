@@ -1,4 +1,5 @@
 <!doctype html>
+<wo:SiteInfo />
 <html>
 	<head>
 		<meta charset="utf-8">
@@ -6,5 +7,22 @@
 	</head>
 	<body>
 		<p style="margin-top: 20px; text-align: center"><strong>The requested page was not found</strong></p>
+		<wo:if condition="$application.isDevelopmentMode">
+			<wo:link directActionName="login">Login</wo:link>
+			<h2>Configured sites</h2>
+			<table class="table table-condensed table-bordered">
+				<tr>
+					<th>Vefur</th>
+					<th>Lén</th>
+				</tr>
+				<wo:repetition list="$sites" item="$currentSite">
+					<tr>
+						<td><wo:link directActionName="dp" ?id="$currentSite.frontpage.primaryKey"><wo:str value="$currentSite.name" /></wo:link></td>
+						<td><wo:str value="$currentSite.look" /></td>
+						<td><wo:IMValue object="$currentSite.hostNames" /></td>
+					</tr>
+				</wo:repetition>
+			</table>
+		</wo:if>
 	</body>
 </html>

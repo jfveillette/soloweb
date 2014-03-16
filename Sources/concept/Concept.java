@@ -87,7 +87,7 @@ public class Concept {
 
 		if( SWSettings.home() == null ) {
 			logger.error( "The property concept.home must be set" );
-			System.exit(1);
+			System.exit( 1 );
 		}
 
 		if( WOApplication.application() instanceof SWApplication ) {
@@ -124,7 +124,7 @@ public class Concept {
 		app.setDefaultRequestHandler( app.requestHandlerForKey( app.directActionRequestHandlerKey() ) );
 		app.registerRequestHandler( new SWDocumentRequestHandler(), SWDocumentRequestHandler.KEY );
 		app.registerRequestHandler( new SWThumbnailRequestHandler(), SWThumbnailRequestHandler.KEY );
-		app.setDefaultEncoding( "UTF-8");
+		app.setDefaultEncoding( "UTF-8" );
 
 		if( SWSettings.sessionTimeOut() != null ) {
 			int sessionTimeOutInSeconds = SWSettings.sessionTimeOut() * 60;

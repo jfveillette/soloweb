@@ -236,13 +236,13 @@ public class SWPageUtilities {
 	 */
 	public static SWSite siteMatchingHostName( EOEditingContext ec, String hostName ) {
 		EOQualifier q = SWSite.QUAL.like( "*-" + hostName + "-*" );
-	
+
 		NSArray<SWSite> sites = SWSite.fetchSWSites( ec, q, null );
-	
+
 		if( !USArrayUtilities.hasObjects( sites ) ) {
 			return null;
 		}
-	
+
 		return sites.objectAtIndex( 0 );
 	}
 
@@ -251,25 +251,25 @@ public class SWPageUtilities {
 	 */
 	public static SWSite randomSite( EOEditingContext ec ) {
 		NSArray<SWSite> a = SWSite.fetchAllSWSites( ec );
-	
+
 		if( USArrayUtilities.hasObjects( a ) ) {
 			return a.objectAtIndex( 0 );
 		}
-	
+
 		return null;
 	}
 
 	public static SWSite siteFromRequest( EOEditingContext ec, WORequest request ) {
 		String hostName = request.stringFormValueForKey( "host" );
-	
+
 		if( hostName == null ) {
 			hostName = USHTTPUtilities.host( request );
 		}
-	
+
 		if( hostName != null ) {
 			return siteMatchingHostName( ec, hostName );
 		}
-	
+
 		return null;
 	}
 }

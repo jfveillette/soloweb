@@ -4,6 +4,7 @@ import is.rebbi.core.util.StringUtilities;
 import is.rebbi.wo.interfaces.SWHasCustomInfo;
 import is.rebbi.wo.util.HumanReadable;
 import is.rebbi.wo.util.SWCustomInfo;
+import is.rebbi.wo.util.USArrayUtilities;
 
 import java.util.Locale;
 
@@ -48,9 +49,6 @@ public class SWSite extends _SWSite implements HumanReadable, SWHasCustomInfo {
 		return SWSite.fetchAllSWSites( ec, SWSite.NAME.ascInsensitives() );
 	}
 
-	/**
-	 * @return customInfo
-	 */
 	public SWCustomInfo customInfo() {
 		if( _customInfo == null ) {
 			_customInfo = new SWCustomInfo( this );
@@ -60,25 +58,7 @@ public class SWSite extends _SWSite implements HumanReadable, SWHasCustomInfo {
 	}
 
 	/**
-	 * @return an array containing all domains this site handles.
-	 */
-	public NSArray<String> hosts() {
-		NSMutableArray<String> list = new NSMutableArray<>();
-
-		if( !StringUtilities.hasValue( qual() ) ) {
-			return NSArray.emptyArray();
-		}
-
-		for( String next : qual().split( SITENAME_DELIMITER ) ) {
-			String domain = next.trim();
-			list.add( domain );
-		}
-
-		return list;
-	}
-
-	/**
-	 * Sets the string containing the domain names this Site applies to
+	 * Sets the string containing the host names this Site applies to
 	 */
 	@Override
 	public void setQual( String value ) {
@@ -93,30 +73,51 @@ public class SWSite extends _SWSite implements HumanReadable, SWHasCustomInfo {
 	}
 
 	/**
-	 * @return The site's frontpage in an Array (for use with nested lists and such)
+	 * @return The site's front page in an Array (for use with nested lists and such)
 	 */
 	public NSArray<SWPage> frontPageInArray() {
 		return new NSArray<>( frontpage() );
 	}
 
 	/**
-	 * This site's primary domain
+	 * @return The host names this site handles
 	 */
-	public String primaryDomain() {
-		try {
-			NSArray<String> hosts = NSArray.componentsSeparatedByString( qual(), "\n" );
-			return hosts.objectAtIndex( 0 ).trim().toLowerCase();
+	public NSArray<String> hostNames() {
+		NSMutableArray<String> hostNames = new NSMutableArray<>();
+
+		if( !StringUtilities.hasValue( qual() ) ) {
+			return NSArray.emptyArray();
 		}
-		catch( Exception e ) {
-			return null;
+
+		for( String next : qual().split( SITENAME_DELIMITER ) ) {
+			String hostName = next.trim();
+
+			if( !hostName.isEmpty() ) {
+				hostNames.add( hostName.toLowerCase() );
+			}
 		}
+
+		return hostNames;
+	}
+
+	/**
+	 * @return The site's primary host name.
+	 */
+	public String primaryHostName() {
+		NSArray<String> hostNames = hostNames();
+
+		if( USArrayUtilities.hasObjects( hostNames() ) ) {
+			return hostNames.objectAtIndex( 0 );
+		}
+
+		return null;
 	}
 
 	/**
 	 * @return true if the site has the exact host name specified.
 	 */
-	public boolean hasHost( String host ) {
-		return hosts().containsObject( host );
+	public boolean hasHostName( String hostName ) {
+		return hostNames().containsObject( hostName );
 	}
 
 	/**

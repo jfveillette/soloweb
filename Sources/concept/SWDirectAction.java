@@ -106,13 +106,13 @@ public class SWDirectAction extends ERXDirectAction {
 	}
 
 	private SWSite site() {
-		return siteMatchingHostName( hostForRequest( request() ) );
+		return siteForHostName( hostForRequest( request() ) );
 	}
 
 	/**
 	 * Returns the site matching the host name specified.
 	 */
-	private SWSite siteMatchingHostName( String hostName ) {
+	private SWSite siteForHostName( String hostName ) {
 		hostName = hostName.toLowerCase();
 		EOQualifier q = new EOKeyValueQualifier( SWSite.QUAL_KEY, EOQualifier.QualifierOperatorLike, "*" + hostName + SWSite.SITENAME_DELIMITER + "*" );
 		EOFetchSpecification fs = new EOFetchSpecification( SWSite.ENTITY_NAME, q, null );
@@ -130,7 +130,7 @@ public class SWDirectAction extends ERXDirectAction {
 		logger.warn( "There are more than one sites matching the host name: " + hostName );
 
 		for( SWSite current : sites ) {
-			if( current.hasHost( hostName ) ) {
+			if( current.hasHostName( hostName ) ) {
 				return current;
 			}
 		}
@@ -365,9 +365,6 @@ public class SWDirectAction extends ERXDirectAction {
 		return (E)displayPageWithTemplate( page, templateClass.getSimpleName() );
 	}
 
-	/**
-	 * Displays a page using the named template
-	 */
 	public WOActionResults displayPageWithTemplate( SWPage page, String templateName ) {
 
 		if( page == null ) {
