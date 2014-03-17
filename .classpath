@@ -62,7 +62,7 @@
 	<classpathentry kind="lib" path="Libraries/httpclient-cache-4.2.1.jar"/>
 	<classpathentry kind="lib" path="Libraries/httpcore-4.2.1.jar"/>
 	<classpathentry kind="lib" path="Libraries/httpmime-4.2.1.jar"/>
-	<classpathentry exported="true" kind="lib" path="Libraries/itext-2.0.6.jar"/>
+	<classpathentry exported="true" kind="lib" path="Libraries/itext-2.0.6.jar" sourcepath="/Users/hugi/.m2/repository/com/lowagie/itext/2.0.6/itext-2.0.6-sources.jar"/>
 	<classpathentry kind="lib" path="Libraries/jackson-all-1.8.10.jar"/>
 	<classpathentry kind="lib" path="Libraries/jakarta-oro-2.0.8.jar"/>
 	<classpathentry kind="lib" path="Libraries/jaxb-api-2.1.jar"/>
