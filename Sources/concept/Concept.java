@@ -137,10 +137,10 @@ public class Concept {
 		SWYouTubeUtils.init();
 
 		SWPluginHandler.defaultInstance().loadRegisteredPlugins();
-		String defaultMailServer = SWSettings.stringForKey( "defaultMailServer" );
+		String smtpHost = SWSettings.smtpHost();
 
-		if( defaultMailServer != null ) {
-			app.setSMTPHost( defaultMailServer );
+		if( smtpHost != null ) {
+			app.setSMTPHost( smtpHost );
 		}
 
 		EntityViewDefinition.entityViewDefinitionProviders.addObject( new SystemDefinitions() );

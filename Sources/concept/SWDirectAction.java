@@ -757,8 +757,8 @@ public class SWDirectAction extends ERXDirectAction {
 		try {
 			Properties defaultProperties = new Properties();
 			Authenticator auth = null;
-			String host = SWSettings.stringForKey( "defaultMailServer" );
-			String port = SWSettings.stringForKey( "defaultMailServerSMTPPort" );
+			String host = SWSettings.smtpHost();
+			String port = SWSettings.smtpPort();
 
 			defaultProperties.put( "mail.smtp.host", host );
 			if( StringUtilities.hasValue( port ) ) {
@@ -766,7 +766,7 @@ public class SWDirectAction extends ERXDirectAction {
 			}
 			if( "postur.lausn.is".equals( host ) ) {
 				defaultProperties.put( "mail.smtp.auth", "true" );
-				auth = new SMTPAuthenticator( "soloweb@lausn.is", "hth1010" );
+				auth = new SMTPAuthenticator( dkfjghdfkjg, dkfjghdkjfgh );
 			}
 			javax.mail.Session defaultMailSession = javax.mail.Session.getDefaultInstance( defaultProperties, auth );
 			MimeMessage msg = new MimeMessage( defaultMailSession );
