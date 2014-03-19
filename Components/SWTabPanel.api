@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <wodefinitions>
 	<wo class="SWTabPanel" wocomponentcontent="true">
 
@@ -10,8 +10,9 @@
 		<binding name="submitActionName"/>
 		<binding name="textColor"/>
 
-		<validation message="&apos;tabs&apos; is a required binding">
+		<validation message="'tabs' is a required binding">
 			<unbound name="tabs"/>
 		</validation>
-	</wo>
+	<binding name="showOneTabAsMany"/>
+    </wo>
 </wodefinitions>
