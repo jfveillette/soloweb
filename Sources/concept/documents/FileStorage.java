@@ -30,7 +30,7 @@ public class FileStorage extends Storage {
 			}
 
 			if( _documentPath.endsWith( "/" ) ) {
-				_documentPath = _documentPath.substring( 0, _documentPath.length()-1 );
+				_documentPath = _documentPath.substring( 0, _documentPath.length() - 1 );
 			}
 		}
 
