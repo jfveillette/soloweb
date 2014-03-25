@@ -1,6 +1,5 @@
 package concept.components.admin.edit;
 
-
 import com.webobjects.appserver.WOContext;
 
 import concept.ViewPage;

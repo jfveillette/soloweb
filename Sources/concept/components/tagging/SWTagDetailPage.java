@@ -1,6 +1,5 @@
 package concept.components.tagging;
 
-
 import is.rebbi.wo.definitions.EntityViewDefinition;
 
 import com.webobjects.appserver.WOContext;
