@@ -1,12 +1,12 @@
 package concept.components.settings;
 
-import is.rebbi.wo.util.USEOUtilities;
+import is.rebbi.wo.util.SWSettings;
 
 import com.webobjects.appserver.WOContext;
-import com.webobjects.eocontrol.EOFetchSpecification;
 import com.webobjects.foundation.NSArray;
 
 import concept.data.SWGroup;
+import er.extensions.eof.ERXEOControlUtilities;
 
 public class SWAccessControlSettings extends SWManageSettings {
 
@@ -17,25 +17,18 @@ public class SWAccessControlSettings extends SWManageSettings {
 	}
 
 	public NSArray<SWGroup> allGroups() {
-		EOFetchSpecification fs = new EOFetchSpecification( SWGroup.ENTITY_NAME, null, SWGroup.NAME.ascInsensitives() );
-		return session().defaultEditingContext().objectsWithFetchSpecification( fs );
+		return SWGroup.allGroups( ec() );
 	}
 
 	public SWGroup selectedGroup() {
-		try {
-			return (SWGroup)USEOUtilities.objectWithPK( session().defaultEditingContext(), SWGroup.ENTITY_NAME, selectedDictionary().valueForKey( "allUserGroupID" ) );
+		if( SWSettings.allUsersGroupID() != null ) {
+			return (SWGroup) ERXEOControlUtilities.objectWithPrimaryKeyValue( ec(), SWGroup.ENTITY_NAME, SWSettings.allUsersGroupID(), NSArray.emptyArray() );
 		}
-		catch( Exception e ) {
-			return null;
-		}
+
+		return null;
 	}
 
-	public void setSelectedGroup( SWGroup newSelectedGroup ) {
-		if( newSelectedGroup == null ) {
-			selectedDictionary().takeValueForKey( null, "allUserGroupID" );
-		}
-		else {
-			selectedDictionary().takeValueForKey( Integer.valueOf( newSelectedGroup.primaryKey() ), "allUserGroupID" );
-		}
+	public void setSelectedGroup( SWGroup g ) {
+		SWSettings.setAllUsersGroupID( Integer.valueOf( g.primaryKey() ) );
 	}
 }

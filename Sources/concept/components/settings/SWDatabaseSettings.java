@@ -5,7 +5,6 @@ import is.rebbi.wo.util.SWSettings;
 
 import java.util.Enumeration;
 
-
 import com.webobjects.appserver.WOComponent;
 import com.webobjects.appserver.WOContext;
 import com.webobjects.eoaccess.EOAdaptor;
@@ -28,22 +27,19 @@ import concept.plugin.SWPlugin;
 import concept.plugin.SWPluginHandler;
 import concept.plugin.SWPluginItem;
 import concept.util.SWLoc;
-
 import er.extensions.eof.ERXEC;
 
 public class SWDatabaseSettings extends SWManageSettings {
 
 	public String connectionsTabName = SWLoc.string( "dbsTabConnections", session() );
 	public String switchTabName = SWLoc.string( "dbsTabSwitchAndConstruct", session() );
-	public NSArray tabs = new NSArray( new Object[] {
-	connectionsTabName, switchTabName
-	} );
+	public NSArray tabs = new NSArray( new Object[] { connectionsTabName, switchTabName } );
 	public String selectedTab = connectionsTabName;
 
 	/**
 	* A list of all plugins registered with the SoloWeb system
 	 */
-	public NSMutableArray plugins;
+	public NSMutableArray<SWPlugin> plugins;
 
 	/**
 	* The plugin currently being iterated over in the list of plugins in the SQL-schema generation menu.
@@ -108,9 +104,7 @@ public class SWDatabaseSettings extends SWManageSettings {
 	* A list of supported databases. Legacy from WO 4.5
 	 */
 	public NSArray databases() {
-		return new NSArray( new String[] {
-		"MySql", "FrontBase", "JDBC", "MSSQL2000", "Oracle"
-		} );
+		return new NSArray( new String[] { "MySql", "FrontBase", "JDBC", "MSSQL2000", "Oracle" } );
 	}
 
 	/**
