@@ -8,10 +8,6 @@ import com.webobjects.foundation.NSArray;
 
 import concept.data.SWSite;
 
-/**
- * Administration of web sites in the system.
- */
-
 public class SWSettingsSites extends SWManageSettings {
 
 	public SWSite currentSite;
@@ -29,7 +25,7 @@ public class SWSettingsSites extends SWManageSettings {
 	 */
 	public WOActionResults newSite() {
 		SWSite site = SWSite.create( ec() );
-//		SWSiteListing.setSelectedSite( session(), site );
+		//		SWSiteListing.setSelectedSite( session(), site );
 		ec().saveChanges();
 		return Inspection.editObjectInContext( site, context() );
 	}

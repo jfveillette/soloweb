@@ -1,4 +1,4 @@
-package concept.plugin;
+package concept.components.settings;
 
 import com.webobjects.foundation.NSArray;
 

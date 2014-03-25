@@ -9,10 +9,6 @@ import com.webobjects.foundation.NSTimestamp;
 import concept.SWSessionHelper;
 import concept.data.SWUser;
 
-/**
- * Display various statistics to the admin user.
- */
-
 public class SWSettingsStatistics extends SWManageSettings {
 
 	public WOSession currentSession;

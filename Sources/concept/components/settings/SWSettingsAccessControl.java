@@ -22,7 +22,7 @@ public class SWSettingsAccessControl extends SWManageSettings {
 
 	public SWGroup selectedGroup() {
 		if( SWSettings.allUsersGroupID() != null ) {
-			return (SWGroup) ERXEOControlUtilities.objectWithPrimaryKeyValue( ec(), SWGroup.ENTITY_NAME, SWSettings.allUsersGroupID(), NSArray.emptyArray() );
+			return (SWGroup)ERXEOControlUtilities.objectWithPrimaryKeyValue( ec(), SWGroup.ENTITY_NAME, SWSettings.allUsersGroupID(), NSArray.emptyArray() );
 		}
 
 		return null;

@@ -25,7 +25,6 @@ import com.webobjects.foundation.NSMutableDictionary;
 import concept.SWApplication;
 import concept.plugin.SWPlugin;
 import concept.plugin.SWPluginHandler;
-import concept.plugin.SWPluginItem;
 import concept.util.SWLoc;
 import er.extensions.eof.ERXEC;
 
@@ -33,7 +32,7 @@ public class SWSettingsDatabase extends SWManageSettings {
 
 	public String connectionsTabName = SWLoc.string( "dbsTabConnections", session() );
 	public String switchTabName = SWLoc.string( "dbsTabSwitchAndConstruct", session() );
-	public NSArray tabs = new NSArray( new Object[] { connectionsTabName, switchTabName } );
+	public NSArray<String> tabs = new NSArray<>( connectionsTabName, switchTabName );
 	public String selectedTab = connectionsTabName;
 
 	/**
