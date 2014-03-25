@@ -24,8 +24,8 @@ public class SWEditSite extends SWAdminComponent {
 		super( context );
 	}
 
-	public NSDictionary<String,String> tabDictionary() {
-		NSMutableDictionary<String,String> activeSiteEditingComponents = new NSMutableDictionary<>( Concept.sw().activeSiteEditingComponents() );
+	public NSDictionary<String, String> tabDictionary() {
+		NSMutableDictionary<String, String> activeSiteEditingComponents = new NSMutableDictionary<>( Concept.sw().activeSiteEditingComponents() );
 		activeSiteEditingComponents.setObjectForKey( SWEditSiteGeneralInfo.class.getSimpleName(), SWLoc.string( "eSiteTabGeneral", session() ) );
 
 		if( SWSettings.booleanForKey( "enablePrivileges" ) ) {
@@ -51,24 +51,25 @@ public class SWEditSite extends SWAdminComponent {
 		((ERXSession)session()).objectStore().takeValueForKey( value, "selectedSite" );
 	}
 
+	@Override
 	public WOComponent saveChanges() {
 		session().defaultEditingContext().saveChanges();
 		return null;
 	}
 
-//	public NSArray<String> availableLocaleNames() {
-//		NSMutableArray<String> localeNames = new NSMutableArray<>();
-//
-//		for( Locale l : Locale.getAvailableLocales() ) {
-//			localeNames.addObject( l.getLanguage() );
-//		}
-//
-//		NSArray<String> a = ERXArrayUtilities.arrayWithoutDuplicates( localeNames );
-//		return ERXArrayUtilities.sortedArrayUsingComparator( a, NSComparator.AscendingCaseInsensitiveStringComparator );
-//	}
-//
-//	public String currentLocaleDisplayName() {
-//		return currentLocaleName + " (" + new Locale( currentLocaleName ).getDisplayName() + ")";
-//	}
+	//	public NSArray<String> availableLocaleNames() {
+	//		NSMutableArray<String> localeNames = new NSMutableArray<>();
+	//
+	//		for( Locale l : Locale.getAvailableLocales() ) {
+	//			localeNames.addObject( l.getLanguage() );
+	//		}
+	//
+	//		NSArray<String> a = ERXArrayUtilities.arrayWithoutDuplicates( localeNames );
+	//		return ERXArrayUtilities.sortedArrayUsingComparator( a, NSComparator.AscendingCaseInsensitiveStringComparator );
+	//	}
+	//
+	//	public String currentLocaleDisplayName() {
+	//		return currentLocaleName + " (" + new Locale( currentLocaleName ).getDisplayName() + ")";
+	//	}
 
 }

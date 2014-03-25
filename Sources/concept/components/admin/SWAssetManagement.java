@@ -281,6 +281,7 @@ public class SWAssetManagement extends SWAdminComponent {
 		return saveChanges();
 	}
 
+	@Override
 	public WOComponent saveChanges() {
 		session().defaultEditingContext().saveChanges();
 		return null;
@@ -417,11 +418,11 @@ public class SWAssetManagement extends SWAdminComponent {
 	 */
 	public boolean canCreateDeleteAssetsInCurrentFolder() {
 		boolean result = true;
-/*
-		if( selectedFolder != null && user() != null && selectedFolder.getClass().getName().equals( SWFFormFolder.class.getName() ) ) {
-			result = user().hasPrivilegeFor( selectedFolder, "allowToCreateDelete" );
-		}
-*/
+		/*
+				if( selectedFolder != null && user() != null && selectedFolder.getClass().getName().equals( SWFFormFolder.class.getName() ) ) {
+					result = user().hasPrivilegeFor( selectedFolder, "allowToCreateDelete" );
+				}
+		*/
 		return result;
 	}
 

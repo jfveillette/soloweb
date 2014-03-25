@@ -1,16 +1,11 @@
 package concept.components.admin;
 
-
 import com.webobjects.appserver.WOActionResults;
 import com.webobjects.appserver.WOContext;
 
 import concept.ViewPage;
 import concept.data.SWTransaction;
 import er.extensions.components.ERXComponent;
-
-/**
- * @author Hugi Þórðarson
- */
 
 public class SWEditTransaction extends ViewPage<SWTransaction> {
 

@@ -10,7 +10,6 @@ import is.rebbi.wo.util.USDataUtilities;
 
 import java.util.Enumeration;
 
-
 import com.webobjects.appserver.WOActionResults;
 import com.webobjects.appserver.WOComponent;
 import com.webobjects.appserver.WOContext;
@@ -42,7 +41,7 @@ public class SWEditDataAsset extends SWAdminComponent {
 	/**
 	 * The selected asset to work with
 	 */
-	private SWDataAsset<?,?> _selectedAsset;
+	private SWDataAsset<?, ?> _selectedAsset;
 
 	/**
 	 * The asset's entity name
@@ -72,7 +71,7 @@ public class SWEditDataAsset extends SWAdminComponent {
 		return FileTypes.types();
 	}
 
-	public void setSelectedAsset( SWDataAsset<?,?> value ) {
+	public void setSelectedAsset( SWDataAsset<?, ?> value ) {
 		_selectedAsset = value;
 		// create a list of all preview sizes
 		// and a dictionary for holding selected sizes
@@ -95,7 +94,7 @@ public class SWEditDataAsset extends SWAdminComponent {
 		}
 	}
 
-	public SWDataAsset<?,?> selectedAsset() {
+	public SWDataAsset<?, ?> selectedAsset() {
 		return _selectedAsset;
 	}
 
@@ -117,6 +116,7 @@ public class SWEditDataAsset extends SWAdminComponent {
 	/**
 	 * Uploads data and saves changes
 	 */
+	@Override
 	public WOComponent saveChanges() {
 
 		NSData finalData = null;

@@ -174,7 +174,7 @@ public class SWSiteListing extends SWAdminComponent {
 	 * page's subpages, or an empty array, based on that info.
 	 */
 	public NSArray<SWPage> theSubPages() {
-		return isExpanded( currentPage ) ? currentPage.sortedSubPages() : NSArray.<SWPage>emptyArray();
+		return isExpanded( currentPage ) ? currentPage.sortedSubPages() : NSArray.<SWPage> emptyArray();
 	}
 
 	/**

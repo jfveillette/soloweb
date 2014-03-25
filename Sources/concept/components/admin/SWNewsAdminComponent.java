@@ -99,8 +99,8 @@ public class SWNewsAdminComponent extends SWAdminComponent {
 		return componentsAndKeys().allKeys();
 	}
 
-	public NSMutableDictionary<String,String> componentsAndKeys() {
-		NSMutableDictionary<String,String> d = new NSMutableDictionary<>();
+	public NSMutableDictionary<String, String> componentsAndKeys() {
+		NSMutableDictionary<String, String> d = new NSMutableDictionary<>();
 
 		d.setObjectForKey( "SWNewsSubmit", "Skr&aacute;ning fr&eacute;ttar" );
 		d.setObjectForKey( "SoloNewsNewsList", "Fr&eacute;ttalisti" );

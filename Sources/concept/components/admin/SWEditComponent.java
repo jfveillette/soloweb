@@ -73,27 +73,27 @@ public class SWEditComponent extends SWAdminComponent {
 	/**
 	 * All possible types of components and their corresponding editing components
 	 */
-	public NSDictionary<String,String> projectTypes() {
-		NSMutableDictionary<String,String> activeComponents = new NSMutableDictionary<>( Concept.sw().activeComponents() );
+	public NSDictionary<String, String> projectTypes() {
+		NSMutableDictionary<String, String> activeComponents = new NSMutableDictionary<>( Concept.sw().activeComponents() );
 		activeComponents.setObjectForKey( SWEditStandardComponent.class.getSimpleName(), SWLoc.string( "cpteContent", session() ) );
 		activeComponents.setObjectForKey( SWNewsAdminComponent.class.getSimpleName(), SWLoc.string( "cpteNews", session() ) );
 		activeComponents.setObjectForKey( SWSFAdminComponent.class.getSimpleName(), SWLoc.string( "cpteDocuments", session() ) );
-//		activeComponents.setObjectForKey( SWSAdminComponent.class.getSimpleName(), "SoloStaff" );
+		//		activeComponents.setObjectForKey( SWSAdminComponent.class.getSimpleName(), "SoloStaff" );
 		activeComponents.setObjectForKey( SWImageGalleryAdmin.class.getSimpleName(), "Myndir" );
 		activeComponents.setObjectForKey( SWSideBySideAdmin.class.getSimpleName(), "Multi" );
 		activeComponents.setObjectForKey( SWMediaAdmin.class.getSimpleName(), "Media" );
 		activeComponents.setObjectForKey( SWSearchAdmin.class.getSimpleName(), "Leit" );
 		activeComponents.setObjectForKey( SWSearchAdmin2.class.getSimpleName(), "Leit2" );
 		activeComponents.setObjectForKey( SWSearchResultsAdmin.class.getSimpleName(), "Leitarniðurstöður" );
-//		activeComponents.setObjectForKey( SF4Admin.class.getSimpleName(), "SoloForms4" );
+		//		activeComponents.setObjectForKey( SF4Admin.class.getSimpleName(), "SoloForms4" );
 		activeComponents.setObjectForKey( SWSliderAdmin.class.getSimpleName(), "Slider" );
 		activeComponents.setObjectForKey( SWYouTubePlayerAdmin.class.getSimpleName(), "YouTubePlay" );
 		activeComponents.setObjectForKey( SWYouTubeListAdmin.class.getSimpleName(), "YouTubeList" );
 		return activeComponents;
 	}
 
-	public NSDictionary<String,String> activeSystemsAndComponents() {
-		NSMutableDictionary<String,String> activeSystemsAndComponents = new NSMutableDictionary<>( Concept.sw().activeSystemsAndComponents() );
+	public NSDictionary<String, String> activeSystemsAndComponents() {
+		NSMutableDictionary<String, String> activeSystemsAndComponents = new NSMutableDictionary<>( Concept.sw().activeSystemsAndComponents() );
 		activeSystemsAndComponents.setObjectForKey( SWLoc.string( "cpteContent", session() ), ButurTemplate001.class.getSimpleName() );
 		activeSystemsAndComponents.setObjectForKey( SWLoc.string( "cpteContent", session() ), ButurTemplate002.class.getSimpleName() );
 		activeSystemsAndComponents.setObjectForKey( SWLoc.string( "cpteContent", session() ), ButurTemplate003.class.getSimpleName() );
@@ -102,14 +102,14 @@ public class SWEditComponent extends SWAdminComponent {
 		activeSystemsAndComponents.setObjectForKey( SWLoc.string( "cpteNews", session() ), SWNewsSubmit.class.getSimpleName() );
 		activeSystemsAndComponents.setObjectForKey( SWLoc.string( "cpteDocuments", session() ), SWSFComponent.class.getSimpleName() );
 		activeSystemsAndComponents.setObjectForKey( SWLoc.string( "cpteDocuments", session() ), SWSFFileList.class.getSimpleName() );
-//		FIXME: Removed when combining Soloweb frmeworks & co activeSystemsAndComponents.setObjectForKey( "SoloStaff", SWSStaffListComponent.class.getSimpleName() );
+		//		FIXME: Removed when combining Soloweb frmeworks & co activeSystemsAndComponents.setObjectForKey( "SoloStaff", SWSStaffListComponent.class.getSimpleName() );
 		activeSystemsAndComponents.setObjectForKey( "Myndir", SWImageGallery.class.getSimpleName() );
 		activeSystemsAndComponents.setObjectForKey( "Multi", SWSideBySide.class.getSimpleName() );
 		activeSystemsAndComponents.setObjectForKey( "Media", SWMedia.class.getSimpleName() );
 		activeSystemsAndComponents.setObjectForKey( "Leit", SWSearchField.class.getSimpleName() );
 		activeSystemsAndComponents.setObjectForKey( "Leit2", SWSearchField2.class.getSimpleName() );
 		activeSystemsAndComponents.setObjectForKey( "Leitarniðurstöður", SWSearchResults2.class.getSimpleName() );
-//		activeSystemsAndComponents.setObjectForKey( "SoloForms4", SF4Butur.class.getSimpleName() );
+		//		activeSystemsAndComponents.setObjectForKey( "SoloForms4", SF4Butur.class.getSimpleName() );
 		activeSystemsAndComponents.setObjectForKey( "Slider", SWSlider.class.getSimpleName() );
 		activeSystemsAndComponents.setObjectForKey( "YouTubePlay", SWYouTubePlayer.class.getSimpleName() );
 		activeSystemsAndComponents.setObjectForKey( "YouTubeList", SWYouTubeList.class.getSimpleName() );
@@ -184,6 +184,7 @@ public class SWEditComponent extends SWAdminComponent {
 		}
 	}
 
+	@Override
 	public WOComponent saveChanges() {
 		session().defaultEditingContext().saveChanges();
 		return null;

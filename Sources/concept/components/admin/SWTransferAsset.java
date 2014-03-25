@@ -1,6 +1,5 @@
 package concept.components.admin;
 
-
 import com.webobjects.appserver.WOContext;
 
 import concept.SWGenericTransferComponent;

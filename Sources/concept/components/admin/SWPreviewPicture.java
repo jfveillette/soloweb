@@ -3,7 +3,6 @@ package concept.components.admin;
 import java.awt.image.BufferedImage;
 import java.util.Random;
 
-
 import com.webobjects.appserver.WOComponent;
 import com.webobjects.appserver.WOContext;
 import com.webobjects.foundation.NSArray;

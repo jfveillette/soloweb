@@ -1,6 +1,5 @@
 package concept.components.admin;
 
-
 import is.rebbi.wo.interfaces.SWTransferable;
 
 import com.webobjects.appserver.WOComponent;
