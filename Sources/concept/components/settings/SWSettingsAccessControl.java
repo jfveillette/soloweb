@@ -8,11 +8,11 @@ import com.webobjects.foundation.NSArray;
 import concept.data.SWGroup;
 import er.extensions.eof.ERXEOControlUtilities;
 
-public class SWAccessControlSettings extends SWManageSettings {
+public class SWSettingsAccessControl extends SWManageSettings {
 
 	public SWGroup currentGroup;
 
-	public SWAccessControlSettings( WOContext context ) {
+	public SWSettingsAccessControl( WOContext context ) {
 		super( context );
 	}
 
