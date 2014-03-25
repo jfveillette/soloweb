@@ -66,11 +66,11 @@ public class SWTransaction extends _SWTransaction implements HasFakeRelationship
 		return actionTypes().get( action() );
 	}
 
-	public NSDictionary<String,Object> beforeDictionary() {
+	public NSDictionary<String, Object> beforeDictionary() {
 		return (NSDictionary)NSPropertyListSerialization.propertyListFromString( before() );
 	}
 
-	public NSDictionary<String,Object> afterDictionary() {
+	public NSDictionary<String, Object> afterDictionary() {
 		return (NSDictionary)NSPropertyListSerialization.propertyListFromString( after() );
 	}
 

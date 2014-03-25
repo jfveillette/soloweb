@@ -33,9 +33,9 @@ import com.webobjects.foundation.NSNotificationCenter;
 import com.webobjects.foundation.NSSelector;
 
 import concept.data.auto._SWPicture;
-import concept.util.SWZipUtilities;
 import concept.util.SWPictureUtilities;
 import concept.util.SWStringUtilities;
+import concept.util.SWZipUtilities;
 
 public class SWPicture extends _SWPicture implements SWDataAsset<SWPicture, SWAssetFolder>, SWHasCustomInfo {
 
@@ -368,22 +368,22 @@ public class SWPicture extends _SWPicture implements SWDataAsset<SWPicture, SWAs
 
 	public int width() {
 		ImageInfo ii = imageInfo( null );
-		return ( ii != null ) ? ii.getWidth() : 0;
+		return (ii != null) ? ii.getWidth() : 0;
 	}
 
 	public int height() {
 		ImageInfo ii = imageInfo( null );
-		return ( ii != null ) ? ii.getHeight() : 0;
+		return (ii != null) ? ii.getHeight() : 0;
 	}
 
 	public int widthForPictureSize( String size ) {
 		ImageInfo ii = imageInfo( size );
-		return ( ii != null ) ? ii.getWidth() : 0;
+		return (ii != null) ? ii.getWidth() : 0;
 	}
 
 	public int heightForPictureSize( String size ) {
 		ImageInfo ii = imageInfo( size );
-		return ( ii != null ) ? ii.getHeight() : 0;
+		return (ii != null) ? ii.getHeight() : 0;
 	}
 
 	public static SWPicture pictureWithID( EOEditingContext anEC, Integer anID ) {

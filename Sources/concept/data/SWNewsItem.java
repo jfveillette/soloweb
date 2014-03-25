@@ -35,7 +35,7 @@ import concept.search.SWSearchItem;
 import concept.util.Documents;
 import er.extensions.appserver.ERXWOContext;
 
-public class SWNewsItem extends _SWNewsItem implements SWTimedContent, SWAsset<SWNewsItem, SWNewsCategory>, SWSearchItem, SWHasCustomInfo, SWCopyable<SWNewsItem>, TimeStamped, UserStamped, HumanReadable  {
+public class SWNewsItem extends _SWNewsItem implements SWTimedContent, SWAsset<SWNewsItem, SWNewsCategory>, SWSearchItem, SWHasCustomInfo, SWCopyable<SWNewsItem>, TimeStamped, UserStamped, HumanReadable {
 
 	private static final Logger logger = LoggerFactory.getLogger( SWNewsItem.class );
 

@@ -20,7 +20,7 @@ import concept.data.auto._SWNewsCategory;
  * An SWGroup represents a group of users with access to the SoloWeb system
  */
 
-public class SWNewsCategory extends _SWNewsCategory implements SWFolderInterface<SWNewsCategory,SWNewsItem> {
+public class SWNewsCategory extends _SWNewsCategory implements SWFolderInterface<SWNewsCategory, SWNewsItem> {
 
 	private static final NSArray<EOSortOrdering> DEFAULT_SORT_ORDERINGS = new NSArray<>( new EOSortOrdering( "name", EOSortOrdering.CompareAscending ) );
 	private static final NSArray<EOSortOrdering> NEWS_DEFAULT_SORT_ORDERINGS = new NSArray<>( new EOSortOrdering( "date", EOSortOrdering.CompareDescending ) );

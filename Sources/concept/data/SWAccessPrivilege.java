@@ -99,7 +99,7 @@ public class SWAccessPrivilege extends _SWAccessPrivilege implements HasFakeRela
 			return null;
 		}
 
-		for( SWAccessPrivilegeValue apv : values()  ) {
+		for( SWAccessPrivilegeValue apv : values() ) {
 			if( identifier.equals( apv.identifier() ) ) {
 				return apv;
 			}

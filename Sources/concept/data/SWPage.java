@@ -36,7 +36,7 @@ public class SWPage extends _SWPage implements SWTransferable, USHierarchy<SWPag
 	private static final NSArray<EOSortOrdering> DEFAULT_SORT_ORDERINGS = SORT_NUMBER.ascs();
 	private static final EOQualifier PUBLISHED_QUALIFIER = PUBLISHED.eq( 1 );
 
-	private static NSMutableDictionary<String,Operator> _operators = new NSMutableDictionary<>();
+	private static NSMutableDictionary<String, Operator> _operators = new NSMutableDictionary<>();
 	private SWCustomInfo _customInfo;
 	private String _searchItemContents;
 
@@ -806,7 +806,7 @@ public class SWPage extends _SWPage implements SWTransferable, USHierarchy<SWPag
 		return isPublished();
 	}
 
-	public Integer pageID () {
+	public Integer pageID() {
 		return id();
 	}
 

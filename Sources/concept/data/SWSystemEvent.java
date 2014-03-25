@@ -8,7 +8,6 @@ import org.slf4j.LoggerFactory;
 
 import com.webobjects.eocontrol.EOEditingContext;
 
-
 import er.extensions.eof.ERXEC;
 
 /**
@@ -21,13 +20,13 @@ public class SWSystemEvent extends concept.data.auto._SWSystemEvent implements H
 
 	public static void logEvent( String type, String text ) {
 		EOEditingContext ec = ERXEC.newEditingContext();
-//		TransactionLogger.disableInEditingContext( ec );
+		//		TransactionLogger.disableInEditingContext( ec );
 
 		try {
 			SWSystemEvent event = SWSystemEvent.createSWSystemEvent( ec );
 			event.setType( type );
 			event.setText( text );
-//			event.setUser( SWSessionHelper.currentUser() );
+			//			event.setUser( SWSessionHelper.currentUser() );
 			ec.saveChanges();
 		}
 		catch( Exception e ) {

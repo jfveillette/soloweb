@@ -61,7 +61,7 @@ public class SWFavorite extends concept.data.auto._SWFavorite implements HasFake
 		}
 	}
 
-	public static boolean isFavorite( SWUser user,  ERXGenericRecord object ) {
+	public static boolean isFavorite( SWUser user, ERXGenericRecord object ) {
 
 		if( object == null ) {
 			return false;
