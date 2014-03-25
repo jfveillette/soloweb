@@ -28,18 +28,15 @@ import java.io.OutputStream;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.webobjects.appserver.WOContext;
 import com.webobjects.eocontrol.EOEditingContext;
 import com.webobjects.eocontrol.EOEnterpriseObject;
 import com.webobjects.foundation.NSArray;
 import com.webobjects.foundation.NSData;
 
-import concept.Concept;
 import concept.SWDocumentRequestHandler;
 import concept.SWThumbnailRequestHandler;
 import concept.data.auto._SWDocument;
 import concept.util.SWZipUtilities;
-import er.extensions.appserver.ERXApplication;
 import er.extensions.appserver.ERXWOContext;
 
 public class SWDocument extends _SWDocument implements SWDataAsset<SWDocument, SWDocumentFolder>, HumanReadable, TimeStamped, UUIDStamped {
@@ -275,26 +272,7 @@ public class SWDocument extends _SWDocument implements SWDataAsset<SWDocument, S
 	 * @return The name of the icon file for this document.
 	 */
 	public String iconURL() {
-		String iconURL = null;
-		String filename = null;
-
-		if( extension() != null ) {
-			filename = "ext/" + extension() + ".png";
-		}
-		else {
-			filename = "ext/html.png";
-		}
-
-		WOContext context = ERXWOContext.currentContext();
-
-		iconURL = ERXApplication.erxApplication().resourceManager().urlForResourceNamed( filename, Concept.sw().frameworkBundleName(), NSArray.<String> emptyArray(), context.request() );
-
-		if( iconURL.contains( "NOT_FOUND" ) ) {
-			filename = "ext/html.png";
-			iconURL = ERXApplication.erxApplication().resourceManager().urlForResourceNamed( filename, Concept.sw().frameworkBundleName(), NSArray.<String> emptyArray(), context.request() );
-		}
-
-		return iconURL;
+		return FileType.iconURLForExtension( extension() );
 	}
 
 	/**

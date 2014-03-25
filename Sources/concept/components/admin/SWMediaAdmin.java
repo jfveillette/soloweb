@@ -9,6 +9,7 @@ import com.webobjects.appserver.WOContext;
 import com.webobjects.foundation.NSArray;
 
 import concept.SWGenericComponent;
+import concept.components.client.SWMedia;
 import concept.data.SWComponent;
 import concept.data.SWDocument;
 
@@ -16,11 +17,9 @@ public class SWMediaAdmin extends SWGenericComponent {
 
 	private static final String DOC_ID_KEY = "documentID";
 
-	public static final NSArray videoExtensions = NSArray.componentsSeparatedByString( "mpg,avi,mov,mp4,wmv,flv", "," );
-	public static final NSArray graphicsExtensions = NSArray.componentsSeparatedByString( "swf", "," );
-	public static final NSArray audioExtensions = NSArray.componentsSeparatedByString( "mp3,m4a,wma,wav,aif", "," );
-
-	//, ,audioExtensions;
+	public static final NSArray<String> videoExtensions = NSArray.componentsSeparatedByString( "mpg,avi,mov,mp4,wmv,flv", "," );
+	public static final NSArray<String> graphicsExtensions = NSArray.componentsSeparatedByString( "swf", "," );
+	public static final NSArray<String> audioExtensions = NSArray.componentsSeparatedByString( "mp3,m4a,wma,wav,aif", "," );
 
 	public SWMediaAdmin( WOContext context ) {
 		super( context );
@@ -30,7 +29,8 @@ public class SWMediaAdmin extends SWGenericComponent {
 	public void setCurrentComponent( SWComponent newOne ) {
 		super.setCurrentComponent( newOne );
 
-		currentComponent().setTemplateName( "SWMedia" );
+		currentComponent().setTemplateName( SWMedia.class.getSimpleName() );
+
 		if( !StringUtilities.hasValue( (String)currentComponent().customInfo().valueForKey( "mediaType" ) ) ) {
 			currentComponent().customInfo().takeValueForKey( "file", "mediaType" );
 		}
@@ -75,10 +75,12 @@ public class SWMediaAdmin extends SWGenericComponent {
 	public boolean isValidMediaFile() {
 		boolean yes = false;
 		SWDocument doc = selectedDocument();
+
 		if( doc != null ) {
 			String ext = doc.extension();
 			yes = videoExtensions.containsObject( ext ) || graphicsExtensions.containsObject( ext ) || audioExtensions.containsObject( ext );
 		}
+
 		return yes;
 	}
 
@@ -98,13 +100,15 @@ public class SWMediaAdmin extends SWGenericComponent {
 		return extensions( graphicsExtensions );
 	}
 
-	private String extensions( NSArray list ) {
+	private String extensions( NSArray<String> list ) {
 		String ext = "";
 		String komma = "";
+
 		for( Enumeration<String> e = list.objectEnumerator(); e.hasMoreElements(); ) {
 			ext = ext + komma + e.nextElement();
 			komma = ", ";
 		}
+
 		return ext;
 	}
 }

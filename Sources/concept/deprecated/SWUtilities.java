@@ -13,9 +13,7 @@ public class SWUtilities extends Object {
 
 	public static final String USER_COOKIE_NAME = "SW_CONTENTUSER_ID";
 
-	private SWUtilities() {
-		super();
-	}
+	private SWUtilities() {}
 
 	public static String scrambleCookieUserID( int userId ) {
 		String userIdString = String.valueOf( userId );

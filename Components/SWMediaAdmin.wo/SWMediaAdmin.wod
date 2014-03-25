@@ -69,8 +69,8 @@ IsWindowsMedia: WOConditional {
 IsQuickTime: WOConditional {
 	condition = true;
 }
-SWImage1: SWImage {
-	selectedPicture = selectedDocument.documentType.iconURL;
+SWImage1: WOImage {
+	src = selectedDocument.documentType.iconURL;
 }
 documentName: WOString {
 	value = selectedDocument.name;

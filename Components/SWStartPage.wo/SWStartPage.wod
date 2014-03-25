@@ -1,6 +1,1 @@
-Image1: WOImage {
-	filename = "sw32/img/lausn_logo_stort.gif";
-	framework = application.frameworkBundleName;
-}
-
 SWAdminComponentWrapper1: SWAdminComponentWrapper {}
