@@ -12,7 +12,7 @@ import concept.data.SWSite;
  * Administration of web sites in the system.
  */
 
-public class SWSettingsSites extends SWSettingsPanel {
+public class SWSettingsSites extends SWManageSettings {
 
 	public SWSite currentSite;
 

@@ -13,7 +13,7 @@ import concept.data.SWUser;
  * Display various statistics to the admin user.
  */
 
-public class SWSettingsStatistics extends SWSettingsPanel {
+public class SWSettingsStatistics extends SWManageSettings {
 
 	public WOSession currentSession;
 

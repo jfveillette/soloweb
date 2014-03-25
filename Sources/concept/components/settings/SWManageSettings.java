@@ -26,7 +26,7 @@ public class SWManageSettings extends SWAdminComponent {
 	public NSDictionary<String,String> tabDictionary() {
 		NSMutableDictionary<String,String> activeSettingsTabs = new NSMutableDictionary<>( Concept.sw().activeSettingsTabs() );
 		activeSettingsTabs.setObjectForKey( SWGeneralSettings.class.getSimpleName(), SWLoc.string( "settingsTabGeneral", session() ) );
-		activeSettingsTabs.setObjectForKey( SWDatabaseSettings.class.getSimpleName(), SWLoc.string( "settingsTabDatabase", session() ) );
+		activeSettingsTabs.setObjectForKey( SWSettingsDatabase.class.getSimpleName(), SWLoc.string( "settingsTabDatabase", session() ) );
 		activeSettingsTabs.setObjectForKey( SWNewsSettings.class.getSimpleName(), SWLoc.string( "settingsTabNews", session() ) );
 		activeSettingsTabs.setObjectForKey( SWSettingsActions.class.getSimpleName(), SWLoc.string( "settingsTabAdministration", session() ) );
 		activeSettingsTabs.setObjectForKey( SWSettingsAccessControl.class.getSimpleName(), SWLoc.string( "settingsTabAccessControls", session() ) );

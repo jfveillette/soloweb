@@ -29,7 +29,7 @@ import concept.plugin.SWPluginItem;
 import concept.util.SWLoc;
 import er.extensions.eof.ERXEC;
 
-public class SWDatabaseSettings extends SWManageSettings {
+public class SWSettingsDatabase extends SWManageSettings {
 
 	public String connectionsTabName = SWLoc.string( "dbsTabConnections", session() );
 	public String switchTabName = SWLoc.string( "dbsTabSwitchAndConstruct", session() );
@@ -61,7 +61,7 @@ public class SWDatabaseSettings extends SWManageSettings {
 	 */
 	public NSMutableArray pluginsToDrop = new NSMutableArray();
 
-	public SWDatabaseSettings( WOContext context ) {
+	public SWSettingsDatabase( WOContext context ) {
 		super( context );
 	}
 

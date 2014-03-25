@@ -31,11 +31,11 @@ public class SWSettingsCustomInfo extends SWManageSettings {
 		SWEditDocumentContentAsText nextPage = null;
 
 		if( selectedPage != null ) {
-			nextPage = (SWEditDocumentContentAsText)pageWithName( "SWEditDocumentContentAsText" );
+			nextPage = pageWithName( SWEditDocumentContentAsText.class );
 			nextPage.selectedPage = selectedPage;
 		}
 		else if( selectedComponent != null ) {
-			nextPage = (SWEditDocumentContentAsText)pageWithName( "SWEditDocumentContentAsText" );
+			nextPage = pageWithName( SWEditDocumentContentAsText.class );
 			nextPage.selectedComponent = selectedComponent;
 		}
 
