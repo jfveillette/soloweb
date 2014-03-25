@@ -28,7 +28,7 @@ public class SWManageSettings extends SWAdminComponent {
 		activeSettingsTabs.setObjectForKey( SWGeneralSettings.class.getSimpleName(), SWLoc.string( "settingsTabGeneral", session() ) );
 		activeSettingsTabs.setObjectForKey( SWDatabaseSettings.class.getSimpleName(), SWLoc.string( "settingsTabDatabase", session() ) );
 		activeSettingsTabs.setObjectForKey( SWNewsSettings.class.getSimpleName(), SWLoc.string( "settingsTabNews", session() ) );
-		activeSettingsTabs.setObjectForKey( SWActionSettings.class.getSimpleName(), SWLoc.string( "settingsTabAdministration", session() ) );
+		activeSettingsTabs.setObjectForKey( SWSettingsActions.class.getSimpleName(), SWLoc.string( "settingsTabAdministration", session() ) );
 		activeSettingsTabs.setObjectForKey( SWAccessControlSettings.class.getSimpleName(), SWLoc.string( "settingsTabAccessControls", session() ) );
 		activeSettingsTabs.setObjectForKey( SWLocalizationSettings.class.getSimpleName(), SWLoc.string( "settingsTabLocalization", session() ) );
 		activeSettingsTabs.setObjectForKey( SWSettingsStatistics.class.getSimpleName(), SWLoc.string( "settingsTabStatistics", session() ) );

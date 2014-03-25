@@ -17,9 +17,9 @@ import concept.data.SWUser;
 import concept.search.SWLuceneUtilities;
 import concept.util.SWPictureUtilities;
 
-public class SWActionSettings extends SWManageSettings {
+public class SWSettingsActions extends SWManageSettings {
 
-	public SWActionSettings( WOContext context ) {
+	public SWSettingsActions( WOContext context ) {
 		super( context );
 	}
 
