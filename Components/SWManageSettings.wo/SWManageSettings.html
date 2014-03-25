@@ -1,26 +1,16 @@
-<WEBOBJECT NAME=SWAdminComponentWrapper1>
-	<!-- SWManageSettings -->
-	<TABLE CELLSPACING=0 CELLPADDING=2 BORDER=0 WIDTH="100%">
-		<TR>
-			<TD ALIGN=RIGHT VALIGN=TOP>
-				<FONT SIZE=4><WEBOBJECT NAME=String1></WEBOBJECT></FONT>
-			</TD>
-		</TR>
-	</TABLE>
-	<CENTER>
-		<BR><WEBOBJECT NAME=Conditional2>
-			<WEBOBJECT NAME=Form3>
-				<WEBOBJECT NAME=TabPanel1>
-					<WEBOBJECT NAME=SwitchComponent1></WEBOBJECT>
-				</WEBOBJECT>
-			</WEBOBJECT>
-		</WEBOBJECT>
-		<WEBOBJECT NAME=Conditional3>
-			<B><WEBOBJECT NAME=String2></WEBOBJECT></B><BR><BR>
-			<WEBOBJECT NAME=Form1>
-				<WEBOBJECT NAME=String3></WEBOBJECT>: System settings can no longer be specified here.<WEBOBJECT NAME=SubmitButton3></WEBOBJECT>
-			</WEBOBJECT>
-		</WEBOBJECT>
-	</CENTER>
-	<!-- end SWManageSettings -->
-</WEBOBJECT>
+<wo:CPAdminComponentWrapper>
+	<div class="container">
+		<div class="row">
+			<div class="col-md-4">
+			<ul class="nav nav-pills nav-stacked">
+				<wo:repetition list="$tabs" item="$currentTab">
+					<li><wo:link action="$select"><wo:str value="$currentTab" /></wo:link></li>
+				</wo:repetition>
+			</ul>
+			</div>
+			<div class="col-md-8">
+				<wo:switch WOComponentName="$selectedComponentName" />
+			</div>
+		</div>
+	</div>
+</wo:SWAdminComponentWrapper>

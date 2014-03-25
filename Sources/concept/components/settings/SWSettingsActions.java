@@ -14,7 +14,6 @@ import concept.data.SWDocumentFolder;
 import concept.data.SWGroup;
 import concept.data.SWNewsCategory;
 import concept.data.SWUser;
-import concept.search.SWLuceneUtilities;
 import concept.util.SWPictureUtilities;
 
 public class SWSettingsActions extends SWManageSettings {
@@ -25,12 +24,6 @@ public class SWSettingsActions extends SWManageSettings {
 
 	public WOComponent flushComponentCache() {
 		WOApplication.application()._removeComponentDefinitionCacheContents();
-		return null;
-	}
-
-	public WOComponent invalidateAllObjectsInSoloEC() {
-		session().defaultEditingContext().invalidateAllObjects();
-		session().defaultEditingContext().invalidateAllObjects();
 		return null;
 	}
 
@@ -73,11 +66,6 @@ public class SWSettingsActions extends SWManageSettings {
 	}
 
 	public SWUsersAndGroups goToUsersAndGroupd() {
-		return (SWUsersAndGroups)pageWithName( "SWUsersAndGroups" );
-	}
-
-	public WOComponent updateSearchIndex() {
-		SWLuceneUtilities.rebuildSearchIndex( session().defaultEditingContext() );
-		return null;
+		return pageWithName( SWUsersAndGroups.class );
 	}
 }

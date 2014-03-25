@@ -1,45 +1,24 @@
-String6: WOString {
-	value = session.@ls.aaActions;
-}
-
 SubmitButton1: WOSubmitButton {
-	value = session.@ls.aaFlushCDF;
-	style = "width:100%";
 	action = flushComponentCache;
-}
-
-SubmitButton2: WOSubmitButton {
-	value = session.@ls.aaInvalidateAll;
-	style = "width:100%";
-	action = invalidateAllObjectsInSoloEC;
+	value = session.@ls.aaFlushCDF;
 }
 
 SubmitButton3: WOSubmitButton {
-	value = "Users and groups";
-	style = "width:100%";
 	action = goToUsersAndGroupd;
+	value = "Users and groups";
 }
 
 SubmitButton4: WOSubmitButton {
-	value = session.@ls.aaCreateGroupWithAllUsers;
-	style = "width:100%";
 	action = createGroupWithAllUsers;
+	value = session.@ls.aaCreateGroupWithAllUsers;
 }
 
 SubmitButton5: WOSubmitButton {
-	value = session.@ls.aaMakeAllFoldersPropagatePrivileges;
-	style = "width:100%";
 	action = makeAllFoldersPropagatePrivileges;
+	value = session.@ls.aaMakeAllFoldersPropagatePrivileges;
 }
 
 SubmitButton6: WOSubmitButton {
-	value = "Update all thumbnails";
-	style = "width:100%";
 	action = updateAllPictureThumbnails;
-}
-
-SubmitButton7: WOSubmitButton {
-	value = "Update Lucene Index";
-	style = "width:100%";
-	action = updateSearchIndex;
+	value = "Update all thumbnails";
 }

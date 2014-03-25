@@ -15,13 +15,13 @@
 
 <fieldset>
 	<legend>Innskráðir notendur</legend>
-	<wo:conditional condition="$sw.sessions.count">	
+	<wo:conditional condition="$sw.activeUserSessions.count">	
 		<table class="table table-condensed">
 			<tr>
 				<th>Notandi</th>
 				<th>Skráði sig inn</th>
 			</tr>
-			<wo:repetition list="$sw.sessions" item="$currentSession">
+			<wo:repetition list="$sw.activeUserSessions" item="$currentSession">
 				<tr>
 					<td><wo:str value="$currentUser.name" /></td>
 					<td><wo:str value="$currentSession.birthDate" dateformat="%H:%M, %d.%m.%y" /></td>
@@ -29,5 +29,5 @@
 			</wo:repetition>
 		</table>  
 	</wo:conditional>
-	<wo:conditional condition="$sw.sessions.count" negate="$true"><p>Engir tengdir notendur.</p></wo:conditional>
+	<wo:conditional condition="$sw.activeUserSessions.count" negate="$true"><p>Engir tengdir notendur.</p></wo:conditional>
 </fieldset>

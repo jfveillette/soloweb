@@ -17,6 +17,7 @@ public abstract class SWTask {
 			 _taskClasses = new NSMutableArray<>();
 			 _taskClasses.addObject( GenerateIndex.class );
 			 _taskClasses.addObject( GenerateSynonymIndex.class );
+			 _taskClasses.addObject( GenerateOldIndex.class );
 			 _taskClasses.addObject( GenerateThumbnails.class );
 		}
 

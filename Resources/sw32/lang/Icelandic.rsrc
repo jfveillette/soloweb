@@ -281,7 +281,6 @@
     "administrativeActionsHeader" = "Ýmislegt";
     "aaActions" = "Aðgerðir";
     "aaFlushCDF" = "Eyða flýtiminni WOComponent-hluta";
-    "aaInvalidateAll" = "invalidateAllObjects() í soloEC";
     "aaStatistics" = "Tölulegar upplýsingar";
     "aaTotalMemUse" = "Heildarminnisnotkun";
     "aaEstimatedFreeMem" = "Laust minni (áætlað)";

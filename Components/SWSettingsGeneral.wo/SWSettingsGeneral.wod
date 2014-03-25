@@ -1,17 +1,9 @@
-String1: WOString {
-	value = session.@ls.generalSettingsHeader;
-}
-
 String10: WOString {
 	value = session.@ls.gsSessionTimeOut;
 }
 
 String11: WOString {
 	value = session.@ls.gs404LinkingName;
-}
-
-String12: WOString {
-	value = session.@ls.gsNumberOfSites;
 }
 
 String13: WOString {
@@ -34,10 +26,6 @@ String4: WOString {
 	value = session.@ls.gsLocationOfDocuments;
 }
 
-String5: WOString {
-	value = session.@ls.gsSoloWebResourcesURL;
-}
-
 String6: WOString {
 	value = session.@ls.gsAdminUsername;
 }
@@ -46,12 +34,12 @@ String7: WOString {
 	value = session.@ls.gsAdminPassword;
 }
 
-String8: WOString {
-	value = session.@ls.gsDefaultSMTPServer;
-}
-
 String9: WOString {
 	value = session.@ls.gsEmailAddress;
+}
+
+String14: WOString {
+	value = session.@ls.gsStrictSiteChecking;
 }
 
 SubmitButton4: WOSubmitButton {
@@ -61,11 +49,6 @@ SubmitButton4: WOSubmitButton {
 
 TextField1: WOTextField {
 	value = selectedDictionary.sessionTimeOut;
-	size = 40;
-}
-
-TextField12: WOTextField {
-	value = selectedDictionary.numberOfLicensedSites;
 	size = 40;
 }
 
@@ -81,11 +64,6 @@ TextField15: WOPasswordField {
 
 TextField16: WOTextField {
 	value = selectedDictionary.defaultUsername;
-	size = 40;
-}
-
-TextField17: WOTextField {
-	value = selectedDictionary.solowebResourcesURL;
 	size = 40;
 }
 
@@ -119,18 +97,6 @@ TextField8: WOTextField {
 	size = 40;
 }
 
-String14: WOString {
-	value = session.@ls.gsStrictSiteChecking;
-}
-
 Checkbox1: WOCheckBox {
 	checked = selectedDictionary.strictSiteChecking;
-}
-
-String15: WOString {
-	value = session.@ls.gsDebugRequestResponseLoop;
-}
-
-Checkbox2: WOCheckBox {
-	checked = selectedDictionary.debugRequestResponseLoop;
 }

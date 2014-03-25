@@ -283,7 +283,6 @@
     "administrativeActionsHeader" = "Administrative actions";
     "aaActions" = "Actions";
     "aaFlushCDF" = "Flush component definition cache";
-    "aaInvalidateAll" = "Invalidate all objects in soloEC";
     "aaStatistics" = "Statistics";
     "aaTotalMemUse" = "Total memory use";
     "aaEstimatedFreeMem" = "Estimated free memory";

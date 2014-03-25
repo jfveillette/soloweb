@@ -32,7 +32,6 @@ public class SWSettingsDatabase extends SWManageSettings {
 
 	public String connectionsTabName = SWLoc.string( "dbsTabConnections", session() );
 	public String switchTabName = SWLoc.string( "dbsTabSwitchAndConstruct", session() );
-	public NSArray<String> tabs = new NSArray<>( connectionsTabName, switchTabName );
 	public String selectedTab = connectionsTabName;
 
 	/**
@@ -62,6 +61,11 @@ public class SWSettingsDatabase extends SWManageSettings {
 
 	public SWSettingsDatabase( WOContext context ) {
 		super( context );
+	}
+
+	@Override
+	public NSArray<String> tabs() {
+		return new NSArray<>( connectionsTabName, switchTabName );
 	}
 
 	/**
