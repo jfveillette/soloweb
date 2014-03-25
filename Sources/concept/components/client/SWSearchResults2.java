@@ -7,7 +7,6 @@ import is.rebbi.wo.util.USArrayUtilities;
 import java.util.Enumeration;
 import java.util.HashMap;
 
-
 import com.webobjects.appserver.WOContext;
 import com.webobjects.foundation.NSArray;
 import com.webobjects.foundation.NSMutableArray;
@@ -16,7 +15,6 @@ import concept.SWContentSearch;
 import concept.SWGenericComponent;
 import concept.data.SWNewsItem;
 import concept.data.SWPage;
-import concept.deprecated.SWUtilities;
 import concept.search.SWLuceneSearch;
 import concept.search.SWSearchItem;
 

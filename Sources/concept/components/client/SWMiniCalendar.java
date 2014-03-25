@@ -185,9 +185,7 @@ public class SWMiniCalendar extends SWGenericComponent {
 	private NSArray eventsBetweenDates( NSTimestamp t1, NSTimestamp t2 ) {
 		EOQualifier q1 = new EOKeyValueQualifier( "date", EOQualifier.QualifierOperatorGreaterThan, t1 );
 		EOQualifier q2 = new EOKeyValueQualifier( "date", EOQualifier.QualifierOperatorLessThan, t2 );
-		EOQualifier q = new EOAndQualifier( new NSArray( new Object[] {
-		q1, q2
-		} ) );
+		EOQualifier q = new EOAndQualifier( new NSArray( new Object[] { q1, q2 } ) );
 		NSArray a = EOQualifier.filteredArrayWithQualifier( items(), q );
 		return EOSortOrdering.sortedArrayUsingKeyOrderArray( a, DEFAULT_SORT_ORDERINGS );
 	}

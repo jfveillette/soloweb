@@ -6,7 +6,6 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
-
 import com.google.gdata.data.DateTime;
 import com.google.gdata.data.media.mediarss.MediaThumbnail;
 import com.google.gdata.data.youtube.VideoEntry;

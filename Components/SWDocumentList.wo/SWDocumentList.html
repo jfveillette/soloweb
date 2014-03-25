@@ -1,9 +1,0 @@
-<wo:conditional condition="$documents.count">
-	<div class="sw-documentlist">
-		<ul>
-			<wo:repetition list="$documents" item="$currentDocument">
-				<li><wo:img filename="$currentDocument.icon" framework="$sw.frameworkBundleName" mimeType="image/png" /> <wo:ViewLink object="$currentDocument"><wo:str value="$currentDocument.name" escapeHTML="$false" /> (<wo:str value="$currentDocument.sizeFormatted" />)</wo:ViewLink></li>
-			</wo:repetition>
-		</ul>
-	</div>
-</wo:conditional>

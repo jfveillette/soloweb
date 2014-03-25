@@ -1,6 +1,5 @@
 package concept.components.client;
 
-
 import com.webobjects.appserver.WOComponent;
 import com.webobjects.appserver.WOContext;
 import com.webobjects.foundation.NSArray;

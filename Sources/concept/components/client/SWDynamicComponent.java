@@ -2,7 +2,6 @@ package concept.components.client;
 
 import java.util.Enumeration;
 
-
 import com.webobjects.appserver.WOContext;
 import com.webobjects.foundation.NSDictionary;
 
