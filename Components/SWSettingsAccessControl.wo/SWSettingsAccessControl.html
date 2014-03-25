@@ -1,9 +1,0 @@
-<wo:form>
-	<fieldset>
-		<legend><wo:str value="$@ls.accessControlSettingsHeader" /></legend>
-		<label><wo:str value="$@ls.gsEnablePrivileges" />:</label> <wo:checkbox checked="$settings.enablePrivileges" /><br />
-		<label><wo:str value="$@ls.gsOnlyShowGroupPrivileges" />:</label> <wo:checkbox checked="$settings.onlyShowGroupPrivileges" /><br />
-		<label><wo:str value="$@ls.gsAllUsersGroup" />:</label> <wo:popUpButton list="$allGroups" item="$currentGroup" displayString="$currentGroup.name" selection="$selectedGroup" noSelectionString="No group selected..." /><br />
-		<label>&nbsp;</label> <wo:submit action="$save" value="$@ls.gsSaveButtonTitle" />
-	</fieldset>
-</wo:form>

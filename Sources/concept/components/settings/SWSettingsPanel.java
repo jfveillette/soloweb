@@ -39,7 +39,6 @@ public class SWSettingsPanel extends CPAdminComponent {
 		NSMutableDictionary<String, String> d = new NSMutableDictionary<>();
 		d.setObjectForKey( SWSettingsGeneral.class.getSimpleName(), SWLoc.string( "settingsTabGeneral", context() ) );
 		d.setObjectForKey( SWSettingsDatabase.class.getSimpleName(), SWLoc.string( "settingsTabDatabase", context() ) );
-		d.setObjectForKey( SWSettingsAccessControl.class.getSimpleName(), SWLoc.string( "settingsTabAccessControls", context() ) );
 		d.setObjectForKey( SWSettingsStatistics.class.getSimpleName(), SWLoc.string( "settingsTabStatistics", context() ) );
 		d.setObjectForKey( SWApplicationInfo.class.getSimpleName(), "Upplýsingar" );
 		d.setObjectForKey( SWSettingsSites.class.getSimpleName(), "Vefir" );
