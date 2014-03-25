@@ -1,4 +1,4 @@
-package concept.components.client.looks;
+package concept.components.client;
 
 import is.rebbi.core.util.StringUtilities;
 import is.rebbi.wo.util.USHierarchyUtilities;
