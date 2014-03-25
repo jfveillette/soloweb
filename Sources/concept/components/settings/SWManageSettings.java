@@ -11,7 +11,7 @@ import com.webobjects.foundation.NSMutableDictionary;
 
 import concept.Concept;
 import concept.SWAdminComponent;
-import concept.components.admin.SWEditCustomInfo;
+import concept.components.admin.SWSettingsCustomInfo;
 import concept.util.SWLoc;
 
 public class SWManageSettings extends SWAdminComponent {
@@ -32,8 +32,8 @@ public class SWManageSettings extends SWAdminComponent {
 		activeSettingsTabs.setObjectForKey( SWActionSettings.class.getSimpleName(), SWLoc.string( "settingsTabAdministration", session() ) );
 		activeSettingsTabs.setObjectForKey( SWAccessControlSettings.class.getSimpleName(), SWLoc.string( "settingsTabAccessControls", session() ) );
 		activeSettingsTabs.setObjectForKey( SWLocalizationSettings.class.getSimpleName(), SWLoc.string( "settingsTabLocalization", session() ) );
-		activeSettingsTabs.setObjectForKey( SWStatisticsSettings.class.getSimpleName(), SWLoc.string( "settingsTabStatistics", session() ) );
-		activeSettingsTabs.setObjectForKey( SWEditCustomInfo.class.getSimpleName(), "Custom info ofl" );
+		activeSettingsTabs.setObjectForKey( SWSettingsStatistics.class.getSimpleName(), SWLoc.string( "settingsTabStatistics", session() ) );
+		activeSettingsTabs.setObjectForKey( SWSettingsCustomInfo.class.getSimpleName(), "Custom info ofl" );
 		return activeSettingsTabs;
 	}
 

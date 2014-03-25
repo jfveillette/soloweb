@@ -12,7 +12,7 @@ import concept.components.settings.SWManageSettings;
 import concept.data.SWComponent;
 import concept.data.SWPage;
 
-public class SWEditCustomInfo extends SWManageSettings {
+public class SWSettingsCustomInfo extends SWManageSettings {
 
 	public SWPage selectedPage;
 	public SWComponent selectedComponent;
@@ -23,7 +23,7 @@ public class SWEditCustomInfo extends SWManageSettings {
 	public String pageId2;
 	public String componentId2;
 
-	public SWEditCustomInfo( WOContext context ) {
+	public SWSettingsCustomInfo( WOContext context ) {
 		super( context );
 	}
 
