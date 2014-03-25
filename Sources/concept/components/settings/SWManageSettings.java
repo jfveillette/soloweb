@@ -23,8 +23,8 @@ public class SWManageSettings extends SWAdminComponent {
 		super( context );
 	}
 
-	public NSDictionary<String,String> tabDictionary() {
-		NSMutableDictionary<String,String> activeSettingsTabs = new NSMutableDictionary<>( Concept.sw().activeSettingsTabs() );
+	public NSDictionary<String, String> tabDictionary() {
+		NSMutableDictionary<String, String> activeSettingsTabs = new NSMutableDictionary<>( Concept.sw().activeSettingsTabs() );
 		activeSettingsTabs.setObjectForKey( SWSettingsAccessControl.class.getSimpleName(), SWLoc.string( "settingsTabAccessControls", session() ) );
 		activeSettingsTabs.setObjectForKey( SWSettingsActions.class.getSimpleName(), SWLoc.string( "settingsTabAdministration", session() ) );
 		activeSettingsTabs.setObjectForKey( SWSettingsCustomInfo.class.getSimpleName(), "Custom info ofl" );

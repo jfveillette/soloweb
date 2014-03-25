@@ -73,10 +73,10 @@ public class SWSettingsDatabase extends SWManageSettings {
 			NSMutableArray anArray = new NSMutableArray();
 
 			SWPluginItem pi2 = new SWPluginItem();
-			pi2.setName( "SoloWeb" );
+			pi2.name = "SoloWeb";
 			SWApplication.swapplication();
-			pi2.setVersion( "Version" );
-			pi2.setModels( new NSArray<>( "SoloWeb" ) );
+			pi2.version = "Version";
+			pi2.models = new NSArray<>( "SoloWeb" );
 			anArray.addObject( pi2 );
 
 			SWPluginHandler.defaultInstance();
@@ -87,9 +87,9 @@ public class SWSettingsDatabase extends SWManageSettings {
 
 				if( aPlugin.models() != null ) {
 					SWPluginItem pi = new SWPluginItem();
-					pi.setName( aPlugin.name() );
-					pi.setModels( aPlugin.models() );
-					pi.setVersion( aPlugin.version() );
+					pi.name = aPlugin.name();
+					pi.models = aPlugin.models();
+					pi.version = aPlugin.version();
 					anArray.addObject( pi );
 				}
 			}
