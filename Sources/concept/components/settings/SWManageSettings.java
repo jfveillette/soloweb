@@ -11,7 +11,6 @@ import com.webobjects.foundation.NSMutableDictionary;
 
 import concept.Concept;
 import concept.SWAdminComponent;
-import concept.components.admin.SWSettingsCustomInfo;
 import concept.util.SWLoc;
 
 public class SWManageSettings extends SWAdminComponent {

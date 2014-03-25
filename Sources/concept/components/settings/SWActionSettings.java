@@ -2,8 +2,6 @@ package concept.components.settings;
 
 import is.rebbi.wo.interfaces.SWInheritsPrivileges;
 
-import java.util.Enumeration;
-
 import com.webobjects.appserver.WOApplication;
 import com.webobjects.appserver.WOComponent;
 import com.webobjects.appserver.WOContext;
@@ -11,7 +9,10 @@ import com.webobjects.eoaccess.EOUtilities;
 import com.webobjects.foundation.NSArray;
 
 import concept.components.admin.SWUsersAndGroups;
+import concept.data.SWAssetFolder;
+import concept.data.SWDocumentFolder;
 import concept.data.SWGroup;
+import concept.data.SWNewsCategory;
 import concept.data.SWUser;
 import concept.search.SWLuceneUtilities;
 import concept.util.SWPictureUtilities;
@@ -44,15 +45,15 @@ public class SWActionSettings extends SWManageSettings {
 
 	public WOComponent makeAllFoldersPropagatePrivileges() {
 
-		NSArray a = null;
+		NSArray<SWInheritsPrivileges> a = null;
 
-		a = EOUtilities.objectsForEntityNamed( session().defaultEditingContext(), "SWNewsCategory" );
+		a = EOUtilities.objectsForEntityNamed( session().defaultEditingContext(), SWNewsCategory.ENTITY_NAME );
 		makeArrayPropagatePrivileges( a );
 
-		a = EOUtilities.objectsForEntityNamed( session().defaultEditingContext(), "SWAssetFolder" );
+		a = EOUtilities.objectsForEntityNamed( session().defaultEditingContext(), SWAssetFolder.ENTITY_NAME );
 		makeArrayPropagatePrivileges( a );
 
-		a = EOUtilities.objectsForEntityNamed( session().defaultEditingContext(), "SWDocumentFolder" );
+		a = EOUtilities.objectsForEntityNamed( session().defaultEditingContext(), SWDocumentFolder.ENTITY_NAME );
 		makeArrayPropagatePrivileges( a );
 
 		session().defaultEditingContext().saveChanges();
@@ -60,11 +61,8 @@ public class SWActionSettings extends SWManageSettings {
 		return null;
 	}
 
-	private void makeArrayPropagatePrivileges( NSArray a ) {
-		Enumeration e = a.objectEnumerator();
-
-		while( e.hasMoreElements() ) {
-			SWInheritsPrivileges next = (SWInheritsPrivileges)e.nextElement();
+	private void makeArrayPropagatePrivileges( NSArray<SWInheritsPrivileges> a ) {
+		for( SWInheritsPrivileges next : a ) {
 			next.setInheritsPrivileges( 1 );
 		}
 	}
