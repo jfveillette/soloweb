@@ -1,10 +1,11 @@
 package concept.components.settings;
 
+
 import com.webobjects.appserver.WOContext;
 
-public class SWGeneralSettings extends SWManageSettings {
+public class SWSettingsNews extends SWManageSettings {
 
-	public SWGeneralSettings( WOContext context ) {
+	public SWSettingsNews( WOContext context ) {
 		super( context );
 	}
 }
