@@ -14,6 +14,7 @@ import er.extensions.appserver.ERXSession;
 
 public class SWStatistics extends SWAdminComponent {
 
+	private static ERXBrowserFactory factory = new ERXBrowserFactory();
 	public ERXSession currentSession;
 
 	public SWStatistics( WOContext context ) {
@@ -46,7 +47,7 @@ public class SWStatistics extends SWAdminComponent {
 		return browserMatchingUserAgentString( (String)currentSession.objectStore().valueForKey( "user-agent" ) );
 	}
 
-	static ERXBrowserFactory factory = new ERXBrowserFactory();
+
 	private static ERXBrowser browserMatchingUserAgentString( String ua ) {
 
 		if( ua == null ) {
