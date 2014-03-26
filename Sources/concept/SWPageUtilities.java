@@ -5,8 +5,6 @@ import is.rebbi.wo.util.SWSettings;
 import is.rebbi.wo.util.USArrayUtilities;
 import is.rebbi.wo.util.USHTTPUtilities;
 
-import java.util.Enumeration;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -64,81 +62,59 @@ public class SWPageUtilities {
 	/**
 	 * @return The named page from the DB. If no page is found, null is returned.
 	 */
-	public static SWPage pageWithNameAndRequest( EOEditingContext ec, String name, WORequest request ) {
-		SWPage thePage = null;
+	private static SWPage pageWithNameAndRequest( EOEditingContext ec, String name, WORequest request ) {
 
 		if( name.endsWith( "/" ) ) {
 			name = name.substring( 0, name.length() - 1 );
 		}
 
-		try {
-			EOQualifier q = SWPage.SYMBOL.eq( name );
-			EOFetchSpecification fs = new EOFetchSpecification( SWPage.ENTITY_NAME, q, null );
-			fs.setPrefetchingRelationshipKeyPaths( PAGE_PREFETCH_PATHS );
-			NSArray<SWPage> fetchedPages = ec.objectsWithFetchSpecification( fs );
+		EOFetchSpecification fs = new EOFetchSpecification( SWPage.ENTITY_NAME, SWPage.SYMBOL.eq( name ), null );
+		fs.setPrefetchingRelationshipKeyPaths( PAGE_PREFETCH_PATHS );
+		NSArray<SWPage> pages = ec.objectsWithFetchSpecification( fs );
 
-			// Account for multiple linking names in the DB by matching with the domain name.
-			if( fetchedPages.count() > 1 ) {
-				String host = SWDirectAction.hostForRequest( request );
-				Enumeration<SWPage> e = fetchedPages.objectEnumerator();
+		if( pages.count() == 1 ) {
+			return pages.objectAtIndex( 0 );
+		}
 
-				while( e.hasMoreElements() ) {
-					SWPage p = e.nextElement();
-					SWSite site = p.siteForThisPage();
+		if( pages.count() > 1 ) {
+			String hostName = SWDirectAction.hostForRequest( request );
 
-					if( site != null ) {
-						String currentHost = site.qual();
-
-						if( StringUtilities.hasValue( currentHost ) ) {
-							if( currentHost.indexOf( host ) > -1 ) {
-								return p;
-							}
-						}
-					}
+			for( SWPage p : pages ) {
+				if( p.siteForThisPage().hasHostName( hostName ) ) {
+					return p;
 				}
 			}
 
-			thePage = fetchedPages.lastObject();
-		}
-		catch( Exception e2 ) {
-			logger.debug( "Exception in pageWithNameAndRequest", e2 );
-			thePage = null;
+			boolean strictSiteChecking = SWSettings.booleanForKey( "strictSiteChecking" );
+
+			if( !strictSiteChecking ) {
+				return pages.objectAtIndex( 0 );
+			}
 		}
 
-		return thePage;
+		return null;
 	}
 
 	/**
 	 * @return The matching page from the DB. If no page is found, null is returned.
 	 */
 	private static SWPage pageMatchingKeyAndValue( EOEditingContext ec, String key, Object value ) {
-		SWPage thePage = null;
-
-		try {
-			EOQualifier q = new EOKeyValueQualifier( key, EOQualifier.QualifierOperatorEqual, value );
-			EOFetchSpecification fs = new EOFetchSpecification( SWPage.ENTITY_NAME, q, null );
-			fs.setPrefetchingRelationshipKeyPaths( PAGE_PREFETCH_PATHS );
-			thePage = (SWPage)ec.objectsWithFetchSpecification( fs ).lastObject();
-		}
-		catch( Exception e ) {
-			thePage = null;
-			logger.error( "SWPageUtilities.pageMatchingKeyAndValue: Exception when getting page with key=" + key + " and value=" + value, e );
-		}
-
-		return thePage;
+		EOQualifier q = new EOKeyValueQualifier( key, EOQualifier.QualifierOperatorEqual, value );
+		EOFetchSpecification fs = new EOFetchSpecification( SWPage.ENTITY_NAME, q, null );
+		fs.setPrefetchingRelationshipKeyPaths( PAGE_PREFETCH_PATHS );
+		return (SWPage)ec.objectsWithFetchSpecification( fs ).lastObject();
 	}
 
 	public static SWPage pageFromRequest( EOEditingContext ec, WORequest r ) {
-		SWPage pageToDisplay = null;
 		String idString = r.stringFormValueForKey( "id" );
 		String nameString = r.stringFormValueForKey( "name" );
 		String detailString = r.stringFormValueForKey( "detail" );
 
 		if( idString != null ) {
-			pageToDisplay = pageWithID( ec, Integer.parseInt( idString ) );
+			return pageWithID( ec, Integer.parseInt( idString ) );
 		}
 		else if( nameString != null ) {
-			pageToDisplay = pageWithNameAndRequest( ec, nameString, r );
+			return pageWithNameAndRequest( ec, nameString, r );
 		}
 		else if( detailString != null ) {
 			String pageName = "frettasida";
@@ -149,8 +125,12 @@ public class SWPageUtilities {
 				pageName = a.objectAtIndex( 1 );
 			}
 
-			pageToDisplay = pageWithNameAndRequest( ec, pageName, r );
+			return pageWithNameAndRequest( ec, pageName, r );
 		}
+
+		return null;
+
+		/*
 		else if( r.headerForKey( "redirect_url" ) != null ) {
 			String s = r.headerForKey( "redirect_url" );
 
@@ -158,11 +138,13 @@ public class SWPageUtilities {
 				s = s.substring( 1, s.length() );
 			}
 
-			pageToDisplay = SWPageUtilities.pageMatchingKeyAndValue( ec, "symbol", s );
+			pageToDisplay = SWPageUtilities.pageMatchingKeyAndValue( ec, SWPage.SYMBOL_KEY, s );
 		}
+		*/
 
 		// If we are using strict site checking then the requesting domain MUST exist in the list of
 		// domains in the page's site domain list, otherwise an error should be returned.
+		/*
 		boolean strictSiteChecking = SWSettings.booleanForKey( "strictSiteChecking" );
 
 		if( pageToDisplay != null && strictSiteChecking == true ) {
@@ -187,8 +169,7 @@ public class SWPageUtilities {
 				pageToDisplay = null;
 			}
 		}
-
-		return pageToDisplay;
+		*/
 	}
 
 	/**
@@ -234,7 +215,7 @@ public class SWPageUtilities {
 	/**
 	 * Returns the site matching the host name specified.
 	 */
-	public static SWSite siteMatchingHostName( EOEditingContext ec, String hostName ) {
+	private static SWSite siteMatchingHostName( EOEditingContext ec, String hostName ) {
 		EOQualifier q = SWSite.QUAL.like( "*-" + hostName + "-*" );
 
 		NSArray<SWSite> sites = SWSite.fetchSWSites( ec, q, null );
@@ -244,19 +225,6 @@ public class SWPageUtilities {
 		}
 
 		return sites.objectAtIndex( 0 );
-	}
-
-	/**
-	 * If no site is found matching the host name, this method is used.
-	 */
-	public static SWSite randomSite( EOEditingContext ec ) {
-		NSArray<SWSite> a = SWSite.fetchAllSWSites( ec );
-
-		if( USArrayUtilities.hasObjects( a ) ) {
-			return a.objectAtIndex( 0 );
-		}
-
-		return null;
 	}
 
 	public static SWSite siteFromRequest( EOEditingContext ec, WORequest request ) {
