@@ -2,6 +2,7 @@ package concept;
 
 import is.rebbi.wo.util.SoftUser;
 
+import com.webobjects.appserver.WOContext;
 import com.webobjects.appserver.WORequest;
 import com.webobjects.appserver.WOSession;
 import com.webobjects.foundation.NSMutableArray;
@@ -24,22 +25,26 @@ public abstract class SWSessionHelper {
 	/**
 	 * @return The user in the given session.
 	 */
-	public static SWUser userInSession( WOSession s ) {
+	public static SWUser userInSession( WOSession session ) {
 
-		if( s == null ) {
+		if( session == null ) {
 			return null;
 		}
 
-		SWUser user = (SWUser)((ERXSession)s).objectStore().valueForKey( IDENTIFIER );
+		SWUser user = (SWUser)((ERXSession)session).objectStore().valueForKey( IDENTIFIER );
 
 		if( user == null ) {
-			WORequest request = s.context().request();
-			SoftUser softUser = SoftUser.fromRequest( request );
+			WOContext context = session.context();
 
-			user = SWUser.fetchSWUser( s.defaultEditingContext(), SWUser.UUID.eq( softUser.uuid() ) );
+			if( context != null ) {
+				WORequest request = context.request();
+				SoftUser softUser = SoftUser.fromRequest( request );
 
-			if( user != null ) {
-				setUserInSession( s, user );
+				user = SWUser.fetchSWUser( session.defaultEditingContext(), SWUser.UUID.eq( softUser.uuid() ) );
+
+				if( user != null ) {
+					setUserInSession( session, user );
+				}
 			}
 		}
 
