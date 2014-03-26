@@ -4,7 +4,7 @@ import com.webobjects.appserver.WOComponent;
 import com.webobjects.appserver.WOContext;
 import com.webobjects.appserver.WOResponse;
 
-import concept.SWApplication;
+import concept.Concept;
 import er.ajax.AjaxUtils;
 
 public class SWAdminComponentWrapper extends WOComponent {
@@ -29,9 +29,9 @@ public class SWAdminComponentWrapper extends WOComponent {
 	@Override
 	public void appendToResponse( WOResponse r, WOContext c ) {
 		super.appendToResponse( r, c );
-		AjaxUtils.addStylesheetResourceInHead( context(), r, SWApplication.swapplication().frameworkBundleName(), "sw32/css/soloweb.css" );
-		AjaxUtils.addScriptResourceInHead( context(), r, SWApplication.swapplication().frameworkBundleName(), "sw32/scripts/changescript.js" );
-		AjaxUtils.addScriptResourceInHead( context(), r, SWApplication.swapplication().frameworkBundleName(), "sw32/scripts/globalscript.js" );
-		AjaxUtils.addScriptResourceInHead( context(), r, SWApplication.swapplication().frameworkBundleName(), "sw32/ckeditor/ckeditor.js" );
+		AjaxUtils.addStylesheetResourceInHead( context(), r, Concept.sw().frameworkBundleName(), "sw32/css/soloweb.css" );
+		AjaxUtils.addScriptResourceInHead( context(), r, Concept.sw().frameworkBundleName(), "sw32/scripts/changescript.js" );
+		AjaxUtils.addScriptResourceInHead( context(), r, Concept.sw().frameworkBundleName(), "sw32/scripts/globalscript.js" );
+		AjaxUtils.addScriptResourceInHead( context(), r, Concept.sw().frameworkBundleName(), "sw32/ckeditor/ckeditor.js" );
 	}
 }

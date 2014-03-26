@@ -8,7 +8,6 @@ import com.webobjects.foundation.NSDictionary;
 
 import concept.Concept;
 import concept.SWAdminComponent;
-import concept.SWApplication;
 import concept.data.SWAssetFolder;
 import concept.data.SWDocument;
 import concept.data.SWDocumentFolder;
@@ -83,6 +82,6 @@ public class SWMainMenu extends SWAdminComponent {
 	}
 
 	public String href() {
-		return WOApplication.application().resourceManager().urlForResourceNamed( "sw32/css/soloweb.css", SWApplication.swapplication().frameworkBundleName(), null, context().request() );
+		return WOApplication.application().resourceManager().urlForResourceNamed( "sw32/css/soloweb.css", Concept.sw().frameworkBundleName(), null, context().request() );
 	}
 }

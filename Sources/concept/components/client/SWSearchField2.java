@@ -5,7 +5,7 @@ import is.rebbi.core.util.StringUtilities;
 import com.webobjects.appserver.WOApplication;
 import com.webobjects.appserver.WOContext;
 
-import concept.SWApplication;
+import concept.Concept;
 import concept.SWGenericComponent;
 import concept.data.SWPicture;
 
@@ -26,7 +26,7 @@ public class SWSearchField2 extends SWGenericComponent {
 	}
 
 	public String imageSRC() {
-		String src = WOApplication.application().resourceManager().urlForResourceNamed( "img/magnifying_glass.gif", SWApplication.swapplication().frameworkBundleName(), null, context().request() );
+		String src = WOApplication.application().resourceManager().urlForResourceNamed( "img/magnifying_glass.gif", Concept.sw().frameworkBundleName(), null, context().request() );
 
 		Object id = currentComponent().customInfo().valueForKey( "searchImageID" );
 

@@ -14,9 +14,9 @@ import com.webobjects.appserver.WOComponent;
 import com.webobjects.appserver.WOContext;
 import com.webobjects.foundation.NSArray;
 
+import concept.Concept;
 import concept.SWAccessPrivilegeUtilities;
 import concept.SWAdminComponent;
-import concept.SWApplication;
 import concept.SWSessionHelper;
 
 public class SWFolderList extends SWAdminComponent {
@@ -155,7 +155,7 @@ public class SWFolderList extends SWAdminComponent {
 			imageName = PLUS_GIF;
 		}
 
-		return WOApplication.application().resourceManager().urlForResourceNamed( "sw32/img/" + imageName, SWApplication.swapplication().frameworkBundleName(), null, context().request() );
+		return WOApplication.application().resourceManager().urlForResourceNamed( "sw32/img/" + imageName, Concept.sw().frameworkBundleName(), null, context().request() );
 	}
 
 	public WOComponent toggleDisplay() {

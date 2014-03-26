@@ -4,7 +4,7 @@ import com.webobjects.appserver.WOApplication;
 import com.webobjects.appserver.WOComponent;
 import com.webobjects.appserver.WOContext;
 
-import concept.SWApplication;
+import concept.Concept;
 import concept.data.SWNewsCategory;
 
 /**
@@ -33,6 +33,6 @@ public class SWNewsCategoriesSelectComponent extends WOComponent {
 	}
 
 	public String href() {
-		return WOApplication.application().resourceManager().urlForResourceNamed( "sw32/css/soloweb.css", SWApplication.swapplication().frameworkBundleName(), null, context().request() );
+		return WOApplication.application().resourceManager().urlForResourceNamed( "sw32/css/soloweb.css", Concept.sw().frameworkBundleName(), null, context().request() );
 	}
 }

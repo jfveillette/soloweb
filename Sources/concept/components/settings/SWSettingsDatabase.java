@@ -22,7 +22,6 @@ import com.webobjects.foundation.NSArray;
 import com.webobjects.foundation.NSMutableArray;
 import com.webobjects.foundation.NSMutableDictionary;
 
-import concept.SWApplication;
 import concept.plugin.SWPlugin;
 import concept.plugin.SWPluginHandler;
 import concept.util.SWLoc;
@@ -78,7 +77,6 @@ public class SWSettingsDatabase extends SWManageSettings {
 
 			SWPluginItem pi2 = new SWPluginItem();
 			pi2.name = "SoloWeb";
-			SWApplication.swapplication();
 			pi2.version = "Version";
 			pi2.models = new NSArray<>( "SoloWeb" );
 			anArray.addObject( pi2 );

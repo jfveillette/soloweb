@@ -13,8 +13,8 @@ import com.webobjects.foundation.NSArray;
 import com.webobjects.foundation.NSMutableArray;
 import com.webobjects.foundation.NSMutableSet;
 
+import concept.Concept;
 import concept.SWAdminComponent;
-import concept.SWApplication;
 import concept.SWSessionHelper;
 import concept.data.SWPage;
 import concept.data.SWSite;
@@ -199,10 +199,10 @@ public class SWSiteListing extends SWAdminComponent {
 	public String toggleString() {
 		try {
 			if( isExpanded( currentPage ) ) {
-				return WOApplication.application().resourceManager().urlForResourceNamed( "sw32/img/minus.gif", SWApplication.swapplication().frameworkBundleName(), null, context().request() );
+				return WOApplication.application().resourceManager().urlForResourceNamed( "sw32/img/minus.gif", Concept.sw().frameworkBundleName(), null, context().request() );
 			}
 			else {
-				return WOApplication.application().resourceManager().urlForResourceNamed( "sw32/img/plus.gif", SWApplication.swapplication().frameworkBundleName(), null, context().request() );
+				return WOApplication.application().resourceManager().urlForResourceNamed( "sw32/img/plus.gif", Concept.sw().frameworkBundleName(), null, context().request() );
 			}
 		}
 		catch( Exception e ) {
