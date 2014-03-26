@@ -1,7 +1,6 @@
 package concept;
 
 import com.webobjects.foundation.NSArray;
-import com.webobjects.foundation.NSMutableArray;
 
 import concept.data.SWUser;
 import concept.util.SWLoc;
@@ -13,7 +12,6 @@ public class SWSession extends ERXSession {
 		setStoresIDsInCookies( true );
 		setStoresIDsInURLs( false );
 		setLanguages( new NSArray<>( "Icelandic" ) );
-		Concept.sw().activeUserSessions().addObject( this );
 	}
 
 	@Override
@@ -33,12 +31,6 @@ public class SWSession extends ERXSession {
 		terminate();
 	}
 
-	@Override
-	public void terminate() {
-		Concept.sw().activeUserSessions().removeObject( this );
-		super.terminate();
-	}
-
 	public void addObjectToArrayWithKey( Object anObject, String key ) {
 		SWSessionHelper.addObjectToArrayWithKey( this, anObject, key );
 	}
@@ -49,10 +41,6 @@ public class SWSession extends ERXSession {
 
 	public boolean arrayWithKeyContainsObject( String key, Object anObject ) {
 		return SWSessionHelper.arrayWithKeyContainsObject( this, key, anObject );
-	}
-
-	public NSMutableArray arrayWithKey( String key ) {
-		return SWSessionHelper.arrayWithKey( this, key );
 	}
 
 	@Override
@@ -83,7 +71,7 @@ public class SWSession extends ERXSession {
 		return super.valueForKey( keypath );
 	}
 
-	public String confirmStringForKey( String key ) {
+	private String confirmStringForKey( String key ) {
 		StringBuilder b = new StringBuilder();
 		b.append( "return confirm('" );
 		b.append( SWLoc.string( key, this ) );

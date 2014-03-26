@@ -6,6 +6,7 @@ import com.webobjects.foundation.NSNotificationCenter;
 import com.webobjects.foundation.NSSelector;
 import com.webobjects.foundation.NSTimestamp;
 
+import concept.Concept;
 import er.extensions.appserver.ERXSession;
 
 /**
@@ -36,15 +37,37 @@ public class SessionManager {
 	 * Registers the transaction manager so it starts listening and watching transactions.
 	 */
 	public static void register() {
-		NSSelector<SessionManager> selector1 = new NSSelector<>( "sessionWasRestored", new Class[] { NSNotification.class } );
-		NSNotificationCenter.defaultCenter().addObserver( singleton(), selector1, WOSession.SessionDidRestoreNotification, null );
+		NSSelector<SessionManager> sessionDidRestore = new NSSelector<>( "sessionDidRestore", new Class[] { NSNotification.class } );
+		NSNotificationCenter.defaultCenter().addObserver( singleton(), sessionDidRestore, WOSession.SessionDidRestoreNotification, null );
+
+		NSSelector<SessionManager> sessionDidCreate = new NSSelector<>( "sessionDidCreate", new Class[] { NSNotification.class } );
+		NSNotificationCenter.defaultCenter().addObserver( singleton(), sessionDidCreate, WOSession.SessionDidCreateNotification, null );
+
+		NSSelector<SessionManager> sessionDidTimeOut = new NSSelector<>( "sessionDidTimeOut", new Class[] { NSNotification.class } );
+		NSNotificationCenter.defaultCenter().addObserver( singleton(), sessionDidTimeOut, WOSession.SessionDidTimeOutNotification, null );
 	}
 
-	public void sessionWasRestored( NSNotification notification ) {
+	public void sessionDidRestore( NSNotification notification ) {
 		ERXSession session = (ERXSession)notification.object();
 
 		if( session != null ) {
 			session.objectStore().takeValueForKey( new NSTimestamp(), "lastTouchedDate" );
+		}
+	}
+
+	public void sessionDidCreate( NSNotification notification ) {
+		ERXSession session = (ERXSession)notification.object();
+
+		if( session != null ) {
+			Concept.sw().activeUserSessions().addObject( session );
+		}
+	}
+
+	public void sessionDidTimeOut( NSNotification notification ) {
+		ERXSession session = (ERXSession)notification.object();
+
+		if( session != null ) {
+			Concept.sw().activeUserSessions().removeObject( this );
 		}
 	}
 }
