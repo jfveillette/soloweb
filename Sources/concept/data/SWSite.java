@@ -12,7 +12,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.webobjects.eocontrol.EOEditingContext;
-import com.webobjects.eocontrol.EOFetchSpecification;
 import com.webobjects.eocontrol.EOKeyValueQualifier;
 import com.webobjects.eocontrol.EOQualifier;
 import com.webobjects.foundation.NSArray;
@@ -166,13 +165,7 @@ public class SWSite extends _SWSite implements HumanReadable, SWHasCustomInfo {
 	public static SWSite siteForHostName( EOEditingContext ec, String hostName ) {
 		hostName = hostName.toLowerCase();
 		EOQualifier q = new EOKeyValueQualifier( SWSite.QUAL_KEY, EOQualifier.QualifierOperatorLike, "*" + hostName + SITENAME_DELIMITER + "*" );
-		EOFetchSpecification fs = new EOFetchSpecification( SWSite.ENTITY_NAME, q, null );
-
-		NSArray<SWSite> sites = ec.objectsWithFetchSpecification( fs );
-
-		if( !USArrayUtilities.hasObjects( sites ) ) {
-			return null;
-		}
+		NSArray<SWSite> sites = SWSite.fetchSWSites( ec, q, null );
 
 		if( sites.count() == 1 ) {
 			return sites.objectAtIndex( 0 );
