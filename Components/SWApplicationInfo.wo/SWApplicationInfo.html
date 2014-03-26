@@ -1,42 +1,44 @@
-<h2>Database connections</h2>
-<table class="table table-condensed table-bordered">
-	<tr>
-		<th>Model</th>
-		<th>Bundle</th>
-		<th>JDBC URL</th>
-		<th>User</th>
-		<th>Plugin</th>
-		<th>Entities</th>
-	</tr>
-	<wo:repetition list="$allModels.@sortAsc.name" item="$currentModel">
+<wo:CPAdminComponentWrapper>
+	<h2>Database connections</h2>
+	<table class="table table-condensed table-bordered">
 		<tr>
-			<td><wo:str value="$currentModel.name" /></td>
-			<td><wo:str value="$currentBundleName" /></td>
-			<td><wo:str value="$currentModel.connectionDictionary.URL" /></td>
-			<td><wo:str value="$currentModel.connectionDictionary.username" /></td>
-			<td><wo:str value="$currentModel.connectionDictionary.plugin" /></td>
-			<td>
-				<wo:AjaxExpansion id="$currentModel.name" insertion="Effect.blind" insertionDuration="0.1" string="See list...">
-					<wo:repetition list="$currentModel.entities" item="$currentEntity"><wo:str value="$currentEntity.name" /><br /></wo:repetition>
-				</wo:AjaxExpansion>
-			</td>
+			<th>Model</th>
+			<th>Bundle</th>
+			<th>JDBC URL</th>
+			<th>User</th>
+			<th>Plugin</th>
+			<th>Entities</th>
 		</tr>
-	</wo:repetition>
-</table>
-
-<h2>Properties</h2>
-<table class="table table-condensed table-bordered">
-	<tr>
-		<th>Key</th>
-		<th>Value</th>
-	</tr>
-	<wo:repetition list="$propertyKeys" item="$currentPropertyKey">
-	<tr>
-		<td><wo:str value="$currentPropertyKey" /></td>
-		<td><wo:str value="$currentPropertyValue" /></td>
-	</tr>
-	</wo:repetition>
-</table>
-
-<h2>Classpath</h2>
-<wo:str value="$reportPath" escapeHTML="$false" />
+		<wo:repetition list="$allModels.@sortAsc.name" item="$currentModel">
+			<tr>
+				<td><wo:str value="$currentModel.name" /></td>
+				<td><wo:str value="$currentBundleName" /></td>
+				<td><wo:str value="$currentModel.connectionDictionary.URL" /></td>
+				<td><wo:str value="$currentModel.connectionDictionary.username" /></td>
+				<td><wo:str value="$currentModel.connectionDictionary.plugin" /></td>
+				<td>
+					<wo:AjaxExpansion id="$currentModel.name" insertion="Effect.blind" insertionDuration="0.1" string="See list...">
+						<wo:repetition list="$currentModel.entities" item="$currentEntity"><wo:str value="$currentEntity.name" /><br /></wo:repetition>
+					</wo:AjaxExpansion>
+				</td>
+			</tr>
+		</wo:repetition>
+	</table>
+	
+	<h2>Properties</h2>
+	<table class="table table-condensed table-bordered">
+		<tr>
+			<th>Key</th>
+			<th>Value</th>
+		</tr>
+		<wo:repetition list="$propertyKeys" item="$currentPropertyKey">
+		<tr>
+			<td><wo:str value="$currentPropertyKey" /></td>
+			<td><wo:str value="$currentPropertyValue" /></td>
+		</tr>
+		</wo:repetition>
+	</table>
+	
+	<h2>Classpath</h2>
+	<wo:str value="$reportPath" escapeHTML="$false" />
+</wo:CPAdminComponentWrapper>

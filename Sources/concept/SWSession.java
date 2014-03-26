@@ -13,6 +13,7 @@ public class SWSession extends ERXSession {
 		setStoresIDsInCookies( true );
 		setStoresIDsInURLs( false );
 		setLanguages( new NSArray<>( "Icelandic" ) );
+		Concept.sw().activeUserSessions().addObject( this );
 	}
 
 	@Override
@@ -22,7 +23,6 @@ public class SWSession extends ERXSession {
 
 	public void setActiveUser( SWUser value ) {
 		SWSessionHelper.setUserInSession( this, value );
-		Concept.sw().activeUserSessions().addObject( this );
 	}
 
 	public SWUser activeUser() {

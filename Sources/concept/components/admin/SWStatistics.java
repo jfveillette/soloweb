@@ -1,19 +1,20 @@
-package concept.components.settings;
+package concept.components.admin;
 
 import is.rebbi.wo.util.StatsManager;
 
 import com.webobjects.appserver.WOContext;
-import com.webobjects.appserver.WOSession;
 import com.webobjects.foundation.NSTimestamp;
 
+import concept.SWAdminComponent;
 import concept.SWSessionHelper;
 import concept.data.SWUser;
+import er.extensions.appserver.ERXSession;
 
-public class SWSettingsStatistics extends SWManageSettings {
+public class SWStatistics extends SWAdminComponent {
 
-	public WOSession currentSession;
+	public ERXSession currentSession;
 
-	public SWSettingsStatistics( WOContext context ) {
+	public SWStatistics( WOContext context ) {
 		super( context );
 	}
 

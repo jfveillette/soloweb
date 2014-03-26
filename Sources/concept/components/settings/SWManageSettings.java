@@ -33,7 +33,6 @@ public class SWManageSettings extends CPAdminComponent {
 		activeSettingsTabs.setObjectForKey( SWSettingsLocalization.class.getSimpleName(), SWLoc.string( "settingsTabLocalization", session() ) );
 		activeSettingsTabs.setObjectForKey( SWSettingsNews.class.getSimpleName(), SWLoc.string( "settingsTabNews", session() ) );
 		activeSettingsTabs.setObjectForKey( SWSettingsSites.class.getSimpleName(), "Vefir" );
-		activeSettingsTabs.setObjectForKey( SWSettingsStatistics.class.getSimpleName(), SWLoc.string( "settingsTabStatistics", session() ) );
 		return activeSettingsTabs;
 	}
 
