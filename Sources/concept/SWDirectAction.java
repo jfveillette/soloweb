@@ -2,7 +2,6 @@ package concept;
 
 import is.rebbi.core.util.StringUtilities;
 import is.rebbi.wo.util.SWSettings;
-import is.rebbi.wo.util.USArrayUtilities;
 import is.rebbi.wo.util.USEOUtilities;
 import is.rebbi.wo.util.USHTTPUtilities;
 import is.rebbi.wo.util.USUtilities;
@@ -22,9 +21,6 @@ import com.webobjects.appserver.WOResponse;
 import com.webobjects.appserver.WOSession;
 import com.webobjects.eoaccess.EOUtilities;
 import com.webobjects.eocontrol.EOEditingContext;
-import com.webobjects.eocontrol.EOFetchSpecification;
-import com.webobjects.eocontrol.EOKeyValueQualifier;
-import com.webobjects.eocontrol.EOQualifier;
 import com.webobjects.foundation.NSArray;
 import com.webobjects.foundation.NSMutableArray;
 import com.webobjects.foundation.NSMutableDictionary;
@@ -70,16 +66,14 @@ public class SWDirectAction extends ERXDirectAction {
 		return session().defaultEditingContext();
 	}
 
-	/**
-	 * @return A page for resetting a user's password.
-	 */
+	private SWSite site() {
+		return SWSite.siteForHostName( ec(), hostForRequest( request() ) );
+	}
+
 	public WOActionResults forgottenPasswordAction() {
 		return pageWithName( SWForgottenPassword.class );
 	}
 
-	/**
-	 * @return A page for creating a user.
-	 */
 	public WOActionResults createUserAction() {
 		return pageWithName( SWCreateUser.class );
 	}
@@ -103,39 +97,6 @@ public class SWDirectAction extends ERXDirectAction {
 		}
 
 		return displayPageWithTemplate( page, SWStandardTemplate.class );
-	}
-
-	private SWSite site() {
-		return siteForHostName( hostForRequest( request() ) );
-	}
-
-	/**
-	 * Returns the site matching the host name specified.
-	 */
-	private SWSite siteForHostName( String hostName ) {
-		hostName = hostName.toLowerCase();
-		EOQualifier q = new EOKeyValueQualifier( SWSite.QUAL_KEY, EOQualifier.QualifierOperatorLike, "*" + hostName + SWSite.SITENAME_DELIMITER + "*" );
-		EOFetchSpecification fs = new EOFetchSpecification( SWSite.ENTITY_NAME, q, null );
-
-		NSArray<SWSite> sites = ec().objectsWithFetchSpecification( fs );
-
-		if( !USArrayUtilities.hasObjects( sites ) ) {
-			return null;
-		}
-
-		if( sites.count() == 1 ) {
-			return sites.objectAtIndex( 0 );
-		}
-
-		logger.warn( "There are more than one sites matching the host name: " + hostName );
-
-		for( SWSite current : sites ) {
-			if( current.hasHostName( hostName ) ) {
-				return current;
-			}
-		}
-
-		return null;
 	}
 
 	public WOActionResults searchAction() {
