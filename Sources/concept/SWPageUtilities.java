@@ -5,9 +5,6 @@ import is.rebbi.wo.util.SWSettings;
 import is.rebbi.wo.util.USArrayUtilities;
 import is.rebbi.wo.util.USHTTPUtilities;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 import com.webobjects.appserver.WOComponent;
 import com.webobjects.appserver.WOContext;
 import com.webobjects.appserver.WORequest;
@@ -29,9 +26,7 @@ import er.extensions.appserver.ERXApplication;
 
 public class SWPageUtilities {
 
-	private static final Logger logger = LoggerFactory.getLogger( SWPageUtilities.class );
-
-	private static NSArray<String> PAGE_PREFETCH_PATHS = new NSArray<>( new String[] { SWPage.COMPONENTS_KEY, SWPage.SITE_KEY } );
+	private static NSArray<String> PAGE_PREFETCH_PATHS = new NSArray<>( SWPage.COMPONENTS_KEY, SWPage.SITE_KEY );
 
 	/**
 	 * @return The specified page from the DB. If no page is found, null is returned.
@@ -113,10 +108,12 @@ public class SWPageUtilities {
 		if( idString != null ) {
 			return pageWithID( ec, Integer.parseInt( idString ) );
 		}
-		else if( nameString != null ) {
+
+		if( nameString != null ) {
 			return pageWithNameAndRequest( ec, nameString, r );
 		}
-		else if( detailString != null ) {
+
+		if( detailString != null ) {
 			String pageName = "frettasida";
 
 			NSArray<String> a = NSArray.componentsSeparatedByString( detailString, "," );
@@ -129,47 +126,6 @@ public class SWPageUtilities {
 		}
 
 		return null;
-
-		/*
-		else if( r.headerForKey( "redirect_url" ) != null ) {
-			String s = r.headerForKey( "redirect_url" );
-
-			if( s.startsWith( "/" ) ) {
-				s = s.substring( 1, s.length() );
-			}
-
-			pageToDisplay = SWPageUtilities.pageMatchingKeyAndValue( ec, SWPage.SYMBOL_KEY, s );
-		}
-		*/
-
-		// If we are using strict site checking then the requesting domain MUST exist in the list of
-		// domains in the page's site domain list, otherwise an error should be returned.
-		/*
-		boolean strictSiteChecking = SWSettings.booleanForKey( "strictSiteChecking" );
-
-		if( pageToDisplay != null && strictSiteChecking == true ) {
-			boolean allowPageDisplay = false;
-			SWSite theSite = pageToDisplay.siteForThisPage();
-			NSArray<String> siteDomains = NSArray.componentsSeparatedByString( theSite.qual(), SWSite.SITENAME_DELIMITER );
-			String requestHost = SWDirectAction.hostForRequest( r );
-
-			if( siteDomains != null && siteDomains.count() > 0 ) {
-				Enumeration<String> siteDom = siteDomains.objectEnumerator();
-
-				while( siteDom.hasMoreElements() && allowPageDisplay == false ) {
-					String siteDomName = siteDom.nextElement();
-
-					if( siteDomName.equalsIgnoreCase( requestHost ) ) {
-						allowPageDisplay = true;
-					}
-				}
-			}
-
-			if( allowPageDisplay == false ) {
-				pageToDisplay = null;
-			}
-		}
-		*/
 	}
 
 	/**
