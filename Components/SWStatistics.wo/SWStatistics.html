@@ -1,40 +1,33 @@
 <wo:CPAdminComponentWrapper>
-	<fieldset>
-		<legend>Miðlari</legend>
 		<label><wo:str value="$@ls.aaTotalMemUse" />:</label> <wo:str value="$totalMemory" numberformat="0" /> MiB<br />
 		<label><wo:str value="$@ls.aaEstimatedFreeMem" />:</label> <wo:str value="$freeMemory" numberformat="0" /> MiB<br />
-	</fieldset>
-	<fieldset>
-		<legend>Tími</legend>
 		<label><wo:str value="$@ls.aaServerTime" />:</label> <wo:str value="$now" dateformat="%d.%m.%Y, %H:%M:%S" /><br />
 		<label><wo:str value="$@ls.aaApplicationStartedAt" />:</label> <wo:str value="$statsManager.startupTime" dateformat="%d.%m.%Y, %H:%M:%S" /><br />
-	</fieldset>
-	<fieldset>
-		<legend>Umferð</legend>
 		<label><wo:str value="$@ls.aaNumberOfRequests" />:</label><br />
-	</fieldset>
-	
-	<fieldset>
-		<legend>Innskráðir notendur</legend>
+		<h2>Innskráðir notendur</h2>
 		<wo:conditional condition="$sw.activeUserSessions.count">	
-			<table class="table table-condensed">
+			<table class="table table-condensed table-striped table-bordered">
 				<tr>
 					<th>Stofnuð</th>
+					<th>Síðast virk</th>
 					<th>Notandi</th>
-					<th>Vafri</th>
 					<th>Stýrikerfi</th>
+					<th>Vafri</th>
+					<th>Útgáfa</th>
+					<th>IP-tala</th>
 				</tr>
 				<wo:repetition list="$sw.activeUserSessions" item="$currentSession">
 					<tr>
+						<td><wo:str value="$currentSession.birthDate" dateformat="%Y-%d.%m %H:%M:%S" /></td>
+						<td><wo:str value="$currentSession.objectStore.lastTouchedDate" dateformat="%Y-%d.%m %H:%M:%S" /></td>
 						<td><wo:str value="$currentUser.name" /></td>
-						<td><wo:str value="$currentSession.birthDate" dateformat="%H:%M, %d.%m.%y" /></td>
 						<td><wo:str value="$currentSession.browser.platform" /></td>
 						<td><wo:str value="$currentSession.browser.browserName" /></td>
 						<td><wo:str value="$currentSession.browser.version" /></td>
+						<td><wo:str value="$currentSession.context.request.remoteHostAddress" /></td>
 					</tr>
 				</wo:repetition>
 			</table>  
 		</wo:conditional>
 		<wo:conditional condition="$sw.activeUserSessions.count" negate="$true"><p>Engir tengdir notendur.</p></wo:conditional>
-	</fieldset>
 </wo:CPAdminComponentWrapper>

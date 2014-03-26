@@ -23,6 +23,7 @@ import concept.managers.CacheManager;
 import concept.managers.DBConnectionManager;
 import concept.managers.DBDefinitionManager;
 import concept.managers.RequestManager;
+import concept.managers.SessionManager;
 import concept.managers.TransactionLogger;
 import concept.managers.TransactionStamper;
 import concept.plugin.SWPluginHandler;
@@ -119,7 +120,7 @@ public class Concept {
 		DBDefinitionManager.register();
 		IndexManager.register();
 		StatsManager.register();
-
+		SessionManager.register();
 		ERXApplication app = ERXApplication.erxApplication();
 		app.setDefaultRequestHandler( app.requestHandlerForKey( app.directActionRequestHandlerKey() ) );
 		app.registerRequestHandler( new SWDocumentRequestHandler(), SWDocumentRequestHandler.KEY );
