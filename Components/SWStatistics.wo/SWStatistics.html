@@ -16,15 +16,15 @@
 					<th>Útgáfa</th>
 					<th>IP-tala</th>
 				</tr>
-				<wo:repetition list="$sw.activeUserSessions" item="$currentSession">
+				<wo:repetition list="$sw.activeUserSessions.@sortDesc.objectStore.lastTouchedDate" item="$currentSession">
 					<tr>
 						<td><wo:str value="$currentSession.birthDate" dateformat="%Y-%d.%m %H:%M:%S" /></td>
 						<td><wo:str value="$currentSession.objectStore.lastTouchedDate" dateformat="%Y-%d.%m %H:%M:%S" /></td>
 						<td><wo:str value="$currentUser.name" /></td>
-						<td><wo:str value="$currentSession.browser.platform" /></td>
-						<td><wo:str value="$currentSession.browser.browserName" /></td>
-						<td><wo:str value="$currentSession.browser.version" /></td>
-						<td><wo:str value="$currentSession.context.request.remoteHostAddress" /></td>
+						<td><wo:str value="$currentBrowser.platform" /></td>
+						<td><wo:str value="$currentBrowser.browserName" /></td>
+						<td><wo:str value="$currentBrowser.version" /></td>
+						<td><wo:str value="$currentSession.objectStore.remoteHostAddress" /></td>
 					</tr>
 				</wo:repetition>
 			</table>  

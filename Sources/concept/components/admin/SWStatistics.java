@@ -8,6 +8,8 @@ import com.webobjects.foundation.NSTimestamp;
 import concept.SWAdminComponent;
 import concept.SWSessionHelper;
 import concept.data.SWUser;
+import er.extensions.appserver.ERXBrowser;
+import er.extensions.appserver.ERXBrowserFactory;
 import er.extensions.appserver.ERXSession;
 
 public class SWStatistics extends SWAdminComponent {
@@ -38,5 +40,22 @@ public class SWStatistics extends SWAdminComponent {
 
 	public StatsManager statsManager() {
 		return StatsManager.instance();
+	}
+
+	public ERXBrowser currentBrowser() {
+		return browserMatchingUserAgentString( (String)currentSession.objectStore().valueForKey( "user-agent" ) );
+	}
+
+	static ERXBrowserFactory factory = new ERXBrowserFactory();
+	private static ERXBrowser browserMatchingUserAgentString( String ua ) {
+
+		if( ua == null ) {
+			return null;
+		}
+
+		String browserName = factory.parseBrowserName( ua );
+		String version = factory.parseVersion( ua );
+		String platform = factory.parsePlatform( ua );
+		return factory.getBrowserInstance( browserName, version, null, platform, null );
 	}
 }

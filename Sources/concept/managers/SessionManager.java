@@ -1,5 +1,7 @@
 package concept.managers;
 
+import is.rebbi.wo.util.USHTTPUtilities;
+
 import com.webobjects.appserver.WOSession;
 import com.webobjects.foundation.NSNotification;
 import com.webobjects.foundation.NSNotificationCenter;
@@ -7,6 +9,7 @@ import com.webobjects.foundation.NSSelector;
 import com.webobjects.foundation.NSTimestamp;
 
 import concept.Concept;
+import er.extensions.appserver.ERXRequest;
 import er.extensions.appserver.ERXSession;
 
 /**
@@ -59,6 +62,9 @@ public class SessionManager {
 		ERXSession session = (ERXSession)notification.object();
 
 		if( session != null ) {
+			session.objectStore().takeValueForKey( new NSTimestamp(), "lastTouchedDate" );
+			session.objectStore().takeValueForKey( ((ERXRequest)session.context().request()).remoteHostAddress(), "remoteHostAddress" );
+			session.objectStore().takeValueForKey( USHTTPUtilities.userAgent( (session.context().request()) ), "user-agent" );
 			Concept.sw().activeUserSessions().addObject( session );
 		}
 	}
