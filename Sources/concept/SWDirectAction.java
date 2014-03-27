@@ -521,7 +521,7 @@ public class SWDirectAction extends ERXDirectAction {
 					}
 				}
 
-				buffer.append( "<swPicture id=\"" + pic.id() + "\"\n" );
+				buffer.append( "<swPicture id=\"" + pic.primaryKey() + "\"\n" );
 				buffer.append( "   url=\"" + pic.pictureURL() + "\"\n" );
 				buffer.append( "   picHeight=\"" + pic.height() + "\"\n" );
 				buffer.append( "   picWidth=\"" + pic.width() + "\">\n" );

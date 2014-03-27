@@ -157,7 +157,7 @@ public class SWPicture extends _SWPicture implements SWDataAsset<SWPicture, SWAs
 	}
 
 	private String folderOnDisk() {
-		return SWSettings.imagePath() + "/" + id() + "/";
+		return SWSettings.imagePath() + "/" + primaryKey() + "/";
 	}
 
 	public String path() {
@@ -188,7 +188,7 @@ public class SWPicture extends _SWPicture implements SWDataAsset<SWPicture, SWAs
 	 */
 	@Override
 	public NSData data() {
-		if( id() == null ) {
+		if( primaryKey() == null ) {
 			return temporaryData;
 		}
 
@@ -201,7 +201,7 @@ public class SWPicture extends _SWPicture implements SWDataAsset<SWPicture, SWAs
 	@Override
 	public void setData( NSData newData ) {
 
-		if( id() == null ) {
+		if( primaryKey() == null ) {
 			temporaryData = newData;
 		}
 		else {
@@ -221,7 +221,7 @@ public class SWPicture extends _SWPicture implements SWDataAsset<SWPicture, SWAs
 	 * Writes out this picture's temporary data buffer to disk. Invoked automatically by the system.
 	 */
 	public void writeDataToDisk( NSNotification n ) {
-		if( temporaryData != null && id() != null ) {
+		if( temporaryData != null && primaryKey() != null ) {
 			USDataUtilities.writeDataToFile( temporaryData, file() );
 			updateThumbnails();
 			temporaryData = null;
@@ -256,7 +256,7 @@ public class SWPicture extends _SWPicture implements SWDataAsset<SWPicture, SWAs
 	}
 
 	public String pictureURL() {
-		return SWSettings.imageURL() + "/" + id() + "/" + name();
+		return SWSettings.imageURL() + "/" + primaryKey() + "/" + name();
 	}
 
 	public String previewURL( String size ) {
@@ -266,7 +266,7 @@ public class SWPicture extends _SWPicture implements SWDataAsset<SWPicture, SWAs
 			url = pictureURL();
 		}
 		else if( file( size ).exists() ) {
-			url = SWSettings.imageURL() + "/" + id() + "/" + nameWithoutExtension( name() ) + "_" + size + "." + extension( name() );
+			url = SWSettings.imageURL() + "/" + primaryKey() + "/" + nameWithoutExtension( name() ) + "_" + size + "." + extension( name() );
 		}
 		else {
 			url = pictureURL();
@@ -304,7 +304,7 @@ public class SWPicture extends _SWPicture implements SWDataAsset<SWPicture, SWAs
 	}
 
 	public String emailEmbedURL() {
-		return "cid:swpicture_" + id();
+		return "cid:swpicture_" + primaryKey();
 	}
 
 	/**
@@ -360,7 +360,7 @@ public class SWPicture extends _SWPicture implements SWDataAsset<SWPicture, SWAs
 
 		if( list != null ) {
 			for( int i = 0; i < list.length; i++ ) {
-				File file = new File( SWSettings.imagePath() + "/" + id() + "/" + list[i] );
+				File file = new File( SWSettings.imagePath() + "/" + primaryKey() + "/" + list[i] );
 
 				if( file.exists() ) {
 					file.delete();
@@ -425,7 +425,7 @@ public class SWPicture extends _SWPicture implements SWDataAsset<SWPicture, SWAs
 
 	@Override
 	public void updateThumbnails() {
-		logger.debug( "Creating images for pictureId: " + id() );
+		logger.debug( "Creating images for pictureId: " + primaryKey() );
 
 		String str = (String)customInfo().valueForKey( "sizes" ); // these are the sizes requested
 

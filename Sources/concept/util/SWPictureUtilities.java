@@ -68,7 +68,7 @@ public class SWPictureUtilities {
 		}
 		catch( Exception ex ) {
 			// Failed for some reason, just log it
-			logger.debug( "Failed to resize picture with id: " + aPicture.id() + " because of exception", ex );
+			logger.debug( "Failed to resize picture with id: " + aPicture.primaryKey() + " because of exception", ex );
 		}
 	}
 
@@ -163,7 +163,7 @@ public class SWPictureUtilities {
 		while( e.hasMoreElements() ) {
 			pict = e.nextElement();
 			cnt++;
-			logger.debug( "Updating picture_id: " + pict.id() + " (" + cnt + " of " + a.size() + ")" );
+			logger.debug( "Updating picture_id: " + pict.primaryKey() + " (" + cnt + " of " + a.size() + ")" );
 			pict.updateThumbnails();
 			if( cnt % 500 == 0 ) {
 				ec.saveChanges();

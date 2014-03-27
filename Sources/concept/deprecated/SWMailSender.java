@@ -105,6 +105,6 @@ public class SWMailSender {
 	}
 
 	public static String emailEmbedURLWithoutCID( SWPicture picture ) {
-		return "swpicture_" + picture.id();
+		return "swpicture_" + picture.primaryKey();
 	}
 }
