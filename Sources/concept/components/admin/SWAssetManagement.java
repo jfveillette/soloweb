@@ -69,7 +69,7 @@ public class SWAssetManagement extends SWAdminComponent {
 	public String documentsTabName = SWLoc.string( "sfAdminTabDocuments", session() );
 	public String privilegesTabName = SWLoc.string( "sfAdminTabAccessPrivileges", session() );
 
-	private NSArray _tabs;
+	private NSArray<String> _tabs;
 	public String selectedTab = documentsTabName;
 
 	private boolean hasSelectedAsset = false;
@@ -77,21 +77,21 @@ public class SWAssetManagement extends SWAdminComponent {
 	private String _entityName;
 	private String _folderEntityName;
 	private String _editingComponentName;
-	private NSDictionary _privilegePairs;
+	private NSDictionary<String, String> _privilegePairs;
 	private Class _entityClass;
 
 	public SWAssetManagement( WOContext c ) {
 		super( c );
 	}
 
-	public NSArray tabs() {
+	public NSArray<String> tabs() {
 
 		if( _tabs == null ) {
 			// TODO: Fix error here, if enablePrivileges is false then the user variable is never checked but if enablePrivileges is true then
 			// we get a nullpointerexception as the user variable in the session isn't set on login when using the admin login
 			// from the .conf file.
 
-			NSMutableArray t = new NSMutableArray();
+			NSMutableArray<String> t = new NSMutableArray<>();
 			t.addObject( documentsTabName );
 
 			if( isNewsItem() ) {
@@ -130,13 +130,8 @@ public class SWAssetManagement extends SWAdminComponent {
 	}
 
 	private void setSelectedAssetUsingID( Object o ) {
-		try {
-			SWAsset asset = (SWAsset)USEOUtilities.objectMatchingKeyAndValue( session().defaultEditingContext(), entityName(), primaryKeyAttributeName(), o );
-			setSelectedAsset( asset );
-		}
-		catch( Exception ex ) {
-
-		}
+		SWAsset asset = (SWAsset)USEOUtilities.objectMatchingKeyAndValue( session().defaultEditingContext(), entityName(), primaryKeyAttributeName(), o );
+		setSelectedAsset( asset );
 	}
 
 	private void setSelectedAsset( SWAsset asset ) {
@@ -338,7 +333,7 @@ public class SWAssetManagement extends SWAdminComponent {
 		_editingComponentName = s;
 	}
 
-	public NSDictionary privilegePairs() {
+	public NSDictionary<String, String> privilegePairs() {
 		if( _privilegePairs == null ) {
 			_privilegePairs = defaultPrivilegePairs();
 		}
@@ -346,12 +341,12 @@ public class SWAssetManagement extends SWAdminComponent {
 		return _privilegePairs;
 	}
 
-	public void setPrivilegePairs( NSDictionary d ) {
+	public void setPrivilegePairs( NSDictionary<String, String> d ) {
 		_privilegePairs = d;
 	}
 
-	private NSDictionary defaultPrivilegePairs() {
-		NSMutableDictionary d = new NSMutableDictionary();
+	private NSDictionary<String, String> defaultPrivilegePairs() {
+		NSMutableDictionary<String, String> d = new NSMutableDictionary<>();
 		d.setObjectForKey( "allowToSee", SWLoc.string( "docpSeeFolders", session() ) );
 		d.setObjectForKey( "canManageUsers", SWLoc.string( "docpManagePrivileges", session() ) );
 		return d;
@@ -388,20 +383,15 @@ public class SWAssetManagement extends SWAdminComponent {
 	}
 
 	private void deleteFolder( SWFolderInterface folder ) {
-		try {
-			NSArray a = folder.sortedDocuments();
+		NSArray a = folder.sortedDocuments();
 
-			if( USArrayUtilities.hasObjects( a ) ) {
-				Enumeration e1 = a.objectEnumerator();
+		if( USArrayUtilities.hasObjects( a ) ) {
+			Enumeration e1 = a.objectEnumerator();
 
-				while( e1.hasMoreElements() ) {
-					SWAsset asset = (SWAsset)e1.nextElement();
-					asset.deleteAsset();
-				}
+			while( e1.hasMoreElements() ) {
+				SWAsset asset = (SWAsset)e1.nextElement();
+				asset.deleteAsset();
 			}
-		}
-		catch( Exception e ) {
-			logger.debug( "Error while deleting folder", e );
 		}
 
 		if( folder.parent() != null ) {
@@ -428,7 +418,6 @@ public class SWAssetManagement extends SWAdminComponent {
 
 	public int folderDocumentCount() {
 		int theCount = 0;
-
 		if( selectedFolder instanceof SWNewsCategory ) {
 			NSArray count = EOUtilities.rawRowsForSQL( session().defaultEditingContext(), "SoloWeb", "select count(*) as cnt from sw_news_item where news_category_id=" + selectedFolder.folderID(), null );
 			if( count != null && count.count() > 0 ) {
@@ -448,32 +437,30 @@ public class SWAssetManagement extends SWAdminComponent {
 		NSArray docs = null;
 
 		if( selectedFolder.batchFetchContent() == false ) {
-			// Return all objects
-			docs = selectedFolder.sortedDocuments();
+			return selectedFolder.sortedDocuments();
 		}
-		else {
-			// Return a batch of objects (currently fixed at 50 objects)
-			EOFetchSpecification fs = new EOFetchSpecification( SWNewsItem.ENTITY_NAME, SWNewsItem.CATEGORY.eq( (SWNewsCategory)selectedFolder ), SWNewsItem.DATE.descs() );
-			fs.setFetchesRawRows( true );
-			fs.setRawRowKeyPaths( new NSArray<>( new String[] { SWNewsItem.ID_KEY, SWNewsItem.DATE_KEY } ) );
-			NSArray rawIds = session().defaultEditingContext().objectsWithFetchSpecification( fs );
 
-			if( rawIds != null && rawIds.count() > 0 ) {
-				NSMutableArray ids = new NSMutableArray();
-				int startNo = (currentBatchNo - 1) * 50;
-				int endNo = startNo + 50;
-				for( int i = 0; i < 50 && (i + startNo) < rawIds.count(); i++ ) {
-					NSDictionary row = (NSDictionary)rawIds.objectAtIndex( startNo + i );
-					Object itemID = row.valueForKey( SWNewsItem.ID_KEY );
-					ids.addObject( itemID );
-				}
+		EOFetchSpecification fs = new EOFetchSpecification( SWNewsItem.ENTITY_NAME, SWNewsItem.CATEGORY.eq( (SWNewsCategory)selectedFolder ), SWNewsItem.DATE.descs() );
+		fs.setFetchesRawRows( true );
+		fs.setRawRowKeyPaths( new NSArray<>( new String[] { SWNewsItem.ID_KEY, SWNewsItem.DATE_KEY } ) );
+		NSArray rawIds = session().defaultEditingContext().objectsWithFetchSpecification( fs );
 
-				// Get the actual objects
-				ERXInQualifier inQualifier = new ERXInQualifier( SWNewsItem.ID_KEY, ids );
-				EOSortOrdering sort = new EOSortOrdering( SWNewsItem.DATE_KEY, EOSortOrdering.CompareDescending );
-				EOFetchSpecification fs2 = new EOFetchSpecification( SWNewsItem.ENTITY_NAME, inQualifier, new NSArray<>( sort ) );
-				docs = session().defaultEditingContext().objectsWithFetchSpecification( fs2 );
+		if( rawIds != null && rawIds.count() > 0 ) {
+			NSMutableArray ids = new NSMutableArray();
+			int startNo = (currentBatchNo - 1) * 50;
+			int endNo = startNo + 50;
+
+			for( int i = 0; i < 50 && (i + startNo) < rawIds.count(); i++ ) {
+				NSDictionary row = (NSDictionary)rawIds.objectAtIndex( startNo + i );
+				Object itemID = row.valueForKey( SWNewsItem.ID_KEY );
+				ids.addObject( itemID );
 			}
+
+			// Get the actual objects
+			ERXInQualifier inQualifier = new ERXInQualifier( SWNewsItem.ID_KEY, ids );
+			EOSortOrdering sort = new EOSortOrdering( SWNewsItem.DATE_KEY, EOSortOrdering.CompareDescending );
+			EOFetchSpecification fs2 = new EOFetchSpecification( SWNewsItem.ENTITY_NAME, inQualifier, new NSArray<>( sort ) );
+			docs = session().defaultEditingContext().objectsWithFetchSpecification( fs2 );
 		}
 
 		return docs;
@@ -491,13 +478,16 @@ public class SWAssetManagement extends SWAdminComponent {
 		if( currentBatchNo < maxBatchNo ) {
 			currentBatchNo++;
 		}
+
 		return null;
 	}
 
 	public NSArray<String> previewSizesList() {
+
 		if( currentAsset == null ) {
 			return null;
 		}
+
 		SWPicture pic = (SWPicture)currentAsset;
 		String sizes = (String)pic.customInfo().valueForKey( "sizes" );
 		NSArray<String> list = new NSArray<>( sizes.split( "," ) );
@@ -506,9 +496,11 @@ public class SWAssetManagement extends SWAdminComponent {
 
 	public String thumbClass() {
 		String klass = "thumb";
+
 		if( currentAsset.equals( selectedAsset ) ) {
 			klass += " selected";
 		}
+
 		return klass;
 	}
 }

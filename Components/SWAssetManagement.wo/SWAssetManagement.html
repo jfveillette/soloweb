@@ -1,5 +1,4 @@
 <webobject name="SWAdminComponentWrapper1">
-	<!-- SWAssetManagement -->
 	<table border="0" cellpadding="2" cellspacing="0" width="100%">
 		<tr>
 			<td>
@@ -25,19 +24,19 @@
 									</tr>
 									<tr>
 										<td>
-											<webobject name="CanCreateDeleteCond">
+											<wo:if condition="$canCreateDeleteAssetsInCurrentFolder">
 												<webobject name="TextField3"/>&nbsp;&nbsp;<webobject name="SubmitButton1"/>
-											</webobject>
+											</wo:if>
 										</td>
 									</tr>
 									<tr>
 										<td>
-											<webobject name="CanCreateDeleteCond">
-												<webobject name="createAssetLink"><webobject name="String8"/></webobject><br>
-												<webobject name="createSubFolderLink"><webobject name="String9"/></webobject><br>
-												<webobject name="transferAssetLink"><webobject name="String10"/></webobject><br>
-												<webobject name="JSConfirmPanel2"><webobject name="String11"/></webobject><br><br>
-											</webobject>
+											<wo:if condition="$canCreateDeleteAssetsInCurrentFolder">
+												<webobject name="createAssetLink"><webobject name="String8" /></webobject><br>
+												<webobject name="createSubFolderLink"><webobject name="String9" /></webobject><br>
+												<webobject name="transferAssetLink"><webobject name="String10" /></webobject><br>
+												<webobject name="JSConfirmPanel2"><webobject name="String11" /></webobject><br><br>
+											</wo:if>
 											<webobject name="folderHasContent">
 												<table border="0" cellpadding="2" cellspacing="0" class="genericTable" WIDTH="100%">
 													<tr>
@@ -46,10 +45,10 @@
 														<webobject name="isNewsItem"><th><b><webobject name="String1"/></b></th></webobject>
 														<webobject name="isDataAsset"><th><b><webobject name="String13"/></b></th></webobject>
 														<webobject name="isDataAsset"><th>&nbsp;</th></webobject>
-														<webobject name="CanCreateDeleteCond">
+														<wo:if condition="$canCreateDeleteAssetsInCurrentFolder">
 															<th>&nbsp;</th>
 															<th>&nbsp;</th>
-														</webobject>
+														</wo:if>
 													</tr>
 													<webobject name="BatchControlsCond"><div style="text-align: center; padding-bottom: 8px;">
 														<webobject name="PrevBatch">&lt;&lt;&nbsp;&nbsp;</webobject>
@@ -83,14 +82,14 @@
 																	</webobject>
 																</td>
 															</webobject>
-															<webobject name="CanCreateDeleteCond">
+															<wo:if condition="$canCreateDeleteAssetsInCurrentFolder">
 																<td>
 																	<webobject name="ResetHitCount4"><webobject name="ImgArrow"/></webobject>
 																</td>
 																<td>
 																	<webobject name="Hyperlink2"><webobject name="ImgDelete"/></webobject>
 																</td>
-															</webobject>
+															</wo:if>
 														</webobject>
 													</webobject>
 													<webobject name="isDataAsset">
@@ -114,17 +113,17 @@
 							<webobject name="isPrivilegesTabSelected">
 								<webobject name="SWAssignPrivileges21"/>
 							</webobject>
-							<webobject name = "isRSSTabSelected">
+							<webobject name="isRSSTabSelected">
 								<table border="0" cellpadding="2" cellspacing="0" class="genericTable" style="width:100%">
 									<tr>
 										<td>Page name</td>
-										<td><webobject name = "InpRSSPageName"/></td>
+										<td><webobject name="InpRSSPageName"/></td>
 									</tr><tr>
 										<td>Title</td>
-										<td><webobject name = "InpRSSTitle"/></td>
+										<td><webobject name="InpRSSTitle"/></td>
 									</tr><tr>
 										<td>Link</td>
-										<td><webobject name = "InpRSSLink"/></td>
+										<td><webobject name="InpRSSLink"/></td>
 									</tr>
 								</table>
 							</webobject>
@@ -157,5 +156,4 @@
 			</td>
 		</tr>
 	</table>
-	<!-- end SWAssetManagement -->
 </webobject>

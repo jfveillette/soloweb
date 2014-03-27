@@ -1,29 +1,9 @@
-CanCreateDeleteCond: WOConditional {
-	condition = canCreateDeleteAssetsInCurrentFolder;
-}
-
 folderHasContent: WOConditional {
 	condition = folderDocumentCount;
 }
 
-Conditional10: WOConditional {
-	condition = isDataAsset;
-}
-
-Conditional11: WOConditional {
-	condition = isDataAsset;
-}
-
 IsAdminCond: WOConditional {
 	condition = session.activeUser.isAdministrator;
-}
-
-RecordCond: WOConditional {
-	condition = record;
-}
-
-Conditional14: WOConditional {
-	condition = record;
 }
 
 isPicture: WOConditional {
@@ -33,33 +13,19 @@ isPicture: WOConditional {
 ShowThumbnails: WOConditional {
 	condition = selectedFolder.showThumbnails;
 }
+
 ThumbDiv: WOGenericContainer {
 	elementName = "div";
 	class = thumbClass;
 }
+
 isNotPicture: WOConditional {
 	condition = isPicture;
 	negate = true;
 }
 
-Conditional17: WOConditional {
-	condition = isNewsItem;
-}
-
 isNewsItem: WOConditional {
 	condition = isNewsItem;
-}
-
-Conditional19: WOConditional {
-	condition = isNewsItem;
-}
-
-Conditional2: WOConditional {
-	condition = selectedAsset;
-}
-
-Conditional3: WOConditional {
-	condition = record;
 }
 
 hasRecord: WOConditional {
@@ -75,24 +41,7 @@ isSelectedAsset: WOConditional {
 	condition = selectedAsset;
 }
 
-isNotSelectedAsset: WOConditional {
-	condition = selectedAsset;
-	negate = true;
-}
-
-Conditional6: WOConditional {
-	condition = isDataAsset;
-}
-
 isDataAsset: WOConditional {
-	condition = isDataAsset;
-}
-
-Conditional8: WOConditional {
-	condition = isDataAsset;
-}
-
-Conditional9: WOConditional {
 	condition = isDataAsset;
 }
 
@@ -108,8 +57,8 @@ GenericContainer1: WOGenericContainer {
 
 Hyperlink1: WOHyperlink {
 	href = currentAssetURL;
-	?wosid = false;
 	target = "_blank";
+	?wosid = false;
 }
 
 createSubFolderLink: WOHyperlink {
@@ -140,9 +89,6 @@ saveAssetLink: WOHyperlink {
 	class = "topLevelAsset";
 }
 
-saveAssetPreviewLink: WOHyperlink {
-	
-}
 selectAssetLink: WOHyperlink {
 	action = selectAsset;
 	class = "topLevelAsset";
@@ -285,10 +231,12 @@ assetName: WOString {
 	value = currentAsset.name;
 	valueWhenEmpty = session.@ls.untitledObjectString;
 }
+
 pictureDisplayName: WOString {
 	value = currentAsset.displayName;
 	valueWhenEmpty = session.@ls.untitledObjectString;
 }
+
 String4: WOString {
 	value = selectedFolder.size;
 }
@@ -336,18 +284,22 @@ SelectedFolderCond: WOConditional {
 PrevBatch: WOHyperlink {
 	action = prevBatch;
 }
+
 InpRSSPageName: WOTextField {
 	value = selectedFolder.rssPageName;
 	style = "width: 100%;";
 }
+
 InpRSSTitle: WOTextField {
 	value = selectedFolder.rssTitle;
 	style = "width: 100%;";
 }
+
 InpRSSLink: WOTextField {
 	value = selectedFolder.rssLink;
 	style = "width: 100%;";
 }
+
 BatchControlsCond: WOConditional {
 	condition = selectedFolder.batchFetchContent;
 }
@@ -362,7 +314,4 @@ CurrentBatchNo: WOString {
 
 MaxBatchNo: WOString {
 	value = maxBatchNo;
-}
-FolderTitle: WOString {
-	value = selectedFolder.title;
 }
