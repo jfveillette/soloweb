@@ -58,10 +58,10 @@ public class SWPictureUtilities {
 	 * @param height The new height
 	 * @param qualityPercent The JPEG quality to write out (1-100)
 	 */
-
 	public static void scale( SWPicture aPicture, int width, int height, int qualityPercent ) {
 		// Compose the ImageMagick command
 		String cmd = "/usr/bin/convert " + aPicture.path() + " -resize " + width + "x" + height + " -quality " + qualityPercent + " " + aPicture.path();
+
 		try {
 			Process process = Runtime.getRuntime().exec( cmd );
 			process.waitFor();

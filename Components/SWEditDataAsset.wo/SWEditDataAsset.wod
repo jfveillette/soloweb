@@ -13,18 +13,11 @@ IsNotPictureCond: WOConditional {
 	condition = isPicture;
 	negate = true;
 }
+
 Upload: WOFileUpload {
 	data = data;
 	filePath = filename;
 	size = 40;
-}
-
-//Custom6: NBUploadWithProgress {
-//	action = 
-//}
-
-Form1: WOForm {
-	enctype = "multipart/form-data";
 }
 
 HeitiField1: WOTextField {
@@ -36,10 +29,12 @@ HeitiField6: WOTextField {
 	size = 60;
 	value = selectedAsset.name;
 }
+
 PictureDisplayName: WOTextField {
 	size = 60;
 	value = selectedAsset.displayName;
 }
+
 Hyperlink1: WOHyperlink {
 	action = expandZipFile;
 }
@@ -150,13 +145,16 @@ ImageHeightStr: WOString {
 SizesStr: WOString {
 	value = selectedAsset.customInfo.sizes;
 }
+
 ImageEditorLink: WOHyperlink {
 	target = "_blank";
 	action = editPicture;
 }
+
 DocumentLinkKeyStr: WOString {
 	value = "Link Key";
 }
+
 InpLinkKey: WOTextField {
 	value = selectedAsset.linkKey;
 	size = 30;

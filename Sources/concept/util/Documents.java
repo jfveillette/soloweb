@@ -101,8 +101,8 @@ public class Documents {
 	}
 
 	public static SWDocument create( EOEditingContext ec, String filename, InputStream stream ) {
-		String name = FileTypes.extractFilename( filename );
-		String extension = FileTypes.extensionFromFileName( filename );
+		String name = FileTypes.filenameByRemovingExtension( filename );
+		String extension = FileTypes.extensionFromFilename( filename );
 		return create( ec, name, extension, stream );
 	}
 
@@ -124,8 +124,8 @@ public class Documents {
 	}
 
 	public static SWDocument create( EOEditingContext ec, String filename, NSData data ) {
-		String name = FileTypes.extractFilename( filename );
-		String extension = FileTypes.extensionFromFileName( filename );
+		String name = FileTypes.filenameByRemovingExtension( filename );
+		String extension = FileTypes.extensionFromFilename( filename );
 		return create( ec, name, extension, data );
 	}
 
@@ -139,8 +139,8 @@ public class Documents {
 	}
 
 	public static SWDocument createAndLink( ERXGenericRecord record, String filename, NSData data ) {
-		String name = FileTypes.extractFilename( filename );
-		String extension = FileTypes.extensionFromFileName( filename );
+		String name = FileTypes.filenameByRemovingExtension( filename );
+		String extension = FileTypes.extensionFromFilename( filename );
 		return createAndLink( record, name, extension, data );
 	}
 

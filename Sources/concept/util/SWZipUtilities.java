@@ -153,8 +153,8 @@ public class SWZipUtilities {
 	}
 
 	public static SWDataAsset create( EOEditingContext ec, String entityName, String filename, InputStream stream ) {
-		String name = FileTypes.extractFilename( filename );
-		String extension = FileTypes.extensionFromFileName( filename );
+		String name = FileTypes.filenameByRemovingExtension( filename );
+		String extension = FileTypes.extensionFromFilename( filename );
 		return create( ec, entityName, name, extension, stream );
 	}
 

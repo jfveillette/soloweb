@@ -24,6 +24,8 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -198,9 +200,9 @@ public class SWDocument extends _SWDocument implements SWDataAsset<SWDocument, S
 		String nameForDownload = nameForDownload();
 
 		try {
-			nameForDownload = java.net.URLEncoder.encode( nameForDownload, "UTF-8" );
+			nameForDownload = URLEncoder.encode( nameForDownload, "UTF-8" );
 		}
-		catch( Exception e ) {
+		catch( UnsupportedEncodingException e ) {
 			logger.error( "Could not URL-encode document name: " + nameForDownload, e );
 		}
 

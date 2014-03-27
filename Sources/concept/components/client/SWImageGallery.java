@@ -6,9 +6,6 @@ import is.rebbi.wo.util.USArrayUtilities;
 import is.rebbi.wo.util.USEOUtilities;
 import is.rebbi.wo.util.USUtilities;
 
-import java.io.File;
-import java.io.FileInputStream;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -46,7 +43,7 @@ public class SWImageGallery extends SWGenericComponent {
 	public String swImageGallerySort = "";
 	public String swImageGalleryPicSize = "";
 
-	private ImageInfo ii;
+	private ImageInfo _imageInfo;
 
 	public SWImageGallery( WOContext context ) {
 		super( context );
@@ -118,7 +115,6 @@ public class SWImageGallery extends SWGenericComponent {
 	public SWPicture selectedPicture() {
 		try {
 			Integer id = new Integer( context().request().stringFormValueForKey( "pictureID" ) );
-			String size = currentComponent().customInfo().stringValueForKey( "swimagegallerypreviewsize" );
 			currentPicture = (SWPicture)USEOUtilities.objectWithPK( session().defaultEditingContext(), SWPicture.ENTITY_NAME, id );
 			return currentPicture;
 		}
@@ -168,8 +164,8 @@ public class SWImageGallery extends SWGenericComponent {
 
 			if( selectedPict != null ) {
 				try {
-					NSArray pics = selectedPict.folder().sortedPictures();
-					currentPicture = (SWPicture)USArrayUtilities.randomObject( pics );
+					NSArray<SWPicture> pics = selectedPict.folder().sortedPictures();
+					currentPicture = USArrayUtilities.randomObject( pics );
 				}
 				catch( Exception e ) {
 					logger.error( "Error showing random image", e );
@@ -183,8 +179,8 @@ public class SWImageGallery extends SWGenericComponent {
 			SWAssetFolder folder = (SWAssetFolder)USEOUtilities.objectWithPK( session().defaultEditingContext(), SWAssetFolder.ENTITY_NAME, new Integer( folderId ) );
 
 			if( folder != null ) {
-				NSArray pics = folder.sortedPictures();
-				currentPicture = (SWPicture)USArrayUtilities.randomObject( pics );
+				NSArray<SWPicture> pics = folder.sortedPictures();
+				currentPicture = USArrayUtilities.randomObject( pics );
 			}
 		}
 
@@ -352,23 +348,10 @@ public class SWImageGallery extends SWGenericComponent {
 	}
 
 	private ImageInfo imageInfo() {
-		if( ii == null ) {
-			ii = new ImageInfo();
-			String size = selectedPictureSize();
-			File file = currentPicture.file( size );
-
-			try {
-				ii.setInput( new FileInputStream( file ) );
-			}
-			catch( Exception e2 ) {
-				try {
-					ii.setInput( new FileInputStream( currentPicture.file() ) );
-				}
-				catch( Exception e3 ) {}
-			}
-			ii.check();
+		if( _imageInfo == null ) {
+			_imageInfo = currentPicture.imageInfo( selectedPictureSize() );
 		}
-		return ii;
+		return _imageInfo;
 	}
 
 	public String thumbSize() {
