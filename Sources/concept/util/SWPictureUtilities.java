@@ -164,7 +164,7 @@ public class SWPictureUtilities {
 			pict = e.nextElement();
 			cnt++;
 			logger.debug( "Updating picture_id: " + pict.id() + " (" + cnt + " of " + a.size() + ")" );
-			pict.updatePreviews();
+			pict.updateThumbnails();
 			if( cnt % 500 == 0 ) {
 				ec.saveChanges();
 			}

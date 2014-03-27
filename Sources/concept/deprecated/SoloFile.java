@@ -7,7 +7,7 @@ import com.webobjects.appserver.WORequest;
 import com.webobjects.appserver.WOResponse;
 
 import concept.SWDirectAction;
-import concept.SWDocumentRequestHandler;
+import concept.util.SWOldURLs;
 
 /**
  * Used to be the default way of downloading documents, but has been replaced by SWDocumentRequestHandler.
@@ -26,7 +26,7 @@ public class SoloFile extends SWDirectAction {
 	@Deprecated
 	public WOResponse attachmentAction() {
 		String id = request().stringFormValueForKey( "id" );
-		String url = SWDocumentRequestHandler.urlForDocumentWithIDInContext( session().defaultEditingContext(), id, WOApplication.application().createContextForRequest( request() ) );
+		String url = SWOldURLs.urlForDocumentWithIDInContext( session().defaultEditingContext(), id, WOApplication.application().createContextForRequest( request() ) );
 		return USHTTPUtilities.redirectTemporary( url );
 	}
 }

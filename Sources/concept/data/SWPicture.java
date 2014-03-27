@@ -55,7 +55,7 @@ public class SWPicture extends _SWPicture implements SWDataAsset<SWPicture, SWAs
 			throw new RuntimeException( "You must specify image location on disk in the SoloWeb settings" );
 		}
 
-		NSSelector saveSelector = new NSSelector( "writeDataToDisk", new Class[] { NSNotification.class } );
+		NSSelector<Void> saveSelector = new NSSelector<>( "writeDataToDisk", new Class[] { NSNotification.class } );
 		NSNotificationCenter.defaultCenter().addObserver( this, saveSelector, EOEditingContext.EditingContextDidSaveChangesNotification, null );
 	}
 
@@ -239,7 +239,7 @@ public class SWPicture extends _SWPicture implements SWDataAsset<SWPicture, SWAs
 		}
 		else {
 			USDataUtilities.writeDataToFile( newData, file() );
-			updatePreviews();
+			updateThumbnails();
 		}
 	}
 
@@ -256,7 +256,7 @@ public class SWPicture extends _SWPicture implements SWDataAsset<SWPicture, SWAs
 	public void writeDataToDisk( NSNotification n ) {
 		if( temporaryData != null && id() != null ) {
 			USDataUtilities.writeDataToFile( temporaryData, file() );
-			updatePreviews();
+			updateThumbnails();
 			temporaryData = null;
 		}
 	}
@@ -340,10 +340,6 @@ public class SWPicture extends _SWPicture implements SWDataAsset<SWPicture, SWAs
 		return "cid:swpicture_" + id();
 	}
 
-	public String emailEmbedURLWithoutCID() {
-		return "swpicture_" + id();
-	}
-
 	/**
 	 * An ImageInfo object for retrieving information about the picture.
 	 */
@@ -386,41 +382,26 @@ public class SWPicture extends _SWPicture implements SWDataAsset<SWPicture, SWAs
 		return (ii != null) ? ii.getHeight() : 0;
 	}
 
-	public static SWPicture pictureWithID( EOEditingContext anEC, Integer anID ) {
-		return (SWPicture)USEOUtilities.objectWithPK( anEC, SWPicture.ENTITY_NAME, anID );
-	}
-
-	@Override
-	public void updateThumbnails() {
-		updatePreviews();
-	}
-
-	public void updatePreviews() {
-		createPreviews();
+	public static SWPicture pictureWithID( EOEditingContext ec, Integer anID ) {
+		return (SWPicture)USEOUtilities.objectWithPK( ec, SWPicture.ENTITY_NAME, anID );
 	}
 
 	@Override
 	public void deleteAsset() {
-		String[] list = file().getParentFile().list();
+		File directory = file().getParentFile();
+		String[] list = directory.list();
 
 		if( list != null ) {
 			for( int i = 0; i < list.length; i++ ) {
 				File file = new File( LOCATION_ON_DISK + id() + "/" + list[i] );
 
-				try {
+				if( file.exists() ) {
 					file.delete();
-				}
-				catch( Exception e ) {
-					logger.debug( "Error deleting asset", e );
 				}
 			}
 
-			// delete the directory ?
-			try {
-				file().getParentFile().delete();
-			}
-			catch( Exception e ) {
-				logger.debug( "Error deleting parent file", e );
+			if( directory.exists() ) {
+				directory.delete();
 			}
 
 			// delete picture links
@@ -464,7 +445,7 @@ public class SWPicture extends _SWPicture implements SWDataAsset<SWPicture, SWAs
 			if( !"zip".equals( pic.extension( pic.name(), false ) ) ) {
 				pic.setDisplayName( pic.name() );
 				pic.customInfo().takeValueForKey( sizes, "sizes" );
-				pic.updatePreviews();
+				pic.updateThumbnails();
 			}
 		}
 
@@ -480,7 +461,8 @@ public class SWPicture extends _SWPicture implements SWDataAsset<SWPicture, SWAs
 		return width() > height();
 	}
 
-	public void createPreviews() {
+	@Override
+	public void updateThumbnails() {
 		logger.debug( "Creating images for pictureId: " + id() );
 
 		String str = (String)customInfo().valueForKey( "sizes" ); // these are the sizes requested

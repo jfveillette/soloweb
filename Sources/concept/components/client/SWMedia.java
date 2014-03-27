@@ -4,10 +4,10 @@ import is.rebbi.core.util.StringUtilities;
 
 import com.webobjects.appserver.WOContext;
 
-import concept.SWDocumentRequestHandler;
 import concept.SWGenericComponent;
 import concept.components.admin.SWMediaAdmin;
 import concept.data.SWDocument;
+import concept.util.SWOldURLs;
 
 public class SWMedia extends SWGenericComponent {
 
@@ -24,7 +24,7 @@ public class SWMedia extends SWGenericComponent {
 		String url = null;
 
 		if( selectedDocument() != null ) {
-			url = SWDocumentRequestHandler.urlForDocumentInContext( selectedDocument(), context() );
+			url = SWOldURLs.urlForDocumentInContext( selectedDocument(), context() );
 			String ext = selectedDocument().extension();
 			if( "swf".equals( ext ) ) {
 				url += "?" + currentComponent().customInfo().valueForKey( "flashParameters" );

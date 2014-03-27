@@ -3,14 +3,11 @@ package concept;
 import is.rebbi.core.util.StringUtilities;
 import is.rebbi.wo.util.USArrayUtilities;
 import is.rebbi.wo.util.USHTTPUtilities;
-import is.rebbi.wo.util.USUtilities;
 
 import com.webobjects.appserver.WOApplication;
-import com.webobjects.appserver.WOContext;
 import com.webobjects.appserver.WORequest;
 import com.webobjects.appserver.WORequestHandler;
 import com.webobjects.appserver.WOResponse;
-import com.webobjects.eocontrol.EOEditingContext;
 import com.webobjects.foundation.NSArray;
 
 import concept.components.SWErrorMessage;
@@ -61,20 +58,5 @@ public class SWDocumentRequestHandler extends WORequestHandler {
 	private static final WOResponse error( WORequest request, String message, int status ) {
 		WOApplication app = WOApplication.application();
 		return SWErrorMessage.errorWithMessageAndStatusCode( message, app.createContextForRequest( request ), status );
-	}
-
-	public static String urlForDocumentWithIDInContext( EOEditingContext ec, Object documentID, WOContext context ) {
-		SWDocument document = SWDocument.documentWithID( ec, USUtilities.integerFromObject( documentID ) );
-		return urlForDocumentInContext( document, context );
-	}
-
-	public static String urlForDocumentInContext( SWDocument document, WOContext context ) {
-		String url = null;
-
-		if( document != null ) {
-			url = "/doc/" + document.primaryKey();
-		}
-
-		return url;
 	}
 }

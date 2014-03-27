@@ -10,10 +10,10 @@ import com.webobjects.appserver.WOContext;
 import com.webobjects.foundation.NSArray;
 
 import concept.IDynamicComponent;
-import concept.SWDocumentRequestHandler;
 import concept.SWGenericComponent;
 import concept.data.SWDocument;
 import concept.data.SWDocumentFolder;
+import concept.util.SWOldURLs;
 
 public class SWSFLinkedFileList extends SWGenericComponent implements IDynamicComponent {
 
@@ -67,7 +67,7 @@ public class SWSFLinkedFileList extends SWGenericComponent implements IDynamicCo
 	}
 
 	public String documentURL() {
-		return SWDocumentRequestHandler.urlForDocumentInContext( currentDocument(), context() );
+		return SWOldURLs.urlForDocumentInContext( currentDocument(), context() );
 	}
 
 	public String thClass() {

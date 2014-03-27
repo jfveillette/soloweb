@@ -152,11 +152,10 @@ public class SWEditDataAsset extends SWAdminComponent {
 
 			_selectedAsset.setData( finalData );
 			_selectedAsset.setDocumentType( FileTypes.documentTypeFromPath( finalName ) );
-
 		}
 		else {
 			if( isPicture() ) {
-				((SWPicture)_selectedAsset).createPreviews();
+				((SWPicture)_selectedAsset).updateThumbnails();
 			}
 		}
 

@@ -5,9 +5,9 @@ import is.rebbi.wo.util.SWSettings;
 
 import com.webobjects.appserver.WOContext;
 
-import concept.SWDocumentRequestHandler;
 import concept.SWGenericComponent;
 import concept.data.SWDocument;
+import concept.util.SWOldURLs;
 
 /**
  * The display component for a single SWDocument.
@@ -36,6 +36,6 @@ public class SWSFComponent extends SWGenericComponent {
 	}
 
 	public String documentURL() {
-		return SWDocumentRequestHandler.urlForDocumentInContext( selectedDocument(), context() );
+		return SWOldURLs.urlForDocumentInContext( selectedDocument(), context() );
 	}
 }

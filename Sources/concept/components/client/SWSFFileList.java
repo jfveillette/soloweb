@@ -7,10 +7,10 @@ import is.rebbi.wo.util.USArrayUtilities;
 import com.webobjects.appserver.WOContext;
 import com.webobjects.foundation.NSArray;
 
-import concept.SWDocumentRequestHandler;
 import concept.SWGenericComponent;
 import concept.data.SWComponent;
 import concept.data.SWDocument;
+import concept.util.SWOldURLs;
 
 /**
  * The display component for a list of SWDocuments.
@@ -64,6 +64,6 @@ public class SWSFFileList extends SWGenericComponent {
 	}
 
 	public String documentURL() {
-		return SWDocumentRequestHandler.urlForDocumentInContext( currentDocument, context() );
+		return SWOldURLs.urlForDocumentInContext( currentDocument, context() );
 	}
 }

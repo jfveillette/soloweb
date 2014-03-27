@@ -11,7 +11,6 @@ import javax.mail.BodyPart;
 import javax.mail.internet.MimeBodyPart;
 import javax.mail.internet.MimeMultipart;
 
-
 import com.webobjects.foundation.NSArray;
 import com.webobjects.foundation.NSData;
 
@@ -88,7 +87,7 @@ public class SWMailSender {
 			size = (String)o[1];
 		}
 
-		String cid = picture.emailEmbedURLWithoutCID();
+		String cid = SWMailSender.emailEmbedURLWithoutCID( picture );
 		FileType docType = picture.documentType();
 		String mimeType = "image/jpeg";
 
@@ -103,5 +102,9 @@ public class SWMailSender {
 		}
 
 		return createEmbeddedImage( cid, data.bytes(), mimeType );
+	}
+
+	public static String emailEmbedURLWithoutCID( SWPicture picture ) {
+		return "swpicture_" + picture.id();
 	}
 }

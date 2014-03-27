@@ -33,13 +33,13 @@ import com.webobjects.foundation.NSMutableArray;
 import com.webobjects.foundation.NSMutableDictionary;
 
 import concept.SWAdminComponent;
-import concept.SWDocumentRequestHandler;
 import concept.SWSessionHelper;
 import concept.data.SWDocument;
 import concept.data.SWNewsCategory;
 import concept.data.SWNewsItem;
 import concept.data.SWPicture;
 import concept.util.SWLoc;
+import concept.util.SWOldURLs;
 import er.extensions.eof.qualifiers.ERXInQualifier;
 
 public class SWAssetManagement extends SWAdminComponent {
@@ -283,7 +283,7 @@ public class SWAssetManagement extends SWAdminComponent {
 	}
 
 	public String currentAssetURL() {
-		return SWDocumentRequestHandler.urlForDocumentInContext( (SWDocument)currentAsset, context() );
+		return SWOldURLs.urlForDocumentInContext( (SWDocument)currentAsset, context() );
 	}
 
 	public WOActionResults editPicture() {
