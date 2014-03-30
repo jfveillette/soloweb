@@ -1,7 +1,6 @@
 package concept;
 
 import com.webobjects.appserver.WOContext;
-import com.webobjects.eocontrol.EOEditingContext;
 
 import er.extensions.eof.ERXGenericRecord;
 
@@ -18,10 +17,5 @@ public abstract class ViewPage<E extends ERXGenericRecord> extends SWBaseCompone
 	@Override
 	public E selectedObject() {
 		return (E)super.selectedObject();
-	}
-
-	@Override
-	public EOEditingContext ec() {
-		return selectedObject().editingContext();
 	}
 }
