@@ -1,7 +1,7 @@
 package concept.components.admin;
 
 import is.rebbi.wo.definitions.EntityViewDefinition;
-import is.rebbi.wo.util.USGenericComparator;
+import is.rebbi.wo.util.USArrayUtilities;
 import is.rebbi.wo.util.USHTTPUtilities;
 
 import com.webobjects.appserver.WOActionResults;
@@ -51,7 +51,7 @@ public class CPMainMenu extends CPAdminComponent {
 			results.addObject( categoryName );
 		}
 
-		return results.allObjects().sortedArrayUsingComparator( USGenericComparator.IcelandicAscendingComparator );
+		return USArrayUtilities.sortedArrayUsingIcelandicComparator( results.allObjects() );
 	}
 
 	public NSArray<EntityViewDefinition> viewDefinitions() {

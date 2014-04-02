@@ -1,8 +1,8 @@
 package concept.components.admin;
 
 import is.rebbi.core.util.StringUtilities;
+import is.rebbi.wo.util.USArrayUtilities;
 import is.rebbi.wo.util.USEOUtilities;
-import is.rebbi.wo.util.USGenericComparator;
 
 import java.net.URL;
 import java.net.URLClassLoader;
@@ -65,8 +65,7 @@ public class SWApplicationInfo extends ERXComponent {
 	 * @return All property keys in the application.
 	 */
 	public NSArray<String> propertyKeys() throws ComparisonException {
-		NSArray<String> a = _properties.allKeys();
-		return a.sortedArrayUsingComparator( USGenericComparator.IcelandicAscendingComparator );
+		return USArrayUtilities.sortedArrayUsingIcelandicComparator( _properties.allKeys() );
 	}
 
 	/**
