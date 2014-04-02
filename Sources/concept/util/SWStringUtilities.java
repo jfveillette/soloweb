@@ -1,6 +1,11 @@
 package concept.util;
 
+import is.rebbi.core.util.StringUtilities;
+
+import java.text.ParseException;
+
 import org.htmlparser.Parser;
+import org.htmlparser.util.ParserException;
 import org.htmlparser.visitors.TextExtractingVisitor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -11,11 +16,6 @@ import com.webobjects.foundation.NSMutableDictionary;
 import com.webobjects.foundation.NSRange;
 import com.webobjects.foundation.NSTimestamp;
 import com.webobjects.foundation.NSTimestampFormatter;
-
-/**
- * SWStringUtilities contains various utility methods for handling strings,
- * reading and writing strings to and from disks etc.
- */
 
 public class SWStringUtilities extends Object {
 
@@ -46,36 +46,37 @@ public class SWStringUtilities extends Object {
 	}
 
 	public static String stripHtmlFromString( String string ) {
-		String newString = "";
 
-		if( string != null && string.length() > 0 ) {
+		if( StringUtilities.hasValue( string ) ) {
 			try {
 				Parser parser = new Parser();
 				parser.setInputHTML( string );
 				TextExtractingVisitor visitor = new TextExtractingVisitor();
 				parser.visitAllNodesWith( visitor );
-				newString = visitor.getExtractedText();
+				return visitor.getExtractedText();
 			}
-			catch( Exception ex ) {
+			catch( ParserException ex ) {
 				logger.error( "Error in stripHtmlFromString: ", ex );
 			}
 		}
 
-		return newString;
+		return null;
 	}
 
 	public static NSTimestamp stringToTimestamp( String string, String format ) {
-		try {
-			return (NSTimestamp)new NSTimestampFormatter( format ).parseObject( string );
+
+		if( StringUtilities.hasValue( string ) ) {
+			try {
+				return (NSTimestamp)new NSTimestampFormatter( format ).parseObject( string );
+			}
+			catch( ParseException e ) {
+				logger.error( "Failed to parse date string {} using pattern {}", string, format );
+			}
 		}
-		catch( Exception ex ) {
-			return null;
-		}
+
+		return null;
 	}
 
-	/**
-	 * Converts text to ascii, spaces and slashes to underscore etc.
-	 */
 	public static String legalName( String name ) {
 
 		if( name == null ) {
