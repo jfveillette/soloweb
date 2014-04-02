@@ -2,6 +2,7 @@ package concept.components.client;
 
 import is.rebbi.core.util.StringUtilities;
 import is.rebbi.wo.util.USEOUtilities;
+import is.rebbi.wo.util.USTimestampUtilities;
 import is.rebbi.wo.util.USUtilities;
 
 import com.webobjects.appserver.WOComponent;
@@ -21,7 +22,6 @@ import concept.data.SWNewsItem;
 import concept.data.SWPicture;
 import concept.deprecated.SWImageMagick;
 import concept.util.SWPictureUtilities;
-import concept.util.SWStringUtilities;
 
 public class SWNewsSubmit extends SWGenericComponent {
 
@@ -87,12 +87,14 @@ public class SWNewsSubmit extends SWGenericComponent {
 
 		// Parse the date/time
 		NSTimestamp ts = null;
+
 		if( StringUtilities.hasValue( time ) ) {
-			ts = SWStringUtilities.stringToTimestamp( date + " " + time, "%d.%m.%Y %H:%M" );
+			ts = USTimestampUtilities.stringToTimestamp( date + " " + time, "%d.%m.%Y %H:%M" );
 		}
 		else {
-			ts = SWStringUtilities.stringToTimestamp( date, "%d.%m.%Y" );
+			ts = USTimestampUtilities.stringToTimestamp( date, "%d.%m.%Y" );
 		}
+
 		if( ts == null ) {
 			errorMessage = "Dagsetning og/e&eth;a t&iacute;mi er ekki &aacute; leyfilegu formi !";
 			return null;

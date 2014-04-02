@@ -2,7 +2,6 @@ package concept.util;
 
 import is.rebbi.core.util.StringUtilities;
 
-import java.text.ParseException;
 
 import org.htmlparser.Parser;
 import org.htmlparser.util.ParserException;
@@ -10,12 +9,8 @@ import org.htmlparser.visitors.TextExtractingVisitor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.webobjects.foundation.NSArray;
 import com.webobjects.foundation.NSDictionary;
 import com.webobjects.foundation.NSMutableDictionary;
-import com.webobjects.foundation.NSRange;
-import com.webobjects.foundation.NSTimestamp;
-import com.webobjects.foundation.NSTimestampFormatter;
 
 public class SWStringUtilities extends Object {
 
@@ -24,26 +19,6 @@ public class SWStringUtilities extends Object {
 	private static NSDictionary LEGAL_MAP = null;
 
 	private SWStringUtilities() {}
-
-	/**
-	 * @return The first [wordCount] words from [string]
-	 */
-	public static String wordsFromString( String string, Integer wordCount ) {
-
-		if( string == null || wordCount == null || wordCount.intValue() == 0 ) {
-			return "";
-		}
-
-		NSArray<String> words = NSArray.componentsSeparatedByString( string, " " );
-
-		if( words.count() <= wordCount ) {
-			return string;
-		}
-
-		NSArray<String> ma = words.subarrayWithRange( new NSRange( 0, wordCount ) );
-		String result = ma.componentsJoinedByString( " " );
-		return result;
-	}
 
 	public static String stripHtmlFromString( String string ) {
 
@@ -57,20 +32,6 @@ public class SWStringUtilities extends Object {
 			}
 			catch( ParserException ex ) {
 				logger.error( "Error in stripHtmlFromString: ", ex );
-			}
-		}
-
-		return null;
-	}
-
-	public static NSTimestamp stringToTimestamp( String string, String format ) {
-
-		if( StringUtilities.hasValue( string ) ) {
-			try {
-				return (NSTimestamp)new NSTimestampFormatter( format ).parseObject( string );
-			}
-			catch( ParseException e ) {
-				logger.error( "Failed to parse date string {} using pattern {}", string, format );
 			}
 		}
 
