@@ -11,9 +11,6 @@ import is.rebbi.wo.util.USUtilities;
 
 import java.util.Enumeration;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 import com.webobjects.appserver.WOActionResults;
 import com.webobjects.appserver.WOComponent;
 import com.webobjects.appserver.WOContext;
@@ -43,8 +40,6 @@ import concept.util.SWOldURLs;
 import er.extensions.eof.qualifiers.ERXInQualifier;
 
 public class SWAssetManagement extends SWAdminComponent {
-
-	private static final Logger logger = LoggerFactory.getLogger( SWAssetManagement.class );
 
 	public static final String EVEN_ROW_COLOR = "#d0d0d0";
 	public static final String ODD_ROW_COLOR = "#d8d8d8";
@@ -298,7 +293,9 @@ public class SWAssetManagement extends SWAdminComponent {
 
 	public String currentAssetThumbURL() {
 		if( currentAsset instanceof SWPicture ) {
-			return ((SWPicture)currentAsset).thumbnailURL();
+			String s = ((SWPicture)currentAsset).thumbnailURL();
+			System.out.println( s );
+			return s;
 		}
 		else {
 			return "";

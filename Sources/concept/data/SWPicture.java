@@ -11,12 +11,17 @@ import is.rebbi.wo.util.SWCustomInfo;
 import is.rebbi.wo.util.SWSettings;
 import is.rebbi.wo.util.USDataUtilities;
 import is.rebbi.wo.util.USEOUtilities;
+import is.rebbi.wo.util.USHTTPUtilities;
 
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
 import java.io.OutputStream;
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
 import java.util.Enumeration;
 
 import org.slf4j.Logger;
@@ -28,31 +33,24 @@ import com.webobjects.foundation.NSArray;
 import com.webobjects.foundation.NSData;
 import com.webobjects.foundation.NSMutableArray;
 import com.webobjects.foundation.NSMutableDictionary;
-import com.webobjects.foundation.NSNotification;
-import com.webobjects.foundation.NSNotificationCenter;
-import com.webobjects.foundation.NSSelector;
 
+import concept.SWPictureRequestHandler;
 import concept.data.auto._SWPicture;
 import concept.util.SWPictureUtilities;
 import concept.util.SWStringUtilities;
 import concept.util.SWZipUtilities;
+import er.extensions.appserver.ERXWOContext;
 
 public class SWPicture extends _SWPicture implements SWDataAsset<SWPicture, SWAssetFolder>, SWHasCustomInfo {
 
 	private static final Logger logger = LoggerFactory.getLogger( SWPicture.class );
 
-	private NSData temporaryData = null;
-
 	private SWCustomInfo _customInfo;
 
 	public SWPicture() {
-
 		if( SWSettings.imagePath() == null ) {
 			throw new RuntimeException( "You must specify image location on disk in the SoloWeb settings" );
 		}
-
-		NSSelector<Void> saveSelector = new NSSelector<>( "writeDataToDisk", new Class[] { NSNotification.class } );
-		NSNotificationCenter.defaultCenter().addObserver( this, saveSelector, EOEditingContext.EditingContextDidSaveChangesNotification, null );
 	}
 
 	public SWCustomInfo customInfo() {
@@ -63,6 +61,35 @@ public class SWPicture extends _SWPicture implements SWDataAsset<SWPicture, SWAs
 		return _customInfo;
 	}
 
+	/**
+	 * @return A universally acceptable (downloadable) name for the document.
+	 */
+	public String nameForDownload() {
+		String name = name();
+
+		if( name == null ) {
+			name = "Untitled";
+		}
+
+		return USHTTPUtilities.makeFilenameURLFriendly( name(), extension() );
+	}
+
+	/**
+	 * @return A universally acceptable (downloadable) name for the document.
+	 */
+	public String nameForDownloadURLEncoded() {
+		String nameForDownload = nameForDownload();
+
+		try {
+			nameForDownload = URLEncoder.encode( nameForDownload, "UTF-8" );
+		}
+		catch( UnsupportedEncodingException e ) {
+			logger.error( "Could not URL-encode document name: " + nameForDownload, e );
+		}
+
+		return nameForDownload;
+	}
+
 	@Override
 	public void setName( String value ) {
 		if( !value.equals( name() ) ) {
@@ -70,14 +97,14 @@ public class SWPicture extends _SWPicture implements SWDataAsset<SWPicture, SWAs
 				if( !name.startsWith( "." ) ) { // skip system files
 
 					// rename name part
-					String newName = name.replace( nameWithoutExtension( name() ), nameWithoutExtension( value ) );
+					String newName = name.replace( FileTypes.filenameByRemovingExtension( name() ), FileTypes.filenameByRemovingExtension( value ) );
 
 					// rename extension - if present
-					String oldExtension = "." + extension( name );
-					String newExtension = "." + extension( value );
+					String oldExtension = "." + FileTypes.extensionFromFilename( name );
+					String newExtension = "." + FileTypes.extensionFromFilename( value );
 
 					if( !oldExtension.equals( newExtension ) ) { // extensions are not the same - set the one that's being assigned (value)
-						newName = nameWithoutExtension( newName ) + newExtension;
+						newName = FileTypes.filenameByRemovingExtension( newName ) + newExtension;
 					}
 
 					File src = new File( folderOnDisk() + name );
@@ -96,20 +123,6 @@ public class SWPicture extends _SWPicture implements SWDataAsset<SWPicture, SWAs
 		}
 	}
 
-	/**
-	 * @return Name without extension
-	 */
-	private static String nameWithoutExtension( String value ) {
-		return FileTypes.filenameByRemovingExtension( value );
-	}
-
-	/**
-	 * @return The file's extension.
-	 */
-	private static String extension( String value ) {
-		return FileTypes.extensionFromFilename( value );
-	}
-
 	@Override
 	public String displayName() {
 		String displayName = super.displayName();
@@ -125,7 +138,7 @@ public class SWPicture extends _SWPicture implements SWDataAsset<SWPicture, SWAs
 	public void setDisplayName( String value ) {
 		super.setDisplayName( value );
 
-		String newName = SWStringUtilities.legalName( nameWithoutExtension( value ) ) + "." + extension( value );
+		String newName = SWStringUtilities.legalName( FileTypes.filenameByRemovingExtension( value ) ) + "." + FileTypes.extensionFromFilename( value );
 
 		if( newName != null && !newName.equals( value ) ) {
 			if( file().exists() ) {
@@ -135,6 +148,7 @@ public class SWPicture extends _SWPicture implements SWDataAsset<SWPicture, SWAs
 		}
 
 		setName( newName );
+		setExtension( FileTypes.extensionFromFilename( value ) );
 	}
 
 	public String altTextOrName() {
@@ -170,7 +184,7 @@ public class SWPicture extends _SWPicture implements SWDataAsset<SWPicture, SWAs
 			return path();
 		}
 
-		return folderOnDisk() + nameWithoutExtension( name() ) + "_" + size + "." + extension( name() );
+		return folderOnDisk() + FileTypes.filenameByRemovingExtension( name() ) + "_" + size + "." + FileTypes.extensionFromFilename( name() );
 	}
 
 	private File file() {
@@ -188,10 +202,6 @@ public class SWPicture extends _SWPicture implements SWDataAsset<SWPicture, SWAs
 	 */
 	@Override
 	public NSData data() {
-		if( primaryKey() == null ) {
-			return temporaryData;
-		}
-
 		return USDataUtilities.readDataFromFile( file() );
 	}
 
@@ -200,14 +210,8 @@ public class SWPicture extends _SWPicture implements SWDataAsset<SWPicture, SWAs
 	 */
 	@Override
 	public void setData( NSData newData ) {
-
-		if( primaryKey() == null ) {
-			temporaryData = newData;
-		}
-		else {
-			USDataUtilities.writeDataToFile( newData, file() );
-			updateThumbnails();
-		}
+		USDataUtilities.writeDataToFile( newData, file() );
+		updateThumbnails();
 	}
 
 	/**
@@ -215,17 +219,6 @@ public class SWPicture extends _SWPicture implements SWDataAsset<SWPicture, SWAs
 	 */
 	public NSData dataForSize( String size ) {
 		return USDataUtilities.readDataFromFile( file( size ) );
-	}
-
-	/**
-	 * Writes out this picture's temporary data buffer to disk. Invoked automatically by the system.
-	 */
-	public void writeDataToDisk( NSNotification n ) {
-		if( temporaryData != null && primaryKey() != null ) {
-			USDataUtilities.writeDataToFile( temporaryData, file() );
-			updateThumbnails();
-			temporaryData = null;
-		}
 	}
 
 	@Override
@@ -256,7 +249,13 @@ public class SWPicture extends _SWPicture implements SWDataAsset<SWPicture, SWAs
 	}
 
 	public String pictureURL() {
-		return SWSettings.imageURL() + "/" + primaryKey() + "/" + name();
+		String imageURL = SWSettings.imageURL();
+
+		if( imageURL == null ) {
+			return ERXWOContext.currentContext().urlWithRequestHandlerKey( SWPictureRequestHandler.KEY, primaryKey() + "/" + nameForDownloadURLEncoded(), null );
+		}
+
+		return imageURL + "/" + primaryKey() + "/" + name();
 	}
 
 	public String previewURL( String size ) {
@@ -266,7 +265,7 @@ public class SWPicture extends _SWPicture implements SWDataAsset<SWPicture, SWAs
 			url = pictureURL();
 		}
 		else if( file( size ).exists() ) {
-			url = SWSettings.imageURL() + "/" + primaryKey() + "/" + nameWithoutExtension( name() ) + "_" + size + "." + extension( name() );
+			url = SWSettings.imageURL() + "/" + primaryKey() + "/" + FileTypes.filenameByRemovingExtension( name() ) + "_" + size + "." + FileTypes.extensionFromFilename( name() );
 		}
 		else {
 			url = pictureURL();
@@ -313,14 +312,18 @@ public class SWPicture extends _SWPicture implements SWDataAsset<SWPicture, SWAs
 	public ImageInfo imageInfo( String size ) {
 
 		try {
-			ImageInfo ii = new ImageInfo();
-			ii.setInput( new FileInputStream( file( size ) ) );
+			File file = file( size );
 
-			if( !ii.check() ) {
-				return null;
+			if( file.exists() && file.length() > 0 ) {
+				ImageInfo ii = new ImageInfo();
+				ii.setInput( new FileInputStream( file ) );
+
+				if( !ii.check() ) {
+					return null;
+				}
+
+				return ii;
 			}
-
-			return ii;
 		}
 		catch( Exception e ) {
 			logger.error( "Failed to create ImageInfo instance for image: " + primaryKey(), e );
@@ -405,7 +408,7 @@ public class SWPicture extends _SWPicture implements SWDataAsset<SWPicture, SWAs
 		String sizes = (String)customInfo().valueForKey( "sizes" );
 
 		for( SWPicture pic : containingFolder().sortedDocuments() ) {
-			if( !"zip".equals( extension( pic.name() ) ) ) {
+			if( !"zip".equals( FileTypes.extensionFromFilename( pic.name() ) ) ) {
 				pic.setDisplayName( pic.name() );
 				pic.customInfo().takeValueForKey( sizes, "sizes" );
 				pic.updateThumbnails();
@@ -415,8 +418,9 @@ public class SWPicture extends _SWPicture implements SWDataAsset<SWPicture, SWAs
 		editingContext().saveChanges();
 	}
 
+	@Override
 	public boolean hasData() {
-		return file().exists() || temporaryData != null;
+		return file().exists() && file().length() > 0;
 	}
 
 	private boolean isLandscape() {
@@ -512,5 +516,27 @@ public class SWPicture extends _SWPicture implements SWDataAsset<SWPicture, SWAs
 		catch( FileNotFoundException e ) {
 			throw new RuntimeException( "Failed to construct a FileOutputStream for file: " + file() );
 		}
+	}
+
+	public InputStream inputStream() {
+		try {
+			File f = file();
+
+			if( !f.exists() ) {
+				f.createNewFile();
+			}
+
+			return new FileInputStream( f );
+		}
+		catch( IOException e ) {
+			throw new RuntimeException( e );
+		}
+	}
+
+	/**
+	 * @return The mime type of this file.
+	 */
+	public String mimeType() {
+		return FileTypes.mimeTypeForExtension( extension() );
 	}
 }

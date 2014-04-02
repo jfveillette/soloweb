@@ -8,6 +8,7 @@ import com.webobjects.foundation.NSDictionary;
 import com.webobjects.foundation.NSMutableArray;
 
 import concept.components.SWErrorMessage;
+import concept.components.SWExceptionPage;
 import er.extensions.appserver.ERXApplication;
 
 public class SWApplication extends ERXApplication {
@@ -20,6 +21,11 @@ public class SWApplication extends ERXApplication {
 
 	public static SWApplication swapplication() {
 		return (SWApplication)WOApplication.application();
+	}
+
+	@Override
+	public WOResponse reportException( Throwable exception, WOContext context, NSDictionary extraInfo ) {
+		return SWExceptionPage.reportException( exception, context, extraInfo );
 	}
 
 	@Override

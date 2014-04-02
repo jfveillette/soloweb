@@ -14,7 +14,6 @@ import com.webobjects.appserver.WOActionResults;
 import com.webobjects.appserver.WOComponent;
 import com.webobjects.appserver.WOContext;
 import com.webobjects.foundation.NSArray;
-import com.webobjects.foundation.NSData;
 import com.webobjects.foundation.NSMutableDictionary;
 
 import concept.SWAdminComponent;
@@ -29,11 +28,6 @@ public class SWEditDataAsset extends SWAdminComponent {
 	public String filename;
 
 	/**
-	 * The content data of the picture being uploaded to the server.
-	 */
-	public NSData data;
-
-	/**
 	 * The url to fetch data from.
 	 */
 	public String url;
@@ -42,16 +36,6 @@ public class SWEditDataAsset extends SWAdminComponent {
 	 * The selected asset to work with
 	 */
 	private SWDataAsset<?, ?> _selectedAsset;
-
-	/**
-	 * The asset's entity name
-	 */
-	public String entityName;
-
-	/**
-	 * The entity name of the folders used to store the asset
-	 */
-	public String folderEntityName;
 
 	/**
 	 * The document type currently being iterated through in the list
@@ -73,6 +57,7 @@ public class SWEditDataAsset extends SWAdminComponent {
 
 	public void setSelectedAsset( SWDataAsset<?, ?> value ) {
 		_selectedAsset = value;
+
 		// create a list of all preview sizes
 		// and a dictionary for holding selected sizes
 		if( isPicture() ) {
@@ -113,59 +98,43 @@ public class SWEditDataAsset extends SWAdminComponent {
 		return str;
 	}
 
-	/**
-	 * Uploads data and saves changes
-	 */
+	private static String filename( String currentName, String url, String uploadedFilename ) {
+
+		if( StringUtilities.hasValue( currentName ) ) {
+			return currentName;
+		}
+
+		if( StringUtilities.hasValue( url ) ) {
+			return StringUtilities.fileNameFromPath( url );
+		}
+
+		return uploadedFilename;
+	}
+
 	@Override
 	public WOComponent saveChanges() {
 
-		NSData finalData = null;
-		String finalName = null;
-
 		if( isPicture() ) {
-			SWCustomInfo ci = ((SWPicture)_selectedAsset).customInfo();
+			SWCustomInfo ci = ((SWPicture)selectedAsset()).customInfo();
 			ci.takeValueForKey( selectedSizesString(), "sizes" );
 		}
 
 		if( StringUtilities.hasValue( url ) ) {
-			finalData = USDataUtilities.readDataFromURL( url );
-			finalName = url;
-			url = null;
+			selectedAsset().setData( USDataUtilities.readDataFromURL( url ) );
 		}
 
-		if( data != null ) {
-			if( data.length() != 0 ) {
-				finalData = data;
-				finalName = filename;
-			}
-		}
-
-		if( finalData != null ) {
-			if( !StringUtilities.hasValue( _selectedAsset.name() ) && StringUtilities.hasValue( finalName ) ) {
-				if( isPicture() ) {
-					((SWPicture)_selectedAsset).setDisplayName( StringUtilities.fileNameFromPath( finalName ) );
-				}
-				else {
-					_selectedAsset.setName( StringUtilities.fileNameFromPath( finalName ) );
-				}
-			}
-
-			_selectedAsset.setData( finalData );
-			_selectedAsset.setDocumentType( FileTypes.documentTypeFromPath( finalName ) );
-		}
-		else {
-			if( isPicture() ) {
-				((SWPicture)_selectedAsset).updateThumbnails();
-			}
-		}
-
+		selectedAsset().setDisplayName( filename( selectedAsset().name(), url, filename ) );
+		selectedAsset().updateThumbnails();
 		session().defaultEditingContext().saveChanges();
+
+		filename = null;
+		url = null;
 
 		return null;
 	}
 
 	public boolean isZipFile() {
-		String name = _selectedAsset.name();
+		String name = selectedAsset().name();
 
 		if( name != null ) {
 			return name.toLowerCase().endsWith( "zip" );
@@ -183,27 +152,29 @@ public class SWEditDataAsset extends SWAdminComponent {
 	}
 
 	private boolean isEntityNamed( String entityName ) {
-		return _selectedAsset.entityName().equals( entityName );
+		return selectedAsset().entityName().equals( entityName );
 	}
 
 	public WOComponent expandZipFile() {
 		if( isPicture() ) {
-			SWCustomInfo ci = ((SWPicture)_selectedAsset).customInfo();
+			SWCustomInfo ci = ((SWPicture)selectedAsset()).customInfo();
 			ci.takeValueForKey( selectedSizesString(), "sizes" );
 		}
-		_selectedAsset.expandZip();
+
+		selectedAsset().expandZip();
+
 		return null;
 	}
 
 	public WOComponent editAsText() {
 		SWEditDocumentContentAsText nextPage = pageWithName( SWEditDocumentContentAsText.class );
-		nextPage.selectedDocument = (SWDocument)_selectedAsset;
+		nextPage.selectedDocument = (SWDocument)selectedAsset();
 		return nextPage;
 	}
 
 	public WOActionResults editPicture() {
 		SWPreviewPicture nextPage = pageWithName( SWPreviewPicture.class );
-		nextPage.setPicture( (SWPicture)_selectedAsset );
+		nextPage.setPicture( (SWPicture)selectedAsset() );
 		return nextPage;
 	}
 
@@ -227,21 +198,6 @@ public class SWEditDataAsset extends SWAdminComponent {
 	}
 
 	public boolean hasDataButNoType() {
-		boolean yes = false;
-		FileType type;
-
-		if( isDocument() ) {
-			SWDocument doc = (SWDocument)_selectedAsset;
-			type = doc.documentType();
-			yes = doc.hasData() && type == null;
-
-		}
-		else if( isPicture() ) {
-			SWPicture pic = (SWPicture)_selectedAsset;
-			type = pic.documentType();
-			yes = pic.hasData() && type == null;
-		}
-
-		return yes;
+		return selectedAsset().hasData() && selectedAsset().documentType() == null;
 	}
 }

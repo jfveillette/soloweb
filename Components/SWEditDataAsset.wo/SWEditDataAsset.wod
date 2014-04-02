@@ -9,13 +9,9 @@ IsDocumentCond: WOConditional {
 IsPictureCond: WOConditional {
 	condition = isPicture;
 }
-IsNotPictureCond: WOConditional {
-	condition = isPicture;
-	negate = true;
-}
 
 Upload: WOFileUpload {
-	data = data;
+	outputStream = selectedAsset.outputStream;
 	filePath = filename;
 	size = 40;
 }
@@ -23,16 +19,6 @@ Upload: WOFileUpload {
 HeitiField1: WOTextField {
 	size = 60;
 	value = url;
-}
-
-HeitiField6: WOTextField {
-	size = 60;
-	value = selectedAsset.name;
-}
-
-PictureDisplayName: WOTextField {
-	size = 60;
-	value = selectedAsset.displayName;
 }
 
 Hyperlink1: WOHyperlink {
@@ -58,16 +44,8 @@ HasDataButNoType: WOConditional {
 }
 
 PleaseSelectTypeStr: WOString {
-	value = "&lt;&lt; Please select a type";
+	value = "";
 	escapeHTML = false;
-}
-
-AssetID: WOString {
-	value = selectedAsset.primaryKey;
-}
-
-AssetName: WOString {
-	value = selectedAsset.name;
 }
 
 PictureUploadNameStr: WOString {

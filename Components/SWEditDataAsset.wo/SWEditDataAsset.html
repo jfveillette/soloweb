@@ -1,20 +1,25 @@
 <wo:form enctype="multipart/form-data">
 	<table cellspacing="0" class="genericTable" cellpadding="2" border="0">
 		<tr>
-			<th colspan="2"><b><webobject name="AssetName"/></b> (<webobject name="AssetID"/>)</th>
+			<th colspan="2"><b><wo:str value="$selectedAsset.name" /></b> (<wo:str value="$selectedAsset.primaryKey" />)</th>
 		</tr><tr>
-			<th align="right"><webobject name="PictureUploadNameStr"/>:</th>
+			<th align="right"><webobject name="PictureUploadNameStr" />:</th>
 			<td>
-				<webobject name = "IsNotPictureCond"><webobject name="HeitiField6"/></webobject>
-				<webobject name = "IsPictureCond"><webobject name = "PictureDisplayName"/></webobject>
+				<wo:textfield value="$selectedAsset.displayName" size="60" />
 			</td>
-		</tr><tr>
-			<th align="right"><webobject name="PictureUploadTypeStr"/>:</th>
-			<td>
-				<webobject name="PopUpButton1"/>
-				<webobject name = "HasDataButNoType"><span style="background-color: #ff8"><webobject name = "PleaseSelectTypeStr"/></span></webobject>
-			</td>
-		</tr><tr>
+		</tr>
+		<wo:if condition="$selectedAsset.displayName.length">
+			<wo:if condition="$hasDataButNoType">
+				<tr>
+					<th align="right"><webobject name="PictureUploadTypeStr"/>:</th>
+					<td>
+						<wo:str value="$selectedAsset.documentType.name" />
+						<webobject name="HasDataButNoType"><div style="background-color: #fc8; padding: 2px">Varúð, tegund skjals (<wo:str value="$selectedAsset.extension" />) er óþekkt</div></webobject>
+					</td>
+				</tr>
+			</wo:if>
+		</wo:if>
+		<tr>
 			<th align="right"><webobject name="PictureUploadURLStr"/>:</th>
 			<td><webobject name="HeitiField1"/></td>
 		</tr><tr>
@@ -44,17 +49,17 @@
 				<webobject name="IsDocumentCond"><webobject name="Hyperlink2">Edit as text</webobject></webobject>
 				&nbsp;
 			</th>
-			<td align="right"><webobject name="SubmitButton1"/></td>
+			<td align="right"><webobject name="SubmitButton1" /></td>
 		</tr>
 		<webobject name="IsPictureCond">
 			<tr><td colspan="2">
 				<table width="100%"><tr>
 					<td width="5">
-						<webobject name="ImageEditorLink"><webobject name="PreviewImage"/></webobject>
+						<webobject name="ImageEditorLink"><webobject name="PreviewImage" /></webobject>
 					</td>
 					<td>
-						Frummynd: <webobject name="ImageWidthStr"/> x <webobject name="ImageHeightStr"/><br>
-						Stærðir: <webobject name="SizesStr"/>
+						Frummynd: <webobject name="ImageWidthStr" /> x <webobject name="ImageHeightStr" /><br>
+						Stærðir: <webobject name="SizesStr" />
 					</td>
 				</tr></table>
 			</td></tr>

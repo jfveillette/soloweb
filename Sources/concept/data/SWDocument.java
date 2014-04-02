@@ -120,6 +120,10 @@ public class SWDocument extends _SWDocument implements SWDataAsset<SWDocument, S
 	 */
 	@Override
 	public NSData data() {
+		if( !hasData() ) {
+			return NSData.EmptyData;
+		}
+
 		return USDataUtilities.consumeStream( inputStream() );
 	}
 
@@ -232,6 +236,7 @@ public class SWDocument extends _SWDocument implements SWDataAsset<SWDocument, S
 	/**
 	 * @return true if this document has any data.
 	 */
+	@Override
 	public boolean hasData() {
 		return storage().hasData( this );
 	}
@@ -383,16 +388,35 @@ public class SWDocument extends _SWDocument implements SWDataAsset<SWDocument, S
 	}
 
 	public void updateThumbnail( int pixels ) {
-		NSData data = generateThumbnailData( pixels );
+		if( hasData() ) {
+			NSData data = generateThumbnailData( pixels );
 
-		if( data != null && data.length() > 0 ) {
-			DataUtilities.writeBytesToFile( data.bytes(), thumbnailFile( pixels ) );
+			if( data != null && data.length() > 0 ) {
+				DataUtilities.writeBytesToFile( data.bytes(), thumbnailFile( pixels ) );
+			}
 		}
 	}
 
 	@Override
+	public void setName( String value ) {
+		super.setName( value );
+		System.out.println( value );
+		setExtension( FileTypes.extensionFromFilename( value ) );
+	}
+
+	@Override
+	public String displayName() {
+		return name();
+	}
+
+	@Override
+	public void setDisplayName( String value ) {
+		setName( value );
+	}
+
+	@Override
 	public void updateThumbnails() {
-		if( isImage() ) {
+		if( hasData() && isImage() ) {
 			logger.info( "Updating thumbnail" );
 			try {
 				for( int size : DEFAULT_THUMBNAIL_SIZES ) {
@@ -400,7 +424,8 @@ public class SWDocument extends _SWDocument implements SWDataAsset<SWDocument, S
 				}
 			}
 			catch( Exception e ) {
-				e.printStackTrace();
+				// FIXME: Don't catch this exception like this.
+				logger.error( "Failed to generate thumbnail", e );
 			}
 		}
 	}

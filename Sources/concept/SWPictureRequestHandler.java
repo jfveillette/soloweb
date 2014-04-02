@@ -11,13 +11,13 @@ import com.webobjects.appserver.WOResponse;
 import com.webobjects.foundation.NSArray;
 
 import concept.components.SWErrorMessage;
-import concept.data.SWDocument;
+import concept.data.SWPicture;
 import er.extensions.eof.ERXEC;
 import er.extensions.foundation.ERXStringUtilities;
 
-public class SWDocumentRequestHandler extends WORequestHandler {
+public class SWPictureRequestHandler extends WORequestHandler {
 
-	public static final String KEY = "swdocument";
+	public static final String KEY = "swpicture";
 
 	@Override
 	public WOResponse handleRequest( WORequest request ) {
@@ -40,7 +40,7 @@ public class SWDocumentRequestHandler extends WORequestHandler {
 			return error( request, "Illegal id. Document numbers may only contain numeric characters", 404 );
 		}
 
-		SWDocument object = SWDocument.documentWithID( ERXEC.newEditingContext(), Integer.valueOf( id ) );
+		SWPicture object = SWPicture.pictureWithID( ERXEC.newEditingContext(), Integer.valueOf( id ) );
 
 		if( object == null ) {
 			return error( request, "The requested document does not exist", 404 );

@@ -124,6 +124,7 @@ public class Concept {
 		ERXApplication app = ERXApplication.erxApplication();
 		app.setDefaultRequestHandler( app.requestHandlerForKey( app.directActionRequestHandlerKey() ) );
 		app.registerRequestHandler( new SWDocumentRequestHandler(), SWDocumentRequestHandler.KEY );
+		app.registerRequestHandler( new SWPictureRequestHandler(), SWPictureRequestHandler.KEY );
 		app.registerRequestHandler( new SWThumbnailRequestHandler(), SWThumbnailRequestHandler.KEY );
 		app.setDefaultEncoding( "UTF-8" );
 
