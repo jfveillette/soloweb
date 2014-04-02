@@ -73,11 +73,11 @@ public class SWPicture extends _SWPicture implements SWDataAsset<SWPicture, SWAs
 					String newName = name.replace( nameWithoutExtension( name() ), nameWithoutExtension( value ) );
 
 					// rename extension - if present
-					String oldExt = "." + extension( name );
-					String newExt = "." + extension( value );
+					String oldExtension = "." + extension( name );
+					String newExtension = "." + extension( value );
 
-					if( !oldExt.equals( newExt ) ) { // extensions are not the same - set the one that's being assigned (value)
-						newName = nameWithoutExtension( newName ) + newExt;
+					if( !oldExtension.equals( newExtension ) ) { // extensions are not the same - set the one that's being assigned (value)
+						newName = nameWithoutExtension( newName ) + newExtension;
 					}
 
 					File src = new File( folderOnDisk() + name );
