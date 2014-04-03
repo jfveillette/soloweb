@@ -23,6 +23,7 @@ import java.io.OutputStream;
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.util.Enumeration;
+import java.util.Objects;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -92,18 +93,41 @@ public class SWPicture extends _SWPicture implements SWDataAsset<SWPicture, SWAs
 
 	@Override
 	public void setName( String value ) {
-		if( !value.equals( name() ) ) {
+
+		String filenameOnly = FileTypes.filenameByRemovingExtension( value );
+
+		if( filenameOnly == null ) {
+			filenameOnly = "Untitled";
+		}
+
+		String extensionOnly = FileTypes.extensionFromFilename( value );
+
+		StringBuilder b = new StringBuilder();
+		b.append( filenameOnly );
+
+		if( extensionOnly != null ) {
+			b.append( "." );
+			b.append( extensionOnly );
+		}
+
+		String newFileName = SWStringUtilities.legalName( FileTypes.filenameByRemovingExtension( value ) ) + "." + FileTypes.extensionFromFilename( value );
+/*
+		if( newFileName != null && !newFileName.equals( value ) ) {
+			if( file().exists() ) {
+				File newFile = new File( folderOnDisk() + newFileName );
+				file().renameTo( newFile );
+			}
+		}
+*/
+		if( !Objects.equals( newFileName, name() ) ) {
 			for( String name : file().getParentFile().list() ) {
 				if( !name.startsWith( "." ) ) { // skip system files
+					String newName = name.replace( FileTypes.filenameByRemovingExtension( name() ), FileTypes.filenameByRemovingExtension( newFileName ) );
 
-					// rename name part
-					String newName = name.replace( FileTypes.filenameByRemovingExtension( name() ), FileTypes.filenameByRemovingExtension( value ) );
+					String oldExtension = FileTypes.extensionFromFilename( name );
+					String newExtension = FileTypes.extensionFromFilename( newFileName );
 
-					// rename extension - if present
-					String oldExtension = "." + FileTypes.extensionFromFilename( name );
-					String newExtension = "." + FileTypes.extensionFromFilename( value );
-
-					if( !oldExtension.equals( newExtension ) ) { // extensions are not the same - set the one that's being assigned (value)
+					if( !Objects.equals( oldExtension, newExtension ) ) {
 						newName = FileTypes.filenameByRemovingExtension( newName ) + newExtension;
 					}
 
@@ -117,7 +141,7 @@ public class SWPicture extends _SWPicture implements SWDataAsset<SWPicture, SWAs
 			}
 
 			File originalFile = file();
-			super.setName( value );
+			super.setName( newFileName );
 			File newFile = file();
 			originalFile.renameTo( newFile );
 		}
@@ -137,17 +161,7 @@ public class SWPicture extends _SWPicture implements SWDataAsset<SWPicture, SWAs
 	@Override
 	public void setDisplayName( String value ) {
 		super.setDisplayName( value );
-
-		String newName = SWStringUtilities.legalName( FileTypes.filenameByRemovingExtension( value ) ) + "." + FileTypes.extensionFromFilename( value );
-
-		if( newName != null && !newName.equals( value ) ) {
-			if( file().exists() ) {
-				File newFile = new File( folderOnDisk() + newName );
-				file().renameTo( newFile );
-			}
-		}
-
-		setName( newName );
+		setName( value );
 		setExtension( FileTypes.extensionFromFilename( value ) );
 	}
 
@@ -175,13 +189,13 @@ public class SWPicture extends _SWPicture implements SWDataAsset<SWPicture, SWAs
 	}
 
 	public String path() {
-		return folderOnDisk() + name();
+		return path( null );
 	}
 
 	private String path( String size ) {
 
 		if( size == null || "original".equals( size ) || "0".equals( size ) || "".equals( size ) ) {
-			return path();
+			return folderOnDisk() + name();
 		}
 
 		return folderOnDisk() + FileTypes.filenameByRemovingExtension( name() ) + "_" + size + "." + FileTypes.extensionFromFilename( name() );
