@@ -75,7 +75,9 @@ public class SWPageUtilities {
 			String hostName = SWDirectAction.hostForRequest( request );
 
 			for( SWPage p : pages ) {
-				if( p.siteForThisPage().hasHostName( hostName ) ) {
+				SWSite siteForThisPage = p.siteForThisPage();
+
+				if( siteForThisPage != null && siteForThisPage.hasHostName( hostName ) ) {
 					return p;
 				}
 			}
