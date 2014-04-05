@@ -1,6 +1,5 @@
 package concept;
 
-import com.webobjects.appserver.WOActionResults;
 import com.webobjects.appserver.WOContext;
 import com.webobjects.appserver.WOResponse;
 
@@ -10,11 +9,6 @@ public abstract class CPAdminComponent extends SWAdminComponent {
 
 	public CPAdminComponent( WOContext context ) {
 		super( context );
-	}
-
-	public WOActionResults saveChanges() {
-		ec().saveChanges();
-		return null;
 	}
 
 	@Override
