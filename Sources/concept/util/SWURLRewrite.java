@@ -14,10 +14,20 @@ public class SWURLRewrite extends WORequestHandler {
 
 	@Override
 	public WOResponse handleRequest( WORequest request ) {
+		System.out.println( request.headers() );
+
 		if( request.requestHandlerPath().equals( "smu" ) ) {
 			try {
-				URL url = new URL( "http://hugi.karlmenn.is/d/name.csv.zip" );
+				URL url = new URL( "http://localhost:1201/" );
 				HttpURLConnection urlConnection = (HttpURLConnection)url.openConnection();
+
+				for( String key : request.headerKeys() ) {
+					if( !"host".equals( key ) && !key.startsWith( "connection" )) {
+						String value = request.headerForKey( key );
+						urlConnection.setRequestProperty( key, value );
+					}
+				}
+
 				long contentLength = urlConnection.getContentLengthLong();
 				Map<String, List<String>> headers = urlConnection.getHeaderFields();
 
