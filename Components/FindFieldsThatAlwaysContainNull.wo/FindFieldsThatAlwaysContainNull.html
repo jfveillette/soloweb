@@ -1,0 +1,14 @@
+<wo:IMLookNew>
+	<table>
+		<tr>
+			<th>Tafla</th>
+			<th>Heiti</th>
+		</tr>
+		<wo:repetition list="$attributes" item="$currentAttribute">
+			<tr>
+				<td><wo:str value="$currentAttribute.entity.externalName" /></td>
+				<td><wo:str value="$currentAttribute.columnName" /></td>
+			</tr>
+		</wo:repetition>
+	</table>
+</wo:IMLookNew>
