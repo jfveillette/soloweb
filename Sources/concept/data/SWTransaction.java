@@ -18,6 +18,10 @@ import er.extensions.eof.ERXGenericRecord;
 
 public class SWTransaction extends _SWTransaction implements HasFakeRelationship, HumanReadable {
 
+	public static final String ACTION_INSERT = "I";
+	public static final String ACTION_DELETE = "D";
+	public static final String ACTION_UPDATE = "U";
+
 	/**
 	 * The record this object refers to.
 	 */
@@ -28,9 +32,9 @@ public class SWTransaction extends _SWTransaction implements HasFakeRelationship
 	private static NSDictionary<String, String> actionTypes() {
 		if( _actionTypes == null ) {
 			_actionTypes = new NSMutableDictionary<>();
-			_actionTypes.put( "D", "Eyða" );
-			_actionTypes.put( "I", "Búa til" );
-			_actionTypes.put( "U", "Uppfæra" );
+			_actionTypes.put( ACTION_DELETE, "Eyða" );
+			_actionTypes.put( ACTION_INSERT, "Búa til" );
+			_actionTypes.put( ACTION_UPDATE, "Uppfæra" );
 		}
 
 		return _actionTypes;
