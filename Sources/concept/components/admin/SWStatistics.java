@@ -31,6 +31,11 @@ public class SWStatistics extends SWAdminComponent {
 		return l / 1024 / 1024;
 	}
 
+	public long maxMemory() {
+		Long l = Runtime.getRuntime().maxMemory();
+		return l / 1024 / 1024;
+	}
+
 	public NSTimestamp now() {
 		return new NSTimestamp();
 	}

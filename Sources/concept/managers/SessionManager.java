@@ -68,7 +68,7 @@ public class SessionManager {
 			Concept.sw().activeUserSessions().addObject( session );
 
 			if( session.browser().isRobot() ) {
-				session.setTimeOut( 600 );
+				session.setTimeOut( 300 );
 			}
 		}
 	}
@@ -77,7 +77,7 @@ public class SessionManager {
 		ERXSession session = (ERXSession)notification.object();
 
 		if( session != null ) {
-			Concept.sw().activeUserSessions().removeObject( this );
+			Concept.sw().activeUserSessions().removeObject( session );
 		}
 	}
 }
