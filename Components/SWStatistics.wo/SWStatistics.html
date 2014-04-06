@@ -16,6 +16,7 @@
 					<th>Vafri</th>
 					<th>Útgáfa</th>
 					<th>IP-tala</th>
+					<th>Líftími</th>
 				</tr>
 				<wo:repetition list="$sw.activeUserSessions.@sortDesc.objectStore.lastTouchedDate" item="$currentSession">
 					<tr>
@@ -26,6 +27,7 @@
 						<td><wo:str value="$currentBrowser.browserName" /></td>
 						<td><wo:str value="$currentBrowser.version" /></td>
 						<td><wo:str value="$currentSession.objectStore.remoteHostAddress" /></td>
+						<td><wo:str value="$currentSession.timeOut" /></td>
 					</tr>
 				</wo:repetition>
 			</table>  
