@@ -66,6 +66,10 @@ public class SessionManager {
 			session.objectStore().takeValueForKey( ((ERXRequest)session.context().request()).remoteHostAddress(), "remoteHostAddress" );
 			session.objectStore().takeValueForKey( USHTTPUtilities.userAgent( (session.context().request()) ), "user-agent" );
 			Concept.sw().activeUserSessions().addObject( session );
+
+			if( session.browser().isRobot() ) {
+				session.setTimeOut( 600 );
+			}
 		}
 	}
 
