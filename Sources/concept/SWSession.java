@@ -12,6 +12,10 @@ public class SWSession extends ERXSession {
 		setStoresIDsInCookies( true );
 		setStoresIDsInURLs( false );
 		setLanguages( new NSArray<>( "Icelandic" ) );
+
+		if( browser().isRobot() ) {
+			setTimeOut( 600 );
+		}
 	}
 
 	@Override
