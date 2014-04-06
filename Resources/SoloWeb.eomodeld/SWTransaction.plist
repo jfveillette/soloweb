@@ -41,18 +41,9 @@
     ); 
     attributesUsedForLocking = (action, after, before, date, id, targetEntityName, targetID, userID); 
     className = "concept.data.SWTransaction"; 
-    classProperties = (action, after, before, date, targetEntityName, targetID, user, userID); 
+    classProperties = (action, after, before, date, targetEntityName, targetID, userID); 
     externalName = "sw_transaction"; 
     fetchSpecificationDictionary = {}; 
     name = SWTransaction; 
     primaryKeyAttributes = (id); 
-    relationships = (
-        {
-            destination = SWUser; 
-            isToMany = N; 
-            joinSemantic = EOInnerJoin; 
-            joins = ({destinationAttribute = id; sourceAttribute = userID; }); 
-            name = user; 
-        }
-    ); 
 }

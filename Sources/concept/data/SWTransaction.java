@@ -3,6 +3,7 @@ package concept.data;
 import is.rebbi.wo.definitions.EntityViewDefinition;
 import is.rebbi.wo.interfaces.HasFakeRelationship;
 import is.rebbi.wo.util.HumanReadable;
+import is.rebbi.wo.util.USEOUtilities;
 
 import com.webobjects.foundation.NSDictionary;
 import com.webobjects.foundation.NSMutableDictionary;
@@ -83,9 +84,6 @@ public class SWTransaction extends _SWTransaction implements HasFakeRelationship
 		return EntityViewDefinition.get( targetEntityName() );
 	}
 
-	/**
-	 * @return Localized description of the entity this record applies to.
-	 */
 	public String localizedDescriptionOfEntity() {
 		String s = viewDefinition().icelandicName();
 
@@ -94,5 +92,20 @@ public class SWTransaction extends _SWTransaction implements HasFakeRelationship
 		}
 
 		return s;
+	}
+
+	@Override
+	public SWUser user() {
+		return USEOUtilities.objectWithPK( editingContext(), SWUser.ENTITY_NAME, userID() );
+	}
+
+	@Override
+	public void setUser( SWUser value ) {
+		if( value == null ) {
+			setUserID( null );
+		}
+		else {
+			setUserID( Integer.valueOf( value.primaryKey() ) );
+		}
 	}
 }
