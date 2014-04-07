@@ -77,9 +77,12 @@ public class SessionManager {
 		String sessionID = (String)notification.object();
 
 		if( sessionID != null ) {
-			for( ERXSession session : Concept.sw().activeUserSessions() ) {
+			for( int i = Concept.sw().activeUserSessions().count() ; i > 0 ; i-- ) {
+				ERXSession session = Concept.sw().activeUserSessions().objectAtIndex( i-1 );
+
 				if( session.sessionID().equals( sessionID )) {
 					Concept.sw().activeUserSessions().removeObject( session );
+					System.err.println( "Removed session!" );
 				}
 			}
 		}
