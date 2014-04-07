@@ -170,8 +170,8 @@ public class SWSite extends _SWSite implements HumanReadable, SWHasCustomInfo {
 		if( sites.count() == 1 ) {
 			return sites.objectAtIndex( 0 );
 		}
-
-		logger.warn( "There are more than one sites matching the host name: " + hostName );
+//		FIXME: We actually want to warn about this. But we're stopping it for now.
+//		logger.warn( "There are more than one sites matching the host name: " + hostName );
 
 		for( SWSite current : sites ) {
 			if( current.hasHostName( hostName ) ) {

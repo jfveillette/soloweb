@@ -62,9 +62,6 @@ public class SWPicture extends _SWPicture implements SWDataAsset<SWPicture, SWAs
 		return _customInfo;
 	}
 
-	/**
-	 * @return A universally acceptable (downloadable) name for the document.
-	 */
 	public String nameForDownload() {
 		String name = name();
 
@@ -75,9 +72,6 @@ public class SWPicture extends _SWPicture implements SWDataAsset<SWPicture, SWAs
 		return USHTTPUtilities.makeFilenameURLFriendly( name(), extension() );
 	}
 
-	/**
-	 * @return A universally acceptable (downloadable) name for the document.
-	 */
 	public String nameForDownloadURLEncoded() {
 		String nameForDownload = nameForDownload();
 
@@ -85,7 +79,7 @@ public class SWPicture extends _SWPicture implements SWDataAsset<SWPicture, SWAs
 			nameForDownload = URLEncoder.encode( nameForDownload, "UTF-8" );
 		}
 		catch( UnsupportedEncodingException e ) {
-			logger.error( "Could not URL-encode document name: " + nameForDownload, e );
+			throw new RuntimeException( "Could not URL-encode document name: " + nameForDownload, e );
 		}
 
 		return nameForDownload;
