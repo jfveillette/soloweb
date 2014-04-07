@@ -3,18 +3,18 @@
 		<tr>
 			<th colspan="2"><b><wo:str value="$selectedAsset.name" /></b> (<wo:str value="$selectedAsset.primaryKey" />)</th>
 		</tr><tr>
-			<th align="right"><webobject name="PictureUploadNameStr" />:</th>
+			<th align="right"><wo:str value="$session.@ls.pictureUploadName" />:</th>
 			<td>
-				<wo:textfield value="$selectedAsset.displayName" size="60" />
+				<wo:textfield value="$assetName" size="60" />
 			</td>
 		</tr>
 		<wo:if condition="$selectedAsset.displayName.length">
 			<wo:if condition="$hasDataButNoType">
 				<tr>
-					<th align="right"><webobject name="PictureUploadTypeStr"/>:</th>
+					<th align="right"><wo:str value="$session.@ls.pictureUploadType"/>:</th>
 					<td>
 						<wo:str value="$selectedAsset.documentType.name" />
-						<webobject name="HasDataButNoType"><div style="background-color: #fc8; padding: 2px">Varúð, tegund skjals (<wo:str value="$selectedAsset.extension" />) er óþekkt</div></webobject>
+						<wo:if condition="$hasDataButNoType"><div style="background-color: #fc8; padding: 2px">Varúð, tegund skjals (<wo:str value="$selectedAsset.extension" />) er óþekkt</div></wo:if>
 					</td>
 				</tr>
 			</wo:if>
@@ -26,32 +26,39 @@
 			<th align="right"><webobject name="PictureUploadSelectFromDiskStr"/>:</th>
 			<td><webobject name="Upload"/></td>
 		</tr>
-		<webobject name="IsPictureCond"><tr>
-			<th align="right"><webobject name="PictureSizesStr"/></th>
-			<td><webobject name="PictureSizesLoop">
-				<webobject name="CurrentSizeChk"/><webobject name="CurrentSizeStr"/>&nbsp;
-			</webobject></td>
-		</tr><tr>
-			<th align="right"><webobject name="PictureDescriptionStr"/>:</th>
-			<td><webobject name="PictureDescription"/></td>
-		</tr><tr>
-			<th align="right"><webobject name="PictureAltTextStr"/>:</th>
-			<td><webobject name="PictureAltText"/></td>
-		</tr>
-		</webobject>
-		<webobject name = "IsDocumentCond"><tr>
-			<th align="right"><webobject name = "DocumentLinkKeyStr"/>:</th>
-			<td><webobject name = "InpLinkKey"/></td>
-		</tr></webobject>
+		<wo:if condition="$isPicture">
+			<tr>
+				<th align="right"><webobject name="PictureSizesStr"/></th>
+				<td>
+					<wo:repetition list="$allSizesList" item="$currentSize">
+						<wo:checkbox checked="$currentSizeSelected"/><wo:str value="$currentSize" /> 
+					</wo:repetition>
+				</td>
+			</tr>
+			<tr>
+				<th align="right"><webobject name="PictureDescriptionStr"/>:</th>
+				<td><webobject name="PictureDescription"/></td>
+			</tr>
+			<tr>
+				<th align="right"><webobject name="PictureAltTextStr"/>:</th>
+				<td><webobject name="PictureAltText"/></td>
+			</tr>
+		</wo:if>
+		<wo:if condition="$isDocument">
+			<tr>
+				<th align="right"><webobject name="DocumentLinkKeyStr"/>:</th>
+				<td><webobject name="InpLinkKey"/></td>
+			</tr>
+		</wo:if>
 		<tr>
 			<th>
 				<webobject name="IsZipFileCond"><webobject name="Hyperlink1">Expand zip file</webobject></webobject>
-				<webobject name="IsDocumentCond"><webobject name="Hyperlink2">Edit as text</webobject></webobject>
+				<wo:if condition="$isDocument"><webobject name="Hyperlink2">Edit as text</webobject></wo:if>
 				&nbsp;
 			</th>
 			<td align="right"><webobject name="SubmitButton1" /></td>
 		</tr>
-		<webobject name="IsPictureCond">
+		<wo:if condition="$isPicture">
 			<tr><td colspan="2">
 				<table width="100%"><tr>
 					<td width="5">
@@ -63,6 +70,6 @@
 					</td>
 				</tr></table>
 			</td></tr>
-		</webobject>
+		</wo:if>
 	</table>
 </wo:form>

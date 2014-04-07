@@ -2,14 +2,6 @@ IsZipFileCond: WOConditional {
 	condition = isZipFile;
 }
 
-IsDocumentCond: WOConditional {
-	condition = isDocument;
-}
-
-IsPictureCond: WOConditional {
-	condition = isPicture;
-}
-
 Upload: WOFileUpload {
 	outputStream = selectedAsset.outputStream;
 	filePath = filename;
@@ -30,32 +22,6 @@ Hyperlink2: WOHyperlink {
 	target = "_blank";
 }
 
-PopUpButton1: WOPopUpButton {
-	displayString = currentDocumentType.name;
-	item = currentDocumentType;
-	list = documentTypes;
-	noSelectionString = session.@ls.pictureUploadNoTypeSpecified;
-	selection = selectedAsset.documentType;
-	escapeHTML = false;
-}
-
-HasDataButNoType: WOConditional {
-	condition = hasDataButNoType;
-}
-
-PleaseSelectTypeStr: WOString {
-	value = "";
-	escapeHTML = false;
-}
-
-PictureUploadNameStr: WOString {
-	value = session.@ls.pictureUploadName;
-}
-
-PictureUploadTypeStr: WOString {
-	value = session.@ls.pictureUploadType;
-}
-
 PictureUploadURLStr: WOString {
 	value = session.@ls.pictureUploadURL;
 }
@@ -66,20 +32,6 @@ PictureUploadSelectFromDiskStr: WOString {
 
 PictureSizesStr: WOString {
 	value = session.@ls.pictureSizes;
-}
-
-PictureSizesLoop: WORepetition {
-	list = allSizesList;
-	item = currentString;
-	index = count;
-}
-
-CurrentSizeChk: WOCheckBox {
-	checked = currentSizeSelection;
-}
-
-CurrentSizeStr: WOString {
-	value = currentString;
 }
 
 PictureDescriptionStr: WOString {

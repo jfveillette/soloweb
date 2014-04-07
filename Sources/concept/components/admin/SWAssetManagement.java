@@ -293,9 +293,7 @@ public class SWAssetManagement extends SWAdminComponent {
 
 	public String currentAssetThumbURL() {
 		if( currentAsset instanceof SWPicture ) {
-			String s = ((SWPicture)currentAsset).thumbnailURL();
-			System.out.println( s );
-			return s;
+			return ((SWPicture)currentAsset).thumbnailURL();
 		}
 		else {
 			return "";

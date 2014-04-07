@@ -8,13 +8,11 @@ import is.rebbi.wo.util.SWCustomInfo;
 import is.rebbi.wo.util.SWSettings;
 import is.rebbi.wo.util.USDataUtilities;
 
-import java.util.Enumeration;
-
 import com.webobjects.appserver.WOActionResults;
 import com.webobjects.appserver.WOComponent;
 import com.webobjects.appserver.WOContext;
 import com.webobjects.foundation.NSArray;
-import com.webobjects.foundation.NSMutableDictionary;
+import com.webobjects.foundation.NSMutableArray;
 
 import concept.SWAdminComponent;
 import concept.data.SWDocument;
@@ -22,30 +20,13 @@ import concept.data.SWPicture;
 
 public class SWEditDataAsset extends SWAdminComponent {
 
-	/**
-	 * The name of the file currently being uploaded from disk.
-	 */
 	public String filename;
-
-	/**
-	 * The url to fetch data from.
-	 */
 	public String url;
-
-	/**
-	 * The selected asset to work with
-	 */
 	private SWDataAsset<?, ?> _selectedAsset;
-
-	/**
-	 * The document type currently being iterated through in the list
-	 */
 	public FileType currentDocumentType;
-
-	public NSMutableDictionary pictureSizesDict = new NSMutableDictionary();
-	public NSArray<String> allSizesList;
-	public String currentString;
-	public int count;
+	public NSArray<String> allSizesList = NSArray.componentsSeparatedByString( SWSettings.stringForKey( "pictureSizes" ), "," );
+	public NSMutableArray<String> selectedSizes;
+	public String currentSize;
 
 	public SWEditDataAsset( WOContext context ) {
 		super( context );
@@ -58,23 +39,14 @@ public class SWEditDataAsset extends SWAdminComponent {
 	public void setSelectedAsset( SWDataAsset<?, ?> value ) {
 		_selectedAsset = value;
 
-		// create a list of all preview sizes
-		// and a dictionary for holding selected sizes
-		if( isPicture() ) {
-			SWPicture pic = (SWPicture)_selectedAsset;
-			String allSizes = SWSettings.stringForKey( "pictureSizes" );
-			allSizesList = NSArray.componentsSeparatedByString( allSizes, "," );
-			String picSizes = (String)pic.customInfo().valueForKey( "sizes" );
-			NSArray<String> picSizesList = NSArray.componentsSeparatedByString( picSizes, "," );
+		if( isPicture() && selectedSizes == null ) {
+			String sizesFromPicture = (String)((SWPicture)_selectedAsset).customInfo().valueForKey( "sizes" );
 
-			for( int i = 0; i < allSizesList.count(); i++ ) {
-				String key = allSizesList.objectAtIndex( i );
-				boolean selected = true;
-				// if pic has any sizes set then set the dictionary accordingly - else set all to true
-				if( picSizesList.count() > 0 && !picSizesList.containsObject( key ) ) {
-					selected = false;
-				}
-				pictureSizesDict.setObjectForKey( selected, key );
+			if( sizesFromPicture != null ) {
+				selectedSizes = NSArray.componentsSeparatedByString( sizesFromPicture, "," ).mutableClone();
+			}
+			else {
+				selectedSizes = new NSMutableArray<>();
 			}
 		}
 	}
@@ -84,18 +56,21 @@ public class SWEditDataAsset extends SWAdminComponent {
 	}
 
 	private String selectedSizesString() {
-		String str = "";
-		String komma = "";
-
-		for( Enumeration<String> e = allSizesList.objectEnumerator(); e.hasMoreElements(); ) {
-			String key = e.nextElement();
-			Boolean value = (Boolean)pictureSizesDict.objectForKey( key );
-			if( value.booleanValue() ) {
-				str += komma + key;
-				komma = ",";
-			}
-		}
+		String str = selectedSizes.componentsJoinedByString( "," );
 		return str;
+	}
+
+	public boolean currentSizeSelected() {
+		return selectedSizes.containsObject( currentSize );
+	}
+
+	public void setCurrentSizeSelected( boolean value ) {
+		if( value && !selectedSizes.containsObject( currentSize ) ) {
+			selectedSizes.addObject( currentSize );
+		}
+		else if( !value && selectedSizes.containsObject( currentSize ) ) {
+			selectedSizes.removeObject( currentSize );
+		}
 	}
 
 	private static String filename( String currentName, String url, String uploadedFilename ) {
@@ -113,20 +88,21 @@ public class SWEditDataAsset extends SWAdminComponent {
 
 	@Override
 	public WOComponent saveChanges() {
+		System.out.println( "SIZES: " + selectedSizesString() );
+		selectedAsset().setDisplayName( filename( _assetName, url, filename ) );
 
 		if( isPicture() ) {
-			SWCustomInfo ci = ((SWPicture)selectedAsset()).customInfo();
-			ci.takeValueForKey( selectedSizesString(), "sizes" );
+			((SWPicture)selectedAsset()).customInfo().takeValueForKey( selectedSizesString(), "sizes" );
 		}
 
 		if( StringUtilities.hasValue( url ) ) {
 			selectedAsset().setData( USDataUtilities.readDataFromURL( url ) );
 		}
 
-		selectedAsset().setDisplayName( filename( selectedAsset().name(), url, filename ) );
 		selectedAsset().updateThumbnails();
 		session().defaultEditingContext().saveChanges();
 
+		_assetName = null;
 		filename = null;
 		url = null;
 
@@ -178,23 +154,14 @@ public class SWEditDataAsset extends SWAdminComponent {
 		return nextPage;
 	}
 
-	public NSArray<String> pictureSizes() {
-		String sizes = SWSettings.stringForKey( "pictureSizes" );
-		NSArray<String> list = new NSArray<>( sizes.split( "," ) );
+	public String _assetName;
 
-		for( int i = 0; i < list.count(); i++ ) {
-			pictureSizesDict.setObjectForKey( "true", list.objectAtIndex( i ) );
+	public String assetName() {
+		if( _assetName == null ) {
+			_assetName = selectedAsset().name();
 		}
 
-		return list;
-	}
-
-	public Object currentSizeSelection() {
-		return pictureSizesDict.objectForKey( currentString );
-	}
-
-	public void setCurrentSizeSelection( Object value ) {
-		pictureSizesDict.setObjectForKey( value, currentString );
+		return _assetName;
 	}
 
 	public boolean hasDataButNoType() {

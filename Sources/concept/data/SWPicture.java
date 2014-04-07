@@ -87,13 +87,8 @@ public class SWPicture extends _SWPicture implements SWDataAsset<SWPicture, SWAs
 
 	@Override
 	public void setName( String value ) {
-
 		String filenameOnly = FileTypes.filenameByRemovingExtension( value );
-
-		if( filenameOnly == null ) {
-			filenameOnly = "Untitled";
-		}
-
+		filenameOnly = SWStringUtilities.legalName( filenameOnly );
 		String extensionOnly = FileTypes.extensionFromFilename( value );
 
 		StringBuilder b = new StringBuilder();
@@ -104,19 +99,27 @@ public class SWPicture extends _SWPicture implements SWDataAsset<SWPicture, SWAs
 			b.append( extensionOnly );
 		}
 
-		String newFileName = SWStringUtilities.legalName( FileTypes.filenameByRemovingExtension( value ) ) + "." + FileTypes.extensionFromFilename( value );
-/*
+		String newFileName = filenameOnly + "." + extensionOnly;
+
 		if( newFileName != null && !newFileName.equals( value ) ) {
 			if( file().exists() ) {
-				File newFile = new File( folderOnDisk() + newFileName );
+				File newFile = new File( pictureRootFolder() + newFileName );
 				file().renameTo( newFile );
 			}
 		}
-*/
+
+		setExtension( extensionOnly );
+
 		if( !Objects.equals( newFileName, name() ) ) {
 			for( String name : file().getParentFile().list() ) {
 				if( !name.startsWith( "." ) ) { // skip system files
-					String newName = name.replace( FileTypes.filenameByRemovingExtension( name() ), FileTypes.filenameByRemovingExtension( newFileName ) );
+					String oldNameWithoutExtension = FileTypes.filenameByRemovingExtension( name() );
+
+					if( oldNameWithoutExtension == null ) {
+						oldNameWithoutExtension = "";
+					}
+
+					String newName = name.replace( oldNameWithoutExtension, FileTypes.filenameByRemovingExtension( newFileName ) );
 
 					String oldExtension = FileTypes.extensionFromFilename( name );
 					String newExtension = FileTypes.extensionFromFilename( newFileName );
@@ -125,8 +128,8 @@ public class SWPicture extends _SWPicture implements SWDataAsset<SWPicture, SWAs
 						newName = FileTypes.filenameByRemovingExtension( newName ) + newExtension;
 					}
 
-					File src = new File( folderOnDisk() + name );
-					File dst = new File( folderOnDisk() + newName );
+					File src = new File( pictureRootFolder() + name );
+					File dst = new File( pictureRootFolder() + newName );
 
 					if( src.exists() ) {
 						src.renameTo( dst );
@@ -156,7 +159,6 @@ public class SWPicture extends _SWPicture implements SWDataAsset<SWPicture, SWAs
 	public void setDisplayName( String value ) {
 		super.setDisplayName( value );
 		setName( value );
-		setExtension( FileTypes.extensionFromFilename( value ) );
 	}
 
 	public String altTextOrName() {
@@ -178,21 +180,12 @@ public class SWPicture extends _SWPicture implements SWDataAsset<SWPicture, SWAs
 		}
 	}
 
-	private String folderOnDisk() {
-		return SWSettings.imagePath() + "/" + primaryKey() + "/";
+	private String pictureRootFolder() {
+		return SWSettings.imagePath() + "/" + pk() + "/";
 	}
 
 	public String path() {
-		return path( null );
-	}
-
-	private String path( String size ) {
-
-		if( size == null || "original".equals( size ) || "0".equals( size ) || "".equals( size ) ) {
-			return folderOnDisk() + name();
-		}
-
-		return folderOnDisk() + FileTypes.filenameByRemovingExtension( name() ) + "_" + size + "." + FileTypes.extensionFromFilename( name() );
+		return pathForSize( null );
 	}
 
 	private File file() {
@@ -201,8 +194,17 @@ public class SWPicture extends _SWPicture implements SWDataAsset<SWPicture, SWAs
 		return file;
 	}
 
-	private File file( String size ) {
-		return new File( path( size ) );
+	private String pathForSize( String size ) {
+
+		if( size == null || "original".equals( size ) || "0".equals( size ) || "".equals( size ) ) {
+			return pictureRootFolder() + name();
+		}
+
+		return pictureRootFolder() + FileTypes.filenameByRemovingExtension( name() ) + "_" + size + "." + FileTypes.extensionFromFilename( name() );
+	}
+
+	private File fileForSize( String size ) {
+		return new File( pathForSize( size ) );
 	}
 
 	/**
@@ -226,7 +228,7 @@ public class SWPicture extends _SWPicture implements SWDataAsset<SWPicture, SWAs
 	 * The image's data, as stored on disk for a certain size
 	 */
 	public NSData dataForSize( String size ) {
-		return USDataUtilities.readDataFromFile( file( size ) );
+		return USDataUtilities.readDataFromFile( fileForSize( size ) );
 	}
 
 	@Override
@@ -260,10 +262,15 @@ public class SWPicture extends _SWPicture implements SWDataAsset<SWPicture, SWAs
 		String imageURL = SWSettings.imageURL();
 
 		if( imageURL == null ) {
-			return ERXWOContext.currentContext().urlWithRequestHandlerKey( SWPictureRequestHandler.KEY, primaryKey() + "/" + nameForDownloadURLEncoded(), null );
+			return ERXWOContext.currentContext().urlWithRequestHandlerKey( SWPictureRequestHandler.KEY, pk() + "/" + nameForDownloadURLEncoded(), null );
 		}
 
-		return imageURL + "/" + primaryKey() + "/" + name();
+		return imageURL + "/" + pk() + "/" + name();
+	}
+
+	private Object pk() {
+		Object[] keyValues = permanentGlobalID().keyValues();
+		return keyValues[0];
 	}
 
 	public String previewURL( String size ) {
@@ -272,8 +279,8 @@ public class SWPicture extends _SWPicture implements SWDataAsset<SWPicture, SWAs
 		if( size == null || "original".equals( size ) || "0".equals( size ) ) {
 			url = pictureURL();
 		}
-		else if( file( size ).exists() ) {
-			url = SWSettings.imageURL() + "/" + primaryKey() + "/" + FileTypes.filenameByRemovingExtension( name() ) + "_" + size + "." + FileTypes.extensionFromFilename( name() );
+		else if( fileForSize( size ).exists() ) {
+			url = SWSettings.imageURL() + "/" + pk() + "/" + FileTypes.filenameByRemovingExtension( name() ) + "_" + size + "." + FileTypes.extensionFromFilename( name() );
 		}
 		else {
 			url = pictureURL();
@@ -311,7 +318,7 @@ public class SWPicture extends _SWPicture implements SWDataAsset<SWPicture, SWAs
 	}
 
 	public String emailEmbedURL() {
-		return "cid:swpicture_" + primaryKey();
+		return "cid:swpicture_" + pk();
 	}
 
 	/**
@@ -320,7 +327,7 @@ public class SWPicture extends _SWPicture implements SWDataAsset<SWPicture, SWAs
 	public ImageInfo imageInfo( String size ) {
 
 		try {
-			File file = file( size );
+			File file = fileForSize( size );
 
 			if( file.exists() && file.length() > 0 ) {
 				ImageInfo ii = new ImageInfo();
@@ -334,7 +341,7 @@ public class SWPicture extends _SWPicture implements SWDataAsset<SWPicture, SWAs
 			}
 		}
 		catch( Exception e ) {
-			logger.error( "Failed to create ImageInfo instance for image: " + primaryKey(), e );
+			logger.error( "Failed to create ImageInfo instance for image: " + pk(), e );
 		}
 
 		return null;
@@ -371,14 +378,16 @@ public class SWPicture extends _SWPicture implements SWDataAsset<SWPicture, SWAs
 
 		if( list != null ) {
 			for( int i = 0; i < list.length; i++ ) {
-				File file = new File( SWSettings.imagePath() + "/" + primaryKey() + "/" + list[i] );
+				File file = new File( SWSettings.imagePath() + "/" + pk() + "/" + list[i] );
 
 				if( file.exists() ) {
+					logger.info( "Deleting file: " + file );
 					file.delete();
 				}
 			}
 
 			if( directory.exists() ) {
+				logger.info( "Deleting directory: " + directory );
 				directory.delete();
 			}
 
@@ -437,7 +446,7 @@ public class SWPicture extends _SWPicture implements SWDataAsset<SWPicture, SWAs
 
 	@Override
 	public void updateThumbnails() {
-		logger.debug( "Creating images for pictureId: " + primaryKey() );
+		logger.debug( "Creating images for pictureId: " + pk() );
 
 		String str = (String)customInfo().valueForKey( "sizes" ); // these are the sizes requested
 
@@ -465,14 +474,14 @@ public class SWPicture extends _SWPicture implements SWDataAsset<SWPicture, SWAs
 				try {
 					// Create preview using ImageMagick's convert command line tool.
 					path = path();
-					previewPath = path( size );
+					previewPath = pathForSize( size );
 					logger.debug( "Creating image with max size: " + max + ", path: " + path + ", previewPath: " + previewPath );
 					SWPictureUtilities.createThumbnail( path, previewPath, max, max, 50 );
 					madeSizes += komma + size;
 					komma = ",";
 				}
 				catch( Exception ex ) {
-					logger.error( "Failed to create preview for: " + path( size ), ex );
+					logger.error( "Failed to create preview for: " + pathForSize( size ), ex );
 				}
 			}
 		}
@@ -491,7 +500,7 @@ public class SWPicture extends _SWPicture implements SWDataAsset<SWPicture, SWAs
 		for( int sizeNo = 0; sizeNo < sizes.size(); sizeNo++ ) {
 			size = sizes.objectAtIndex( sizeNo );
 			try {
-				ii.setInput( new FileInputStream( file( size ) ) );
+				ii.setInput( new FileInputStream( fileForSize( size ) ) );
 			}
 			catch( Exception ex ) {}
 			ii.check();
