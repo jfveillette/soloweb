@@ -200,7 +200,13 @@ public class SWPicture extends _SWPicture implements SWDataAsset<SWPicture, SWAs
 			return pictureRootFolder() + name();
 		}
 
-		return pictureRootFolder() + FileTypes.filenameByRemovingExtension( name() ) + "_" + size + "." + FileTypes.extensionFromFilename( name() );
+		String extension = FileTypes.extensionFromFilename( name() );
+
+		if( extension == null ) {
+			extension = extension();
+		}
+
+		return pictureRootFolder() + FileTypes.filenameByRemovingExtension( name() ) + "_" + size + "." + extension;
 	}
 
 	private File fileForSize( String size ) {
@@ -280,7 +286,13 @@ public class SWPicture extends _SWPicture implements SWDataAsset<SWPicture, SWAs
 			url = pictureURL();
 		}
 		else if( fileForSize( size ).exists() ) {
-			url = SWSettings.imageURL() + "/" + pk() + "/" + FileTypes.filenameByRemovingExtension( name() ) + "_" + size + "." + FileTypes.extensionFromFilename( name() );
+			String extension = FileTypes.extensionFromFilename( name() );
+
+			if( extension == null ) {
+				extension = extension();
+			}
+
+			url = SWSettings.imageURL() + "/" + pk() + "/" + FileTypes.filenameByRemovingExtension( name() ) + "_" + size + "." + extension;
 		}
 		else {
 			url = pictureURL();
