@@ -82,7 +82,6 @@ public class SessionManager {
 
 				if( session.sessionID().equals( sessionID )) {
 					Concept.sw().activeUserSessions().removeObject( session );
-					System.err.println( "Removed session!" );
 				}
 			}
 		}
