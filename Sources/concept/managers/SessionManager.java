@@ -74,10 +74,14 @@ public class SessionManager {
 	}
 
 	public void sessionDidTimeOut( NSNotification notification ) {
-		ERXSession session = (ERXSession)notification.object();
+		String sessionID = (String)notification.object();
 
-		if( session != null ) {
-			Concept.sw().activeUserSessions().removeObject( session );
+		if( sessionID != null ) {
+			for( ERXSession session : Concept.sw().activeUserSessions() ) {
+				if( session.sessionID().equals( sessionID )) {
+					Concept.sw().activeUserSessions().removeObject( session );
+				}
+			}
 		}
 	}
 }
