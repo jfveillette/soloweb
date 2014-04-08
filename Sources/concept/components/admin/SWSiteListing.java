@@ -316,7 +316,7 @@ public class SWSiteListing extends SWAdminComponent {
 
 		if( StringUtilities.hasValue( searchString ) ) {
 			if( ERXStringUtilities.isDigitsOnly( searchString ) ) {
-				searchResultPages = USEOUtilities.objectsMatchingKeyAndValue( session().defaultEditingContext(), SWPage.ENTITY_NAME, "pageID", new Integer( searchString ) );
+				searchResultPages = USEOUtilities.objectWithPK( session().defaultEditingContext(), SWPage.ENTITY_NAME, searchString );
 			}
 			else {
 				searchResultPages = USEOUtilities.objectsMatchingKeyAndValue( session().defaultEditingContext(), SWPage.ENTITY_NAME, "symbol", searchString );

@@ -201,16 +201,12 @@ public class SWDocument extends _SWDocument implements SWDataAsset<SWDocument, S
 	 * @return A universally acceptable (downloadable) name for the document.
 	 */
 	public String nameForDownloadURLEncoded() {
-		String nameForDownload = nameForDownload();
-
 		try {
-			nameForDownload = URLEncoder.encode( nameForDownload, "UTF-8" );
+			return URLEncoder.encode( nameForDownload(), "UTF-8" );
 		}
 		catch( UnsupportedEncodingException e ) {
-			logger.error( "Could not URL-encode document name: " + nameForDownload, e );
+			throw new RuntimeException( "Could not URL-encode document name: " + nameForDownload(), e );
 		}
-
-		return nameForDownload;
 	}
 
 	/**

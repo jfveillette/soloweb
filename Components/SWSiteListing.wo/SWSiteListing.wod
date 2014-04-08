@@ -1,7 +1,3 @@
-SearchTextStr: WOString {
-	value = "Type page id or link-name";
-}
-
 SearchResultSitesList: WORepetition {
 	list = searchResultSites;
 	item = currentSearchSite;

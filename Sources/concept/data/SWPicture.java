@@ -33,13 +33,13 @@ import com.webobjects.eocontrol.EOEnterpriseObject;
 import com.webobjects.foundation.NSArray;
 import com.webobjects.foundation.NSData;
 import com.webobjects.foundation.NSMutableArray;
-import com.webobjects.foundation.NSMutableDictionary;
 
 import concept.SWPictureRequestHandler;
 import concept.data.auto._SWPicture;
 import concept.util.SWPictureUtilities;
 import concept.util.SWStringUtilities;
 import concept.util.SWZipUtilities;
+import er.extensions.appserver.ERXApplication;
 import er.extensions.appserver.ERXWOContext;
 
 public class SWPicture extends _SWPicture implements SWDataAsset<SWPicture, SWAssetFolder>, SWHasCustomInfo {
@@ -73,16 +73,12 @@ public class SWPicture extends _SWPicture implements SWDataAsset<SWPicture, SWAs
 	}
 
 	public String nameForDownloadURLEncoded() {
-		String nameForDownload = nameForDownload();
-
 		try {
-			nameForDownload = URLEncoder.encode( nameForDownload, "UTF-8" );
+			return URLEncoder.encode( nameForDownload(), "UTF-8" );
 		}
 		catch( UnsupportedEncodingException e ) {
-			throw new RuntimeException( "Could not URL-encode document name: " + nameForDownload, e );
+			throw new RuntimeException( "Could not URL-encode document name: " + nameForDownload(), e );
 		}
-
-		return nameForDownload;
 	}
 
 	@Override
@@ -112,7 +108,7 @@ public class SWPicture extends _SWPicture implements SWDataAsset<SWPicture, SWAs
 
 		if( !Objects.equals( newFileName, name() ) ) {
 			for( String name : file().getParentFile().list() ) {
-				if( !name.startsWith( "." ) ) { // skip system files
+				if( !name.startsWith( "." ) ) { // skip invisible files
 					String oldNameWithoutExtension = FileTypes.filenameByRemovingExtension( name() );
 
 					if( oldNameWithoutExtension == null ) {
@@ -316,7 +312,26 @@ public class SWPicture extends _SWPicture implements SWDataAsset<SWPicture, SWAs
 	 * @return Available preview sizes as NSArray
 	 */
 	public NSArray<String> previewSizesList() {
-		return NSArray.componentsSeparatedByString( (String)customInfo().valueForKey( "sizes" ), "," );
+		String sizeString = (String)customInfo().valueForKey( "sizes" );
+
+		if( sizeString == null ) {
+			return NSArray.<String>emptyArray();
+		}
+
+		return NSArray.componentsSeparatedByString( sizeString, "," );
+	}
+
+	/**
+	 * @return Available preview sizes as NSArray
+	 */
+	public void setPreviewSizesList( NSArray<String> sizeArray ) {
+		String sizeString = null;
+
+		if( sizeArray != null ) {
+			sizeString = sizeArray.componentsJoinedByString( "," );
+		}
+
+		customInfo().takeValueForKey( sizeString, "sizes" );
 	}
 
 	/**
@@ -434,13 +449,11 @@ public class SWPicture extends _SWPicture implements SWDataAsset<SWPicture, SWAs
 	public void expandZip() {
 		SWZipUtilities.expandZipFileAndInsertIntoFolder( editingContext(), file(), folder(), entityName() );
 
-		String sizes = (String)customInfo().valueForKey( "sizes" );
-
-		for( SWPicture pic : containingFolder().sortedDocuments() ) {
-			if( !"zip".equals( FileTypes.extensionFromFilename( pic.name() ) ) ) {
-				pic.setDisplayName( pic.name() );
-				pic.customInfo().takeValueForKey( sizes, "sizes" );
-				pic.updateThumbnails();
+		for( SWPicture newPicture : containingFolder().sortedDocuments() ) {
+			if( !"zip".equals( FileTypes.extensionFromFilename( newPicture.name() ) ) ) {
+				newPicture.setDisplayName( newPicture.name() );
+				newPicture.setPreviewSizesList( previewSizesList() );
+				newPicture.updateThumbnails();
 			}
 		}
 
@@ -459,38 +472,35 @@ public class SWPicture extends _SWPicture implements SWDataAsset<SWPicture, SWAs
 	@Override
 	public void updateThumbnails() {
 		logger.debug( "Creating images for pictureId: " + pk() );
-
 		String str = (String)customInfo().valueForKey( "sizes" ); // these are the sizes requested
 
-		if( str == null || "".equals( str ) ) {
+		if( !StringUtilities.hasValue( str ) ) {
 			str = SWSettings.stringForKey( "pictureSizes" );
 		}
 
-		String madeSizes = ""; // sizes that are created
-		String komma = "";
+		NSMutableArray<String> madeSizes = new NSMutableArray<>();
 		NSArray<String> sizes = NSArray.componentsSeparatedByString( str, "," );
-		int w, h, max;
-		String path, previewPath;
 
-		for( int i = 0; i < sizes.count(); i++ ) {
-			String size = sizes.objectAtIndex( i );
+		for( String size : sizes ) {
 			logger.debug( "Processing image size: " + size );
-			max = new Integer( size ).intValue();
-			w = width();
-			h = height();
+			int max = Integer.parseInt( size );
+			int w = width();
+			int h = height();
 
-			boolean doProcess = isLandscape() ? max < width() : max < height();// only make previews for sizes less than original
-			logger.debug( "Width: " + w + ", Height: " + h + ", doProcess: " + doProcess );
+			boolean shouldProcess = isLandscape() ? max < width() : max < height();// only make previews for sizes less than original
+			logger.debug( "Width: " + w + ", Height: " + h + ", doProcess: " + shouldProcess );
 
-			if( doProcess && file().exists() ) {
+			if( shouldProcess && file().exists() ) {
 				try {
-					// Create preview using ImageMagick's convert command line tool.
-					path = path();
-					previewPath = pathForSize( size );
+					String path = path();
+					String previewPath = pathForSize( size );
 					logger.debug( "Creating image with max size: " + max + ", path: " + path + ", previewPath: " + previewPath );
-					SWPictureUtilities.createThumbnail( path, previewPath, max, max, 50 );
-					madeSizes += komma + size;
-					komma = ",";
+
+					if( !ERXApplication.erxApplication().isDevelopmentMode() ) {
+						SWPictureUtilities.createThumbnail( path, previewPath, max, max, 50 );
+					}
+
+					madeSizes.addObject( size );
 				}
 				catch( Exception ex ) {
 					logger.error( "Failed to create preview for: " + pathForSize( size ), ex );
@@ -499,28 +509,7 @@ public class SWPicture extends _SWPicture implements SWDataAsset<SWPicture, SWAs
 		}
 
 		logger.debug( "Setting sizes for pictureId: " + madeSizes );
-		customInfo().takeValueForKey( madeSizes, "sizes" ); // store actual sizes made
-	}
-
-	public void updateDimensions() {
-		NSArray<String> sizes = availablePictureSizes();
-		NSMutableDictionary<String, String> dimensions = new NSMutableDictionary<>();
-		String dim, size;
-
-		ImageInfo ii = new ImageInfo();
-
-		for( int sizeNo = 0; sizeNo < sizes.size(); sizeNo++ ) {
-			size = sizes.objectAtIndex( sizeNo );
-			try {
-				ii.setInput( new FileInputStream( fileForSize( size ) ) );
-			}
-			catch( Exception ex ) {}
-			ii.check();
-			dim = ii.getWidth() + "," + ii.getHeight();
-			dimensions.takeValueForKey( dim, size );
-		}
-
-		customInfo().takeValueForKey( dimensions, "dimensions" );
+		setPreviewSizesList( madeSizes );
 	}
 
 	public boolean hasSize( String size ) {
