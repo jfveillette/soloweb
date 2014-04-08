@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<wodefinitions>
+    <wo class="SWPreviewSizePicker" wocomponentcontent="false">    <binding name="selected"/>
+        <binding name="available"/>
+        <validation message="'available' is a required binding.">
+            <unbound name="available"/>
+        </validation>
+        <validation message="'selected' is a required binding.">
+            <unbound name="selected"/>
+        </validation>
+    </wo>
+</wodefinitions>

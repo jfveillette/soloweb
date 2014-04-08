@@ -9,6 +9,7 @@ import is.rebbi.wo.util.FileTypes;
 import is.rebbi.wo.util.ImageInfo;
 import is.rebbi.wo.util.SWCustomInfo;
 import is.rebbi.wo.util.SWSettings;
+import is.rebbi.wo.util.USArrayUtilities;
 import is.rebbi.wo.util.USDataUtilities;
 import is.rebbi.wo.util.USEOUtilities;
 import is.rebbi.wo.util.USHTTPUtilities;
@@ -472,14 +473,13 @@ public class SWPicture extends _SWPicture implements SWDataAsset<SWPicture, SWAs
 	@Override
 	public void updateThumbnails() {
 		logger.debug( "Creating images for pictureId: " + pk() );
-		String str = (String)customInfo().valueForKey( "sizes" ); // these are the sizes requested
+		NSArray<String> sizes = previewSizesList();
 
-		if( !StringUtilities.hasValue( str ) ) {
-			str = SWSettings.stringForKey( "pictureSizes" );
+		if( !USArrayUtilities.hasObjects( sizes ) ) {
+			sizes = SWSettings.previewSizes();
 		}
 
 		NSMutableArray<String> madeSizes = new NSMutableArray<>();
-		NSArray<String> sizes = NSArray.componentsSeparatedByString( str, "," );
 
 		for( String size : sizes ) {
 			logger.debug( "Processing image size: " + size );

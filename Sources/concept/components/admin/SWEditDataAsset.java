@@ -6,6 +6,7 @@ import is.rebbi.wo.util.FileType;
 import is.rebbi.wo.util.FileTypes;
 import is.rebbi.wo.util.SWCustomInfo;
 import is.rebbi.wo.util.SWSettings;
+import is.rebbi.wo.util.USArrayUtilities;
 import is.rebbi.wo.util.USDataUtilities;
 
 import com.webobjects.appserver.WOActionResults;
@@ -20,16 +21,20 @@ import concept.data.SWPicture;
 
 public class SWEditDataAsset extends SWAdminComponent {
 
+	public String _assetName;
 	public String filename;
 	public String url;
 	private SWDataAsset<?, ?> _selectedAsset;
 	public FileType currentDocumentType;
-	public NSArray<String> allSizesList = NSArray.componentsSeparatedByString( SWSettings.stringForKey( "pictureSizes" ), "," );
 	public NSMutableArray<String> selectedSizes;
 	public String currentSize;
 
 	public SWEditDataAsset( WOContext context ) {
 		super( context );
+	}
+
+	public NSArray<String> allSizesList() {
+		return SWSettings.previewSizes();
 	}
 
 	public NSArray<FileType> documentTypes() {
@@ -38,15 +43,19 @@ public class SWEditDataAsset extends SWAdminComponent {
 
 	public void setSelectedAsset( SWDataAsset<?, ?> value ) {
 		_selectedAsset = value;
+		if( _selectedAsset != null ) {
+			_assetName = _selectedAsset.name();
 
-		if( isPicture() && selectedSizes == null ) {
-			String sizes = (String)((SWPicture)_selectedAsset).customInfo().valueForKey( "sizes" );
+			if( isPicture() ) {
+				NSArray<String> sizes = ((SWPicture)_selectedAsset).previewSizesList();
 
-			if( sizes == null ) {
-				sizes = SWSettings.stringForKey( "pictureSizes" );
+				if( !USArrayUtilities.hasObjects( sizes ) ) {
+					sizes = SWSettings.previewSizes();
+				}
+
+				System.out.println( "Sizes: " +  selectedSizes );
+				selectedSizes = sizes.mutableClone();
 			}
-
-			selectedSizes = NSArray.componentsSeparatedByString( sizes, "," ).mutableClone();
 		}
 	}
 
@@ -90,7 +99,6 @@ public class SWEditDataAsset extends SWAdminComponent {
 
 		if( isPicture() ) {
 			((SWPicture)selectedAsset()).setPreviewSizesList( selectedSizes );
-//			((SWPicture)selectedAsset()).customInfo().takeValueForKey( selectedSizesString(), "sizes" );
 		}
 
 		if( StringUtilities.hasValue( url ) ) {
@@ -151,8 +159,6 @@ public class SWEditDataAsset extends SWAdminComponent {
 		nextPage.setPicture( (SWPicture)selectedAsset() );
 		return nextPage;
 	}
-
-	public String _assetName;
 
 	public String assetName() {
 		if( _assetName == null ) {
