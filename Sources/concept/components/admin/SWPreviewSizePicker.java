@@ -21,11 +21,15 @@ public class SWPreviewSizePicker extends ERXComponent {
 	}
 
 	public void setChecked( boolean checked ) {
+//		System.out.println( current + ": " + checked  );
+
 		if( checked && !selected.containsObject( current ) ) {
 			selected = selected.arrayByAddingObject( current );
 		}
 		else if( !checked && selected.containsObject( current ) ) {
 			selected = ERXArrayUtilities.arrayMinusObject( selected, current );
 		}
+
+//		System.out.println( selected );
 	}
 }

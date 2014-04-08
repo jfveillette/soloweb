@@ -316,7 +316,12 @@ public class SWPicture extends _SWPicture implements SWDataAsset<SWPicture, SWAs
 		String sizeString = (String)customInfo().valueForKey( "sizes" );
 
 		if( sizeString == null ) {
-			return NSArray.<String>emptyArray();
+			if( !hasData() ) {
+				return SWSettings.previewSizes();
+			}
+			else {
+				return NSArray.<String>emptyArray();
+			}
 		}
 
 		return NSArray.componentsSeparatedByString( sizeString, "," );

@@ -4,16 +4,13 @@ import is.rebbi.core.util.StringUtilities;
 import is.rebbi.wo.interfaces.SWDataAsset;
 import is.rebbi.wo.util.FileType;
 import is.rebbi.wo.util.FileTypes;
-import is.rebbi.wo.util.SWCustomInfo;
 import is.rebbi.wo.util.SWSettings;
-import is.rebbi.wo.util.USArrayUtilities;
 import is.rebbi.wo.util.USDataUtilities;
 
 import com.webobjects.appserver.WOActionResults;
 import com.webobjects.appserver.WOComponent;
 import com.webobjects.appserver.WOContext;
 import com.webobjects.foundation.NSArray;
-import com.webobjects.foundation.NSMutableArray;
 
 import concept.SWAdminComponent;
 import concept.data.SWDocument;
@@ -26,14 +23,13 @@ public class SWEditDataAsset extends SWAdminComponent {
 	public String url;
 	private SWDataAsset<?, ?> _selectedAsset;
 	public FileType currentDocumentType;
-	public NSMutableArray<String> selectedSizes;
 	public String currentSize;
 
 	public SWEditDataAsset( WOContext context ) {
 		super( context );
 	}
 
-	public NSArray<String> allSizesList() {
+	public NSArray<String> availableSizes() {
 		return SWSettings.previewSizes();
 	}
 
@@ -43,41 +39,11 @@ public class SWEditDataAsset extends SWAdminComponent {
 
 	public void setSelectedAsset( SWDataAsset<?, ?> value ) {
 		_selectedAsset = value;
-		if( _selectedAsset != null ) {
-			_assetName = _selectedAsset.name();
-
-			if( isPicture() ) {
-				NSArray<String> sizes = ((SWPicture)_selectedAsset).previewSizesList();
-
-				if( !USArrayUtilities.hasObjects( sizes ) ) {
-					sizes = SWSettings.previewSizes();
-				}
-
-				System.out.println( "Sizes: " +  selectedSizes );
-				selectedSizes = sizes.mutableClone();
-			}
-		}
+		_assetName = _selectedAsset.name();
 	}
 
 	public SWDataAsset<?, ?> selectedAsset() {
 		return _selectedAsset;
-	}
-
-	private String selectedSizesString() {
-		return selectedSizes.componentsJoinedByString( "," );
-	}
-
-	public boolean currentSizeSelected() {
-		return selectedSizes.containsObject( currentSize );
-	}
-
-	public void setCurrentSizeSelected( boolean value ) {
-		if( value && !selectedSizes.containsObject( currentSize ) ) {
-			selectedSizes.addObject( currentSize );
-		}
-		else if( !value && selectedSizes.containsObject( currentSize ) ) {
-			selectedSizes.removeObject( currentSize );
-		}
 	}
 
 	private static String filename( String currentName, String url, String uploadedFilename ) {
@@ -96,10 +62,6 @@ public class SWEditDataAsset extends SWAdminComponent {
 	@Override
 	public WOComponent saveChanges() {
 		selectedAsset().setDisplayName( filename( _assetName, url, filename ) );
-
-		if( isPicture() ) {
-			((SWPicture)selectedAsset()).setPreviewSizesList( selectedSizes );
-		}
 
 		if( StringUtilities.hasValue( url ) ) {
 			selectedAsset().setData( USDataUtilities.readDataFromURL( url ) );
@@ -138,13 +100,7 @@ public class SWEditDataAsset extends SWAdminComponent {
 	}
 
 	public WOComponent expandZipFile() {
-		if( isPicture() ) {
-			SWCustomInfo ci = ((SWPicture)selectedAsset()).customInfo();
-			ci.takeValueForKey( selectedSizesString(), "sizes" );
-		}
-
 		selectedAsset().expandZip();
-
 		return null;
 	}
 

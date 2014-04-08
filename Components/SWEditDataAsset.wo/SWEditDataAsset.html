@@ -29,11 +29,7 @@
 		<wo:if condition="$isPicture">
 			<tr>
 				<th align="right"><webobject name="PictureSizesStr"/></th>
-				<td>
-					<wo:repetition list="$allSizesList" item="$currentSize">
-						<wo:checkbox checked="$currentSizeSelected"/><wo:str value="$currentSize" /> 
-					</wo:repetition>
-				</td>
+				<td><wo:SWPreviewSizePicker available="$availableSizes" selected="$selectedAsset.previewSizesList" /></td>
 			</tr>
 			<tr>
 				<th align="right"><webobject name="PictureDescriptionStr"/>:</th>
