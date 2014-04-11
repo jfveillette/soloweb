@@ -1,5 +1,6 @@
 package concept.components.admin;
 
+import is.rebbi.wo.components.IMAdminDB;
 import is.rebbi.wo.definitions.EntityViewDefinition;
 import is.rebbi.wo.util.USArrayUtilities;
 import is.rebbi.wo.util.USHTTPUtilities;
@@ -14,7 +15,6 @@ import com.webobjects.foundation.NSComparator.ComparisonException;
 import com.webobjects.foundation.NSMutableSet;
 
 import concept.CPAdminComponent;
-import concept.components.IMAdminDB;
 
 /**
  * The Menu at the top of the system

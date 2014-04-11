@@ -16,6 +16,8 @@ import com.webobjects.foundation.NSNotificationCenter;
 import com.webobjects.foundation.NSSelector;
 import com.webobjects.foundation.NSTimestamp;
 
+import concept.components.ViewWrapperTools;
+import concept.components.admin.CPAdminComponentWrapper;
 import concept.components.admin.SWAdminCustomComponent;
 import concept.definitions.DatabaseDefinitions;
 import concept.definitions.SystemDefinitions;
@@ -111,6 +113,15 @@ public class Concept {
 		_activeComponents.setObjectForKey( SWAdminCustomComponent.class.getSimpleName(), "Custom" );
 
 		SWSettings.register();
+
+		if( SWSettings.viewToolsComponentName() == null ) {
+			SWSettings.setViewToolsComponentName( ViewWrapperTools.class.getSimpleName() );
+		}
+
+		if( SWSettings.defaultEditLookName() == null ) {
+			SWSettings.setDefaultEditLookName( CPAdminComponentWrapper.class.getSimpleName() );
+		}
+
 		SoftUser.Manager.register();
 		DBConnectionManager.register();
 		TransactionStamper.register();

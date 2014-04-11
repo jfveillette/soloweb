@@ -39,6 +39,17 @@ public class TestSWPicture {
 	}
 
 	@Test
+	public void setName() {
+		SWPicture p = new SWPicture();
+		ec.insertSavedObject( p );
+
+		p.setDisplayName( "Þjóðarþýðingin.jpg" );
+		System.out.println( p.displayName() );
+		System.out.println( p.name() );
+		System.out.println( p.extension() );
+	}
+
+	@Test
 	public void pictureURL() {
 		SWPicture picture = new SWPicture();
 		ec.insertSavedObject( picture );
