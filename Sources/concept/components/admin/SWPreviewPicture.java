@@ -1,5 +1,8 @@
 package concept.components.admin;
 
+import is.rebbi.core.util.ImageUtilities;
+import is.rebbi.core.util.ImageUtilities.CodecType;
+
 import java.awt.image.BufferedImage;
 import java.util.Random;
 
@@ -147,7 +150,7 @@ public class SWPreviewPicture extends WOComponent {
 	public WOComponent performCrop() {
 		BufferedImage image = bufferedImage();
 		image = image.getSubimage( x1, y1, x2 - x1, y2 - y1 );
-		picture.setData( SWPictureUtilities.jpegEncodeBufferedImage( image, 80 ) );
+		picture.setData( new NSData( ImageUtilities.encode( image, 80, CodecType.JPEG ) ) );
 		tempData = null;
 
 		x1 = -1;
@@ -159,6 +162,6 @@ public class SWPreviewPicture extends WOComponent {
 	}
 
 	public BufferedImage bufferedImage() {
-		return SWPictureUtilities.bufferedImageFromData( picture.data() );
+		return ImageUtilities.bufferedImageFromData( picture.data().bytes() );
 	}
 }

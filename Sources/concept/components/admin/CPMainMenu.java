@@ -80,7 +80,7 @@ public class CPMainMenu extends CPAdminComponent {
 
 	public WOActionResults selectViewDefinition() {
 		IMAdminDB nextPage = pageWithName( IMAdminDB.class );
-		nextPage.setSelectedObject( currentViewDefinition );
+		nextPage.setSelectedDefinition( currentViewDefinition );
 		return nextPage;
 	}
 }
