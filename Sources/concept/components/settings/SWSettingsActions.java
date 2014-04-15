@@ -82,6 +82,8 @@ public class SWSettingsActions extends SWManageSettings {
 	}
 
 	public static void updateAllPictureThumbnailsFromId( EOEditingContext ec, Integer startPictureId, Integer endPictureId ) {
+		logger.debug( "Full thumbnail rebuild started" );
+
 		NSMutableArray<EOQualifier> a = new NSMutableArray<>();
 
 		if( startPictureId != null ) {
@@ -94,9 +96,10 @@ public class SWSettingsActions extends SWManageSettings {
 
 		EOAndQualifier q = new EOAndQualifier( a );
 		EOFetchSpecification fs = new EOFetchSpecification( SWPicture.ENTITY_NAME, q, null );
+
+		System.out.println( "Fetching picture objects" );
 		NSArray<SWPicture> pictures = ec.objectsWithFetchSpecification( fs );
 
-		logger.debug( "Full thumbnail rebuild started" );
 
 		int i = 0;
 
