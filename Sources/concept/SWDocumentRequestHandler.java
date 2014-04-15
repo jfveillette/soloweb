@@ -52,12 +52,12 @@ public class SWDocumentRequestHandler extends WORequestHandler {
 
 		boolean forceDownload = "true".equals( request.stringFormValueForKey( "download" ) );
 
-		System.out.println( request.headers() );
+//		System.out.println( request.headers() );
 		WOResponse response = USHTTPUtilities.responseWithStreamAndMimeType( object.nameForDownload(), object.inputStream(), object.size(), object.mimeType(), forceDownload );
-		response.setHeader( "bytes 0-" + (object.size()-1) + "/" + object.size(), "Content-Range" );
-		response.setHeader( "close", "Connection" );
-		response.setHTTPVersion( "HTTP/1.1" );
-		response.setStatus( 206 );
+//		response.setHeader( "bytes 0-" + (object.size()-1) + "/" + object.size(), "Content-Range" );
+//		response.setHeader( "close", "Connection" );
+//		response.setHTTPVersion( "HTTP/1.1" );
+//		response.setStatus( 206 );
 		return response;
 	}
 
